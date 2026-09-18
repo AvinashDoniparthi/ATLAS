@@ -126,9 +126,7 @@ def find_hys_law(core) -> list[Finding]:
             continue
 
         pairs: list[dict[str, Any]] = []
-        support: list[EvidenceItem] = []
-        cited: set[tuple] = set()
-        conversion_used = False
+        pair_nls: list[tuple[NormalisedLab, NormalisedLab]] = []
         for t in tx:
             td = idx.record_date(t.record)
             for b in bili:
@@ -137,16 +135,32 @@ def find_hys_law(core) -> list[Finding]:
                 if days > window:
                     continue
                 pairs.append({"transaminase": _lab_detail(core, t), "bilirubin": _lab_detail(core, b), "days_apart": days})
-                for nl, mult in ((t, t_mult), (b, b_mult)):
-                    k = nl.record.key.as_tuple()
-                    if k in cited:
-                        continue
-                    cited.add(k)
-                    if nl.conversion is not None or (nl.range is not None and not nl.range.is_central):
-                        conversion_used = True  # non-central unit/range: cite the lab manual unit statement
-                    support.append(_support(core, nl.record, nl.testcd, mult))
+                pair_nls.append((t, b))
         if not pairs:
             continue
+
+        # Select the establishing pair (highest transaminase multiple, then bilirubin multiple, then closest)
+        best_idx = 0
+        best_rank = (-1.0, -1.0, 9999)
+        for i, p in enumerate(pairs):
+            t_m = p["transaminase"]["multiple_of_uln"] or 0.0
+            b_m = p["bilirubin"]["multiple_of_uln"] or 0.0
+            rank = (t_m, b_m, -p["days_apart"])
+            if rank > best_rank:
+                best_rank = rank
+                best_idx = i
+
+        if best_idx != 0:
+            pairs.insert(0, pairs.pop(best_idx))
+            pair_nls.insert(0, pair_nls.pop(best_idx))
+
+        best_t, best_b = pair_nls[0]
+        support: list[EvidenceItem] = []
+        conversion_used = False
+        for nl, mult in ((best_t, t_mult), (best_b, b_mult)):
+            if nl.conversion is not None or (nl.range is not None and not nl.range.is_central):
+                conversion_used = True  # non-central unit/range: cite the lab manual unit statement
+            support.append(_support(core, nl.record, nl.testcd, mult))
 
         flags: list[str] = []
         if baseline_tx:

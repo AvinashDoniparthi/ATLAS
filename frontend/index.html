@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATLAS — Study Sentinel</title>
+<meta name="description" content="ATLAS Study Sentinel — connect clinical data, find answers, see the evidence.">
+<style>
+/* ── Reset & base ─────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black:   #0a0a0a;
+  --gray-1:  #3a3a3a;
+  --gray-2:  #6b6b6b;
+  --gray-3:  #999;
+  --gray-4:  #ccc;
+  --border:  #e8e8e8;
+  --bg:      #ffffff;
+  --bg-off:  #fafafa;
+  --mono:    'SF Mono', 'Fira Code', 'Cascadia Code', ui-monospace, monospace;
+  --sans:    'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --radius:  6px;
+  --shadow:  0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+}
+
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--black);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; font-family: inherit; }
+input, textarea { font-family: inherit; }
+
+/* ── Layout helpers ───────────────────────────────────────────────────────── */
+.container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+.divider   { border: none; border-top: 1px solid var(--border); margin: 60px 0; }
+
+/* ── Navigation ───────────────────────────────────────────────────────────── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: 960px; margin: 0 auto; padding: 0 24px;
+  height: 52px; display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+  font-size: .75rem; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--black);
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  transition: opacity .15s ease;
+  user-select: none;
+}
+.nav-logo:hover { opacity: .65; }
+.nav-logo:focus-visible,
+.nav-links a:focus-visible,
+.pill:focus-visible,
+.btn-primary:focus-visible,
+.search-btn:focus-visible {
+  outline: 2px solid var(--black);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+.nav-links { display: flex; gap: 28px; }
+.nav-links a {
+  font-size: .8rem; font-weight: 500; letter-spacing: .02em;
+  color: var(--gray-2);
+  transition: color .15s;
+}
+.nav-links a:hover { color: var(--black); }
+.nav-links a.active { color: var(--black); }
+
+/* ── Hero ─────────────────────────────────────────────────────────────────── */
+.hero {
+  padding: 100px 0 72px;
+  text-align: center;
+}
+.eyebrow {
+  font-size: .7rem; font-weight: 600; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--gray-3);
+  margin-bottom: 20px;
+}
+.hero h1 {
+  font-size: clamp(2.4rem, 5vw, 3.4rem);
+  font-weight: 700; letter-spacing: -.03em;
+  line-height: 1.15; color: var(--black);
+  margin-bottom: 16px;
+}
+.hero-sub {
+  font-size: 1rem; color: var(--gray-2);
+  margin-bottom: 40px; line-height: 1.5;
+}
+
+/* ── Search bar ───────────────────────────────────────────────────────────── */
+.search-wrap {
+  max-width: 600px; margin: 0 auto 20px;
+  position: relative;
+}
+.search-wrap input {
+  width: 100%; padding: 14px 52px 14px 20px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  font-size: .95rem; color: var(--black);
+  background: var(--bg); outline: none;
+  box-shadow: var(--shadow);
+  transition: border-color .15s;
+}
+.search-wrap input:focus { border-color: var(--black); }
+.search-wrap input::placeholder { color: var(--gray-3); }
+.search-btn {
+  position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+  background: var(--black); color: #fff;
+  border: none; width: 32px; height: 32px;
+  border-radius: 4px; display: flex; align-items: center; justify-content: center;
+  font-size: .85rem; transition: background .15s;
+}
+.search-btn:hover { background: var(--gray-1); }
+.search-btn:disabled { background: var(--gray-4); cursor: default; }
+
+/* ── Pills ────────────────────────────────────────────────────────────────── */
+.pills { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.pill {
+  padding: 6px 14px; border: 1px solid var(--border);
+  border-radius: 100px; font-size: .78rem; font-weight: 500;
+  color: var(--gray-2); background: var(--bg);
+  transition: border-color .12s, color .12s, background .12s;
+}
+.pill:hover { border-color: var(--black); color: var(--black); background: var(--bg-off); }
+
+/* ── Answer area ──────────────────────────────────────────────────────────── */
+.answer-section {
+  max-width: 680px; margin: 0 auto;
+  display: none;
+}
+.answer-section.visible { display: block; }
+.section-label {
+  font-size: .68rem; font-weight: 600; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--gray-3);
+  margin-bottom: 24px;
+}
+.answer-card {
+  border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 28px 32px; background: var(--bg);
+  box-shadow: var(--shadow);
+}
+.answer-row { margin-bottom: 20px; }
+.answer-row:last-child { margin-bottom: 0; }
+.answer-key {
+  font-size: .7rem; font-weight: 600; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--gray-3);
+  margin-bottom: 6px;
+}
+.answer-val { font-size: .9rem; color: var(--black); line-height: 1.5; }
+.answer-val.mono {
+  font-family: var(--mono); font-size: .82rem;
+  color: var(--gray-1);
+}
+.answer-val.big { font-size: 1.05rem; font-weight: 600; }
+.conf-bar {
+  height: 3px; background: var(--border); border-radius: 2px;
+  margin-top: 8px; overflow: hidden;
+}
+.conf-fill { height: 100%; background: var(--black); border-radius: 2px; }
+.evidence-item {
+  padding: 5px 10px; border: 1px solid var(--border);
+  border-radius: 4px; margin: 4px 0;
+  font-family: var(--mono); font-size: .78rem;
+  color: var(--gray-1); background: var(--bg-off);
+  display: inline-block; margin-right: 4px;
+}
+.evidence-item.clickable {
+  cursor: pointer;
+  transition: border-color .12s, background .12s;
+}
+.evidence-item.clickable:hover {
+  border-color: var(--black);
+  background: #f0f0f0;
+}
+.subject-link {
+  color: var(--black);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--gray-4);
+  cursor: pointer;
+  transition: text-decoration-color .12s;
+}
+.subject-link:hover {
+  text-decoration-color: var(--black);
+}
+.loading-spinner {
+  display: inline-block; width: 16px; height: 16px;
+  border: 2px solid var(--border); border-top-color: var(--black);
+  border-radius: 50%; animation: spin .6s linear infinite; vertical-align: middle;
+  margin-right: 8px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.error-msg { color: #c0392b; font-size: .85rem; }
+.none-msg { color: var(--gray-3); font-style: italic; }
+
+/* ── Capabilities grid ────────────────────────────────────────────────────── */
+.capabilities { padding: 60px 0; }
+.cap-header {
+  font-size: .68rem; font-weight: 600; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--gray-3);
+  margin-bottom: 36px;
+}
+.cap-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border); border-radius: var(--radius);
+  overflow: hidden;
+}
+.cap-item {
+  background: var(--bg); padding: 20px 22px;
+  transition: background .12s, border-color .12s;
+  cursor: pointer;
+}
+.cap-item:hover { background: var(--bg-off); }
+.cap-num {
+  font-size: .68rem; font-weight: 600; letter-spacing: .06em;
+  color: var(--gray-4); margin-bottom: 4px;
+}
+.cap-title { font-size: .88rem; font-weight: 600; color: var(--black); margin-bottom: 4px; }
+.cap-desc { font-size: .78rem; color: var(--gray-2); line-height: 1.45; }
+
+/* ── Section pages ────────────────────────────────────────────────────────── */
+.page-section { display: none; padding: 60px 0; }
+.page-section.active { display: block; }
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 6px 14px;
+  font-size: .8rem;
+  font-weight: 500;
+  color: var(--gray-2);
+  cursor: pointer;
+  margin-bottom: 24px;
+  transition: color .15s ease, border-color .15s ease, background-color .15s ease;
+  user-select: none;
+}
+.back-btn:hover {
+  color: var(--black);
+  border-color: var(--black);
+  background-color: var(--bg-off);
+}
+.back-btn:focus-visible {
+  outline: 2px solid var(--black);
+  outline-offset: 2px;
+}
+.back-btn svg {
+  flex-shrink: 0;
+}
+.page-title {
+  font-size: 1.3rem; font-weight: 700; letter-spacing: -.02em;
+  margin-bottom: 8px;
+}
+.page-subtitle { font-size: .88rem; color: var(--gray-2); margin-bottom: 40px; }
+
+/* ── P360 ─────────────────────────────────────────────────────────────────── */
+.p360-input-row { display: flex; gap: 10px; max-width: 480px; margin-bottom: 32px; }
+.p360-input-row input {
+  flex: 1; padding: 10px 14px;
+  border: 1.5px solid var(--border); border-radius: var(--radius);
+  font-size: .88rem; outline: none;
+  transition: border-color .15s;
+}
+.p360-input-row input:focus { border-color: var(--black); }
+.btn-primary {
+  padding: 10px 20px; background: var(--black); color: #fff;
+  border: none; border-radius: var(--radius); font-size: .85rem; font-weight: 500;
+  transition: background .15s;
+}
+.btn-primary:hover { background: var(--gray-1); }
+.btn-primary:disabled { background: var(--gray-4); cursor: default; }
+
+.p360-grid {
+  display: grid; grid-template-columns: 220px 1fr;
+  gap: 24px; align-items: start;
+}
+.p360-sidebar {
+  border: 1px solid var(--border); border-radius: var(--radius);
+  overflow: hidden; position: sticky; top: 70px;
+}
+.p360-sidebar-item {
+  padding: 11px 16px; font-size: .82rem; color: var(--gray-2);
+  border-bottom: 1px solid var(--border); cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+  transition: background .1s;
+}
+.p360-sidebar-item:last-child { border-bottom: none; }
+.p360-sidebar-item.active { color: var(--black); background: var(--bg-off); font-weight: 500; }
+.p360-sidebar-item:hover { background: var(--bg-off); }
+.p360-badge {
+  font-size: .7rem; background: var(--border);
+  color: var(--gray-2); padding: 2px 7px; border-radius: 100px;
+}
+.p360-panel { display: none; }
+.p360-panel.active { display: block; }
+.p360-panel-title {
+  font-size: .68rem; font-weight: 600; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--gray-3); margin-bottom: 16px;
+}
+
+/* ── Table ────────────────────────────────────────────────────────────────── */
+.data-table {
+  width: 100%; border-collapse: collapse; font-size: .8rem;
+}
+.data-table th {
+  padding: 8px 12px; text-align: left;
+  font-size: .68rem; font-weight: 600; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--gray-3);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-off);
+}
+.data-table td {
+  padding: 9px 12px; border-bottom: 1px solid var(--border);
+  color: var(--gray-1); vertical-align: top;
+}
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:hover td { background: var(--bg-off); }
+.data-table .mono { font-family: var(--mono); font-size: .76rem; }
+.data-table .key { font-weight: 500; color: var(--black); }
+.empty-state { text-align: center; padding: 40px 20px; color: var(--gray-3); font-size: .85rem; }
+
+/* ── Graph section ────────────────────────────────────────────────────────── */
+.stats-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border); border-radius: var(--radius);
+  overflow: hidden; margin-bottom: 32px;
+}
+.stat-cell {
+  background: var(--bg); padding: 20px 22px;
+}
+.stat-val {
+  font-size: 1.4rem; font-weight: 700; letter-spacing: -.02em;
+  color: var(--black); margin-bottom: 2px;
+}
+.stat-label {
+  font-size: .72rem; font-weight: 500; letter-spacing: .06em;
+  text-transform: uppercase; color: var(--gray-3);
+}
+
+.graph-diagram {
+  border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 32px; background: var(--bg-off); font-family: var(--mono);
+  font-size: .78rem; color: var(--gray-1); line-height: 2.2;
+  overflow-x: auto;
+}
+.graph-node { color: var(--black); font-weight: 600; }
+.graph-edge { color: var(--gray-4); }
+.graph-count { color: var(--gray-3); font-size: .72rem; }
+
+/* ── Evidence section ─────────────────────────────────────────────────────── */
+.evidence-chain {
+  border: 1px solid var(--border); border-radius: var(--radius);
+  overflow: hidden; margin-top: 16px;
+}
+.evidence-chain-row {
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; gap: 12px;
+  font-size: .82rem;
+  transition: background .12s;
+}
+.evidence-chain-row.clickable { cursor: pointer; }
+.evidence-chain-row.clickable:hover { background: var(--bg-off); }
+.evidence-chain-row:last-child { border-bottom: none; }
+.ev-domain {
+  font-family: var(--mono); font-size: .72rem; font-weight: 600;
+  color: var(--black); background: var(--border);
+  padding: 2px 7px; border-radius: 3px; flex-shrink: 0;
+}
+.ev-subj { color: var(--gray-2); font-size: .8rem; }
+.ev-seq { color: var(--gray-3); font-size: .76rem; margin-left: auto; }
+
+/* ── Status bar ───────────────────────────────────────────────────────────── */
+.status-bar {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+  background: var(--bg); border-top: 1px solid var(--border);
+  padding: 0 24px; height: 36px;
+  display: flex; align-items: center; gap: 0;
+  font-size: .72rem; color: var(--gray-3);
+}
+.status-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #22c55e; margin-right: 10px; flex-shrink: 0;
+}
+.status-sep {
+  width: 1px; height: 14px; background: var(--border);
+  margin: 0 14px;
+}
+
+/* ── Misc ─────────────────────────────────────────────────────────────────── */
+.mt-24 { margin-top: 24px; }
+.mt-40 { margin-top: 40px; }
+body { padding-bottom: 60px; }
+
+/* ── Responsive ───────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .p360-grid { grid-template-columns: 1fr; }
+  .p360-sidebar { position: static; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── Navigation ─────────────────────────────────────────────────────────── -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo" onclick="goHome(event)" title="Return to Home" aria-label="ATLAS Home">ATLAS</a>
+    <div class="nav-links">
+      <a href="#" onclick="showSection('graph', event)" id="nav-graph">Study Graph</a>
+      <a href="#" onclick="showSection('p360', event)" id="nav-p360">Patient 360</a>
+      <a href="#" onclick="showSection('evidence', event)" id="nav-evidence">Evidence</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Main content ───────────────────────────────────────────────────────── -->
+<main>
+
+  <!-- HOME SECTION ─────────────────────────────────────────────────────────── -->
+  <div id="section-home" class="page-section active">
+    <div class="container">
+
+      <!-- Hero -->
+      <section class="hero">
+        <div class="eyebrow">Study Intelligence</div>
+        <h1>Ask your study.</h1>
+        <p class="hero-sub">Connect data. Find answers. See the evidence.</p>
+
+        <div class="search-wrap">
+          <input type="text" id="main-input"
+            placeholder="Ask ATLAS anything about the study…"
+            autocomplete="off" spellcheck="false"
+            onkeydown="if(event.key==='Enter') submitQuestion()">
+          <button class="search-btn" onclick="submitQuestion()" id="ask-btn" title="Ask">
+            <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
+              <path d="M1 7h12M8 2l6 5-6 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="pills">
+          <button class="pill" onclick="quickAsk('Which subjects meet the Hy\'s law criteria?')">Liver safety</button>
+          <button class="pill" onclick="quickAsk('How many subjects are in the study?')">Count subjects</button>
+          <button class="pill" onclick="quickAsk('Which subjects at site S01 received a wrong dose?')">Check dosing</button>
+          <button class="pill" onclick="quickAsk('How many subjects discontinued due to an adverse event?')">Discontinuations</button>
+          <button class="pill" onclick="openP360()">Patient 360</button>
+          <button class="pill" onclick="quickAsk('What does the lab manual say to automated reviewers?')">Evidence</button>
+        </div>
+      </section>
+
+      <!-- Answer area -->
+      <section class="answer-section" id="answer-section">
+        <div class="section-label">Atlas Response</div>
+        <div class="answer-card" id="answer-card">
+          <div id="answer-loading" style="display:none;color:var(--gray-2);font-size:.88rem;">
+            <span class="loading-spinner"></span>Querying study…
+          </div>
+          <div id="answer-content" style="display:none;">
+            <div class="answer-row">
+              <div class="answer-key">Question</div>
+              <div class="answer-val" id="a-question"></div>
+            </div>
+            <div class="answer-row">
+              <div class="answer-key">Answer</div>
+              <div class="answer-val big" id="a-answer"></div>
+            </div>
+            <div class="answer-row">
+              <div class="answer-key">Explanation</div>
+              <div class="answer-val" id="a-text"></div>
+            </div>
+            <div class="answer-row" id="a-ev-row">
+              <div class="answer-key">Evidence</div>
+              <div id="a-evidence"></div>
+            </div>
+            <div class="answer-row">
+              <div class="answer-key">Confidence</div>
+              <div class="answer-val" id="a-conf"></div>
+              <div class="conf-bar"><div class="conf-fill" id="a-conf-bar" style="width:0%"></div></div>
+            </div>
+            <div class="answer-row" id="a-meta-row">
+              <div class="answer-key">Timing</div>
+              <div class="answer-val mono" id="a-meta"></div>
+            </div>
+          </div>
+          <div id="answer-error" style="display:none;" class="error-msg"></div>
+        </div>
+      </section>
+
+      <hr class="divider">
+
+      <!-- Capabilities -->
+      <section class="capabilities">
+        <div class="cap-header">What ATLAS Can Do</div>
+        <div class="cap-grid">
+          <div class="cap-item" onclick="showSection('graph', event)" title="Open Study Graph">
+            <div class="cap-num">01</div>
+            <div class="cap-title">Study Graph</div>
+            <div class="cap-desc">Connect subjects, visits, laboratory, adverse events, doses, medicines and history.</div>
+          </div>
+          <div class="cap-item" onclick="showSection('p360', event)" title="Open Patient 360">
+            <div class="cap-num">02</div>
+            <div class="cap-title">Patient 360</div>
+            <div class="cap-desc">View all connected records belonging to any subject.</div>
+          </div>
+          <div class="cap-item" onclick="quickAsk('Which subjects meet the Hy\'s law criteria?')" title="Query findings">
+            <div class="cap-num">03</div>
+            <div class="cap-title">Findings</div>
+            <div class="cap-desc">Identify protocol-driven findings such as liver-safety signals and dosing issues.</div>
+          </div>
+          <div class="cap-item" onclick="quickAsk('Which subjects had elevated ALT above 3x ULN?')" title="Query laboratory">
+            <div class="cap-num">04</div>
+            <div class="cap-title">Laboratory</div>
+            <div class="cap-desc">Inspect laboratory values, units, reference ranges, dates and normalized values.</div>
+          </div>
+          <div class="cap-item" onclick="quickAsk('Which subjects at site S01 received a wrong dose?')" title="Query dosing">
+            <div class="cap-num">05</div>
+            <div class="cap-title">Dosing</div>
+            <div class="cap-desc">Check administered doses against protocol-defined doses by arm.</div>
+          </div>
+          <div class="cap-item" onclick="quickAsk('How many subjects discontinued due to an adverse event?')" title="Query adverse events">
+            <div class="cap-num">06</div>
+            <div class="cap-title">Adverse Events</div>
+            <div class="cap-desc">Find and inspect adverse-event records and seriousness classifications.</div>
+          </div>
+          <div class="cap-item" onclick="quickAsk('How many subjects are in the study?')" title="Query disposition">
+            <div class="cap-num">07</div>
+            <div class="cap-title">Disposition</div>
+            <div class="cap-desc">Analyze completion, discontinuation and the supporting records.</div>
+          </div>
+          <div class="cap-item" onclick="quickAsk('What does the lab manual say to automated reviewers?')" title="Query protocol">
+            <div class="cap-num">08</div>
+            <div class="cap-title">Protocol</div>
+            <div class="cap-desc">Show the applicable protocol rules and version used by ATLAS.</div>
+          </div>
+          <div class="cap-item" onclick="quickAsk('What records are visible at cut 15?')" title="Query data cuts">
+            <div class="cap-num">09</div>
+            <div class="cap-title">Data Cuts</div>
+            <div class="cap-desc">Show the current data cut and the records visible at that cut.</div>
+          </div>
+          <div class="cap-item" onclick="showSection('evidence', event)" title="Open Evidence View">
+            <div class="cap-num">10</div>
+            <div class="cap-title">Evidence</div>
+            <div class="cap-desc">Display the exact RecordRefs supporting every answer.</div>
+          </div>
+          <div class="cap-item" onclick="quickAsk('What did site S02 reply regarding the dose query?')" title="Query site replies">
+            <div class="cap-num">11</div>
+            <div class="cap-title">Site Replies</div>
+            <div class="cap-desc">Display available site-response evidence when relevant.</div>
+          </div>
+          <div class="cap-item" onclick="quickAsk('What monitor decisions exist for protocol deviations?')" title="Query monitor decisions">
+            <div class="cap-num">12</div>
+            <div class="cap-title">Monitor Decisions</div>
+            <div class="cap-desc">Display available monitor-decision information when relevant.</div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- STUDY GRAPH SECTION ──────────────────────────────────────────────────── -->
+  <div id="section-graph" class="page-section">
+    <div class="container">
+      <button class="back-btn" onclick="goBack(event)" aria-label="Back">
+        <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
+          <path d="M9 2L4 7L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Back
+      </button>
+      <div class="page-title">Study Graph</div>
+      <div class="page-subtitle">Graph topology and build statistics from the last build.</div>
+
+      <!-- Stats grid -->
+      <div class="stats-grid" id="stats-grid">
+        <div class="stat-cell"><div class="stat-val" id="sg-nodes">—</div><div class="stat-label">Nodes</div></div>
+        <div class="stat-cell"><div class="stat-val" id="sg-edges">—</div><div class="stat-label">Edges</div></div>
+        <div class="stat-cell"><div class="stat-val" id="sg-subjects">—</div><div class="stat-label">Subjects</div></div>
+        <div class="stat-cell"><div class="stat-val" id="sg-sites">—</div><div class="stat-label">Sites</div></div>
+        <div class="stat-cell"><div class="stat-val" id="sg-cut">—</div><div class="stat-label">Current Cut</div></div>
+        <div class="stat-cell"><div class="stat-val" id="sg-pv">—</div><div class="stat-label">Protocol Version</div></div>
+        <div class="stat-cell"><div class="stat-val" id="sg-ms">—</div><div class="stat-label">Build Time (ms)</div></div>
+        <div class="stat-cell"><div class="stat-val" id="sg-corr">—</div><div class="stat-label">Corrections Applied</div></div>
+      </div>
+
+      <!-- Domain breakdown -->
+      <div class="section-label">Domain Record Counts</div>
+      <div id="domain-table-wrap"></div>
+
+      <hr class="divider" style="margin:40px 0 32px">
+
+      <!-- Graph diagram -->
+      <div class="section-label" style="margin-bottom:16px">Graph Topology</div>
+      <div class="graph-diagram" id="graph-diagram">
+        Loading…
+      </div>
+
+      <!-- Node & edge types -->
+      <div class="mt-40">
+        <div class="section-label">Node Types</div>
+        <div id="node-table-wrap" class="mt-24"></div>
+      </div>
+      <div class="mt-40">
+        <div class="section-label">Edge Types</div>
+        <div id="edge-table-wrap" class="mt-24"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PATIENT 360 SECTION ──────────────────────────────────────────────────── -->
+  <div id="section-p360" class="page-section">
+    <div class="container">
+      <button class="back-btn" onclick="goBack(event)" aria-label="Back">
+        <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
+          <path d="M9 2L4 7L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Back
+      </button>
+      <div class="page-title">Patient 360</div>
+      <div class="page-subtitle">All connected records for a subject, joined from all domains.</div>
+
+      <div class="p360-input-row">
+        <input type="text" id="p360-input" placeholder="042-S07-001" list="subjects-list"
+          autocomplete="off" spellcheck="false"
+          onkeydown="if(event.key==='Enter') loadP360()">
+        <datalist id="subjects-list"></datalist>
+        <button class="btn-primary" onclick="loadP360()" id="p360-btn">Open Subject</button>
+      </div>
+
+      <div id="p360-loading" style="display:none;color:var(--gray-2);font-size:.88rem;margin-bottom:24px;">
+        <span class="loading-spinner"></span>Loading subject…
+      </div>
+      <div id="p360-error" class="error-msg" style="display:none;margin-bottom:16px;"></div>
+
+      <div id="p360-content" style="display:none;">
+        <!-- Subject header -->
+        <div style="margin-bottom:28px; display:flex; gap:24px; flex-wrap:wrap;">
+          <div>
+            <div class="answer-key">Subject</div>
+            <div style="font-size:1rem;font-weight:700;" id="p360-subj"></div>
+          </div>
+          <div>
+            <div class="answer-key">Site</div>
+            <div style="font-size:1rem;" id="p360-site"></div>
+          </div>
+          <div>
+            <div class="answer-key">Protocol Version</div>
+            <div style="font-size:1rem;" id="p360-pv"></div>
+          </div>
+          <div>
+            <div class="answer-key">Cut</div>
+            <div style="font-size:1rem;" id="p360-cut"></div>
+          </div>
+        </div>
+
+        <div class="p360-grid">
+          <!-- Sidebar -->
+          <div class="p360-sidebar" id="p360-sidebar"></div>
+          <!-- Panel -->
+          <div id="p360-panel-area"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EVIDENCE SECTION ─────────────────────────────────────────────────────── -->
+  <div id="section-evidence" class="page-section">
+    <div class="container">
+      <button class="back-btn" onclick="goBack(event)" aria-label="Back">
+        <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
+          <path d="M9 2L4 7L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Back
+      </button>
+      <div class="page-title">Evidence</div>
+      <div class="page-subtitle">Ask a finding question and inspect every RecordRef that supports the answer.</div>
+
+      <div class="search-wrap" style="max-width:600px;margin-left:0;margin-bottom:24px;">
+        <input type="text" id="ev-input"
+          placeholder="Which subjects meet Hy's law criteria?"
+          onkeydown="if(event.key==='Enter') submitEvidence()">
+        <button class="search-btn" onclick="submitEvidence()" id="ev-btn">
+          <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
+            <path d="M1 7h12M8 2l6 5-6 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <div id="ev-loading" style="display:none;color:var(--gray-2);font-size:.88rem;margin-bottom:24px;">
+        <span class="loading-spinner"></span>Analysing…
+      </div>
+      <div id="ev-error" class="error-msg" style="display:none;margin-bottom:16px;"></div>
+
+      <div id="ev-content" style="display:none;">
+        <div style="margin-bottom:32px;">
+          <div class="answer-key" style="margin-bottom:4px;">Question</div>
+          <div style="font-size:.9rem;" id="ev-question"></div>
+        </div>
+        <div style="margin-bottom:32px;">
+          <div class="answer-key" style="margin-bottom:4px;">Finding</div>
+          <div style="font-size:.95rem;font-weight:600;" id="ev-answer"></div>
+        </div>
+        <div style="margin-bottom:32px;">
+          <div class="answer-key" style="margin-bottom:4px;">Explanation</div>
+          <div style="font-size:.88rem;color:var(--gray-1);" id="ev-text"></div>
+        </div>
+        <div>
+          <div class="answer-key" style="margin-bottom:12px;">Supporting Records</div>
+          <div id="ev-evidence-list"></div>
+        </div>
+        <div class="mt-24">
+          <div class="answer-key" style="margin-bottom:4px;">Confidence</div>
+          <div style="font-size:.85rem;" id="ev-conf"></div>
+          <div class="conf-bar" style="max-width:200px;margin-top:8px;">
+            <div class="conf-fill" id="ev-conf-bar" style="width:0%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- ── Status bar ─────────────────────────────────────────────────────────── -->
+<div class="status-bar">
+  <div class="status-dot" id="status-dot" style="background:#e5e5e5;"></div>
+  <span id="status-text">Connecting…</span>
+  <div class="status-sep" id="status-sep1" style="display:none;"></div>
+  <span id="status-tables" style="display:none;"></span>
+  <div class="status-sep" id="status-sep2" style="display:none;"></div>
+  <span id="status-subjects" style="display:none;"></span>
+  <div class="status-sep" id="status-sep3" style="display:none;"></div>
+  <span id="status-cut" style="display:none;"></span>
+</div>
+
+<!-- ── Scripts ────────────────────────────────────────────────────────────── -->
+<script>
+/* ── State ────────────────────────────────────────────────────────────────── */
+let _stats = null;
+let _lastAnswer = null;
+const BASE = '';  // same origin
+
+/* ── Utility ──────────────────────────────────────────────────────────────── */
+function esc(s) {
+  if (s == null) return '';
+  return String(s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function fmt(n) {
+  if (n == null || n === '') return '—';
+  if (typeof n === 'number') return n.toLocaleString();
+  return String(n);
+}
+
+function fmtRef(ref) {
+  if (!ref) return '—';
+  if (ref.domain === 'DOC') {
+    return `DOC / ${ref.document || ''} / ${ref.section || ''}`;
+  }
+  return `${ref.domain} / ${ref.usubjid || ''} / ${ref.seq != null ? ref.seq : '—'}`;
+}
+
+async function apiFetch(path, opts) {
+  try {
+    const r = await fetch(BASE + path, opts);
+    if (!r.ok) {
+      const t = await r.text();
+      throw new Error(t || r.status);
+    }
+    return await r.json();
+  } catch(e) {
+    throw e;
+  }
+}
+
+/* ── Navigation ───────────────────────────────────────────────────────────── */
+const SECTIONS = ['home','graph','p360','evidence'];
+const _navHistory = ['home'];
+
+function goHome(e) {
+  if (e && e.preventDefault) e.preventDefault();
+  const homeEl = document.getElementById('section-home');
+  const isAlreadyHome = homeEl && homeEl.classList.contains('active');
+  if (isAlreadyHome) {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  } else {
+    showSection('home');
+  }
+}
+
+function showSection(id, e, skipHistory) {
+  if (e && e.preventDefault) e.preventDefault();
+  const current = SECTIONS.find(s => {
+    const el = document.getElementById('section-'+s);
+    return el && el.classList.contains('active');
+  }) || 'home';
+
+  if (!skipHistory && current !== id) {
+    _navHistory.push(current);
+  }
+
+  SECTIONS.forEach(s => {
+    const el = document.getElementById('section-'+s);
+    if (el) el.classList.toggle('active', s === id);
+  });
+  ['nav-graph','nav-p360','nav-evidence'].forEach(n => {
+    const el = document.getElementById(n);
+    if (el) el.classList.remove('active');
+  });
+  const navId = `nav-${id}`;
+  const navEl = document.getElementById(navId);
+  if (navEl) navEl.classList.add('active');
+  window.scrollTo({top: 0, behavior: 'instant'});
+
+  if (id === 'graph') loadGraphStats();
+}
+
+function goBack(e) {
+  if (e && e.preventDefault) e.preventDefault();
+  const current = SECTIONS.find(s => {
+    const el = document.getElementById('section-'+s);
+    return el && el.classList.contains('active');
+  }) || 'home';
+
+  while (_navHistory.length > 0 && _navHistory[_navHistory.length - 1] === current) {
+    _navHistory.pop();
+  }
+
+  if (_navHistory.length > 0) {
+    const prev = _navHistory.pop();
+    showSection(prev, null, true);
+  } else {
+    showSection('home', null, true);
+  }
+}
+
+function openP360(usubjid, e) {
+  if (e && e.preventDefault) e.preventDefault();
+  showSection('p360');
+  if (usubjid) {
+    document.getElementById('p360-input').value = usubjid;
+    loadP360();
+  }
+}
+
+/* ── Status bar ───────────────────────────────────────────────────────────── */
+async function loadStatus() {
+  try {
+    const stats = await apiFetch('/api/stats');
+    _stats = stats;
+    document.getElementById('status-dot').style.background = '#22c55e';
+    document.getElementById('status-text').textContent = 'Study connected';
+
+    const tables = stats.tables || Object.keys(stats.domains || {});
+    const nTables = tables.length;
+    const subjects = stats.subjects || 0;
+    const cut = stats.cut != null ? stats.cut : '—';
+
+    document.getElementById('status-sep1').style.display = '';
+    document.getElementById('status-tables').textContent = `${nTables} tables`;
+    document.getElementById('status-tables').style.display = '';
+    document.getElementById('status-sep2').style.display = '';
+    document.getElementById('status-subjects').textContent = `${subjects} subjects`;
+    document.getElementById('status-subjects').style.display = '';
+    document.getElementById('status-sep3').style.display = '';
+    document.getElementById('status-cut').textContent = `Current cut: ${cut}`;
+    document.getElementById('status-cut').style.display = '';
+
+    // Asynchronously populate subject datalist for P360
+    apiFetch('/api/subjects').then(res => {
+      if (res && res.subjects && Array.isArray(res.subjects)) {
+        const dl = document.getElementById('subjects-list');
+        if (dl) {
+          dl.innerHTML = res.subjects.map(s => `<option value="${esc(s)}">`).join('');
+        }
+      }
+    }).catch(() => {});
+  } catch(e) {
+    document.getElementById('status-dot').style.background = '#ef4444';
+    document.getElementById('status-text').textContent = 'Backend unavailable — start the server';
+  }
+}
+
+/* ── Ask question ─────────────────────────────────────────────────────────── */
+function quickAsk(text) {
+  document.getElementById('main-input').value = text;
+  showSection('home');
+  submitQuestion();
+}
+
+async function submitQuestion() {
+  const q = document.getElementById('main-input').value.trim();
+  if (!q) return;
+
+  const sec = document.getElementById('answer-section');
+  sec.classList.add('visible');
+  document.getElementById('answer-loading').style.display = '';
+  document.getElementById('answer-content').style.display = 'none';
+  document.getElementById('answer-error').style.display = 'none';
+  document.getElementById('ask-btn').disabled = true;
+
+  // scroll to answer
+  setTimeout(() => sec.scrollIntoView({behavior:'smooth', block:'start'}), 80);
+
+  try {
+    const data = await apiFetch('/api/ask', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({question: q, question_id: 'frontend'})
+    });
+    _lastAnswer = data;
+    renderAnswer(q, data);
+  } catch(e) {
+    document.getElementById('answer-loading').style.display = 'none';
+    document.getElementById('answer-error').style.display = '';
+    document.getElementById('answer-error').textContent = 'Error: ' + e.message;
+  } finally {
+    document.getElementById('ask-btn').disabled = false;
+  }
+}
+
+function renderAnswer(q, data) {
+  document.getElementById('answer-loading').style.display = 'none';
+  document.getElementById('answer-content').style.display = '';
+
+  document.getElementById('a-question').textContent = q;
+
+  const ans = data.answer;
+  const aEl = document.getElementById('a-answer');
+  const subjRegex = /^\d{3}-S\d{2}-\d{3}$/;
+  if (ans == null || (Array.isArray(ans) && ans.length === 0)) {
+    aEl.innerHTML = '<span class="none-msg">None</span>';
+  } else if (typeof ans === 'number') {
+    aEl.textContent = fmt(ans);
+  } else if (Array.isArray(ans)) {
+    if (ans.every(a => typeof a === 'string')) {
+      aEl.innerHTML = ans.map(a => {
+        const trimmed = a.trim();
+        if (subjRegex.test(trimmed)) {
+          return `<div><a href="#" class="subject-link" onclick="openP360('${esc(trimmed)}', event); return false;">${esc(a)}</a></div>`;
+        }
+        return `<div>${esc(a)}</div>`;
+      }).join('');
+    } else {
+      aEl.innerHTML = ans.map(a => `<div class="mono">${esc(typeof a === 'object' ? fmtRef(a) : a)}</div>`).join('');
+    }
+  } else {
+    const trimmed = String(ans).trim();
+    if (subjRegex.test(trimmed)) {
+      aEl.innerHTML = `<a href="#" class="subject-link" onclick="openP360('${esc(trimmed)}', event); return false;">${esc(ans)}</a>`;
+    } else {
+      aEl.textContent = String(ans);
+    }
+  }
+
+  document.getElementById('a-text').textContent = data.text || '—';
+
+  const ev = data.evidence || [];
+  const evEl = document.getElementById('a-evidence');
+  const evRow = document.getElementById('a-ev-row');
+  if (ev.length === 0) {
+    evEl.innerHTML = '<span class="none-msg">No cited records</span>';
+  } else {
+    evEl.innerHTML = ev.map(r => {
+      const txt = esc(fmtRef(r));
+      if (r && r.usubjid) {
+        return `<span class="evidence-item clickable" onclick="openP360('${esc(r.usubjid)}', event)" title="Open Patient 360 for ${esc(r.usubjid)}">${txt}</span>`;
+      }
+      return `<span class="evidence-item">${txt}</span>`;
+    }).join('');
+  }
+
+  const conf = data.confidence || 0;
+  document.getElementById('a-conf').textContent = (conf * 100).toFixed(0) + '%';
+  document.getElementById('a-conf-bar').style.width = (conf * 100) + '%';
+
+  const ms = data.ms != null ? `${data.ms} ms` : '';
+  const steps = data.steps_used ? ` · ${data.steps_used} steps` : '';
+  document.getElementById('a-meta').textContent = ms + steps;
+}
+
+/* ── Graph stats ──────────────────────────────────────────────────────────── */
+async function loadGraphStats() {
+  try {
+    const stats = _stats || await apiFetch('/api/stats');
+    _stats = stats;
+
+    document.getElementById('sg-nodes').textContent = fmt(stats.nodes);
+    document.getElementById('sg-edges').textContent = fmt(stats.edges);
+    document.getElementById('sg-subjects').textContent = fmt(stats.subjects);
+    document.getElementById('sg-sites').textContent = fmt(stats.sites);
+    document.getElementById('sg-cut').textContent = fmt(stats.cut);
+    document.getElementById('sg-pv').textContent = fmt(stats.protocol_version);
+    document.getElementById('sg-ms').textContent = stats.build_ms != null ? Math.round(stats.build_ms) : '—';
+    document.getElementById('sg-corr').textContent = fmt(stats.corrections_applied);
+
+    // Domain table
+    const doms = stats.domains || {};
+    if (Object.keys(doms).length) {
+      const rows = Object.entries(doms).sort((a,b) => b[1]-a[1])
+        .map(([d,n]) => `<tr><td class="key">${esc(d)}</td><td>${fmt(n)}</td></tr>`).join('');
+      document.getElementById('domain-table-wrap').innerHTML =
+        `<table class="data-table"><thead><tr><th>Domain</th><th>Records</th></tr></thead><tbody>${rows}</tbody></table>`;
+    }
+
+    // Graph diagram
+    const nt = stats.node_types || {};
+    const et = stats.edge_types || {};
+    let diag = '';
+    const nodeLines = Object.entries(nt).map(([t,n]) =>
+      `  <span class="graph-node">${t}</span> <span class="graph-count">(${fmt(n)})</span>`
+    ).join('\n');
+    const edgeLines = Object.entries(et).map(([t,n]) =>
+      `  <span class="graph-edge">──</span> ${t} <span class="graph-count">(${fmt(n)})</span>`
+    ).join('\n');
+    document.getElementById('graph-diagram').innerHTML =
+      `<b>Nodes</b>\n${nodeLines || '  (none)'}\n\n<b>Edges</b>\n${edgeLines || '  (none)'}`;
+
+    // Node types table
+    if (Object.keys(nt).length) {
+      const rows = Object.entries(nt).map(([t,n]) =>
+        `<tr><td class="key mono">${esc(t)}</td><td>${fmt(n)}</td></tr>`).join('');
+      document.getElementById('node-table-wrap').innerHTML =
+        `<table class="data-table"><thead><tr><th>Type</th><th>Count</th></tr></thead><tbody>${rows}</tbody></table>`;
+    }
+    // Edge types table
+    if (Object.keys(et).length) {
+      const rows = Object.entries(et).map(([t,n]) =>
+        `<tr><td class="key mono">${esc(t)}</td><td>${fmt(n)}</td></tr>`).join('');
+      document.getElementById('edge-table-wrap').innerHTML =
+        `<table class="data-table"><thead><tr><th>Type</th><th>Count</th></tr></thead><tbody>${rows}</tbody></table>`;
+    }
+
+  } catch(e) {
+    document.getElementById('graph-diagram').textContent = 'Could not load graph stats: ' + e.message;
+  }
+}
+
+/* ── Patient 360 ──────────────────────────────────────────────────────────── */
+async function loadP360() {
+  const uid = document.getElementById('p360-input').value.trim();
+  if (!uid) return;
+
+  document.getElementById('p360-loading').style.display = '';
+  document.getElementById('p360-content').style.display = 'none';
+  document.getElementById('p360-error').style.display = 'none';
+  document.getElementById('p360-btn').disabled = true;
+
+  try {
+    const data = await apiFetch('/api/patient360/' + encodeURIComponent(uid));
+
+    if (!data.found) {
+      document.getElementById('p360-error').style.display = '';
+      document.getElementById('p360-error').textContent =
+        `Subject "${uid}" is not in the study at cut ${data.cut ?? '—'}.`;
+      return;
+    }
+
+    renderP360(data);
+    document.getElementById('p360-content').style.display = '';
+  } catch(e) {
+    document.getElementById('p360-error').style.display = '';
+    document.getElementById('p360-error').textContent = 'Error: ' + e.message;
+  } finally {
+    document.getElementById('p360-loading').style.display = 'none';
+    document.getElementById('p360-btn').disabled = false;
+  }
+}
+
+function renderP360(d) {
+  document.getElementById('p360-subj').textContent = d.usubjid;
+  document.getElementById('p360-site').textContent = d.site || '—';
+  document.getElementById('p360-pv').textContent = d.protocol_version != null ? `v${d.protocol_version}` : '—';
+  document.getElementById('p360-cut').textContent = d.cut != null ? d.cut : '—';
+
+  const panels = [
+    {id:'demographics', label:'Demographics', count: d.demographics ? 1 : 0,
+     render: () => renderKV(d.demographics)},
+    {id:'visits', label:'Visits', count: Object.keys(d.visits||{}).length,
+     render: () => renderVisits(d.visits)},
+    {id:'labs', label:'Laboratory', count: (d.labs||[]).length,
+     render: () => renderLabs(d.labs)},
+    {id:'adverse_events', label:'Adverse Events', count: (d.adverse_events||[]).length,
+     render: () => renderAEs(d.adverse_events)},
+    {id:'exposure', label:'Dosing / Exposure', count: (d.exposure||[]).length,
+     render: () => renderExposure(d.exposure)},
+    {id:'conmeds', label:'Concomitant Medicines', count: (d.conmeds||[]).length,
+     render: () => renderConmeds(d.conmeds)},
+    {id:'medical_history', label:'Medical History', count: (d.medical_history||[]).length,
+     render: () => renderMH(d.medical_history)},
+    {id:'disposition', label:'Disposition', count: d.disposition ? 1 : 0,
+     render: () => renderDisposition(d.disposition)},
+    {id:'findings', label:'Findings', count: Object.keys(d.findings||{}).length,
+     render: () => renderFindings(d.findings)},
+  ];
+
+  // sidebar
+  const sidebar = document.getElementById('p360-sidebar');
+  sidebar.innerHTML = panels.map((p,i) =>
+    `<div class="p360-sidebar-item${i===0?' active':''}" id="sb-${p.id}" onclick="switchP360Panel('${p.id}')">
+       ${esc(p.label)}
+       <span class="p360-badge">${p.count}</span>
+     </div>`
+  ).join('');
+
+  // panels
+  const area = document.getElementById('p360-panel-area');
+  area.innerHTML = panels.map((p,i) =>
+    `<div class="p360-panel${i===0?' active':''}" id="panel-${p.id}">
+       <div class="p360-panel-title">${esc(p.label)}</div>
+       <div id="panel-body-${p.id}"></div>
+     </div>`
+  ).join('');
+
+  // render all panels
+  panels.forEach(p => {
+    try { document.getElementById('panel-body-'+p.id).innerHTML = p.render(); }
+    catch(e) { document.getElementById('panel-body-'+p.id).textContent = 'Error: '+e.message; }
+  });
+}
+
+function switchP360Panel(id) {
+  document.querySelectorAll('.p360-sidebar-item').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.p360-panel').forEach(el => el.classList.remove('active'));
+  document.getElementById('sb-'+id)?.classList.add('active');
+  document.getElementById('panel-'+id)?.classList.add('active');
+}
+
+function renderKV(obj) {
+  if (!obj) return '<div class="empty-state">No data</div>';
+  const skip = new Set(['_domain','_seq','_cut_available','_corrected','_issues','_ref','_date']);
+  const rows = Object.entries(obj)
+    .filter(([k,v]) => !skip.has(k) && v != null && v !== '')
+    .map(([k,v]) =>
+      `<tr><td class="key">${esc(k)}</td><td>${esc(v)}</td></tr>`
+    ).join('');
+  return rows
+    ? `<table class="data-table"><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody>${rows}</tbody></table>`
+    : '<div class="empty-state">No data</div>';
+}
+
+function renderVisits(visits) {
+  if (!visits || !Object.keys(visits).length) return '<div class="empty-state">No visits</div>';
+  const rows = Object.entries(visits).map(([v,info]) => {
+    const doms = Object.keys(info.domains||{}).join(', ');
+    const recs = Object.values(info.domains||{}).reduce((s,a) => s+a.length, 0);
+    return `<tr><td class="key">${esc(v)}</td><td>${esc(info.date||'—')}</td><td>${esc(doms)}</td><td>${recs}</td></tr>`;
+  }).join('');
+  return `<table class="data-table"><thead><tr><th>Visit</th><th>Date</th><th>Domains</th><th>Records</th></tr></thead><tbody>${rows}</tbody></table>`;
+}
+
+function renderLabs(labs) {
+  if (!labs || !labs.length) return '<div class="empty-state">No laboratory records</div>';
+  const rows = labs.slice(0,200).map(l => {
+    const testcd = l.LBTESTCD || l.testcd || '';
+    const visit = l.VISIT || l.visit || '';
+    const orig = l.LBORRES != null ? l.LBORRES : (l.original_value != null ? l.original_value : '—');
+    const unit = l.LBORRESU || l.original_unit || '';
+    const norm = l.normalized_value != null ? l.normalized_value : '';
+    const nu   = l.normalized_unit || '';
+    const flag = l.flag || '';
+    return `<tr><td class="key mono">${esc(testcd)}</td><td>${esc(visit)}</td><td>${esc(orig)} <span style="color:var(--gray-3)">${esc(unit)}</span></td><td>${norm ? esc(norm)+' '+esc(nu) : '—'}</td><td style="color:${flag==='high'?'#c0392b':flag==='low'?'#2980b9':'inherit'}">${esc(flag)}</td></tr>`;
+  }).join('');
+  const more = labs.length > 200 ? `<tr><td colspan="5" style="color:var(--gray-3);padding:8px 12px;">… ${labs.length-200} more records</td></tr>` : '';
+  return `<table class="data-table"><thead><tr><th>Test</th><th>Visit</th><th>Original</th><th>Normalised</th><th>Flag</th></tr></thead><tbody>${rows}${more}</tbody></table>`;
+}
+
+function renderAEs(aes) {
+  if (!aes || !aes.length) return '<div class="empty-state">No adverse events</div>';
+  const rows = aes.map(ae =>
+    `<tr>
+      <td class="key">${esc(ae.AETERM || ae.term || '—')}</td>
+      <td>${esc(ae.AESER || ae.serious || '—')}</td>
+      <td>${esc(ae.AESEV || ae.severity || '—')}</td>
+      <td>${esc(ae._date || ae.AESTDTC || '—')}</td>
+    </tr>`
+  ).join('');
+  return `<table class="data-table"><thead><tr><th>Term</th><th>Serious</th><th>Severity</th><th>Date</th></tr></thead><tbody>${rows}</tbody></table>`;
+}
+
+function renderExposure(exps) {
+  if (!exps || !exps.length) return '<div class="empty-state">No exposure records</div>';
+  const rows = exps.map(e =>
+    `<tr>
+      <td class="key">${esc(e.EXTRT || e.treatment || '—')}</td>
+      <td>${esc(e.EXDOSE || e.dose || '—')} ${esc(e.EXDOSU || e.unit || '')}</td>
+      <td>${esc(e.VISIT || e.visit || '—')}</td>
+      <td>${esc(e.EXSTDTC || e.start_date || e.date || '—')}</td>
+    </tr>`
+  ).join('');
+  return `<table class="data-table"><thead><tr><th>Treatment</th><th>Dose</th><th>Visit</th><th>Date</th></tr></thead><tbody>${rows}</tbody></table>`;
+}
+
+function renderConmeds(cms) {
+  if (!cms || !cms.length) return '<div class="empty-state">No concomitant medicines</div>';
+  const rows = cms.map(c =>
+    `<tr>
+      <td class="key">${esc(c.CMTRT || '—')}</td>
+      <td>${esc(c.CMCLAS || '—')}</td>
+      <td>${esc(c._prohibited_match ? '⚠ ' + c._prohibited_match : '')}</td>
+    </tr>`
+  ).join('');
+  return `<table class="data-table"><thead><tr><th>Medicine</th><th>Class</th><th>Prohibited?</th></tr></thead><tbody>${rows}</tbody></table>`;
+}
+
+function renderMH(mhs) {
+  if (!mhs || !mhs.length) return '<div class="empty-state">No medical history</div>';
+  const rows = mhs.map(m =>
+    `<tr><td class="key">${esc(m.MHTERM || '—')}</td><td>${esc(m.MHCAT || '—')}</td></tr>`
+  ).join('');
+  return `<table class="data-table"><thead><tr><th>Term</th><th>Category</th></tr></thead><tbody>${rows}</tbody></table>`;
+}
+
+function renderDisposition(ds) {
+  if (!ds) return '<div class="empty-state">No disposition data</div>';
+  if (typeof ds === 'string') return `<div style="font-size:.9rem">${esc(ds)}</div>`;
+  const status = ds.status || ds.DSDECOD || ds.DSTERM || JSON.stringify(ds);
+  const date = ds.date || ds.DSSTDTC || '';
+  return `<table class="data-table"><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody>
+    <tr><td class="key">Status</td><td>${esc(status)}</td></tr>
+    ${date ? `<tr><td class="key">Date</td><td>${esc(date)}</td></tr>` : ''}
+  </tbody></table>`;
+}
+
+function renderFindings(findings) {
+  if (!findings || !Object.keys(findings).length) return '<div class="empty-state">No findings</div>';
+  let html = '';
+  for (const [code, fs] of Object.entries(findings)) {
+    html += `<div style="margin-bottom:24px">
+      <div style="font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-3);margin-bottom:8px;">${esc(code)}</div>`;
+    for (const f of fs) {
+      html += `<div style="border:1px solid var(--border);border-radius:4px;padding:12px 16px;margin-bottom:8px;font-size:.83rem;">
+        <div style="font-weight:500;margin-bottom:4px;">${esc(f.summary || f.code)}</div>
+        <div style="color:var(--gray-3);">Confidence: ${((f.confidence||0)*100).toFixed(0)}% · Status: ${esc(f.status||'—')}</div>
+      </div>`;
+    }
+    html += '</div>';
+  }
+  return html;
+}
+
+/* ── Evidence section ─────────────────────────────────────────────────────── */
+async function submitEvidence() {
+  const q = document.getElementById('ev-input').value.trim();
+  if (!q) return;
+
+  document.getElementById('ev-loading').style.display = '';
+  document.getElementById('ev-content').style.display = 'none';
+  document.getElementById('ev-error').style.display = 'none';
+  document.getElementById('ev-btn').disabled = true;
+
+  try {
+    const data = await apiFetch('/api/ask', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({question: q, question_id: 'evidence'})
+    });
+
+    document.getElementById('ev-question').textContent = q;
+
+    const ans = data.answer;
+    if (ans == null || (Array.isArray(ans) && ans.length === 0)) {
+      document.getElementById('ev-answer').innerHTML = '<span class="none-msg">None — no qualifying records found</span>';
+    } else if (Array.isArray(ans)) {
+      document.getElementById('ev-answer').textContent = ans.join(', ');
+    } else {
+      document.getElementById('ev-answer').textContent = String(ans);
+    }
+
+    document.getElementById('ev-text').textContent = data.text || '—';
+
+    const ev = data.evidence || [];
+    const evList = document.getElementById('ev-evidence-list');
+    if (!ev.length) {
+      evList.innerHTML = '<div class="empty-state">No evidence records cited</div>';
+    } else {
+      evList.innerHTML = '<div class="evidence-chain">' +
+        ev.map(r => {
+          const isDOC = r.domain === 'DOC';
+          const canClick = !isDOC && r.usubjid;
+          return `<div class="evidence-chain-row${canClick ? ' clickable' : ''}" ${canClick ? `onclick="openP360('${esc(r.usubjid)}', event)" title="Open Patient 360 for ${esc(r.usubjid)}"` : ''}>
+            <span class="ev-domain">${esc(r.domain)}</span>
+            <span class="ev-subj">${isDOC ? esc(r.document || '') : esc(r.usubjid || '')}</span>
+            <span class="ev-seq">${isDOC ? esc(r.section || '') : (r.seq != null ? `seq ${r.seq}` : '')}</span>
+          </div>`;
+        }).join('') +
+        '</div>';
+    }
+
+    const conf = data.confidence || 0;
+    document.getElementById('ev-conf').textContent = (conf * 100).toFixed(0) + '%';
+    document.getElementById('ev-conf-bar').style.width = (conf * 100) + '%';
+
+    document.getElementById('ev-content').style.display = '';
+  } catch(e) {
+    document.getElementById('ev-error').style.display = '';
+    document.getElementById('ev-error').textContent = 'Error: ' + e.message;
+  } finally {
+    document.getElementById('ev-loading').style.display = 'none';
+    document.getElementById('ev-btn').disabled = false;
+  }
+}
+
+/* ── Init ─────────────────────────────────────────────────────────────────── */
+loadStatus();
+</script>
+</body>
+</html>

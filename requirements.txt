@@ -1,7 +1,30 @@
-# Required
+# =============================================================================
+# ATLAS Stage 1 — Python dependencies
+# =============================================================================
+#
+# NO API KEY IS REQUIRED to run the system.
+#
+# All clinical logic — unit conversion, Hy's law, evidence validation, date
+# parsing, duplicate detection, trap handling — is 100% deterministic and runs
+# with only the two packages listed in the "Required" section below.
+#
+# The optional Gemini adapter (backend/agent/gemini.py) polishes the `text`
+# field of answers when GEMINI_API_KEY is set.  It uses only stdlib `urllib`
+# (no extra SDK), so it does not appear in the required list.
+# =============================================================================
+
+# --- Required (the harness and all 276 tests need these) ---------------------
 pydantic>=2.0
 pytest>=7.0
 
-# Optional (never required by the deterministic path)
-# python-dotenv>=1.0     # loads GEMINI_API_KEY from a local .env
-# google-genai>=1.0      # Gemini adapter for natural-language routing / phrasing only
+# --- Required for the web frontend (api/server.py) --------------------------
+fastapi>=0.100
+uvicorn[standard]>=0.22
+
+# --- Optional: load GEMINI_API_KEY from a .env file --------------------------
+# The built-in dotenv parser in backend/agent/gemini.py reads .env files with
+# no extra package.  Install this only if you prefer the richer dotenv support:
+# python-dotenv>=1.0
+
+# --- Optional: Gemini SDK (NOT required — the adapter uses raw urllib) -------
+# google-genai>=1.0

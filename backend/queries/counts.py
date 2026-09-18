@@ -102,6 +102,7 @@ def count_subjects(core, f: CountFilters) -> CountResult:
         subjects = kept
 
     # ---- disposition ------------------------------------------------------
+    non_matching_disposition: list[tuple[str, Record]] = []
     if f.disposition or f.disposition_reason:
         kept = []
         for u in subjects:
@@ -114,6 +115,10 @@ def count_subjects(core, f: CountFilters) -> CountResult:
                     evidence_by_subject.setdefault(u, []).append(_ev(
                         r, f"DS record matches disposition={f.disposition} reason={f.disposition_reason}",
                         check=lambda r=r: DS.matches_disposition(r, f.disposition, f.disposition_reason)))
+            elif f.disposition:
+                disp_hits = [r for r in recs if DS.matches_disposition(r, f.disposition, None)]
+                for r in disp_hits:
+                    non_matching_disposition.append((u, r))
         subjects = kept
 
     # ---- adverse events ---------------------------------------------------
@@ -227,6 +232,21 @@ def count_subjects(core, f: CountFilters) -> CountResult:
     evidence: list[EvidenceItem] = []
     for u in sorted(subjects):
         evidence.extend(evidence_by_subject.get(u, []))
+
+    if not evidence and not counted and non_matching_disposition:
+        for u, r in non_matching_disposition:
+            reason = DS.reason_text(r) or "unspecified"
+            evidence.append(_ev(
+                r,
+                f"DS record confirms subject {u} discontinued due to '{reason}' (not {f.disposition_reason})",
+                check=lambda r=r: DS.matches_disposition(r, f.disposition, None),
+                role="context",
+            ))
+        notes.append(
+            f"{len(non_matching_disposition)} subject(s) discontinued for reasons other than {f.disposition_reason}: "
+            + ", ".join(f"{u} ({DS.reason_text(r) or 'unspecified'})" for u, r in non_matching_disposition)
+        )
+
     return CountResult(value=len(counted), subjects=sorted(counted), evidence=evidence, notes=notes,
                        records_inspected=inspected, status=status, collapsed=collapsed)
 

@@ -5,9 +5,14 @@ schema when the keyword classifier is unsure, and (b) to rephrase the final
 sentence from facts the backend already computed. Every output is validated by
 the caller; any failure falls back to the deterministic path.
 
-Requires ``GEMINI_API_KEY`` (env or .env). No SDK dependency: uses the REST API
-via urllib so the harness runs without extra packages. If the key is absent the
-adapter is never constructed (see stage1/atlas.py).
+NO API KEY REQUIRED to run the system. All clinical logic (units, thresholds,
+evidence) is fully deterministic. The LLM is only used to optionally polish
+the ``text`` field of an answer — it never computes facts.
+
+If ``GEMINI_API_KEY`` is absent (env or .env file), ``GeminiAdapter.__init__``
+raises ``RuntimeError``; ``stage1/atlas.py`` catches it and sets ``self.llm = None``
+so the deterministic path runs unchanged. No SDK or extra package needed:
+the REST API is called via the stdlib ``urllib``.
 """
 from __future__ import annotations
 
@@ -15,6 +20,7 @@ import json
 import logging
 import os
 import urllib.error
+from pathlib import Path
 import urllib.request
 from typing import Any, Optional
 
@@ -27,13 +33,28 @@ _ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/models/{model}:gen
 
 
 def _load_dotenv() -> None:
+    """Read a ``.env`` file in the working directory without any external dependency.
+
+    Only needed when GEMINI_API_KEY is not already in the environment.
+    A missing, malformed, or unreadable file is silently ignored.
+    """
     if os.environ.get("GEMINI_API_KEY"):
         return
+    env_path = Path(".env")
+    if not env_path.is_file():
+        return
     try:
-        from dotenv import load_dotenv  # type: ignore
-
-        load_dotenv()
-    except Exception:  # noqa: BLE001 - optional
+        with open(env_path, encoding="utf-8") as fh:
+            for line in fh:
+                line = line.strip()
+                if not line or line.startswith("#") or "=" not in line:
+                    continue
+                key, _, value = line.partition("=")
+                key = key.strip()
+                value = value.strip().strip('"').strip("'")
+                if key and key not in os.environ:
+                    os.environ[key] = value
+    except Exception:  # noqa: BLE001 - .env is fully optional
         pass
 
 

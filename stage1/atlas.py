@@ -76,13 +76,20 @@ class Atlas:
 
         self.router = Router(self.graph.core)
         self.llm = None
+        # LLM is OPTIONAL. With no GEMINI_API_KEY set the system runs 100%
+        # deterministically: all clinical logic (units, thresholds, evidence)
+        # is computed without any model call. The LLM only polishes the `text`
+        # field when a key IS available.
         if os.environ.get("GEMINI_API_KEY"):
             try:
                 from backend.agent.gemini import GeminiAdapter
 
                 self.llm = GeminiAdapter()
+                log.info("GeminiAdapter loaded — LLM text polishing enabled")
             except Exception as exc:  # noqa: BLE001 - LLM is optional
-                log.warning("Gemini adapter unavailable: %s", exc)
+                log.warning("Gemini adapter unavailable (running deterministically): %s", exc)
+        else:
+            log.info("No GEMINI_API_KEY set — running in fully deterministic mode (no LLM calls)")
         self.last_trace: Optional[QueryTrace] = None
         self.last_internal: Optional[InternalAnswer] = None
 
@@ -106,7 +113,7 @@ class Atlas:
         self.last_internal = internal
         self.last_trace = internal.trace
         log.debug("trace %s", internal.trace.as_dict())
-        return _to_official(internal)
+        return _to_official(internal, self.graph.core)
 
 
 # --------------------------------------------------------------------------- #
@@ -124,25 +131,32 @@ def _from_official(question: Any) -> tuple[str, str, Optional[str]]:
     return qid, text, kind
 
 
-def _ref_to_official(ref: Any) -> Optional[RecordRef]:
+def _ref_to_official(ref: Any, core: Optional[Any] = None) -> Optional[RecordRef]:
     try:
         if isinstance(ref, DocRefKey):
+            if core is not None:
+                from backend.evidence.validator import doc_ref_valid
+                ok, _ = doc_ref_valid(core, ref)
+                if not ok:
+                    return None
             return RecordRef(domain="DOC", document=ref.document, section=ref.section)
         if isinstance(ref, RecordKey):
+            if core is not None and not core.exists(ref):
+                return None
             return RecordRef(domain=ref.domain, usubjid=ref.usubjid, seq=ref.seq)
     except Exception as exc:  # noqa: BLE001
         log.warning("dropping unrepresentable ref %r: %s", ref, exc)
     return None
 
 
-def _to_official(ia: InternalAnswer) -> Answer:
-    evidence = [r for r in (_ref_to_official(e) for e in ia.evidence) if r is not None]
+def _to_official(ia: InternalAnswer, core: Optional[Any] = None) -> Answer:
+    evidence = [r for r in (_ref_to_official(e, core) for e in ia.evidence) if r is not None]
     ans = ia.answer
     if isinstance(ans, list):
         converted = []
         for item in ans:
             if isinstance(item, (RecordKey, DocRefKey)):
-                r = _ref_to_official(item)
+                r = _ref_to_official(item, core)
                 if r is not None:
                     converted.append(r)
             else:
@@ -162,3 +176,23 @@ def _to_official(ia: InternalAnswer) -> Answer:
         steps_used=int(ia.steps_used),
         tokens_used=int(ia.tokens_used),
     )
+
+
+if __name__ == "__main__":
+    import argparse
+    parser = argparse.ArgumentParser(description="ATLAS StudyGraph CLI")
+    parser.add_argument("--data", default="hackathon-data", help="Path to clinical data directory")
+    parser.add_argument("--cut", type=int, default=None, help="Optional data cut to evaluate")
+    args = parser.parse_args()
+
+    print(f"Building StudyGraph from {args.data}...")
+    sg = StudyGraph(args.data)
+    stats = sg.build(cut=args.cut)
+    print(f"Graph built successfully in {stats.get('build_ms', 0):.1f} ms:")
+    print(f"  Nodes:             {stats.get('nodes'):,}")
+    print(f"  Edges:             {stats.get('edges'):,}")
+    print(f"  Subjects:          {stats.get('subjects'):,}")
+    print(f"  Sites:             {stats.get('sites'):,}")
+    print(f"  Current Cut:       {stats.get('cut')}")
+    print(f"  Protocol Version:  v{stats.get('protocol_version')}")
+    print(f"  Records Processed: {stats.get('records'):,}")

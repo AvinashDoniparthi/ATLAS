@@ -471,10 +471,15 @@ class Router:
                 evidence=[], confidence=confidence_for("count", insufficient=True), trace=trace,
             )
         if res.value == 0:
-            txt = f"0 {what}{desc}. No qualifying records were found."
-            return InternalAnswer(question_id=qid, kind="count", status=STATUS_NO_MATCH, answer=0, text=txt,
-                                  evidence=[], confidence=confidence_for("count", empty=True,
-                                                                         rules_missing=self._needs_rules(it) and self._rules_missing()),
+            txt = f"0 {what}{desc}."
+            if res.notes:
+                txt += " " + " ".join(res.notes) + "."
+            else:
+                txt += " No qualifying records were found."
+            conf = confidence_for("count", empty=(not refs), evidence_dropped=bool(vres.dropped),
+                                  rules_missing=self._needs_rules(it) and self._rules_missing())
+            return InternalAnswer(question_id=qid, kind="count", status=STATUS_OK if refs else STATUS_NO_MATCH,
+                                  answer=0, text=txt, evidence=refs, confidence=conf,
                                   trace=trace, payload={"subjects": res.subjects})
         txt = f"{res.value} {what}{desc}."
         if res.collapsed:
@@ -565,7 +570,8 @@ class Router:
                                   text=f"No {scope} records for {it.subject}{where}. No qualifying records were found.",
                                   evidence=[], confidence=confidence_for("lookup", empty=True), trace=trace)
         by_dom = res.by_domain()
-        txt = f"{len(refs)} record(s) for {it.subject}{where}: " + ", ".join(f"{d} {n}" for d, n in sorted(by_dom.items())) + "."
+        dom_counts = {d: by_dom.get(d, 0) for d in (it.domains or by_dom.keys())}
+        txt = f"{len(refs)} record(s) for {it.subject}{where}: " + ", ".join(f"{d} {n}" for d, n in sorted(dom_counts.items())) + "."
         if res.notes:
             txt += " " + " ".join(res.notes) + "."
         return InternalAnswer(question_id=qid, kind="lookup", status=STATUS_OK, answer=list(refs), text=txt,
