@@ -51,7 +51,7 @@ Raw CDISC CSVs (9 domains) + Corrections + Cuts + Reference Ranges + Documents
     Verifies every cited (domain, USUBJID, SEQ) exists in active cut & re-validates claim
                        │
                        ▼
-    Final Proven Answer (Typed answer, diagnostic explanation, verified RecordRefs, confidence)
+    Final Proven Answer (Typed answer, diagnostic explanation, verified RecordRefs)
 ```
 
 ## Tech stack
@@ -81,9 +81,9 @@ When a document contains text addressed to an automated reviewer (e.g., adversar
 
 When no records qualify, ATLAS returns `answer: []` (or `None`), `evidence: []`, and an explicit diagnostic text explanation rather than hallucinating or guessing.
 The query router in `backend/agent/router.py` explicitly differentiates three states:
-1. **NO_MATCH:** The query and data are valid, the clinical rule executed completely across the cut, and zero subjects met the threshold criteria (e.g., no subjects met an extreme cutoff). Returns `answer: []`, `confidence: 0.90`.
-2. **INSUFFICIENT_DATA:** The rule cannot be evaluated rigorously because required reference ranges or protocol specifications for that cut are missing. Returns `answer: None`, explaining the exact missing prerequisite, `confidence: 0.30`.
-3. **AMBIGUOUS_QUERY:** The question cannot be mapped to deterministic clinical intent. Returns `answer: None`, requesting clarification, `confidence: 0.20`.
+1. **NO_MATCH:** The query and data are valid, the clinical rule executed completely across the cut, and zero subjects met the threshold criteria (e.g., no subjects met an extreme cutoff). Returns `answer: []`.
+2. **INSUFFICIENT_DATA:** The rule cannot be evaluated rigorously because required reference ranges or protocol specifications for that cut are missing. Returns `answer: None`, explaining the exact missing prerequisite.
+3. **AMBIGUOUS_QUERY:** The question cannot be mapped to deterministic clinical intent. Returns `answer: None`, requesting clarification.
 Furthermore, before answering, the evidence validator re-checks every cited `RecordRef` against the active cut view. If an evidence record fails validation or no longer satisfies the condition, it is dropped; if all citations for an answer candidate are invalidated, the finding itself is discarded.
 
 ## Graph

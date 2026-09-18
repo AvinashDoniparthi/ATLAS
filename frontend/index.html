@@ -492,11 +492,6 @@ body { padding-bottom: 60px; }
               <div class="answer-key">Evidence</div>
               <div id="a-evidence"></div>
             </div>
-            <div class="answer-row">
-              <div class="answer-key">Confidence</div>
-              <div class="answer-val" id="a-conf"></div>
-              <div class="conf-bar"><div class="conf-fill" id="a-conf-bar" style="width:0%"></div></div>
-            </div>
             <div class="answer-row" id="a-meta-row">
               <div class="answer-key">Timing</div>
               <div class="answer-val mono" id="a-meta"></div>
@@ -727,13 +722,6 @@ body { padding-bottom: 60px; }
         <div>
           <div class="answer-key" style="margin-bottom:12px;">Supporting Records</div>
           <div id="ev-evidence-list"></div>
-        </div>
-        <div class="mt-24">
-          <div class="answer-key" style="margin-bottom:4px;">Confidence</div>
-          <div style="font-size:.85rem;" id="ev-conf"></div>
-          <div class="conf-bar" style="max-width:200px;margin-top:8px;">
-            <div class="conf-fill" id="ev-conf-bar" style="width:0%"></div>
-          </div>
         </div>
       </div>
     </div>
@@ -992,9 +980,6 @@ function renderAnswer(q, data) {
     }).join('');
   }
 
-  const conf = data.confidence || 0;
-  document.getElementById('a-conf').textContent = (conf * 100).toFixed(0) + '%';
-  document.getElementById('a-conf-bar').style.width = (conf * 100) + '%';
 
   const ms = data.ms != null ? `${data.ms} ms` : '';
   const steps = data.steps_used ? ` · ${data.steps_used} steps` : '';
@@ -1253,7 +1238,7 @@ function renderFindings(findings) {
     for (const f of fs) {
       html += `<div style="border:1px solid var(--border);border-radius:4px;padding:12px 16px;margin-bottom:8px;font-size:.83rem;">
         <div style="font-weight:500;margin-bottom:4px;">${esc(f.summary || f.code)}</div>
-        <div style="color:var(--gray-3);">Confidence: ${((f.confidence||0)*100).toFixed(0)}% · Status: ${esc(f.status||'—')}</div>
+        <div style="color:var(--gray-3);">Status: ${esc(f.status||'—')}</div>
       </div>`;
     }
     html += '</div>';
@@ -1309,9 +1294,6 @@ async function submitEvidence() {
         '</div>';
     }
 
-    const conf = data.confidence || 0;
-    document.getElementById('ev-conf').textContent = (conf * 100).toFixed(0) + '%';
-    document.getElementById('ev-conf-bar').style.width = (conf * 100) + '%';
 
     document.getElementById('ev-content').style.display = '';
   } catch(e) {
