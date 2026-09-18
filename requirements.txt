@@ -1,0 +1,7 @@
+# Required
+pydantic>=2.0
+pytest>=7.0
+
+# Optional (never required by the deterministic path)
+# python-dotenv>=1.0     # loads GEMINI_API_KEY from a local .env
+# google-genai>=1.0      # Gemini adapter for natural-language routing / phrasing only

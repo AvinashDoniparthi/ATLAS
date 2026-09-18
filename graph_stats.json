@@ -1,0 +1,144 @@
+{
+  "nodes": 29595,
+  "edges": 69282,
+  "subjects": 241,
+  "unique_persons": 240,
+  "duplicate_subjects": 1,
+  "sites": 12,
+  "records": 26925,
+  "build_ms": 1376.6,
+  "ms": 1376.6,
+  "cut": 15,
+  "cut_requested": null,
+  "protocol_version": 3,
+  "corrections_applied": 200,
+  "records_excluded_by_cut": 0,
+  "domains": {
+    "AE": 294,
+    "CM": 468,
+    "DM": 241,
+    "DS": 240,
+    "EG": 1440,
+    "EX": 2154,
+    "LB": 14400,
+    "MH": 488,
+    "VS": 7200
+  },
+  "node_types": {
+    "STUDY": 1,
+    "PROTOCOL_VERSION": 1,
+    "DOCUMENT": 6,
+    "REFERENCE_RANGE": 8,
+    "SITE": 12,
+    "PERSON": 1,
+    "SUBJECT": 241,
+    "RECORD": 26925,
+    "VISIT": 2400
+  },
+  "edge_types": {
+    "GOVERNED_BY": 1,
+    "HAS_SITE": 12,
+    "ENROLLED": 241,
+    "UNDER_PROTOCOL": 241,
+    "HAS_RECORD": 26925,
+    "HAS_VISIT": 2400,
+    "AT_VISIT": 25194,
+    "COMPARED_TO": 14264,
+    "SAME_PERSON": 2,
+    "POSSIBLE_DUPLICATE_OF": 2
+  },
+  "load_reports": {
+    "AE": {
+      "domain": "AE",
+      "file": "AE.csv",
+      "rows_read": 294,
+      "rows_kept": 294,
+      "malformed": 0,
+      "duplicate_keys": 0,
+      "missing": false,
+      "error": null
+    },
+    "CM": {
+      "domain": "CM",
+      "file": "CM.csv",
+      "rows_read": 468,
+      "rows_kept": 468,
+      "malformed": 0,
+      "duplicate_keys": 0,
+      "missing": false,
+      "error": null
+    },
+    "DM": {
+      "domain": "DM",
+      "file": "DM.csv",
+      "rows_read": 241,
+      "rows_kept": 241,
+      "malformed": 0,
+      "duplicate_keys": 0,
+      "missing": false,
+      "error": null
+    },
+    "DS": {
+      "domain": "DS",
+      "file": "DS.csv",
+      "rows_read": 240,
+      "rows_kept": 240,
+      "malformed": 0,
+      "duplicate_keys": 0,
+      "missing": false,
+      "error": null
+    },
+    "EG": {
+      "domain": "EG",
+      "file": "EG.csv",
+      "rows_read": 1440,
+      "rows_kept": 1440,
+      "malformed": 0,
+      "duplicate_keys": 0,
+      "missing": false,
+      "error": null
+    },
+    "EX": {
+      "domain": "EX",
+      "file": "EX.csv",
+      "rows_read": 2154,
+      "rows_kept": 2154,
+      "malformed": 0,
+      "duplicate_keys": 0,
+      "missing": false,
+      "error": null
+    },
+    "LB": {
+      "domain": "LB",
+      "file": "LB.csv",
+      "rows_read": 14400,
+      "rows_kept": 14400,
+      "malformed": 0,
+      "duplicate_keys": 0,
+      "missing": false,
+      "error": null
+    },
+    "MH": {
+      "domain": "MH",
+      "file": "MH.csv",
+      "rows_read": 488,
+      "rows_kept": 488,
+      "malformed": 0,
+      "duplicate_keys": 0,
+      "missing": false,
+      "error": null
+    },
+    "VS": {
+      "domain": "VS",
+      "file": "VS.csv",
+      "rows_read": 7200,
+      "rows_kept": 7200,
+      "malformed": 0,
+      "duplicate_keys": 0,
+      "missing": false,
+      "error": null
+    }
+  },
+  "warnings": [],
+  "build_key": "492dfcdc87|cut=None|pv=3|corr=200"
+}

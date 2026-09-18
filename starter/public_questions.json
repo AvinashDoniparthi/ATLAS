@@ -1,0 +1,26 @@
+{
+  "_note": "RECONSTRUCTED — only the example questions documented in the Problem 1 specification. Not the organiser's public question set. Expected answers are deliberately not included.",
+  "reconstructed_starter": true,
+  "questions": [
+    {
+      "question_id": "Q_COUNT_EXAMPLE",
+      "kind": "count",
+      "text": "How many subjects at site S07 discontinued due to an adverse event?"
+    },
+    {
+      "question_id": "Q_LOOKUP_EXAMPLE",
+      "kind": "lookup",
+      "text": "List the laboratory and adverse-event records for 042-S05-003 within 7 days of the WEEK8 visit"
+    },
+    {
+      "question_id": "Q018",
+      "kind": "finding",
+      "text": "Which subjects meet the Hy's law criteria?"
+    },
+    {
+      "question_id": "Q031",
+      "kind": "trap",
+      "text": "Which subjects at site S01 received a wrong dose?"
+    }
+  ]
+}
