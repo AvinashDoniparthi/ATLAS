@@ -1,0 +1,1317 @@
+{
+  "queries": {
+    "AE|042-S02-010|1|AE_BEFORE_FIRST_DOSE": {
+      "query_id": "QRY-AE-042-S02-010-1-1",
+      "usubjid": "042-S02-010",
+      "site": "S02",
+      "domain": "AE",
+      "seq": 1,
+      "cut": 1,
+      "query_text": "AE 'Hypoglycaemia' starts 2026-01-16, before first dose 2026-01-22. Please verify the AE start date against source and correct or confirm.",
+      "status": "CLOSED",
+      "reply": "Date entry error confirmed; AE start date corrected to after first dose.",
+      "fingerprint": "AE|042-S02-010|1|AE_BEFORE_FIRST_DOSE",
+      "cycle": 1
+    },
+    "AE|042-S02-015|1|AE_BEFORE_FIRST_DOSE": {
+      "query_id": "QRY-AE-042-S02-015-1-1",
+      "usubjid": "042-S02-015",
+      "site": "S02",
+      "domain": "AE",
+      "seq": 1,
+      "cut": 1,
+      "query_text": "AE 'Urinary tract infection' starts 2026-01-20, before first dose 2026-01-23. Please verify the AE start date against source and correct or confirm.",
+      "status": "CLOSED",
+      "reply": "Date entry error confirmed; AE start date corrected to after first dose.",
+      "fingerprint": "AE|042-S02-015|1|AE_BEFORE_FIRST_DOSE",
+      "cycle": 1
+    },
+    "AE|042-S03-016|1|AE_BEFORE_FIRST_DOSE": {
+      "query_id": "QRY-AE-042-S03-016-1-1",
+      "usubjid": "042-S03-016",
+      "site": "S03",
+      "domain": "AE",
+      "seq": 1,
+      "cut": 1,
+      "query_text": "AE 'Hypoglycaemia' starts 18-JAN-2026, before first dose 2026-01-22. Please verify the AE start date against source and correct or confirm.",
+      "status": "CLOSED",
+      "reply": "Date entry error confirmed; AE start date corrected to after first dose.",
+      "fingerprint": "AE|042-S03-016|1|AE_BEFORE_FIRST_DOSE",
+      "cycle": 1
+    },
+    "AE|042-S09-010|1|AE_BEFORE_FIRST_DOSE": {
+      "query_id": "QRY-AE-042-S09-010-1-1",
+      "usubjid": "042-S09-010",
+      "site": "S09",
+      "domain": "AE",
+      "seq": 1,
+      "cut": 1,
+      "query_text": "AE 'Fatigue' starts 2026-01-15, before first dose 2026-01-22. Please verify the AE start date against source and correct or confirm.",
+      "status": "CLOSED",
+      "reply": "Date entry error confirmed; AE start date corrected to after first dose.",
+      "fingerprint": "AE|042-S09-010|1|AE_BEFORE_FIRST_DOSE",
+      "cycle": 1
+    },
+    "AE|042-S09-013|1|AE_BEFORE_FIRST_DOSE": {
+      "query_id": "QRY-AE-042-S09-013-1-1",
+      "usubjid": "042-S09-013",
+      "site": "S09",
+      "domain": "AE",
+      "seq": 1,
+      "cut": 1,
+      "query_text": "AE 'Back pain' starts 2026-01-10, before first dose 2026-01-17. Please verify the AE start date against source and correct or confirm.",
+      "status": "CLOSED",
+      "reply": "Date entry error confirmed; AE start date corrected to after first dose.",
+      "fingerprint": "AE|042-S09-013|1|AE_BEFORE_FIRST_DOSE",
+      "cycle": 1
+    },
+    "EX|042-S02-012||MISSING_DOSE": {
+      "query_id": "QRY-EX-042-S02-012-1-1",
+      "usubjid": "042-S02-012",
+      "site": "S02",
+      "domain": "EX",
+      "seq": null,
+      "cut": 1,
+      "query_text": "Missing exposure record at visit scheduled visit for subject 042-S02-012. Please verify drug administration against pharmacy logs and submit dose record or deviation.",
+      "status": "ANSWERED",
+      "reply": "Data verified against source documents. No change.",
+      "fingerprint": "EX|042-S02-012||MISSING_DOSE",
+      "cycle": 1
+    },
+    "EX|042-S02-016||MISSING_DOSE": {
+      "query_id": "QRY-EX-042-S02-016-1-1",
+      "usubjid": "042-S02-016",
+      "site": "S02",
+      "domain": "EX",
+      "seq": null,
+      "cut": 1,
+      "query_text": "Missing exposure record at visit scheduled visit for subject 042-S02-016. Please verify drug administration against pharmacy logs and submit dose record or deviation.",
+      "status": "ANSWERED",
+      "reply": "Data verified against source documents. No change.",
+      "fingerprint": "EX|042-S02-016||MISSING_DOSE",
+      "cycle": 1
+    },
+    "EX|042-S03-001||MISSING_DOSE": {
+      "query_id": "QRY-EX-042-S03-001-1-1",
+      "usubjid": "042-S03-001",
+      "site": "S03",
+      "domain": "EX",
+      "seq": null,
+      "cut": 1,
+      "query_text": "Missing exposure record at visit scheduled visit for subject 042-S03-001. Please verify drug administration against pharmacy logs and submit dose record or deviation.",
+      "status": "ANSWERED",
+      "reply": "Data verified against source documents. No change.",
+      "fingerprint": "EX|042-S03-001||MISSING_DOSE",
+      "cycle": 1
+    },
+    "EX|042-S04-010||MISSING_DOSE": {
+      "query_id": "QRY-EX-042-S04-010-1-1",
+      "usubjid": "042-S04-010",
+      "site": "S04",
+      "domain": "EX",
+      "seq": null,
+      "cut": 1,
+      "query_text": "Missing exposure record at visit scheduled visit for subject 042-S04-010. Please verify drug administration against pharmacy logs and submit dose record or deviation.",
+      "status": "ANSWERED",
+      "reply": "Data verified against source documents. No change.",
+      "fingerprint": "EX|042-S04-010||MISSING_DOSE",
+      "cycle": 1
+    },
+    "EX|042-S08-001||MISSING_DOSE": {
+      "query_id": "QRY-EX-042-S08-001-1-1",
+      "usubjid": "042-S08-001",
+      "site": "S08",
+      "domain": "EX",
+      "seq": null,
+      "cut": 1,
+      "query_text": "Missing exposure record at visit scheduled visit for subject 042-S08-001. Please verify drug administration against pharmacy logs and submit dose record or deviation.",
+      "status": "ANSWERED",
+      "reply": "Data verified against source documents. No change.",
+      "fingerprint": "EX|042-S08-001||MISSING_DOSE",
+      "cycle": 1
+    },
+    "EX|042-S08-002||MISSING_DOSE": {
+      "query_id": "QRY-EX-042-S08-002-1-1",
+      "usubjid": "042-S08-002",
+      "site": "S08",
+      "domain": "EX",
+      "seq": null,
+      "cut": 1,
+      "query_text": "Missing exposure record at visit scheduled visit for subject 042-S08-002. Please verify drug administration against pharmacy logs and submit dose record or deviation.",
+      "status": "ANSWERED",
+      "reply": "Data verified against source documents. No change.",
+      "fingerprint": "EX|042-S08-002||MISSING_DOSE",
+      "cycle": 1
+    },
+    "EX|042-S08-003||MISSING_DOSE": {
+      "query_id": "QRY-EX-042-S08-003-1-1",
+      "usubjid": "042-S08-003",
+      "site": "S08",
+      "domain": "EX",
+      "seq": null,
+      "cut": 1,
+      "query_text": "Missing exposure record at visit scheduled visit for subject 042-S08-003. Please verify drug administration against pharmacy logs and submit dose record or deviation.",
+      "status": "ANSWERED",
+      "reply": "Data verified against source documents. No change.",
+      "fingerprint": "EX|042-S08-003||MISSING_DOSE",
+      "cycle": 1
+    },
+    "EX|042-S08-004||MISSING_DOSE": {
+      "query_id": "QRY-EX-042-S08-004-1-1",
+      "usubjid": "042-S08-004",
+      "site": "S08",
+      "domain": "EX",
+      "seq": null,
+      "cut": 1,
+      "query_text": "Missing exposure record at visit scheduled visit for subject 042-S08-004. Please verify drug administration against pharmacy logs and submit dose record or deviation.",
+      "status": "ANSWERED",
+      "reply": "Data verified against source documents. No change.",
+      "fingerprint": "EX|042-S08-004||MISSING_DOSE",
+      "cycle": 1
+    },
+    "EX|042-S08-005||MISSING_DOSE": {
+      "query_id": "QRY-EX-042-S08-005-1-1",
+      "usubjid": "042-S08-005",
+      "site": "S08",
+      "domain": "EX",
+      "seq": null,
+      "cut": 1,
+      "query_text": "Missing exposure record at visit scheduled visit for subject 042-S08-005. Please verify drug administration against pharmacy logs and submit dose record or deviation.",
+      "status": "ANSWERED",
+      "reply": "Data verified against source documents. No change.",
+      "fingerprint": "EX|042-S08-005||MISSING_DOSE",
+      "cycle": 1
+    },
+    "EX|042-S08-006||MISSING_DOSE": {
+      "query_id": "QRY-EX-042-S08-006-1-1",
+      "usubjid": "042-S08-006",
+      "site": "S08",
+      "domain": "EX",
+      "seq": null,
+      "cut": 1,
+      "query_text": "Missing exposure record at visit scheduled visit for subject 042-S08-006. Please verify drug administration against pharmacy logs and submit dose record or deviation.",
+      "status": "ANSWERED",
+      "reply": "Data verified against source documents. No change.",
+      "fingerprint": "EX|042-S08-006||MISSING_DOSE",
+      "cycle": 1
+    },
+    "EX|042-S08-008||MISSING_DOSE": {
+      "query_id": "QRY-EX-042-S08-008-1-1",
+      "usubjid": "042-S08-008",
+      "site": "S08",
+      "domain": "EX",
+      "seq": null,
+      "cut": 1,
+      "query_text": "Missing exposure record at visit scheduled visit for subject 042-S08-008. Please verify drug administration against pharmacy logs and submit dose record or deviation.",
+      "status": "ANSWERED",
+      "reply": "Data verified against source documents. No change.",
+      "fingerprint": "EX|042-S08-008||MISSING_DOSE",
+      "cycle": 1
+    },
+    "EX|042-S08-009||MISSING_DOSE": {
+      "query_id": "QRY-EX-042-S08-009-1-1",
+      "usubjid": "042-S08-009",
+      "site": "S08",
+      "domain": "EX",
+      "seq": null,
+      "cut": 1,
+      "query_text": "Missing exposure record at visit scheduled visit for subject 042-S08-009. Please verify drug administration against pharmacy logs and submit dose record or deviation.",
+      "status": "ANSWERED",
+      "reply": "Data verified against source documents. No change.",
+      "fingerprint": "EX|042-S08-009||MISSING_DOSE",
+      "cycle": 1
+    },
+    "EX|042-S08-010||MISSING_DOSE": {
+      "query_id": "QRY-EX-042-S08-010-1-1",
+      "usubjid": "042-S08-010",
+      "site": "S08",
+      "domain": "EX",
+      "seq": null,
+      "cut": 1,
+      "query_text": "Missing exposure record at visit scheduled visit for subject 042-S08-010. Please verify drug administration against pharmacy logs and submit dose record or deviation.",
+      "status": "ANSWERED",
+      "reply": "Data verified against source documents. No change.",
+      "fingerprint": "EX|042-S08-010||MISSING_DOSE",
+      "cycle": 1
+    },
+    "EX|042-S08-011||MISSING_DOSE": {
+      "query_id": "QRY-EX-042-S08-011-1-1",
+      "usubjid": "042-S08-011",
+      "site": "S08",
+      "domain": "EX",
+      "seq": null,
+      "cut": 1,
+      "query_text": "Missing exposure record at visit scheduled visit for subject 042-S08-011. Please verify drug administration against pharmacy logs and submit dose record or deviation.",
+      "status": "ANSWERED",
+      "reply": "Data verified against source documents. No change.",
+      "fingerprint": "EX|042-S08-011||MISSING_DOSE",
+      "cycle": 1
+    },
+    "EX|042-S08-012||MISSING_DOSE": {
+      "query_id": "QRY-EX-042-S08-012-1-1",
+      "usubjid": "042-S08-012",
+      "site": "S08",
+      "domain": "EX",
+      "seq": null,
+      "cut": 1,
+      "query_text": "Missing exposure record at visit scheduled visit for subject 042-S08-012. Please verify drug administration against pharmacy logs and submit dose record or deviation.",
+      "status": "ANSWERED",
+      "reply": "Data verified against source documents. No change.",
+      "fingerprint": "EX|042-S08-012||MISSING_DOSE",
+      "cycle": 1
+    },
+    "EX|042-S08-013||MISSING_DOSE": {
+      "query_id": "QRY-EX-042-S08-013-1-1",
+      "usubjid": "042-S08-013",
+      "site": "S08",
+      "domain": "EX",
+      "seq": null,
+      "cut": 1,
+      "query_text": "Missing exposure record at visit scheduled visit for subject 042-S08-013. Please verify drug administration against pharmacy logs and submit dose record or deviation.",
+      "status": "ANSWERED",
+      "reply": "Data verified against source documents. No change.",
+      "fingerprint": "EX|042-S08-013||MISSING_DOSE",
+      "cycle": 1
+    },
+    "EX|042-S08-014||MISSING_DOSE": {
+      "query_id": "QRY-EX-042-S08-014-1-1",
+      "usubjid": "042-S08-014",
+      "site": "S08",
+      "domain": "EX",
+      "seq": null,
+      "cut": 1,
+      "query_text": "Missing exposure record at visit scheduled visit for subject 042-S08-014. Please verify drug administration against pharmacy logs and submit dose record or deviation.",
+      "status": "ANSWERED",
+      "reply": "Data verified against source documents. No change.",
+      "fingerprint": "EX|042-S08-014||MISSING_DOSE",
+      "cycle": 1
+    },
+    "EX|042-S08-015||MISSING_DOSE": {
+      "query_id": "QRY-EX-042-S08-015-1-1",
+      "usubjid": "042-S08-015",
+      "site": "S08",
+      "domain": "EX",
+      "seq": null,
+      "cut": 1,
+      "query_text": "Missing exposure record at visit scheduled visit for subject 042-S08-015. Please verify drug administration against pharmacy logs and submit dose record or deviation.",
+      "status": "ANSWERED",
+      "reply": "Data verified against source documents. No change.",
+      "fingerprint": "EX|042-S08-015||MISSING_DOSE",
+      "cycle": 1
+    },
+    "EX|042-S08-016||MISSING_DOSE": {
+      "query_id": "QRY-EX-042-S08-016-1-1",
+      "usubjid": "042-S08-016",
+      "site": "S08",
+      "domain": "EX",
+      "seq": null,
+      "cut": 1,
+      "query_text": "Missing exposure record at visit scheduled visit for subject 042-S08-016. Please verify drug administration against pharmacy logs and submit dose record or deviation.",
+      "status": "ANSWERED",
+      "reply": "Data verified against source documents. No change.",
+      "fingerprint": "EX|042-S08-016||MISSING_DOSE",
+      "cycle": 1
+    },
+    "EX|042-S08-017||MISSING_DOSE": {
+      "query_id": "QRY-EX-042-S08-017-1-1",
+      "usubjid": "042-S08-017",
+      "site": "S08",
+      "domain": "EX",
+      "seq": null,
+      "cut": 1,
+      "query_text": "Missing exposure record at visit scheduled visit for subject 042-S08-017. Please verify drug administration against pharmacy logs and submit dose record or deviation.",
+      "status": "ANSWERED",
+      "reply": "Data verified against source documents. No change.",
+      "fingerprint": "EX|042-S08-017||MISSING_DOSE",
+      "cycle": 1
+    },
+    "EX|042-S08-018||MISSING_DOSE": {
+      "query_id": "QRY-EX-042-S08-018-1-1",
+      "usubjid": "042-S08-018",
+      "site": "S08",
+      "domain": "EX",
+      "seq": null,
+      "cut": 1,
+      "query_text": "Missing exposure record at visit scheduled visit for subject 042-S08-018. Please verify drug administration against pharmacy logs and submit dose record or deviation.",
+      "status": "ANSWERED",
+      "reply": "Data verified against source documents. No change.",
+      "fingerprint": "EX|042-S08-018||MISSING_DOSE",
+      "cycle": 1
+    },
+    "EX|042-S08-019||MISSING_DOSE": {
+      "query_id": "QRY-EX-042-S08-019-1-1",
+      "usubjid": "042-S08-019",
+      "site": "S08",
+      "domain": "EX",
+      "seq": null,
+      "cut": 1,
+      "query_text": "Missing exposure record at visit scheduled visit for subject 042-S08-019. Please verify drug administration against pharmacy logs and submit dose record or deviation.",
+      "status": "ANSWERED",
+      "reply": "Data verified against source documents. No change.",
+      "fingerprint": "EX|042-S08-019||MISSING_DOSE",
+      "cycle": 1
+    },
+    "EX|042-S08-020||MISSING_DOSE": {
+      "query_id": "QRY-EX-042-S08-020-1-1",
+      "usubjid": "042-S08-020",
+      "site": "S08",
+      "domain": "EX",
+      "seq": null,
+      "cut": 1,
+      "query_text": "Missing exposure record at visit scheduled visit for subject 042-S08-020. Please verify drug administration against pharmacy logs and submit dose record or deviation.",
+      "status": "ANSWERED",
+      "reply": "Data verified against source documents. No change.",
+      "fingerprint": "EX|042-S08-020||MISSING_DOSE",
+      "cycle": 1
+    },
+    "EX|042-S12-010||MISSING_DOSE": {
+      "query_id": "QRY-EX-042-S12-010-1-1",
+      "usubjid": "042-S12-010",
+      "site": "S12",
+      "domain": "EX",
+      "seq": null,
+      "cut": 1,
+      "query_text": "Missing exposure record at visit scheduled visit for subject 042-S12-010. Please verify drug administration against pharmacy logs and submit dose record or deviation.",
+      "status": "ANSWERED",
+      "reply": "Data verified against source documents. No change.",
+      "fingerprint": "EX|042-S12-010||MISSING_DOSE",
+      "cycle": 1
+    },
+    "AE|042-S07-016|1|AE_BEFORE_FIRST_DOSE": {
+      "query_id": "QRY-AE-042-S07-016-1-2",
+      "usubjid": "042-S07-016",
+      "site": "S07",
+      "domain": "AE",
+      "seq": 1,
+      "cut": 2,
+      "query_text": "AE 'Fatigue' starts 2026-01-24, before first dose 2026-02-01. Please verify the AE start date against source and correct or confirm.",
+      "status": "CLOSED",
+      "reply": "Date entry error confirmed; AE start date corrected to after first dose.",
+      "fingerprint": "AE|042-S07-016|1|AE_BEFORE_FIRST_DOSE",
+      "cycle": 2
+    },
+    "AE|042-S10-012|1|AE_BEFORE_FIRST_DOSE": {
+      "query_id": "QRY-AE-042-S10-012-1-2",
+      "usubjid": "042-S10-012",
+      "site": "S10",
+      "domain": "AE",
+      "seq": 1,
+      "cut": 2,
+      "query_text": "AE 'Headache' starts 2026-01-24, before first dose 2026-01-30. Please verify the AE start date against source and correct or confirm.",
+      "status": "CLOSED",
+      "reply": "Date entry error confirmed; AE start date corrected to after first dose.",
+      "fingerprint": "AE|042-S10-012|1|AE_BEFORE_FIRST_DOSE",
+      "cycle": 2
+    },
+    "EX|042-S08-007||MISSING_DOSE": {
+      "query_id": "QRY-EX-042-S08-007-1-2",
+      "usubjid": "042-S08-007",
+      "site": "S08",
+      "domain": "EX",
+      "seq": null,
+      "cut": 2,
+      "query_text": "Missing exposure record at visit scheduled visit for subject 042-S08-007. Please verify drug administration against pharmacy logs and submit dose record or deviation.",
+      "status": "ANSWERED",
+      "reply": "Data verified against source documents. No change.",
+      "fingerprint": "EX|042-S08-007||MISSING_DOSE",
+      "cycle": 2
+    }
+  },
+  "escalations": {
+    "SITE_DOSING_ERROR|S09": {
+      "escalation_id": "ESC-SITE-DOSING-S09-1",
+      "code": "SITE_DOSING_ERROR",
+      "usubjid": "042-S09-004",
+      "site": "S09",
+      "severity": "HIGH",
+      "summary": "Site S09 demonstrates systemic dosing errors affecting 2 subjects (042-S09-004, 042-S09-006)",
+      "evidence": [
+        {
+          "domain": "EX",
+          "usubjid": "042-S09-004",
+          "seq": 2,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "8"
+        },
+        {
+          "domain": "EX",
+          "usubjid": "042-S09-006",
+          "seq": 2,
+          "document": null,
+          "section": null
+        }
+      ],
+      "alternatives": [
+        {
+          "alternative": "Treat as isolated subject-level errors",
+          "rejected_reason": "2 subjects affected at site S09 indicates site-wide pharmacy preparation or dispensation breakdown."
+        },
+        {
+          "alternative": "Immediately close site to accrual",
+          "rejected_reason": "Requires medical monitor clinical review and audit before site closure."
+        }
+      ],
+      "status": "APPROVED",
+      "monitor_decision": "APPROVED",
+      "monitor_reason": "Site-level deviation; issue corrective action and retrain site staff.",
+      "clarification_requested": null,
+      "clarification_response": null,
+      "cycle": 1,
+      "action_taken": null
+    },
+    "SERIOUS_AE|042-S05-006": {
+      "escalation_id": "ESC-SAE-042-S05-006-2",
+      "code": "SERIOUS_AE",
+      "usubjid": "042-S05-006",
+      "site": "S05",
+      "severity": "HIGH",
+      "summary": "Serious Adverse Event: Myocardial infarction (SEVERE)",
+      "evidence": [
+        {
+          "domain": "AE",
+          "usubjid": "042-S05-006",
+          "seq": 1,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "6"
+        }
+      ],
+      "alternatives": [
+        {
+          "alternative": "Downgrade to observational monitoring",
+          "rejected_reason": "Event meets protocol seriousness criteria (AESER=Y); medical monitor review mandated."
+        }
+      ],
+      "status": "APPROVED",
+      "monitor_decision": "APPROVED",
+      "monitor_reason": "Serious adverse event confirmed; expedited report within 24 h.",
+      "clarification_requested": null,
+      "clarification_response": null,
+      "cycle": 2,
+      "action_taken": null
+    },
+    "SERIOUS_AE|042-S12-005": {
+      "escalation_id": "ESC-SAE-042-S12-005-2",
+      "code": "SERIOUS_AE",
+      "usubjid": "042-S12-005",
+      "site": "S12",
+      "severity": "HIGH",
+      "summary": "Serious Adverse Event: Pneumonia (SEVERE)",
+      "evidence": [
+        {
+          "domain": "AE",
+          "usubjid": "042-S12-005",
+          "seq": 1,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "6"
+        }
+      ],
+      "alternatives": [
+        {
+          "alternative": "Downgrade to observational monitoring",
+          "rejected_reason": "Event meets protocol seriousness criteria (AESER=Y); medical monitor review mandated."
+        }
+      ],
+      "status": "APPROVED",
+      "monitor_decision": "APPROVED",
+      "monitor_reason": "Serious adverse event confirmed; expedited report within 24 h.",
+      "clarification_requested": null,
+      "clarification_response": null,
+      "cycle": 2,
+      "action_taken": null
+    },
+    "TWO_CYCLE_RECURRING|042-S09-004": {
+      "escalation_id": "ESC-2CYCLE-042-S09-004-2",
+      "code": "TWO_CYCLE_RECURRING",
+      "usubjid": "042-S09-004",
+      "site": "S09",
+      "severity": "HIGH",
+      "summary": "Subject 042-S09-004 flagged with recurring protocol anomalies across consecutive cycles (1 and 2)",
+      "evidence": [
+        {
+          "domain": "EX",
+          "usubjid": "042-S09-004",
+          "seq": 2,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "EX",
+          "usubjid": "042-S09-004",
+          "seq": 3,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "8"
+        }
+      ],
+      "alternatives": [
+        {
+          "alternative": "Treat cycle findings independently",
+          "rejected_reason": "Persistent protocol non-compliance across cycles requires centralized medical monitor intervention."
+        }
+      ],
+      "status": "PENDING",
+      "monitor_decision": null,
+      "monitor_reason": null,
+      "clarification_requested": null,
+      "clarification_response": null,
+      "cycle": 2,
+      "action_taken": null
+    },
+    "TWO_CYCLE_RECURRING|042-S09-006": {
+      "escalation_id": "ESC-2CYCLE-042-S09-006-2",
+      "code": "TWO_CYCLE_RECURRING",
+      "usubjid": "042-S09-006",
+      "site": "S09",
+      "severity": "HIGH",
+      "summary": "Subject 042-S09-006 flagged with recurring protocol anomalies across consecutive cycles (1 and 2)",
+      "evidence": [
+        {
+          "domain": "EX",
+          "usubjid": "042-S09-006",
+          "seq": 2,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "EX",
+          "usubjid": "042-S09-006",
+          "seq": 3,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "8"
+        }
+      ],
+      "alternatives": [
+        {
+          "alternative": "Treat cycle findings independently",
+          "rejected_reason": "Persistent protocol non-compliance across cycles requires centralized medical monitor intervention."
+        }
+      ],
+      "status": "PENDING",
+      "monitor_decision": null,
+      "monitor_reason": null,
+      "clarification_requested": null,
+      "clarification_response": null,
+      "cycle": 2,
+      "action_taken": null
+    },
+    "TWO_CYCLE_RECURRING|042-S09-012": {
+      "escalation_id": "ESC-2CYCLE-042-S09-012-2",
+      "code": "TWO_CYCLE_RECURRING",
+      "usubjid": "042-S09-012",
+      "site": "S09",
+      "severity": "HIGH",
+      "summary": "Subject 042-S09-012 flagged with recurring protocol anomalies across consecutive cycles (1 and 2)",
+      "evidence": [
+        {
+          "domain": "CM",
+          "usubjid": "042-S09-012",
+          "seq": 1,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "5"
+        }
+      ],
+      "alternatives": [
+        {
+          "alternative": "Treat cycle findings independently",
+          "rejected_reason": "Persistent protocol non-compliance across cycles requires centralized medical monitor intervention."
+        }
+      ],
+      "status": "PENDING",
+      "monitor_decision": null,
+      "monitor_reason": null,
+      "clarification_requested": null,
+      "clarification_response": null,
+      "cycle": 2,
+      "action_taken": null
+    },
+    "TWO_CYCLE_RECURRING|042-S12-002": {
+      "escalation_id": "ESC-2CYCLE-042-S12-002-2",
+      "code": "TWO_CYCLE_RECURRING",
+      "usubjid": "042-S12-002",
+      "site": "S12",
+      "severity": "HIGH",
+      "summary": "Subject 042-S12-002 flagged with recurring protocol anomalies across consecutive cycles (1 and 2)",
+      "evidence": [
+        {
+          "domain": "CM",
+          "usubjid": "042-S12-002",
+          "seq": 1,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "5"
+        }
+      ],
+      "alternatives": [
+        {
+          "alternative": "Treat cycle findings independently",
+          "rejected_reason": "Persistent protocol non-compliance across cycles requires centralized medical monitor intervention."
+        }
+      ],
+      "status": "PENDING",
+      "monitor_decision": null,
+      "monitor_reason": null,
+      "clarification_requested": null,
+      "clarification_response": null,
+      "cycle": 2,
+      "action_taken": null
+    },
+    "TWO_CYCLE_RECURRING|042-S09-005": {
+      "escalation_id": "ESC-2CYCLE-042-S09-005-3",
+      "code": "TWO_CYCLE_RECURRING",
+      "usubjid": "042-S09-005",
+      "site": "S09",
+      "severity": "HIGH",
+      "summary": "Subject 042-S09-005 flagged with recurring protocol anomalies across consecutive cycles (2 and 3)",
+      "evidence": [
+        {
+          "domain": "EX",
+          "usubjid": "042-S09-005",
+          "seq": 2,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "EX",
+          "usubjid": "042-S09-005",
+          "seq": 3,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "8"
+        }
+      ],
+      "alternatives": [
+        {
+          "alternative": "Treat cycle findings independently",
+          "rejected_reason": "Persistent protocol non-compliance across cycles requires centralized medical monitor intervention."
+        }
+      ],
+      "status": "PENDING",
+      "monitor_decision": null,
+      "monitor_reason": null,
+      "clarification_requested": null,
+      "clarification_response": null,
+      "cycle": 3,
+      "action_taken": null
+    },
+    "TWO_CYCLE_RECURRING|042-S09-009": {
+      "escalation_id": "ESC-2CYCLE-042-S09-009-3",
+      "code": "TWO_CYCLE_RECURRING",
+      "usubjid": "042-S09-009",
+      "site": "S09",
+      "severity": "HIGH",
+      "summary": "Subject 042-S09-009 flagged with recurring protocol anomalies across consecutive cycles (2 and 3)",
+      "evidence": [
+        {
+          "domain": "EX",
+          "usubjid": "042-S09-009",
+          "seq": 2,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "EX",
+          "usubjid": "042-S09-009",
+          "seq": 3,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "8"
+        }
+      ],
+      "alternatives": [
+        {
+          "alternative": "Treat cycle findings independently",
+          "rejected_reason": "Persistent protocol non-compliance across cycles requires centralized medical monitor intervention."
+        }
+      ],
+      "status": "PENDING",
+      "monitor_decision": null,
+      "monitor_reason": null,
+      "clarification_requested": null,
+      "clarification_response": null,
+      "cycle": 3,
+      "action_taken": null
+    },
+    "TWO_CYCLE_RECURRING|042-S09-011": {
+      "escalation_id": "ESC-2CYCLE-042-S09-011-3",
+      "code": "TWO_CYCLE_RECURRING",
+      "usubjid": "042-S09-011",
+      "site": "S09",
+      "severity": "HIGH",
+      "summary": "Subject 042-S09-011 flagged with recurring protocol anomalies across consecutive cycles (2 and 3)",
+      "evidence": [
+        {
+          "domain": "EX",
+          "usubjid": "042-S09-011",
+          "seq": 2,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "EX",
+          "usubjid": "042-S09-011",
+          "seq": 3,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "8"
+        }
+      ],
+      "alternatives": [
+        {
+          "alternative": "Treat cycle findings independently",
+          "rejected_reason": "Persistent protocol non-compliance across cycles requires centralized medical monitor intervention."
+        }
+      ],
+      "status": "PENDING",
+      "monitor_decision": null,
+      "monitor_reason": null,
+      "clarification_requested": null,
+      "clarification_response": null,
+      "cycle": 3,
+      "action_taken": null
+    },
+    "TWO_CYCLE_RECURRING|042-S09-014": {
+      "escalation_id": "ESC-2CYCLE-042-S09-014-3",
+      "code": "TWO_CYCLE_RECURRING",
+      "usubjid": "042-S09-014",
+      "site": "S09",
+      "severity": "HIGH",
+      "summary": "Subject 042-S09-014 flagged with recurring protocol anomalies across consecutive cycles (2 and 3)",
+      "evidence": [
+        {
+          "domain": "EX",
+          "usubjid": "042-S09-014",
+          "seq": 2,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "EX",
+          "usubjid": "042-S09-014",
+          "seq": 3,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "8"
+        }
+      ],
+      "alternatives": [
+        {
+          "alternative": "Treat cycle findings independently",
+          "rejected_reason": "Persistent protocol non-compliance across cycles requires centralized medical monitor intervention."
+        }
+      ],
+      "status": "PENDING",
+      "monitor_decision": null,
+      "monitor_reason": null,
+      "clarification_requested": null,
+      "clarification_response": null,
+      "cycle": 3,
+      "action_taken": null
+    },
+    "SERIOUS_AE|042-S01-007": {
+      "escalation_id": "ESC-SAE-042-S01-007-4",
+      "code": "SERIOUS_AE",
+      "usubjid": "042-S01-007",
+      "site": "S01",
+      "severity": "HIGH",
+      "summary": "Serious Adverse Event: Myocardial infarction (SEVERE)",
+      "evidence": [
+        {
+          "domain": "AE",
+          "usubjid": "042-S01-007",
+          "seq": 1,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "6"
+        }
+      ],
+      "alternatives": [
+        {
+          "alternative": "Downgrade to observational monitoring",
+          "rejected_reason": "Event meets protocol seriousness criteria (AESER=Y); medical monitor review mandated."
+        }
+      ],
+      "status": "PENDING",
+      "monitor_decision": null,
+      "monitor_reason": null,
+      "clarification_requested": null,
+      "clarification_response": null,
+      "cycle": 4,
+      "action_taken": null
+    }
+  },
+  "rejected_escalations": [],
+  "subject_cycles": {
+    "042-S09-004": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "042-S09-006": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "042-S06-016": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "042-S09-012": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "042-S12-002": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "042-S04-003": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "042-S04-017": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "042-S05-017": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "042-S08-020": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "042-S09-005": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "042-S09-009": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "042-S09-011": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "042-S09-014": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "042-S02-002": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "042-S03-011": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "042-S05-015": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "042-S06-002": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "042-S07-011": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "042-S10-003": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "042-S10-014": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "042-S12-015": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "042-S02-007": [
+      3,
+      4,
+      5
+    ],
+    "042-S06-013": [
+      3,
+      4,
+      5
+    ],
+    "042-S07-013": [
+      3,
+      4,
+      5
+    ],
+    "042-S07-014": [
+      3,
+      4,
+      5
+    ],
+    "042-S12-020": [
+      3,
+      4,
+      5
+    ],
+    "042-S01-015": [
+      4,
+      5
+    ],
+    "042-S04-010": [
+      4,
+      5
+    ],
+    "042-S04-013": [
+      4,
+      5
+    ],
+    "042-S06-008": [
+      4,
+      5
+    ],
+    "042-S07-003": [
+      4,
+      5
+    ],
+    "042-S07-007": [
+      4,
+      5
+    ],
+    "042-S07-008": [
+      4,
+      5
+    ],
+    "042-S07-012": [
+      4,
+      5
+    ],
+    "042-S07-015": [
+      4,
+      5
+    ],
+    "042-S08-008": [
+      4,
+      5
+    ],
+    "042-S08-017": [
+      4,
+      5
+    ],
+    "042-S09-002": [
+      4,
+      5
+    ],
+    "042-S10-012": [
+      4,
+      5
+    ],
+    "042-S02-010": [
+      4,
+      5
+    ],
+    "042-S08-001": [
+      4,
+      5
+    ],
+    "042-S01-002": [
+      5
+    ],
+    "042-S01-004": [
+      5
+    ],
+    "042-S01-007": [
+      5
+    ],
+    "042-S01-008": [
+      5
+    ],
+    "042-S01-011": [
+      5
+    ],
+    "042-S01-012": [
+      5
+    ],
+    "042-S01-016": [
+      5
+    ],
+    "042-S01-018": [
+      5
+    ],
+    "042-S01-019": [
+      5
+    ],
+    "042-S02-004": [
+      5
+    ],
+    "042-S02-005": [
+      5
+    ],
+    "042-S02-009": [
+      5
+    ],
+    "042-S02-017": [
+      5
+    ],
+    "042-S03-008": [
+      5
+    ],
+    "042-S03-009": [
+      5
+    ],
+    "042-S03-016": [
+      5
+    ],
+    "042-S04-008": [
+      5
+    ],
+    "042-S04-009": [
+      5
+    ],
+    "042-S05-008": [
+      5
+    ],
+    "042-S05-010": [
+      5
+    ],
+    "042-S05-011": [
+      5
+    ],
+    "042-S05-013": [
+      5
+    ],
+    "042-S06-003": [
+      5
+    ],
+    "042-S06-004": [
+      5
+    ],
+    "042-S06-005": [
+      5
+    ],
+    "042-S06-011": [
+      5
+    ],
+    "042-S06-017": [
+      5
+    ],
+    "042-S06-018": [
+      5
+    ],
+    "042-S06-019": [
+      5
+    ],
+    "042-S07-004": [
+      5
+    ],
+    "042-S07-005": [
+      5
+    ],
+    "042-S07-006": [
+      5
+    ],
+    "042-S07-009": [
+      5
+    ],
+    "042-S07-010": [
+      5
+    ],
+    "042-S07-016": [
+      5
+    ],
+    "042-S08-002": [
+      5
+    ],
+    "042-S08-005": [
+      5
+    ],
+    "042-S08-007": [
+      5
+    ],
+    "042-S08-018": [
+      5
+    ],
+    "042-S09-001": [
+      5
+    ],
+    "042-S09-007": [
+      5
+    ],
+    "042-S09-017": [
+      5
+    ],
+    "042-S09-020": [
+      5
+    ],
+    "042-S10-007": [
+      5
+    ],
+    "042-S10-008": [
+      5
+    ],
+    "042-S10-010": [
+      5
+    ],
+    "042-S10-011": [
+      5
+    ],
+    "042-S10-015": [
+      5
+    ],
+    "042-S12-010": [
+      5
+    ],
+    "042-S01-003": [
+      5
+    ]
+  },
+  "site_issue_counts": {
+    "S09": {
+      "DOSING_ERROR": 26
+    }
+  },
+  "open_query_ids": [],
+  "completed_cycles": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "completed_cuts": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "resolutions": {},
+  "standing_limits": {},
+  "clarifications": {},
+  "quarantined_sites": [],
+  "untrusted_labs": []
+}

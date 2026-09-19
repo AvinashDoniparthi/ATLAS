@@ -33,6 +33,11 @@ class ReviewMemory:
         self.open_query_ids: Set[str] = set()
         self.completed_cycles: List[int] = []
         self.completed_cuts: Set[int] = set()
+        self.resolutions: Dict[str, dict] = {}
+        self.standing_limits: Dict[str, dict] = {}
+        self.clarifications: Dict[str, dict] = {}
+        self.quarantined_sites: Set[str] = set()
+        self.untrusted_labs: Set[tuple] = set()
         self.load()
 
     def reset(self) -> None:
@@ -45,6 +50,11 @@ class ReviewMemory:
         self.open_query_ids.clear()
         self.completed_cycles.clear()
         self.completed_cuts.clear()
+        self.resolutions.clear()
+        self.standing_limits.clear()
+        self.clarifications.clear()
+        self.quarantined_sites.clear()
+        self.untrusted_labs.clear()
         if self.persistence_file and self.persistence_file.exists():
             try:
                 self.persistence_file.unlink()
@@ -167,6 +177,11 @@ class ReviewMemory:
                 "open_query_ids": list(self.open_query_ids),
                 "completed_cycles": self.completed_cycles,
                 "completed_cuts": list(self.completed_cuts),
+                "resolutions": self.resolutions,
+                "standing_limits": self.standing_limits,
+                "clarifications": self.clarifications,
+                "quarantined_sites": list(self.quarantined_sites),
+                "untrusted_labs": [list(k) for k in self.untrusted_labs],
             }
             self.persistence_file.parent.mkdir(parents=True, exist_ok=True)
             with open(self.persistence_file, "w", encoding="utf-8") as f:
@@ -188,5 +203,10 @@ class ReviewMemory:
             self.open_query_ids = set(data.get("open_query_ids", []))
             self.completed_cycles = data.get("completed_cycles", [])
             self.completed_cuts = set(data.get("completed_cuts", []))
+            self.resolutions = data.get("resolutions", {})
+            self.standing_limits = data.get("standing_limits", {})
+            self.clarifications = data.get("clarifications", {})
+            self.quarantined_sites = set(data.get("quarantined_sites", []))
+            self.untrusted_labs = {tuple(k) for k in data.get("untrusted_labs", [])}
         except Exception as exc:  # noqa: BLE001
             log.warning("failed to load persisted memory: %s", exc)

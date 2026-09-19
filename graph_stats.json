@@ -6,8 +6,8 @@
   "duplicate_subjects": 1,
   "sites": 12,
   "records": 26925,
-  "build_ms": 912.9,
-  "ms": 912.9,
+  "build_ms": 1543.0,
+  "ms": 1543.0,
   "cut": 15,
   "cut_requested": null,
   "protocol_version": 3,
@@ -140,5 +140,5 @@
     }
   },
   "warnings": [],
-  "build_key": "2b0b66da58|cut=None|pv=3|corr=200"
+  "build_key": "492dfcdc87|cut=None|pv=3|corr=200"
 }

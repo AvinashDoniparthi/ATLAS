@@ -397,7 +397,7 @@ async def monitor_submit_decision(req: DecisionRequest) -> dict:
     elif req.decision == "REJECTED":
         target.status = "MONITORING"
         target.action_taken = "Downgraded to monitoring by medical monitor."
-        crew.memory.record_rejection(target.code, target.usubjid, target.site, req.reason or "Rejected")
+        crew.memory.update_escalation_decision(target.escalation_id, "REJECTED", req.reason or "Rejected")
     elif req.decision == "CLARIFY":
         target.status = "CLARIFICATION_REQUESTED"
         target.clarification_requested = req.reason or ""
@@ -491,6 +491,120 @@ async def monitor_reset() -> dict:
     crew = _ensure_crew()
     crew.reset_memory()
     return {"ok": True, "message": "Stage 2 memory and cycle state reset."}
+
+
+# --------------------------------------------------------------------------- #
+# Stage 3 — WATCH routes
+# --------------------------------------------------------------------------- #
+from stage3 import service as watch_service
+
+
+class WatchRunPeriodRequest(BaseModel):
+    cuts: Optional[List[int]] = None
+    budget_ms: Optional[float] = None
+
+
+@app.post("/api/watch/run-period")
+async def watch_run_period(req: Optional[WatchRunPeriodRequest] = None) -> dict:
+    cuts = req.cuts if req else None
+    budget_ms = req.budget_ms if req else None
+    return watch_service.run_period(cuts=cuts, budget_ms=budget_ms, data_dir=_data_dir)
+
+
+@app.get("/api/watch/state")
+async def watch_get_state() -> dict:
+    return watch_service.get_state()
+
+
+@app.get("/api/watch/cuts")
+async def watch_get_cuts() -> dict:
+    return {"cuts": watch_service.get_cuts()}
+
+
+@app.get("/api/watch/findings")
+async def watch_get_findings(cut: Optional[int] = None, serious_only: bool = False) -> dict:
+    findings = watch_service.get_findings(cut=cut, serious_only=serious_only)
+    return {"findings": findings, "count": len(findings)}
+
+
+@app.get("/api/watch/decisions")
+async def watch_get_decisions(
+    cut: Optional[int] = None,
+    status: Optional[str] = None,
+    code: Optional[str] = None,
+    target: Optional[str] = None,
+) -> dict:
+    decs = watch_service.get_decisions(cut=cut, status=status, code=code, target=target)
+    return {"decisions": decs, "count": len(decs)}
+
+
+@app.get("/api/watch/decisions/{decision_id}")
+async def watch_get_decision(decision_id: str) -> dict:
+    dec = watch_service.get_decision(decision_id)
+    if dec is None:
+        raise HTTPException(status_code=404, detail=f"Decision {decision_id} not found")
+    return dec
+
+
+@app.get("/api/watch/decisions/{decision_id}/explain")
+async def watch_explain_decision(decision_id: str) -> dict:
+    exp = watch_service.explain_decision(decision_id)
+    return exp
+
+
+@app.get("/api/watch/queries")
+async def watch_get_queries(cut: Optional[int] = None, status: Optional[str] = None) -> dict:
+    return {"queries": watch_service.get_queries(cut=cut, status=status)}
+
+
+@app.get("/api/watch/escalations")
+async def watch_get_escalations(cut: Optional[int] = None, status: Optional[str] = None) -> dict:
+    return {"escalations": watch_service.get_escalations(cut=cut, status=status)}
+
+
+@app.get("/api/watch/human-gate")
+async def watch_get_human_gate() -> dict:
+    return {"items": watch_service.get_human_gate_items()}
+
+
+@app.get("/api/watch/sites")
+async def watch_get_sites() -> dict:
+    return {"sites": watch_service.get_sites()}
+
+
+@app.get("/api/watch/lab-integrity")
+async def watch_get_lab_integrity() -> dict:
+    return watch_service.get_lab_integrity()
+
+
+@app.get("/api/watch/documents")
+async def watch_get_documents() -> dict:
+    return watch_service.get_documents()
+
+
+@app.get("/api/watch/budget")
+async def watch_get_budget() -> dict:
+    return watch_service.get_budget()
+
+
+@app.get("/api/watch/trace")
+async def watch_get_trace(cut: Optional[int] = None, limit: Optional[int] = None) -> dict:
+    return {"trace": watch_service.get_trace(cut=cut, limit=limit)}
+
+
+@app.get("/api/watch/memory")
+async def watch_get_memory() -> dict:
+    return watch_service.get_memory()
+
+
+@app.get("/api/watch/report")
+async def watch_get_report() -> dict:
+    return watch_service.get_report()
+
+
+@app.get("/api/watch/stats")
+async def watch_get_stats() -> dict:
+    return watch_service.get_stats()
 
 
 

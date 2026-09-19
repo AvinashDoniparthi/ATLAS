@@ -31,6 +31,39 @@ log = logging.getLogger("atlas.graph")
 PRIMARY_IDENTITY_COLS = ("DMINIT", "BRTHDTC", "SEX")
 SECONDARY_IDENTITY_COLS = ("AGE", "ARM", "RFSTDTC", "SCR_HBA1C")
 
+RULE_DOMAIN_DEPENDENCIES: dict[str, Optional[set[str]]] = {
+    "HYS_LAW_CANDIDATE": {"LB", "MH", "DM"},
+    "SERIOUS_AE": {"AE"},
+    "AE_BEFORE_FIRST_DOSE": {"AE", "DM", "EX"},
+    "DOSING_ERROR": {"EX"},
+    "MISSING_DOSE": {"EX", "DS", "DM"},
+    "VISIT_WINDOW_DEVIATION": None,
+    "PROHIBITED_MEDICATION": {"CM"},
+    "ELIGIBILITY_VIOLATION": {"DM", "LB"},
+    "DUPLICATE_SUBJECT": {"DM"},
+}
+
+AMENDMENT_FIELD_TO_RULES: dict[str, list[str]] = {
+    "visit_window_days": ["VISIT_WINDOW_DEVIATION"],
+    "visit_schedule": ["VISIT_WINDOW_DEVIATION"],
+    "prohibited_classes": ["PROHIBITED_MEDICATION"],
+    "age_min": ["ELIGIBILITY_VIOLATION"],
+    "age_max": ["ELIGIBILITY_VIOLATION"],
+    "hba1c_min": ["ELIGIBILITY_VIOLATION"],
+    "hba1c_max": ["ELIGIBILITY_VIOLATION"],
+    "hepatic_uln_multiple": ["ELIGIBILITY_VIOLATION"],
+    "creatinine_max": ["ELIGIBILITY_VIOLATION"],
+    "creatinine_unit": ["ELIGIBILITY_VIOLATION"],
+    "pregnancy_excluded": ["ELIGIBILITY_VIOLATION"],
+    "sae_hosp_flag_rule": ["SERIOUS_AE"],
+    "sae_criteria": ["SERIOUS_AE"],
+    "hys_transaminase_multiple": ["HYS_LAW_CANDIDATE"],
+    "hys_bili_multiple": ["HYS_LAW_CANDIDATE"],
+    "hys_window_days": ["HYS_LAW_CANDIDATE"],
+    "expected_dose": ["DOSING_ERROR", "MISSING_DOSE"],
+    "dose_unit": ["DOSING_ERROR", "MISSING_DOSE"],
+}
+
 
 @dataclass
 class PersonCluster:
@@ -118,6 +151,7 @@ class StudyGraphCore:
         self.duplicate_pairs: list[tuple[str, str]] = []
         self._lab_cache: dict[tuple, NormalisedLab] = {}
         self._derived: dict[str, Any] = {}
+        self.last_delta: Optional[dict[str, Any]] = None
 
     # ------------------------------------------------------------------ load
     def load(self) -> None:
@@ -204,6 +238,144 @@ class StudyGraphCore:
         st.build_ms = (time.perf_counter() - t0) * 1000
         self.stats = st
         log.info("built graph %s in %.0f ms", self.build_key.short(), st.build_ms)
+        return st
+
+    def advance_to_cut(self, cut: int, protocol_version: Optional[int] = None) -> BuildStats:
+        t0 = time.perf_counter()
+        if (
+            self.view is None
+            or self.view.effective_cut is None
+            or cut != self.view.effective_cut + 1
+            or self.loaded_signature is None
+            or self.data_changed()
+        ):
+            return self.build(cut, protocol_version)
+
+        new_by_domain: dict[str, list[Record]] = defaultdict(list)
+        for domain, recs in self.raw_domains.items():
+            for r in recs:
+                if r.cut_available == cut:
+                    view_r = Record(
+                        domain=r.domain,
+                        usubjid=r.usubjid,
+                        seq=r.seq,
+                        fields=dict(r.fields),
+                        cut_available=r.cut_available,
+                        corrected_at_cut=r.corrected_at_cut,
+                        row_no=r.row_no,
+                        corrected_fields=dict(r.corrected_fields),
+                        issues=list(r.issues),
+                    )
+                    new_by_domain[domain].append(view_r)
+
+        corr_this_cut = [c for c in self.corrections if c.cut == cut]
+        affected_domains = set(new_by_domain.keys())
+        affected_record_keys: list[tuple[str, str, Optional[int]]] = []
+
+        for c in corr_this_cut:
+            affected_domains.add(c.domain)
+            r = self.idx.get(c.domain, c.usubjid, c.seq)
+            if r is not None:
+                r.corrected_fields[c.field] = c.new_value
+                key_tup = r.key.as_tuple()
+                affected_record_keys.append(key_tup)
+                self._lab_cache.pop(key_tup, None)
+
+        for domain, recs in new_by_domain.items():
+            if domain not in self.view.domains:
+                self.view.domains[domain] = []
+            self.view.domains[domain].extend(recs)
+            self.view.excluded_by_cut[domain] = sum(
+                1 for r in self.raw_domains.get(domain, []) if r.cut_available is not None and r.cut_available > cut
+            )
+        self.view.effective_cut = cut
+        self.view.corrections_applied += len(corr_this_cut)
+
+        for domain, recs in new_by_domain.items():
+            headers = self.load_reports[domain].headers if domain in self.load_reports else []
+            self.idx.append_records(domain, recs, headers)
+        self.idx.finalize()
+
+        if protocol_version is not None:
+            pv = protocol_version
+        else:
+            pv = protocol_version_for_cut(self.cut_table, cut)
+
+        old_pv = self.build_key.protocol_version if self.build_key else None
+        pv_changed = (old_pv is not None and pv != old_pv)
+
+        if self.resolver is not None:
+            if pv is not None and hasattr(self.resolver, "registry"):
+                self.rules = self.resolver.registry.get(pv)
+            if self.rules is None:
+                self.rules = self.resolver.rules_for_cut(cut)
+
+        dirty_rules: set[str] = set()
+        for rule_code, deps in RULE_DOMAIN_DEPENDENCIES.items():
+            if deps is None:
+                dirty_rules.add(rule_code)
+            elif any(d in affected_domains for d in deps):
+                dirty_rules.add(rule_code)
+
+        if pv_changed:
+            if self.resolver is not None and hasattr(self.resolver, "registry"):
+                diff = self.resolver.registry.diff(old_pv, pv)
+                for fld in diff:
+                    for rc in AMENDMENT_FIELD_TO_RULES.get(fld, []):
+                        dirty_rules.add(rc)
+            dirty_rules.update(RULE_DOMAIN_DEPENDENCIES.keys())
+
+        for rc in dirty_rules:
+            self._derived.pop(f"rule:{rc}", None)
+
+        if "DM" in affected_domains:
+            self._cluster_persons()
+
+        self._build_graph(pv)
+
+        self.build_key = BuildKey(self.loaded_signature or "", cut, pv, self.view.corrections_applied)
+        self.last_delta = {
+            "cut": cut,
+            "protocol_version": pv,
+            "pv_changed": pv_changed,
+            "new_records_count": sum(len(r) for r in new_by_domain.values()),
+            "new_by_domain": {d: len(r) for d, r in new_by_domain.items()},
+            "corrections_count": len(corr_this_cut),
+            "affected_record_keys": affected_record_keys,
+            "dirty_rules": sorted(dirty_rules),
+        }
+
+        st = BuildStats(
+            nodes=len(self.graph.nodes),
+            edges=self.graph.edge_count,
+            subjects=len(self.idx.subjects),
+            unique_persons=len(self.persons),
+            duplicate_subjects=len(self.idx.subjects) - len(self.persons),
+            sites=len(self.idx.by_site),
+            records=self.view.record_count,
+            cut=cut,
+            effective_cut=self.view.effective_cut,
+            protocol_version=pv,
+            corrections_applied=self.view.corrections_applied,
+            excluded_by_cut=sum(self.view.excluded_by_cut.values()),
+            domains={d: len(r) for d, r in self.view.domains.items()},
+            node_types=dict(self.graph.node_counts),
+            edge_types=dict(self.graph.edge_counts),
+            load_reports={d: r.summary() for d, r in self.load_reports.items()},
+            build_key=self.build_key.short(),
+        )
+        if self.rules is None:
+            st.warnings.append("no protocol rules resolved for this cut")
+        if not self.ref_ranges.loaded:
+            st.warnings.append("reference_ranges.csv missing")
+        if self.idx.unparseable_dates:
+            st.warnings.append(f"{self.idx.unparseable_dates} unparseable dates")
+        for d, rep in self.load_reports.items():
+            if rep.malformed:
+                st.warnings.append(f"{d}: {len(rep.malformed)} malformed rows skipped")
+        st.build_ms = (time.perf_counter() - t0) * 1000
+        self.stats = st
+        log.info("advanced graph %s in %.0f ms", self.build_key.short(), st.build_ms)
         return st
 
     # --------------------------------------------------------- person identity

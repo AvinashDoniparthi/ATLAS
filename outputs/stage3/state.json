@@ -1,0 +1,5431 @@
+{
+  "findings_ledger": {
+    "AE_BEFORE_FIRST_DOSE|042-S02-010|S02|AE|1": {
+      "code": "AE_BEFORE_FIRST_DOSE",
+      "usubjid": "042-S02-010",
+      "site": "S02",
+      "summary": "Hypoglycaemia started 2026-01-16 before first dose 2026-01-22",
+      "severity": "MEDIUM",
+      "rationale": "Hypoglycaemia started 2026-01-16 before first dose 2026-01-22",
+      "details": {
+        "AESTDTC": "2026-01-16",
+        "first_dose_date": "2026-01-22",
+        "days_before": 6,
+        "record": [
+          "AE",
+          "042-S02-010",
+          1
+        ]
+      },
+      "evidence": [
+        {
+          "domain": "AE",
+          "usubjid": "042-S02-010",
+          "seq": 1,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DM",
+          "usubjid": "042-S02-010",
+          "seq": null,
+          "document": null,
+          "section": null
+        }
+      ],
+      "flags": [],
+      "confidence": 0.9,
+      "protocol_version": 1,
+      "cut": 1,
+      "fingerprint": "AE_BEFORE_FIRST_DOSE|042-S02-010|S02|AE|1",
+      "first_detected_cut": 1,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "AE",
+          "042-S02-010",
+          1
+        ],
+        [
+          "DM",
+          "042-S02-010",
+          null
+        ]
+      ]
+    },
+    "AE_BEFORE_FIRST_DOSE|042-S02-015|S02|AE|1": {
+      "code": "AE_BEFORE_FIRST_DOSE",
+      "usubjid": "042-S02-015",
+      "site": "S02",
+      "summary": "Urinary tract infection started 2026-01-20 before first dose 2026-01-23",
+      "severity": "MEDIUM",
+      "rationale": "Urinary tract infection started 2026-01-20 before first dose 2026-01-23",
+      "details": {
+        "AESTDTC": "2026-01-20",
+        "first_dose_date": "2026-01-23",
+        "days_before": 3,
+        "record": [
+          "AE",
+          "042-S02-015",
+          1
+        ]
+      },
+      "evidence": [
+        {
+          "domain": "AE",
+          "usubjid": "042-S02-015",
+          "seq": 1,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DM",
+          "usubjid": "042-S02-015",
+          "seq": null,
+          "document": null,
+          "section": null
+        }
+      ],
+      "flags": [],
+      "confidence": 0.9,
+      "protocol_version": 1,
+      "cut": 1,
+      "fingerprint": "AE_BEFORE_FIRST_DOSE|042-S02-015|S02|AE|1",
+      "first_detected_cut": 1,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "AE",
+          "042-S02-015",
+          1
+        ],
+        [
+          "DM",
+          "042-S02-015",
+          null
+        ]
+      ]
+    },
+    "AE_BEFORE_FIRST_DOSE|042-S03-016|S03|AE|1": {
+      "code": "AE_BEFORE_FIRST_DOSE",
+      "usubjid": "042-S03-016",
+      "site": "S03",
+      "summary": "Hypoglycaemia started 2026-01-18 before first dose 2026-01-22",
+      "severity": "MEDIUM",
+      "rationale": "Hypoglycaemia started 2026-01-18 before first dose 2026-01-22",
+      "details": {
+        "AESTDTC": "18-JAN-2026",
+        "first_dose_date": "2026-01-22",
+        "days_before": 4,
+        "record": [
+          "AE",
+          "042-S03-016",
+          1
+        ]
+      },
+      "evidence": [
+        {
+          "domain": "AE",
+          "usubjid": "042-S03-016",
+          "seq": 1,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DM",
+          "usubjid": "042-S03-016",
+          "seq": null,
+          "document": null,
+          "section": null
+        }
+      ],
+      "flags": [],
+      "confidence": 0.9,
+      "protocol_version": 1,
+      "cut": 1,
+      "fingerprint": "AE_BEFORE_FIRST_DOSE|042-S03-016|S03|AE|1",
+      "first_detected_cut": 1,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "AE",
+          "042-S03-016",
+          1
+        ],
+        [
+          "DM",
+          "042-S03-016",
+          null
+        ]
+      ]
+    },
+    "AE_BEFORE_FIRST_DOSE|042-S09-010|S09|AE|1": {
+      "code": "AE_BEFORE_FIRST_DOSE",
+      "usubjid": "042-S09-010",
+      "site": "S09",
+      "summary": "Fatigue started 2026-01-15 before first dose 2026-01-22",
+      "severity": "MEDIUM",
+      "rationale": "Fatigue started 2026-01-15 before first dose 2026-01-22",
+      "details": {
+        "AESTDTC": "2026-01-15",
+        "first_dose_date": "2026-01-22",
+        "days_before": 7,
+        "record": [
+          "AE",
+          "042-S09-010",
+          1
+        ]
+      },
+      "evidence": [
+        {
+          "domain": "AE",
+          "usubjid": "042-S09-010",
+          "seq": 1,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DM",
+          "usubjid": "042-S09-010",
+          "seq": null,
+          "document": null,
+          "section": null
+        }
+      ],
+      "flags": [],
+      "confidence": 0.9,
+      "protocol_version": 1,
+      "cut": 1,
+      "fingerprint": "AE_BEFORE_FIRST_DOSE|042-S09-010|S09|AE|1",
+      "first_detected_cut": 1,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "AE",
+          "042-S09-010",
+          1
+        ],
+        [
+          "DM",
+          "042-S09-010",
+          null
+        ]
+      ]
+    },
+    "AE_BEFORE_FIRST_DOSE|042-S09-013|S09|AE|1": {
+      "code": "AE_BEFORE_FIRST_DOSE",
+      "usubjid": "042-S09-013",
+      "site": "S09",
+      "summary": "Back pain started 2026-01-10 before first dose 2026-01-17",
+      "severity": "MEDIUM",
+      "rationale": "Back pain started 2026-01-10 before first dose 2026-01-17",
+      "details": {
+        "AESTDTC": "2026-01-10",
+        "first_dose_date": "2026-01-17",
+        "days_before": 7,
+        "record": [
+          "AE",
+          "042-S09-013",
+          1
+        ]
+      },
+      "evidence": [
+        {
+          "domain": "AE",
+          "usubjid": "042-S09-013",
+          "seq": 1,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DM",
+          "usubjid": "042-S09-013",
+          "seq": null,
+          "document": null,
+          "section": null
+        }
+      ],
+      "flags": [],
+      "confidence": 0.9,
+      "protocol_version": 1,
+      "cut": 1,
+      "fingerprint": "AE_BEFORE_FIRST_DOSE|042-S09-013|S09|AE|1",
+      "first_detected_cut": 1,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "AE",
+          "042-S09-013",
+          1
+        ],
+        [
+          "DM",
+          "042-S09-013",
+          null
+        ]
+      ]
+    },
+    "DOSING_ERROR|042-S09-004|S09|EX|2": {
+      "code": "DOSING_ERROR",
+      "usubjid": "042-S09-004",
+      "site": "S09",
+      "summary": "1 dose record(s) differ from the expected 10.0 mg for arm DRUG",
+      "severity": "HIGH",
+      "rationale": "1 dose record(s) differ from the expected 10.0 mg for arm DRUG",
+      "details": {
+        "subcode": "WRONG_DOSE",
+        "records": [
+          [
+            "EX",
+            "042-S09-004",
+            2
+          ]
+        ],
+        "mismatches": [
+          {
+            "record": [
+              "EX",
+              "042-S09-004",
+              2
+            ],
+            "visit": "WEEK2",
+            "actual": 20.0,
+            "expected": 10.0,
+            "arm_key": "DRUG"
+          }
+        ],
+        "expected": 10.0,
+        "arm": "DRUG",
+        "unit_flags": [],
+        "unparseable_doses": 0
+      },
+      "evidence": [
+        {
+          "domain": "EX",
+          "usubjid": "042-S09-004",
+          "seq": 2,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "8"
+        }
+      ],
+      "flags": [],
+      "confidence": 0.95,
+      "protocol_version": 1,
+      "cut": 1,
+      "fingerprint": "DOSING_ERROR|042-S09-004|S09|EX|2",
+      "first_detected_cut": 1,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "EX",
+          "042-S09-004",
+          2
+        ],
+        [
+          "DOC",
+          null,
+          null
+        ]
+      ]
+    },
+    "DOSING_ERROR|042-S09-006|S09|EX|2": {
+      "code": "DOSING_ERROR",
+      "usubjid": "042-S09-006",
+      "site": "S09",
+      "summary": "1 dose record(s) differ from the expected 0.0 mg for arm PLACEBO",
+      "severity": "HIGH",
+      "rationale": "1 dose record(s) differ from the expected 0.0 mg for arm PLACEBO",
+      "details": {
+        "subcode": "WRONG_DOSE",
+        "records": [
+          [
+            "EX",
+            "042-S09-006",
+            2
+          ]
+        ],
+        "mismatches": [
+          {
+            "record": [
+              "EX",
+              "042-S09-006",
+              2
+            ],
+            "visit": "WEEK2",
+            "actual": 10.0,
+            "expected": 0.0,
+            "arm_key": "PLACEBO"
+          }
+        ],
+        "expected": 0.0,
+        "arm": "PLACEBO",
+        "unit_flags": [],
+        "unparseable_doses": 0
+      },
+      "evidence": [
+        {
+          "domain": "EX",
+          "usubjid": "042-S09-006",
+          "seq": 2,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "8"
+        }
+      ],
+      "flags": [],
+      "confidence": 0.95,
+      "protocol_version": 1,
+      "cut": 1,
+      "fingerprint": "DOSING_ERROR|042-S09-006|S09|EX|2",
+      "first_detected_cut": 1,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "EX",
+          "042-S09-006",
+          2
+        ],
+        [
+          "DOC",
+          null,
+          null
+        ]
+      ]
+    },
+    "MISSING_DOSE|042-S02-012|S02|DM|": {
+      "code": "MISSING_DOSE",
+      "usubjid": "042-S02-012",
+      "site": "S02",
+      "summary": "no exposure records at all",
+      "severity": "MEDIUM",
+      "rationale": "no exposure records at all",
+      "details": {
+        "subcode": "NO_EXPOSURE",
+        "missing_visits": [
+          "BASELINE",
+          "WEEK2"
+        ],
+        "expected_visits": [
+          "BASELINE",
+          "WEEK2"
+        ]
+      },
+      "evidence": [
+        {
+          "domain": "DM",
+          "usubjid": "042-S02-012",
+          "seq": null,
+          "document": null,
+          "section": null
+        }
+      ],
+      "flags": [],
+      "confidence": 0.85,
+      "protocol_version": 1,
+      "cut": 1,
+      "fingerprint": "MISSING_DOSE|042-S02-012|S02|DM|",
+      "first_detected_cut": 1,
+      "last_seen_cut": 1,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "DM",
+          "042-S02-012",
+          null
+        ]
+      ]
+    },
+    "MISSING_DOSE|042-S02-016|S02|DM|": {
+      "code": "MISSING_DOSE",
+      "usubjid": "042-S02-016",
+      "site": "S02",
+      "summary": "no exposure records at all",
+      "severity": "MEDIUM",
+      "rationale": "no exposure records at all",
+      "details": {
+        "subcode": "NO_EXPOSURE",
+        "missing_visits": [
+          "BASELINE",
+          "WEEK2"
+        ],
+        "expected_visits": [
+          "BASELINE",
+          "WEEK2"
+        ]
+      },
+      "evidence": [
+        {
+          "domain": "DM",
+          "usubjid": "042-S02-016",
+          "seq": null,
+          "document": null,
+          "section": null
+        }
+      ],
+      "flags": [],
+      "confidence": 0.85,
+      "protocol_version": 1,
+      "cut": 1,
+      "fingerprint": "MISSING_DOSE|042-S02-016|S02|DM|",
+      "first_detected_cut": 1,
+      "last_seen_cut": 1,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "DM",
+          "042-S02-016",
+          null
+        ]
+      ]
+    },
+    "MISSING_DOSE|042-S03-001|S03|DM|": {
+      "code": "MISSING_DOSE",
+      "usubjid": "042-S03-001",
+      "site": "S03",
+      "summary": "no exposure records at all",
+      "severity": "MEDIUM",
+      "rationale": "no exposure records at all",
+      "details": {
+        "subcode": "NO_EXPOSURE",
+        "missing_visits": [
+          "BASELINE",
+          "WEEK2"
+        ],
+        "expected_visits": [
+          "BASELINE",
+          "WEEK2"
+        ]
+      },
+      "evidence": [
+        {
+          "domain": "DM",
+          "usubjid": "042-S03-001",
+          "seq": null,
+          "document": null,
+          "section": null
+        }
+      ],
+      "flags": [],
+      "confidence": 0.85,
+      "protocol_version": 1,
+      "cut": 1,
+      "fingerprint": "MISSING_DOSE|042-S03-001|S03|DM|",
+      "first_detected_cut": 1,
+      "last_seen_cut": 1,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "DM",
+          "042-S03-001",
+          null
+        ]
+      ]
+    },
+    "MISSING_DOSE|042-S04-010|S04|DM|": {
+      "code": "MISSING_DOSE",
+      "usubjid": "042-S04-010",
+      "site": "S04",
+      "summary": "no exposure records at all",
+      "severity": "MEDIUM",
+      "rationale": "no exposure records at all",
+      "details": {
+        "subcode": "NO_EXPOSURE",
+        "missing_visits": [
+          "BASELINE",
+          "WEEK2"
+        ],
+        "expected_visits": [
+          "BASELINE",
+          "WEEK2"
+        ]
+      },
+      "evidence": [
+        {
+          "domain": "DM",
+          "usubjid": "042-S04-010",
+          "seq": null,
+          "document": null,
+          "section": null
+        }
+      ],
+      "flags": [],
+      "confidence": 0.85,
+      "protocol_version": 1,
+      "cut": 1,
+      "fingerprint": "MISSING_DOSE|042-S04-010|S04|DM|",
+      "first_detected_cut": 1,
+      "last_seen_cut": 1,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "DM",
+          "042-S04-010",
+          null
+        ]
+      ]
+    },
+    "MISSING_DOSE|042-S08-001|S08|DM|": {
+      "code": "MISSING_DOSE",
+      "usubjid": "042-S08-001",
+      "site": "S08",
+      "summary": "no exposure records at all",
+      "severity": "MEDIUM",
+      "rationale": "no exposure records at all",
+      "details": {
+        "subcode": "NO_EXPOSURE",
+        "missing_visits": [
+          "BASELINE",
+          "WEEK2"
+        ],
+        "expected_visits": [
+          "BASELINE",
+          "WEEK2"
+        ]
+      },
+      "evidence": [
+        {
+          "domain": "DM",
+          "usubjid": "042-S08-001",
+          "seq": null,
+          "document": null,
+          "section": null
+        }
+      ],
+      "flags": [],
+      "confidence": 0.85,
+      "protocol_version": 1,
+      "cut": 1,
+      "fingerprint": "MISSING_DOSE|042-S08-001|S08|DM|",
+      "first_detected_cut": 1,
+      "last_seen_cut": 3,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "DM",
+          "042-S08-001",
+          null
+        ]
+      ]
+    },
+    "MISSING_DOSE|042-S08-002|S08|DM|": {
+      "code": "MISSING_DOSE",
+      "usubjid": "042-S08-002",
+      "site": "S08",
+      "summary": "no exposure records at all",
+      "severity": "MEDIUM",
+      "rationale": "no exposure records at all",
+      "details": {
+        "subcode": "NO_EXPOSURE",
+        "missing_visits": [
+          "BASELINE",
+          "WEEK2"
+        ],
+        "expected_visits": [
+          "BASELINE",
+          "WEEK2"
+        ]
+      },
+      "evidence": [
+        {
+          "domain": "DM",
+          "usubjid": "042-S08-002",
+          "seq": null,
+          "document": null,
+          "section": null
+        }
+      ],
+      "flags": [],
+      "confidence": 0.85,
+      "protocol_version": 1,
+      "cut": 1,
+      "fingerprint": "MISSING_DOSE|042-S08-002|S08|DM|",
+      "first_detected_cut": 1,
+      "last_seen_cut": 3,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "DM",
+          "042-S08-002",
+          null
+        ]
+      ]
+    },
+    "MISSING_DOSE|042-S08-003|S08|DM|": {
+      "code": "MISSING_DOSE",
+      "usubjid": "042-S08-003",
+      "site": "S08",
+      "summary": "no exposure records at all",
+      "severity": "MEDIUM",
+      "rationale": "no exposure records at all",
+      "details": {
+        "subcode": "NO_EXPOSURE",
+        "missing_visits": [
+          "BASELINE",
+          "WEEK2"
+        ],
+        "expected_visits": [
+          "BASELINE",
+          "WEEK2"
+        ]
+      },
+      "evidence": [
+        {
+          "domain": "DM",
+          "usubjid": "042-S08-003",
+          "seq": null,
+          "document": null,
+          "section": null
+        }
+      ],
+      "flags": [],
+      "confidence": 0.85,
+      "protocol_version": 1,
+      "cut": 1,
+      "fingerprint": "MISSING_DOSE|042-S08-003|S08|DM|",
+      "first_detected_cut": 1,
+      "last_seen_cut": 3,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "DM",
+          "042-S08-003",
+          null
+        ]
+      ]
+    },
+    "MISSING_DOSE|042-S08-004|S08|DM|": {
+      "code": "MISSING_DOSE",
+      "usubjid": "042-S08-004",
+      "site": "S08",
+      "summary": "no exposure records at all",
+      "severity": "MEDIUM",
+      "rationale": "no exposure records at all",
+      "details": {
+        "subcode": "NO_EXPOSURE",
+        "missing_visits": [
+          "BASELINE",
+          "WEEK2"
+        ],
+        "expected_visits": [
+          "BASELINE",
+          "WEEK2"
+        ]
+      },
+      "evidence": [
+        {
+          "domain": "DM",
+          "usubjid": "042-S08-004",
+          "seq": null,
+          "document": null,
+          "section": null
+        }
+      ],
+      "flags": [],
+      "confidence": 0.85,
+      "protocol_version": 1,
+      "cut": 1,
+      "fingerprint": "MISSING_DOSE|042-S08-004|S08|DM|",
+      "first_detected_cut": 1,
+      "last_seen_cut": 3,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "DM",
+          "042-S08-004",
+          null
+        ]
+      ]
+    },
+    "MISSING_DOSE|042-S08-005|S08|DM|": {
+      "code": "MISSING_DOSE",
+      "usubjid": "042-S08-005",
+      "site": "S08",
+      "summary": "no exposure records at all",
+      "severity": "MEDIUM",
+      "rationale": "no exposure records at all",
+      "details": {
+        "subcode": "NO_EXPOSURE",
+        "missing_visits": [
+          "BASELINE",
+          "WEEK2"
+        ],
+        "expected_visits": [
+          "BASELINE",
+          "WEEK2"
+        ]
+      },
+      "evidence": [
+        {
+          "domain": "DM",
+          "usubjid": "042-S08-005",
+          "seq": null,
+          "document": null,
+          "section": null
+        }
+      ],
+      "flags": [],
+      "confidence": 0.85,
+      "protocol_version": 1,
+      "cut": 1,
+      "fingerprint": "MISSING_DOSE|042-S08-005|S08|DM|",
+      "first_detected_cut": 1,
+      "last_seen_cut": 3,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "DM",
+          "042-S08-005",
+          null
+        ]
+      ]
+    },
+    "MISSING_DOSE|042-S08-006|S08|DM|": {
+      "code": "MISSING_DOSE",
+      "usubjid": "042-S08-006",
+      "site": "S08",
+      "summary": "no exposure records at all",
+      "severity": "MEDIUM",
+      "rationale": "no exposure records at all",
+      "details": {
+        "subcode": "NO_EXPOSURE",
+        "missing_visits": [
+          "BASELINE",
+          "WEEK2"
+        ],
+        "expected_visits": [
+          "BASELINE",
+          "WEEK2"
+        ]
+      },
+      "evidence": [
+        {
+          "domain": "DM",
+          "usubjid": "042-S08-006",
+          "seq": null,
+          "document": null,
+          "section": null
+        }
+      ],
+      "flags": [],
+      "confidence": 0.85,
+      "protocol_version": 1,
+      "cut": 1,
+      "fingerprint": "MISSING_DOSE|042-S08-006|S08|DM|",
+      "first_detected_cut": 1,
+      "last_seen_cut": 3,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "DM",
+          "042-S08-006",
+          null
+        ]
+      ]
+    },
+    "MISSING_DOSE|042-S08-008|S08|DM|": {
+      "code": "MISSING_DOSE",
+      "usubjid": "042-S08-008",
+      "site": "S08",
+      "summary": "no exposure records at all",
+      "severity": "MEDIUM",
+      "rationale": "no exposure records at all",
+      "details": {
+        "subcode": "NO_EXPOSURE",
+        "missing_visits": [
+          "BASELINE",
+          "WEEK2"
+        ],
+        "expected_visits": [
+          "BASELINE",
+          "WEEK2"
+        ]
+      },
+      "evidence": [
+        {
+          "domain": "DM",
+          "usubjid": "042-S08-008",
+          "seq": null,
+          "document": null,
+          "section": null
+        }
+      ],
+      "flags": [],
+      "confidence": 0.85,
+      "protocol_version": 1,
+      "cut": 1,
+      "fingerprint": "MISSING_DOSE|042-S08-008|S08|DM|",
+      "first_detected_cut": 1,
+      "last_seen_cut": 3,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "DM",
+          "042-S08-008",
+          null
+        ]
+      ]
+    },
+    "MISSING_DOSE|042-S08-009|S08|DM|": {
+      "code": "MISSING_DOSE",
+      "usubjid": "042-S08-009",
+      "site": "S08",
+      "summary": "no exposure records at all",
+      "severity": "MEDIUM",
+      "rationale": "no exposure records at all",
+      "details": {
+        "subcode": "NO_EXPOSURE",
+        "missing_visits": [
+          "BASELINE",
+          "WEEK2"
+        ],
+        "expected_visits": [
+          "BASELINE",
+          "WEEK2"
+        ]
+      },
+      "evidence": [
+        {
+          "domain": "DM",
+          "usubjid": "042-S08-009",
+          "seq": null,
+          "document": null,
+          "section": null
+        }
+      ],
+      "flags": [],
+      "confidence": 0.85,
+      "protocol_version": 1,
+      "cut": 1,
+      "fingerprint": "MISSING_DOSE|042-S08-009|S08|DM|",
+      "first_detected_cut": 1,
+      "last_seen_cut": 3,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "DM",
+          "042-S08-009",
+          null
+        ]
+      ]
+    },
+    "MISSING_DOSE|042-S08-010|S08|DM|": {
+      "code": "MISSING_DOSE",
+      "usubjid": "042-S08-010",
+      "site": "S08",
+      "summary": "no exposure records at all",
+      "severity": "MEDIUM",
+      "rationale": "no exposure records at all",
+      "details": {
+        "subcode": "NO_EXPOSURE",
+        "missing_visits": [
+          "BASELINE",
+          "WEEK2"
+        ],
+        "expected_visits": [
+          "BASELINE",
+          "WEEK2"
+        ]
+      },
+      "evidence": [
+        {
+          "domain": "DM",
+          "usubjid": "042-S08-010",
+          "seq": null,
+          "document": null,
+          "section": null
+        }
+      ],
+      "flags": [],
+      "confidence": 0.85,
+      "protocol_version": 1,
+      "cut": 1,
+      "fingerprint": "MISSING_DOSE|042-S08-010|S08|DM|",
+      "first_detected_cut": 1,
+      "last_seen_cut": 3,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "DM",
+          "042-S08-010",
+          null
+        ]
+      ]
+    },
+    "MISSING_DOSE|042-S08-011|S08|DM|": {
+      "code": "MISSING_DOSE",
+      "usubjid": "042-S08-011",
+      "site": "S08",
+      "summary": "no exposure records at all",
+      "severity": "MEDIUM",
+      "rationale": "no exposure records at all",
+      "details": {
+        "subcode": "NO_EXPOSURE",
+        "missing_visits": [
+          "BASELINE",
+          "WEEK2"
+        ],
+        "expected_visits": [
+          "BASELINE",
+          "WEEK2"
+        ]
+      },
+      "evidence": [
+        {
+          "domain": "DM",
+          "usubjid": "042-S08-011",
+          "seq": null,
+          "document": null,
+          "section": null
+        }
+      ],
+      "flags": [],
+      "confidence": 0.85,
+      "protocol_version": 1,
+      "cut": 1,
+      "fingerprint": "MISSING_DOSE|042-S08-011|S08|DM|",
+      "first_detected_cut": 1,
+      "last_seen_cut": 3,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "DM",
+          "042-S08-011",
+          null
+        ]
+      ]
+    },
+    "MISSING_DOSE|042-S08-012|S08|DM|": {
+      "code": "MISSING_DOSE",
+      "usubjid": "042-S08-012",
+      "site": "S08",
+      "summary": "no exposure records at all",
+      "severity": "MEDIUM",
+      "rationale": "no exposure records at all",
+      "details": {
+        "subcode": "NO_EXPOSURE",
+        "missing_visits": [
+          "BASELINE",
+          "WEEK2"
+        ],
+        "expected_visits": [
+          "BASELINE",
+          "WEEK2"
+        ]
+      },
+      "evidence": [
+        {
+          "domain": "DM",
+          "usubjid": "042-S08-012",
+          "seq": null,
+          "document": null,
+          "section": null
+        }
+      ],
+      "flags": [],
+      "confidence": 0.85,
+      "protocol_version": 1,
+      "cut": 1,
+      "fingerprint": "MISSING_DOSE|042-S08-012|S08|DM|",
+      "first_detected_cut": 1,
+      "last_seen_cut": 3,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "DM",
+          "042-S08-012",
+          null
+        ]
+      ]
+    },
+    "MISSING_DOSE|042-S08-013|S08|DM|": {
+      "code": "MISSING_DOSE",
+      "usubjid": "042-S08-013",
+      "site": "S08",
+      "summary": "no exposure records at all",
+      "severity": "MEDIUM",
+      "rationale": "no exposure records at all",
+      "details": {
+        "subcode": "NO_EXPOSURE",
+        "missing_visits": [
+          "BASELINE",
+          "WEEK2"
+        ],
+        "expected_visits": [
+          "BASELINE",
+          "WEEK2"
+        ]
+      },
+      "evidence": [
+        {
+          "domain": "DM",
+          "usubjid": "042-S08-013",
+          "seq": null,
+          "document": null,
+          "section": null
+        }
+      ],
+      "flags": [],
+      "confidence": 0.85,
+      "protocol_version": 1,
+      "cut": 1,
+      "fingerprint": "MISSING_DOSE|042-S08-013|S08|DM|",
+      "first_detected_cut": 1,
+      "last_seen_cut": 3,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "DM",
+          "042-S08-013",
+          null
+        ]
+      ]
+    },
+    "MISSING_DOSE|042-S08-014|S08|DM|": {
+      "code": "MISSING_DOSE",
+      "usubjid": "042-S08-014",
+      "site": "S08",
+      "summary": "no exposure records at all",
+      "severity": "MEDIUM",
+      "rationale": "no exposure records at all",
+      "details": {
+        "subcode": "NO_EXPOSURE",
+        "missing_visits": [
+          "BASELINE",
+          "WEEK2"
+        ],
+        "expected_visits": [
+          "BASELINE",
+          "WEEK2"
+        ]
+      },
+      "evidence": [
+        {
+          "domain": "DM",
+          "usubjid": "042-S08-014",
+          "seq": null,
+          "document": null,
+          "section": null
+        }
+      ],
+      "flags": [],
+      "confidence": 0.85,
+      "protocol_version": 1,
+      "cut": 1,
+      "fingerprint": "MISSING_DOSE|042-S08-014|S08|DM|",
+      "first_detected_cut": 1,
+      "last_seen_cut": 3,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "DM",
+          "042-S08-014",
+          null
+        ]
+      ]
+    },
+    "MISSING_DOSE|042-S08-015|S08|DM|": {
+      "code": "MISSING_DOSE",
+      "usubjid": "042-S08-015",
+      "site": "S08",
+      "summary": "no exposure records at all",
+      "severity": "MEDIUM",
+      "rationale": "no exposure records at all",
+      "details": {
+        "subcode": "NO_EXPOSURE",
+        "missing_visits": [
+          "BASELINE",
+          "WEEK2"
+        ],
+        "expected_visits": [
+          "BASELINE",
+          "WEEK2"
+        ]
+      },
+      "evidence": [
+        {
+          "domain": "DM",
+          "usubjid": "042-S08-015",
+          "seq": null,
+          "document": null,
+          "section": null
+        }
+      ],
+      "flags": [],
+      "confidence": 0.85,
+      "protocol_version": 1,
+      "cut": 1,
+      "fingerprint": "MISSING_DOSE|042-S08-015|S08|DM|",
+      "first_detected_cut": 1,
+      "last_seen_cut": 3,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "DM",
+          "042-S08-015",
+          null
+        ]
+      ]
+    },
+    "MISSING_DOSE|042-S08-016|S08|DM|": {
+      "code": "MISSING_DOSE",
+      "usubjid": "042-S08-016",
+      "site": "S08",
+      "summary": "no exposure records at all",
+      "severity": "MEDIUM",
+      "rationale": "no exposure records at all",
+      "details": {
+        "subcode": "NO_EXPOSURE",
+        "missing_visits": [
+          "BASELINE",
+          "WEEK2"
+        ],
+        "expected_visits": [
+          "BASELINE",
+          "WEEK2"
+        ]
+      },
+      "evidence": [
+        {
+          "domain": "DM",
+          "usubjid": "042-S08-016",
+          "seq": null,
+          "document": null,
+          "section": null
+        }
+      ],
+      "flags": [],
+      "confidence": 0.85,
+      "protocol_version": 1,
+      "cut": 1,
+      "fingerprint": "MISSING_DOSE|042-S08-016|S08|DM|",
+      "first_detected_cut": 1,
+      "last_seen_cut": 3,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "DM",
+          "042-S08-016",
+          null
+        ]
+      ]
+    },
+    "MISSING_DOSE|042-S08-017|S08|DM|": {
+      "code": "MISSING_DOSE",
+      "usubjid": "042-S08-017",
+      "site": "S08",
+      "summary": "no exposure records at all",
+      "severity": "MEDIUM",
+      "rationale": "no exposure records at all",
+      "details": {
+        "subcode": "NO_EXPOSURE",
+        "missing_visits": [
+          "BASELINE",
+          "WEEK2"
+        ],
+        "expected_visits": [
+          "BASELINE",
+          "WEEK2"
+        ]
+      },
+      "evidence": [
+        {
+          "domain": "DM",
+          "usubjid": "042-S08-017",
+          "seq": null,
+          "document": null,
+          "section": null
+        }
+      ],
+      "flags": [],
+      "confidence": 0.85,
+      "protocol_version": 1,
+      "cut": 1,
+      "fingerprint": "MISSING_DOSE|042-S08-017|S08|DM|",
+      "first_detected_cut": 1,
+      "last_seen_cut": 3,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "DM",
+          "042-S08-017",
+          null
+        ]
+      ]
+    },
+    "MISSING_DOSE|042-S08-018|S08|DM|": {
+      "code": "MISSING_DOSE",
+      "usubjid": "042-S08-018",
+      "site": "S08",
+      "summary": "no exposure records at all",
+      "severity": "MEDIUM",
+      "rationale": "no exposure records at all",
+      "details": {
+        "subcode": "NO_EXPOSURE",
+        "missing_visits": [
+          "BASELINE",
+          "WEEK2"
+        ],
+        "expected_visits": [
+          "BASELINE",
+          "WEEK2"
+        ]
+      },
+      "evidence": [
+        {
+          "domain": "DM",
+          "usubjid": "042-S08-018",
+          "seq": null,
+          "document": null,
+          "section": null
+        }
+      ],
+      "flags": [],
+      "confidence": 0.85,
+      "protocol_version": 1,
+      "cut": 1,
+      "fingerprint": "MISSING_DOSE|042-S08-018|S08|DM|",
+      "first_detected_cut": 1,
+      "last_seen_cut": 3,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "DM",
+          "042-S08-018",
+          null
+        ]
+      ]
+    },
+    "MISSING_DOSE|042-S08-019|S08|DM|": {
+      "code": "MISSING_DOSE",
+      "usubjid": "042-S08-019",
+      "site": "S08",
+      "summary": "no exposure records at all",
+      "severity": "MEDIUM",
+      "rationale": "no exposure records at all",
+      "details": {
+        "subcode": "NO_EXPOSURE",
+        "missing_visits": [
+          "BASELINE",
+          "WEEK2"
+        ],
+        "expected_visits": [
+          "BASELINE",
+          "WEEK2"
+        ]
+      },
+      "evidence": [
+        {
+          "domain": "DM",
+          "usubjid": "042-S08-019",
+          "seq": null,
+          "document": null,
+          "section": null
+        }
+      ],
+      "flags": [],
+      "confidence": 0.85,
+      "protocol_version": 1,
+      "cut": 1,
+      "fingerprint": "MISSING_DOSE|042-S08-019|S08|DM|",
+      "first_detected_cut": 1,
+      "last_seen_cut": 3,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "DM",
+          "042-S08-019",
+          null
+        ]
+      ]
+    },
+    "MISSING_DOSE|042-S08-020|S08|DM|": {
+      "code": "MISSING_DOSE",
+      "usubjid": "042-S08-020",
+      "site": "S08",
+      "summary": "no exposure records at all",
+      "severity": "MEDIUM",
+      "rationale": "no exposure records at all",
+      "details": {
+        "subcode": "NO_EXPOSURE",
+        "missing_visits": [
+          "BASELINE",
+          "WEEK2"
+        ],
+        "expected_visits": [
+          "BASELINE",
+          "WEEK2"
+        ]
+      },
+      "evidence": [
+        {
+          "domain": "DM",
+          "usubjid": "042-S08-020",
+          "seq": null,
+          "document": null,
+          "section": null
+        }
+      ],
+      "flags": [],
+      "confidence": 0.85,
+      "protocol_version": 1,
+      "cut": 1,
+      "fingerprint": "MISSING_DOSE|042-S08-020|S08|DM|",
+      "first_detected_cut": 1,
+      "last_seen_cut": 3,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "DM",
+          "042-S08-020",
+          null
+        ]
+      ]
+    },
+    "MISSING_DOSE|042-S12-010|S12|DM|": {
+      "code": "MISSING_DOSE",
+      "usubjid": "042-S12-010",
+      "site": "S12",
+      "summary": "no exposure records at all",
+      "severity": "MEDIUM",
+      "rationale": "no exposure records at all",
+      "details": {
+        "subcode": "NO_EXPOSURE",
+        "missing_visits": [
+          "BASELINE",
+          "WEEK2"
+        ],
+        "expected_visits": [
+          "BASELINE",
+          "WEEK2"
+        ]
+      },
+      "evidence": [
+        {
+          "domain": "DM",
+          "usubjid": "042-S12-010",
+          "seq": null,
+          "document": null,
+          "section": null
+        }
+      ],
+      "flags": [],
+      "confidence": 0.85,
+      "protocol_version": 1,
+      "cut": 1,
+      "fingerprint": "MISSING_DOSE|042-S12-010|S12|DM|",
+      "first_detected_cut": 1,
+      "last_seen_cut": 1,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "DM",
+          "042-S12-010",
+          null
+        ]
+      ]
+    },
+    "VISIT_WINDOW_DEVIATION|042-S06-016|S06|EX|2": {
+      "code": "VISIT_WINDOW_DEVIATION",
+      "usubjid": "042-S06-016",
+      "site": "S06",
+      "summary": "WEEK2 on 2026-01-24 is -10 day(s) from scheduled day 14 (window \u00b17)",
+      "severity": "MEDIUM",
+      "rationale": "WEEK2 on 2026-01-24 is -10 day(s) from scheduled day 14 (window \u00b17)",
+      "details": {
+        "visit": "WEEK2",
+        "scheduled_day": 14,
+        "actual_day": 4,
+        "actual_date": "2026-01-24",
+        "reference_date": "2026-01-20",
+        "offset_days": -10,
+        "window": 7,
+        "unparseable_dates_at_visit": 0,
+        "protocol_version": 1
+      },
+      "evidence": [
+        {
+          "domain": "EX",
+          "usubjid": "042-S06-016",
+          "seq": 2,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S06-016",
+          "seq": 13,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S06-016",
+          "seq": 14,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DM",
+          "usubjid": "042-S06-016",
+          "seq": null,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "4"
+        }
+      ],
+      "flags": [],
+      "confidence": 0.9,
+      "protocol_version": 1,
+      "cut": 1,
+      "fingerprint": "VISIT_WINDOW_DEVIATION|042-S06-016|S06|EX|2",
+      "first_detected_cut": 1,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "EX",
+          "042-S06-016",
+          2
+        ],
+        [
+          "LB",
+          "042-S06-016",
+          13
+        ],
+        [
+          "LB",
+          "042-S06-016",
+          14
+        ],
+        [
+          "DM",
+          "042-S06-016",
+          null
+        ],
+        [
+          "DOC",
+          null,
+          null
+        ]
+      ]
+    },
+    "PROHIBITED_MEDICATION|042-S09-012|S09|CM|1": {
+      "code": "PROHIBITED_MEDICATION",
+      "usubjid": "042-S09-012",
+      "site": "S09",
+      "summary": "Prednisolone (SYSTEMIC_GLUCOCORTICOID) is a prohibited SYSTEMIC_GLUCOCORTICOID",
+      "severity": "MEDIUM",
+      "rationale": "Prednisolone (SYSTEMIC_GLUCOCORTICOID) is a prohibited SYSTEMIC_GLUCOCORTICOID",
+      "details": {
+        "matched_class": "SYSTEMIC_GLUCOCORTICOID",
+        "CMTRT": "Prednisolone",
+        "CMCLAS": "SYSTEMIC_GLUCOCORTICOID",
+        "CMSTDTC": "2026-01-17",
+        "record": [
+          "CM",
+          "042-S09-012",
+          1
+        ],
+        "protocol_version": 1
+      },
+      "evidence": [
+        {
+          "domain": "CM",
+          "usubjid": "042-S09-012",
+          "seq": 1,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "5"
+        }
+      ],
+      "flags": [],
+      "confidence": 0.95,
+      "protocol_version": 1,
+      "cut": 1,
+      "fingerprint": "PROHIBITED_MEDICATION|042-S09-012|S09|CM|1",
+      "first_detected_cut": 1,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "CM",
+          "042-S09-012",
+          1
+        ],
+        [
+          "DOC",
+          null,
+          null
+        ]
+      ]
+    },
+    "PROHIBITED_MEDICATION|042-S12-002|S12|CM|1": {
+      "code": "PROHIBITED_MEDICATION",
+      "usubjid": "042-S12-002",
+      "site": "S12",
+      "summary": "Prednisolone (SYSTEMIC_GLUCOCORTICOID) is a prohibited SYSTEMIC_GLUCOCORTICOID",
+      "severity": "MEDIUM",
+      "rationale": "Prednisolone (SYSTEMIC_GLUCOCORTICOID) is a prohibited SYSTEMIC_GLUCOCORTICOID",
+      "details": {
+        "matched_class": "SYSTEMIC_GLUCOCORTICOID",
+        "CMTRT": "Prednisolone",
+        "CMCLAS": "SYSTEMIC_GLUCOCORTICOID",
+        "CMSTDTC": "2026-01-13",
+        "record": [
+          "CM",
+          "042-S12-002",
+          1
+        ],
+        "protocol_version": 1
+      },
+      "evidence": [
+        {
+          "domain": "CM",
+          "usubjid": "042-S12-002",
+          "seq": 1,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "5"
+        }
+      ],
+      "flags": [],
+      "confidence": 0.95,
+      "protocol_version": 1,
+      "cut": 1,
+      "fingerprint": "PROHIBITED_MEDICATION|042-S12-002|S12|CM|1",
+      "first_detected_cut": 1,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "CM",
+          "042-S12-002",
+          1
+        ],
+        [
+          "DOC",
+          null,
+          null
+        ]
+      ]
+    },
+    "ELIGIBILITY_VIOLATION|042-S04-003|S04|DM|": {
+      "code": "ELIGIBILITY_VIOLATION",
+      "usubjid": "042-S04-003",
+      "site": "S04",
+      "summary": "age 17 outside 18-75",
+      "severity": "HIGH",
+      "rationale": "age 17 outside 18-75",
+      "details": {
+        "age": 17.0,
+        "min": 18.0,
+        "max": 75.0,
+        "subcode": "AGE_OUT_OF_RANGE",
+        "protocol_version": 1
+      },
+      "evidence": [
+        {
+          "domain": "DM",
+          "usubjid": "042-S04-003",
+          "seq": null,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "2"
+        }
+      ],
+      "flags": [],
+      "confidence": 0.9,
+      "protocol_version": 1,
+      "cut": 1,
+      "fingerprint": "ELIGIBILITY_VIOLATION|042-S04-003|S04|DM|",
+      "first_detected_cut": 1,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "DM",
+          "042-S04-003",
+          null
+        ],
+        [
+          "DOC",
+          null,
+          null
+        ]
+      ]
+    },
+    "ELIGIBILITY_VIOLATION|042-S04-017|S04|DM|": {
+      "code": "ELIGIBILITY_VIOLATION",
+      "usubjid": "042-S04-017",
+      "site": "S04",
+      "summary": "age 17 outside 18-75",
+      "severity": "HIGH",
+      "rationale": "age 17 outside 18-75",
+      "details": {
+        "age": 17.0,
+        "min": 18.0,
+        "max": 75.0,
+        "subcode": "AGE_OUT_OF_RANGE",
+        "protocol_version": 1
+      },
+      "evidence": [
+        {
+          "domain": "DM",
+          "usubjid": "042-S04-017",
+          "seq": null,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "2"
+        }
+      ],
+      "flags": [],
+      "confidence": 0.9,
+      "protocol_version": 1,
+      "cut": 1,
+      "fingerprint": "ELIGIBILITY_VIOLATION|042-S04-017|S04|DM|",
+      "first_detected_cut": 1,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "DM",
+          "042-S04-017",
+          null
+        ],
+        [
+          "DOC",
+          null,
+          null
+        ]
+      ]
+    },
+    "ELIGIBILITY_VIOLATION|042-S05-017|S05|DM|": {
+      "code": "ELIGIBILITY_VIOLATION",
+      "usubjid": "042-S05-017",
+      "site": "S05",
+      "summary": "age 17 outside 18-75",
+      "severity": "HIGH",
+      "rationale": "age 17 outside 18-75",
+      "details": {
+        "age": 17.0,
+        "min": 18.0,
+        "max": 75.0,
+        "subcode": "AGE_OUT_OF_RANGE",
+        "protocol_version": 1
+      },
+      "evidence": [
+        {
+          "domain": "DM",
+          "usubjid": "042-S05-017",
+          "seq": null,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "2"
+        }
+      ],
+      "flags": [],
+      "confidence": 0.9,
+      "protocol_version": 1,
+      "cut": 1,
+      "fingerprint": "ELIGIBILITY_VIOLATION|042-S05-017|S05|DM|",
+      "first_detected_cut": 1,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "DM",
+          "042-S05-017",
+          null
+        ],
+        [
+          "DOC",
+          null,
+          null
+        ]
+      ]
+    },
+    "ELIGIBILITY_VIOLATION|042-S08-020|S08|DM|": {
+      "code": "ELIGIBILITY_VIOLATION",
+      "usubjid": "042-S08-020",
+      "site": "S08",
+      "summary": "age 17 outside 18-75",
+      "severity": "HIGH",
+      "rationale": "age 17 outside 18-75",
+      "details": {
+        "age": 17.0,
+        "min": 18.0,
+        "max": 75.0,
+        "subcode": "AGE_OUT_OF_RANGE",
+        "protocol_version": 1
+      },
+      "evidence": [
+        {
+          "domain": "DM",
+          "usubjid": "042-S08-020",
+          "seq": null,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "2"
+        }
+      ],
+      "flags": [],
+      "confidence": 0.9,
+      "protocol_version": 1,
+      "cut": 1,
+      "fingerprint": "ELIGIBILITY_VIOLATION|042-S08-020|S08|DM|",
+      "first_detected_cut": 1,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "DM",
+          "042-S08-020",
+          null
+        ],
+        [
+          "DOC",
+          null,
+          null
+        ]
+      ]
+    },
+    "SERIOUS_AE|042-S05-006|S05|AE|1": {
+      "code": "SERIOUS_AE",
+      "usubjid": "042-S05-006",
+      "site": "S05",
+      "summary": "Myocardial infarction (SEVERE) \u2014 sae coded",
+      "severity": "HIGH",
+      "rationale": "Myocardial infarction (SEVERE) \u2014 sae coded",
+      "details": {
+        "subcode": "SAE_CODED",
+        "AETERM": "Myocardial infarction",
+        "AESEV": "SEVERE",
+        "AESER": "Y",
+        "AESHOSP": "Y",
+        "AESTDTC": "2026-02-10",
+        "record": [
+          "AE",
+          "042-S05-006",
+          1
+        ]
+      },
+      "evidence": [
+        {
+          "domain": "AE",
+          "usubjid": "042-S05-006",
+          "seq": 1,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "6"
+        }
+      ],
+      "flags": [],
+      "confidence": 0.95,
+      "protocol_version": 1,
+      "cut": 2,
+      "fingerprint": "SERIOUS_AE|042-S05-006|S05|AE|1",
+      "first_detected_cut": 2,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "AE",
+          "042-S05-006",
+          1
+        ],
+        [
+          "DOC",
+          null,
+          null
+        ]
+      ]
+    },
+    "SERIOUS_AE|042-S12-005|S12|AE|1": {
+      "code": "SERIOUS_AE",
+      "usubjid": "042-S12-005",
+      "site": "S12",
+      "summary": "Pneumonia (SEVERE) \u2014 sae coded",
+      "severity": "HIGH",
+      "rationale": "Pneumonia (SEVERE) \u2014 sae coded",
+      "details": {
+        "subcode": "SAE_CODED",
+        "AETERM": "Pneumonia",
+        "AESEV": "SEVERE",
+        "AESER": "Y",
+        "AESHOSP": "Y",
+        "AESTDTC": "2026-02-01",
+        "record": [
+          "AE",
+          "042-S12-005",
+          1
+        ]
+      },
+      "evidence": [
+        {
+          "domain": "AE",
+          "usubjid": "042-S12-005",
+          "seq": 1,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "6"
+        }
+      ],
+      "flags": [],
+      "confidence": 0.95,
+      "protocol_version": 1,
+      "cut": 2,
+      "fingerprint": "SERIOUS_AE|042-S12-005|S12|AE|1",
+      "first_detected_cut": 2,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "AE",
+          "042-S12-005",
+          1
+        ],
+        [
+          "DOC",
+          null,
+          null
+        ]
+      ]
+    },
+    "AE_BEFORE_FIRST_DOSE|042-S07-016|S07|AE|1": {
+      "code": "AE_BEFORE_FIRST_DOSE",
+      "usubjid": "042-S07-016",
+      "site": "S07",
+      "summary": "Fatigue started 2026-01-24 before first dose 2026-02-01",
+      "severity": "MEDIUM",
+      "rationale": "Fatigue started 2026-01-24 before first dose 2026-02-01",
+      "details": {
+        "AESTDTC": "2026-01-24",
+        "first_dose_date": "2026-02-01",
+        "days_before": 8,
+        "record": [
+          "AE",
+          "042-S07-016",
+          1
+        ]
+      },
+      "evidence": [
+        {
+          "domain": "AE",
+          "usubjid": "042-S07-016",
+          "seq": 1,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DM",
+          "usubjid": "042-S07-016",
+          "seq": null,
+          "document": null,
+          "section": null
+        }
+      ],
+      "flags": [],
+      "confidence": 0.9,
+      "protocol_version": 1,
+      "cut": 2,
+      "fingerprint": "AE_BEFORE_FIRST_DOSE|042-S07-016|S07|AE|1",
+      "first_detected_cut": 2,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "AE",
+          "042-S07-016",
+          1
+        ],
+        [
+          "DM",
+          "042-S07-016",
+          null
+        ]
+      ]
+    },
+    "AE_BEFORE_FIRST_DOSE|042-S10-012|S10|AE|1": {
+      "code": "AE_BEFORE_FIRST_DOSE",
+      "usubjid": "042-S10-012",
+      "site": "S10",
+      "summary": "Headache started 2026-01-24 before first dose 2026-01-30",
+      "severity": "MEDIUM",
+      "rationale": "Headache started 2026-01-24 before first dose 2026-01-30",
+      "details": {
+        "AESTDTC": "2026-01-24",
+        "first_dose_date": "2026-01-30",
+        "days_before": 6,
+        "record": [
+          "AE",
+          "042-S10-012",
+          1
+        ]
+      },
+      "evidence": [
+        {
+          "domain": "AE",
+          "usubjid": "042-S10-012",
+          "seq": 1,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DM",
+          "usubjid": "042-S10-012",
+          "seq": null,
+          "document": null,
+          "section": null
+        }
+      ],
+      "flags": [],
+      "confidence": 0.9,
+      "protocol_version": 1,
+      "cut": 2,
+      "fingerprint": "AE_BEFORE_FIRST_DOSE|042-S10-012|S10|AE|1",
+      "first_detected_cut": 2,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "AE",
+          "042-S10-012",
+          1
+        ],
+        [
+          "DM",
+          "042-S10-012",
+          null
+        ]
+      ]
+    },
+    "DOSING_ERROR|042-S09-005|S09|EX|2": {
+      "code": "DOSING_ERROR",
+      "usubjid": "042-S09-005",
+      "site": "S09",
+      "summary": "1 dose record(s) differ from the expected 0.0 mg for arm PLACEBO",
+      "severity": "HIGH",
+      "rationale": "1 dose record(s) differ from the expected 0.0 mg for arm PLACEBO",
+      "details": {
+        "subcode": "WRONG_DOSE",
+        "records": [
+          [
+            "EX",
+            "042-S09-005",
+            2
+          ]
+        ],
+        "mismatches": [
+          {
+            "record": [
+              "EX",
+              "042-S09-005",
+              2
+            ],
+            "visit": "WEEK2",
+            "actual": 10.0,
+            "expected": 0.0,
+            "arm_key": "PLACEBO"
+          }
+        ],
+        "expected": 0.0,
+        "arm": "PLACEBO",
+        "unit_flags": [],
+        "unparseable_doses": 0
+      },
+      "evidence": [
+        {
+          "domain": "EX",
+          "usubjid": "042-S09-005",
+          "seq": 2,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "8"
+        }
+      ],
+      "flags": [],
+      "confidence": 0.95,
+      "protocol_version": 1,
+      "cut": 2,
+      "fingerprint": "DOSING_ERROR|042-S09-005|S09|EX|2",
+      "first_detected_cut": 2,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "EX",
+          "042-S09-005",
+          2
+        ],
+        [
+          "DOC",
+          null,
+          null
+        ]
+      ]
+    },
+    "DOSING_ERROR|042-S09-009|S09|EX|2": {
+      "code": "DOSING_ERROR",
+      "usubjid": "042-S09-009",
+      "site": "S09",
+      "summary": "1 dose record(s) differ from the expected 0.0 mg for arm PLACEBO",
+      "severity": "HIGH",
+      "rationale": "1 dose record(s) differ from the expected 0.0 mg for arm PLACEBO",
+      "details": {
+        "subcode": "WRONG_DOSE",
+        "records": [
+          [
+            "EX",
+            "042-S09-009",
+            2
+          ]
+        ],
+        "mismatches": [
+          {
+            "record": [
+              "EX",
+              "042-S09-009",
+              2
+            ],
+            "visit": "WEEK2",
+            "actual": 10.0,
+            "expected": 0.0,
+            "arm_key": "PLACEBO"
+          }
+        ],
+        "expected": 0.0,
+        "arm": "PLACEBO",
+        "unit_flags": [],
+        "unparseable_doses": 0
+      },
+      "evidence": [
+        {
+          "domain": "EX",
+          "usubjid": "042-S09-009",
+          "seq": 2,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "8"
+        }
+      ],
+      "flags": [],
+      "confidence": 0.95,
+      "protocol_version": 1,
+      "cut": 2,
+      "fingerprint": "DOSING_ERROR|042-S09-009|S09|EX|2",
+      "first_detected_cut": 2,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "EX",
+          "042-S09-009",
+          2
+        ],
+        [
+          "DOC",
+          null,
+          null
+        ]
+      ]
+    },
+    "DOSING_ERROR|042-S09-011|S09|EX|2": {
+      "code": "DOSING_ERROR",
+      "usubjid": "042-S09-011",
+      "site": "S09",
+      "summary": "1 dose record(s) differ from the expected 0.0 mg for arm PLACEBO",
+      "severity": "HIGH",
+      "rationale": "1 dose record(s) differ from the expected 0.0 mg for arm PLACEBO",
+      "details": {
+        "subcode": "WRONG_DOSE",
+        "records": [
+          [
+            "EX",
+            "042-S09-011",
+            2
+          ]
+        ],
+        "mismatches": [
+          {
+            "record": [
+              "EX",
+              "042-S09-011",
+              2
+            ],
+            "visit": "WEEK2",
+            "actual": 10.0,
+            "expected": 0.0,
+            "arm_key": "PLACEBO"
+          }
+        ],
+        "expected": 0.0,
+        "arm": "PLACEBO",
+        "unit_flags": [],
+        "unparseable_doses": 0
+      },
+      "evidence": [
+        {
+          "domain": "EX",
+          "usubjid": "042-S09-011",
+          "seq": 2,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "8"
+        }
+      ],
+      "flags": [],
+      "confidence": 0.95,
+      "protocol_version": 1,
+      "cut": 2,
+      "fingerprint": "DOSING_ERROR|042-S09-011|S09|EX|2",
+      "first_detected_cut": 2,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "EX",
+          "042-S09-011",
+          2
+        ],
+        [
+          "DOC",
+          null,
+          null
+        ]
+      ]
+    },
+    "DOSING_ERROR|042-S09-014|S09|EX|2": {
+      "code": "DOSING_ERROR",
+      "usubjid": "042-S09-014",
+      "site": "S09",
+      "summary": "1 dose record(s) differ from the expected 10.0 mg for arm DRUG",
+      "severity": "HIGH",
+      "rationale": "1 dose record(s) differ from the expected 10.0 mg for arm DRUG",
+      "details": {
+        "subcode": "WRONG_DOSE",
+        "records": [
+          [
+            "EX",
+            "042-S09-014",
+            2
+          ]
+        ],
+        "mismatches": [
+          {
+            "record": [
+              "EX",
+              "042-S09-014",
+              2
+            ],
+            "visit": "WEEK2",
+            "actual": 20.0,
+            "expected": 10.0,
+            "arm_key": "DRUG"
+          }
+        ],
+        "expected": 10.0,
+        "arm": "DRUG",
+        "unit_flags": [],
+        "unparseable_doses": 0
+      },
+      "evidence": [
+        {
+          "domain": "EX",
+          "usubjid": "042-S09-014",
+          "seq": 2,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "8"
+        }
+      ],
+      "flags": [],
+      "confidence": 0.95,
+      "protocol_version": 1,
+      "cut": 2,
+      "fingerprint": "DOSING_ERROR|042-S09-014|S09|EX|2",
+      "first_detected_cut": 2,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "EX",
+          "042-S09-014",
+          2
+        ],
+        [
+          "DOC",
+          null,
+          null
+        ]
+      ]
+    },
+    "MISSING_DOSE|042-S08-007|S08|DM|": {
+      "code": "MISSING_DOSE",
+      "usubjid": "042-S08-007",
+      "site": "S08",
+      "summary": "no exposure records at all",
+      "severity": "MEDIUM",
+      "rationale": "no exposure records at all",
+      "details": {
+        "subcode": "NO_EXPOSURE",
+        "missing_visits": [
+          "BASELINE",
+          "WEEK2",
+          "WEEK4"
+        ],
+        "expected_visits": [
+          "BASELINE",
+          "WEEK2",
+          "WEEK4"
+        ]
+      },
+      "evidence": [
+        {
+          "domain": "DM",
+          "usubjid": "042-S08-007",
+          "seq": null,
+          "document": null,
+          "section": null
+        }
+      ],
+      "flags": [],
+      "confidence": 0.85,
+      "protocol_version": 1,
+      "cut": 2,
+      "fingerprint": "MISSING_DOSE|042-S08-007|S08|DM|",
+      "first_detected_cut": 2,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "DM",
+          "042-S08-007",
+          null
+        ]
+      ]
+    },
+    "VISIT_WINDOW_DEVIATION|042-S02-002|S02|EX|3": {
+      "code": "VISIT_WINDOW_DEVIATION",
+      "usubjid": "042-S02-002",
+      "site": "S02",
+      "summary": "WEEK4 on 2026-02-11 is -10 day(s) from scheduled day 28 (window \u00b17)",
+      "severity": "MEDIUM",
+      "rationale": "WEEK4 on 2026-02-11 is -10 day(s) from scheduled day 28 (window \u00b17)",
+      "details": {
+        "visit": "WEEK4",
+        "scheduled_day": 28,
+        "actual_day": 18,
+        "actual_date": "2026-02-11",
+        "reference_date": "2026-01-24",
+        "offset_days": -10,
+        "window": 7,
+        "unparseable_dates_at_visit": 0,
+        "protocol_version": 1
+      },
+      "evidence": [
+        {
+          "domain": "EX",
+          "usubjid": "042-S02-002",
+          "seq": 3,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S02-002",
+          "seq": 19,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S02-002",
+          "seq": 20,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DM",
+          "usubjid": "042-S02-002",
+          "seq": null,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "4"
+        }
+      ],
+      "flags": [],
+      "confidence": 0.9,
+      "protocol_version": 1,
+      "cut": 2,
+      "fingerprint": "VISIT_WINDOW_DEVIATION|042-S02-002|S02|EX|3",
+      "first_detected_cut": 2,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "EX",
+          "042-S02-002",
+          3
+        ],
+        [
+          "LB",
+          "042-S02-002",
+          19
+        ],
+        [
+          "LB",
+          "042-S02-002",
+          20
+        ],
+        [
+          "DM",
+          "042-S02-002",
+          null
+        ],
+        [
+          "DOC",
+          null,
+          null
+        ]
+      ]
+    },
+    "VISIT_WINDOW_DEVIATION|042-S03-011|S03|EX|2": {
+      "code": "VISIT_WINDOW_DEVIATION",
+      "usubjid": "042-S03-011",
+      "site": "S03",
+      "summary": "WEEK2 on 2026-02-01 is -9 day(s) from scheduled day 14 (window \u00b17)",
+      "severity": "MEDIUM",
+      "rationale": "WEEK2 on 2026-02-01 is -9 day(s) from scheduled day 14 (window \u00b17)",
+      "details": {
+        "visit": "WEEK2",
+        "scheduled_day": 14,
+        "actual_day": 5,
+        "actual_date": "2026-02-01",
+        "reference_date": "2026-01-27",
+        "offset_days": -9,
+        "window": 7,
+        "unparseable_dates_at_visit": 0,
+        "protocol_version": 1
+      },
+      "evidence": [
+        {
+          "domain": "EX",
+          "usubjid": "042-S03-011",
+          "seq": 2,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S03-011",
+          "seq": 13,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S03-011",
+          "seq": 14,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DM",
+          "usubjid": "042-S03-011",
+          "seq": null,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "4"
+        }
+      ],
+      "flags": [],
+      "confidence": 0.9,
+      "protocol_version": 1,
+      "cut": 2,
+      "fingerprint": "VISIT_WINDOW_DEVIATION|042-S03-011|S03|EX|2",
+      "first_detected_cut": 2,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "EX",
+          "042-S03-011",
+          2
+        ],
+        [
+          "LB",
+          "042-S03-011",
+          13
+        ],
+        [
+          "LB",
+          "042-S03-011",
+          14
+        ],
+        [
+          "DM",
+          "042-S03-011",
+          null
+        ],
+        [
+          "DOC",
+          null,
+          null
+        ]
+      ]
+    },
+    "VISIT_WINDOW_DEVIATION|042-S05-015|S05|EX|3": {
+      "code": "VISIT_WINDOW_DEVIATION",
+      "usubjid": "042-S05-015",
+      "site": "S05",
+      "summary": "WEEK4 on 2026-02-11 is -9 day(s) from scheduled day 28 (window \u00b17)",
+      "severity": "MEDIUM",
+      "rationale": "WEEK4 on 2026-02-11 is -9 day(s) from scheduled day 28 (window \u00b17)",
+      "details": {
+        "visit": "WEEK4",
+        "scheduled_day": 28,
+        "actual_day": 19,
+        "actual_date": "2026-02-11",
+        "reference_date": "2026-01-23",
+        "offset_days": -9,
+        "window": 7,
+        "unparseable_dates_at_visit": 0,
+        "protocol_version": 1
+      },
+      "evidence": [
+        {
+          "domain": "EX",
+          "usubjid": "042-S05-015",
+          "seq": 3,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S05-015",
+          "seq": 19,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S05-015",
+          "seq": 20,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DM",
+          "usubjid": "042-S05-015",
+          "seq": null,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "4"
+        }
+      ],
+      "flags": [],
+      "confidence": 0.9,
+      "protocol_version": 1,
+      "cut": 2,
+      "fingerprint": "VISIT_WINDOW_DEVIATION|042-S05-015|S05|EX|3",
+      "first_detected_cut": 2,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "EX",
+          "042-S05-015",
+          3
+        ],
+        [
+          "LB",
+          "042-S05-015",
+          19
+        ],
+        [
+          "LB",
+          "042-S05-015",
+          20
+        ],
+        [
+          "DM",
+          "042-S05-015",
+          null
+        ],
+        [
+          "DOC",
+          null,
+          null
+        ]
+      ]
+    },
+    "VISIT_WINDOW_DEVIATION|042-S06-002|S06|EX|2": {
+      "code": "VISIT_WINDOW_DEVIATION",
+      "usubjid": "042-S06-002",
+      "site": "S06",
+      "summary": "WEEK2 on 2026-02-15 is +9 day(s) from scheduled day 14 (window \u00b17)",
+      "severity": "MEDIUM",
+      "rationale": "WEEK2 on 2026-02-15 is +9 day(s) from scheduled day 14 (window \u00b17)",
+      "details": {
+        "visit": "WEEK2",
+        "scheduled_day": 14,
+        "actual_day": 23,
+        "actual_date": "2026-02-15",
+        "reference_date": "2026-01-23",
+        "offset_days": 9,
+        "window": 7,
+        "unparseable_dates_at_visit": 0,
+        "protocol_version": 1
+      },
+      "evidence": [
+        {
+          "domain": "EX",
+          "usubjid": "042-S06-002",
+          "seq": 2,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S06-002",
+          "seq": 13,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S06-002",
+          "seq": 14,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DM",
+          "usubjid": "042-S06-002",
+          "seq": null,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "4"
+        }
+      ],
+      "flags": [],
+      "confidence": 0.9,
+      "protocol_version": 1,
+      "cut": 2,
+      "fingerprint": "VISIT_WINDOW_DEVIATION|042-S06-002|S06|EX|2",
+      "first_detected_cut": 2,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "EX",
+          "042-S06-002",
+          2
+        ],
+        [
+          "LB",
+          "042-S06-002",
+          13
+        ],
+        [
+          "LB",
+          "042-S06-002",
+          14
+        ],
+        [
+          "DM",
+          "042-S06-002",
+          null
+        ],
+        [
+          "DOC",
+          null,
+          null
+        ]
+      ]
+    },
+    "VISIT_WINDOW_DEVIATION|042-S07-011|S07|EX|3": {
+      "code": "VISIT_WINDOW_DEVIATION",
+      "usubjid": "042-S07-011",
+      "site": "S07",
+      "summary": "WEEK4 on 2026-02-14 is -10 day(s) from scheduled day 28 (window \u00b17)",
+      "severity": "MEDIUM",
+      "rationale": "WEEK4 on 2026-02-14 is -10 day(s) from scheduled day 28 (window \u00b17)",
+      "details": {
+        "visit": "WEEK4",
+        "scheduled_day": 28,
+        "actual_day": 18,
+        "actual_date": "2026-02-14",
+        "reference_date": "2026-01-27",
+        "offset_days": -10,
+        "window": 7,
+        "unparseable_dates_at_visit": 0,
+        "protocol_version": 1
+      },
+      "evidence": [
+        {
+          "domain": "EX",
+          "usubjid": "042-S07-011",
+          "seq": 3,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S07-011",
+          "seq": 19,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S07-011",
+          "seq": 20,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DM",
+          "usubjid": "042-S07-011",
+          "seq": null,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "4"
+        }
+      ],
+      "flags": [],
+      "confidence": 0.9,
+      "protocol_version": 1,
+      "cut": 2,
+      "fingerprint": "VISIT_WINDOW_DEVIATION|042-S07-011|S07|EX|3",
+      "first_detected_cut": 2,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "EX",
+          "042-S07-011",
+          3
+        ],
+        [
+          "LB",
+          "042-S07-011",
+          19
+        ],
+        [
+          "LB",
+          "042-S07-011",
+          20
+        ],
+        [
+          "DM",
+          "042-S07-011",
+          null
+        ],
+        [
+          "DOC",
+          null,
+          null
+        ]
+      ]
+    },
+    "VISIT_WINDOW_DEVIATION|042-S10-003|S10|EX|2": {
+      "code": "VISIT_WINDOW_DEVIATION",
+      "usubjid": "042-S10-003",
+      "site": "S10",
+      "summary": "WEEK2 on 2026-02-16 is +9 day(s) from scheduled day 14 (window \u00b17)",
+      "severity": "MEDIUM",
+      "rationale": "WEEK2 on 2026-02-16 is +9 day(s) from scheduled day 14 (window \u00b17)",
+      "details": {
+        "visit": "WEEK2",
+        "scheduled_day": 14,
+        "actual_day": 23,
+        "actual_date": "2026-02-16",
+        "reference_date": "2026-01-24",
+        "offset_days": 9,
+        "window": 7,
+        "unparseable_dates_at_visit": 0,
+        "protocol_version": 1
+      },
+      "evidence": [
+        {
+          "domain": "EX",
+          "usubjid": "042-S10-003",
+          "seq": 2,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S10-003",
+          "seq": 13,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S10-003",
+          "seq": 14,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DM",
+          "usubjid": "042-S10-003",
+          "seq": null,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "4"
+        }
+      ],
+      "flags": [],
+      "confidence": 0.9,
+      "protocol_version": 1,
+      "cut": 2,
+      "fingerprint": "VISIT_WINDOW_DEVIATION|042-S10-003|S10|EX|2",
+      "first_detected_cut": 2,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "EX",
+          "042-S10-003",
+          2
+        ],
+        [
+          "LB",
+          "042-S10-003",
+          13
+        ],
+        [
+          "LB",
+          "042-S10-003",
+          14
+        ],
+        [
+          "DM",
+          "042-S10-003",
+          null
+        ],
+        [
+          "DOC",
+          null,
+          null
+        ]
+      ]
+    },
+    "VISIT_WINDOW_DEVIATION|042-S10-014|S10|EX|3": {
+      "code": "VISIT_WINDOW_DEVIATION",
+      "usubjid": "042-S10-014",
+      "site": "S10",
+      "summary": "WEEK4 on 2026-02-12 is -9 day(s) from scheduled day 28 (window \u00b17)",
+      "severity": "MEDIUM",
+      "rationale": "WEEK4 on 2026-02-12 is -9 day(s) from scheduled day 28 (window \u00b17)",
+      "details": {
+        "visit": "WEEK4",
+        "scheduled_day": 28,
+        "actual_day": 19,
+        "actual_date": "2026-02-12",
+        "reference_date": "2026-01-24",
+        "offset_days": -9,
+        "window": 7,
+        "unparseable_dates_at_visit": 0,
+        "protocol_version": 1
+      },
+      "evidence": [
+        {
+          "domain": "EX",
+          "usubjid": "042-S10-014",
+          "seq": 3,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S10-014",
+          "seq": 19,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S10-014",
+          "seq": 20,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DM",
+          "usubjid": "042-S10-014",
+          "seq": null,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "4"
+        }
+      ],
+      "flags": [],
+      "confidence": 0.9,
+      "protocol_version": 1,
+      "cut": 2,
+      "fingerprint": "VISIT_WINDOW_DEVIATION|042-S10-014|S10|EX|3",
+      "first_detected_cut": 2,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "EX",
+          "042-S10-014",
+          3
+        ],
+        [
+          "LB",
+          "042-S10-014",
+          19
+        ],
+        [
+          "LB",
+          "042-S10-014",
+          20
+        ],
+        [
+          "DM",
+          "042-S10-014",
+          null
+        ],
+        [
+          "DOC",
+          null,
+          null
+        ]
+      ]
+    },
+    "ELIGIBILITY_VIOLATION|042-S12-015|S12|DM|": {
+      "code": "ELIGIBILITY_VIOLATION",
+      "usubjid": "042-S12-015",
+      "site": "S12",
+      "summary": "age 17 outside 18-75",
+      "severity": "HIGH",
+      "rationale": "age 17 outside 18-75",
+      "details": {
+        "age": 17.0,
+        "min": 18.0,
+        "max": 75.0,
+        "subcode": "AGE_OUT_OF_RANGE",
+        "protocol_version": 1
+      },
+      "evidence": [
+        {
+          "domain": "DM",
+          "usubjid": "042-S12-015",
+          "seq": null,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "2"
+        }
+      ],
+      "flags": [],
+      "confidence": 0.9,
+      "protocol_version": 1,
+      "cut": 2,
+      "fingerprint": "ELIGIBILITY_VIOLATION|042-S12-015|S12|DM|",
+      "first_detected_cut": 2,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "DM",
+          "042-S12-015",
+          null
+        ],
+        [
+          "DOC",
+          null,
+          null
+        ]
+      ]
+    },
+    "VISIT_WINDOW_DEVIATION|042-S02-007|S02|EX|4": {
+      "code": "VISIT_WINDOW_DEVIATION",
+      "usubjid": "042-S02-007",
+      "site": "S02",
+      "summary": "WEEK8 on 2026-03-05 is -9 day(s) from scheduled day 56 (window \u00b17)",
+      "severity": "MEDIUM",
+      "rationale": "WEEK8 on 2026-03-05 is -9 day(s) from scheduled day 56 (window \u00b17)",
+      "details": {
+        "visit": "WEEK8",
+        "scheduled_day": 56,
+        "actual_day": 47,
+        "actual_date": "2026-03-05",
+        "reference_date": "2026-01-17",
+        "offset_days": -9,
+        "window": 7,
+        "unparseable_dates_at_visit": 0,
+        "protocol_version": 1
+      },
+      "evidence": [
+        {
+          "domain": "EX",
+          "usubjid": "042-S02-007",
+          "seq": 4,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S02-007",
+          "seq": 25,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S02-007",
+          "seq": 26,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DM",
+          "usubjid": "042-S02-007",
+          "seq": null,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "4"
+        }
+      ],
+      "flags": [],
+      "confidence": 0.9,
+      "protocol_version": 1,
+      "cut": 3,
+      "fingerprint": "VISIT_WINDOW_DEVIATION|042-S02-007|S02|EX|4",
+      "first_detected_cut": 3,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "EX",
+          "042-S02-007",
+          4
+        ],
+        [
+          "LB",
+          "042-S02-007",
+          25
+        ],
+        [
+          "LB",
+          "042-S02-007",
+          26
+        ],
+        [
+          "DM",
+          "042-S02-007",
+          null
+        ],
+        [
+          "DOC",
+          null,
+          null
+        ]
+      ]
+    },
+    "VISIT_WINDOW_DEVIATION|042-S06-013|S06|EX|4": {
+      "code": "VISIT_WINDOW_DEVIATION",
+      "usubjid": "042-S06-013",
+      "site": "S06",
+      "summary": "WEEK8 on 2026-03-02 is -10 day(s) from scheduled day 56 (window \u00b17)",
+      "severity": "MEDIUM",
+      "rationale": "WEEK8 on 2026-03-02 is -10 day(s) from scheduled day 56 (window \u00b17)",
+      "details": {
+        "visit": "WEEK8",
+        "scheduled_day": 56,
+        "actual_day": 46,
+        "actual_date": "2026-03-02",
+        "reference_date": "2026-01-15",
+        "offset_days": -10,
+        "window": 7,
+        "unparseable_dates_at_visit": 0,
+        "protocol_version": 1
+      },
+      "evidence": [
+        {
+          "domain": "EX",
+          "usubjid": "042-S06-013",
+          "seq": 4,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S06-013",
+          "seq": 25,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S06-013",
+          "seq": 26,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DM",
+          "usubjid": "042-S06-013",
+          "seq": null,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "4"
+        }
+      ],
+      "flags": [],
+      "confidence": 0.9,
+      "protocol_version": 1,
+      "cut": 3,
+      "fingerprint": "VISIT_WINDOW_DEVIATION|042-S06-013|S06|EX|4",
+      "first_detected_cut": 3,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "EX",
+          "042-S06-013",
+          4
+        ],
+        [
+          "LB",
+          "042-S06-013",
+          25
+        ],
+        [
+          "LB",
+          "042-S06-013",
+          26
+        ],
+        [
+          "DM",
+          "042-S06-013",
+          null
+        ],
+        [
+          "DOC",
+          null,
+          null
+        ]
+      ]
+    },
+    "VISIT_WINDOW_DEVIATION|042-S07-013|S07|EX|3": {
+      "code": "VISIT_WINDOW_DEVIATION",
+      "usubjid": "042-S07-013",
+      "site": "S07",
+      "summary": "WEEK4 on 2026-03-03 is +11 day(s) from scheduled day 28 (window \u00b17)",
+      "severity": "MEDIUM",
+      "rationale": "WEEK4 on 2026-03-03 is +11 day(s) from scheduled day 28 (window \u00b17)",
+      "details": {
+        "visit": "WEEK4",
+        "scheduled_day": 28,
+        "actual_day": 39,
+        "actual_date": "2026-03-03",
+        "reference_date": "2026-01-23",
+        "offset_days": 11,
+        "window": 7,
+        "unparseable_dates_at_visit": 0,
+        "protocol_version": 1
+      },
+      "evidence": [
+        {
+          "domain": "EX",
+          "usubjid": "042-S07-013",
+          "seq": 3,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S07-013",
+          "seq": 19,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S07-013",
+          "seq": 20,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DM",
+          "usubjid": "042-S07-013",
+          "seq": null,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "4"
+        }
+      ],
+      "flags": [],
+      "confidence": 0.9,
+      "protocol_version": 1,
+      "cut": 3,
+      "fingerprint": "VISIT_WINDOW_DEVIATION|042-S07-013|S07|EX|3",
+      "first_detected_cut": 3,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "EX",
+          "042-S07-013",
+          3
+        ],
+        [
+          "LB",
+          "042-S07-013",
+          19
+        ],
+        [
+          "LB",
+          "042-S07-013",
+          20
+        ],
+        [
+          "DM",
+          "042-S07-013",
+          null
+        ],
+        [
+          "DOC",
+          null,
+          null
+        ]
+      ]
+    },
+    "VISIT_WINDOW_DEVIATION|042-S07-014|S07|EX|3": {
+      "code": "VISIT_WINDOW_DEVIATION",
+      "usubjid": "042-S07-014",
+      "site": "S07",
+      "summary": "WEEK4 on 2026-02-27 is +9 day(s) from scheduled day 28 (window \u00b17)",
+      "severity": "MEDIUM",
+      "rationale": "WEEK4 on 2026-02-27 is +9 day(s) from scheduled day 28 (window \u00b17)",
+      "details": {
+        "visit": "WEEK4",
+        "scheduled_day": 28,
+        "actual_day": 37,
+        "actual_date": "2026-02-27",
+        "reference_date": "2026-01-21",
+        "offset_days": 9,
+        "window": 7,
+        "unparseable_dates_at_visit": 0,
+        "protocol_version": 1
+      },
+      "evidence": [
+        {
+          "domain": "EX",
+          "usubjid": "042-S07-014",
+          "seq": 3,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S07-014",
+          "seq": 19,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S07-014",
+          "seq": 20,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DM",
+          "usubjid": "042-S07-014",
+          "seq": null,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "4"
+        }
+      ],
+      "flags": [],
+      "confidence": 0.9,
+      "protocol_version": 1,
+      "cut": 3,
+      "fingerprint": "VISIT_WINDOW_DEVIATION|042-S07-014|S07|EX|3",
+      "first_detected_cut": 3,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "EX",
+          "042-S07-014",
+          3
+        ],
+        [
+          "LB",
+          "042-S07-014",
+          19
+        ],
+        [
+          "LB",
+          "042-S07-014",
+          20
+        ],
+        [
+          "DM",
+          "042-S07-014",
+          null
+        ],
+        [
+          "DOC",
+          null,
+          null
+        ]
+      ]
+    },
+    "VISIT_WINDOW_DEVIATION|042-S12-020|S12|EX|2": {
+      "code": "VISIT_WINDOW_DEVIATION",
+      "usubjid": "042-S12-020",
+      "site": "S12",
+      "summary": "WEEK2 on 2026-02-18 is +11 day(s) from scheduled day 14 (window \u00b17)",
+      "severity": "MEDIUM",
+      "rationale": "WEEK2 on 2026-02-18 is +11 day(s) from scheduled day 14 (window \u00b17)",
+      "details": {
+        "visit": "WEEK2",
+        "scheduled_day": 14,
+        "actual_day": 25,
+        "actual_date": "2026-02-18",
+        "reference_date": "2026-01-24",
+        "offset_days": 11,
+        "window": 7,
+        "unparseable_dates_at_visit": 0,
+        "protocol_version": 1
+      },
+      "evidence": [
+        {
+          "domain": "EX",
+          "usubjid": "042-S12-020",
+          "seq": 2,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S12-020",
+          "seq": 13,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S12-020",
+          "seq": 14,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DM",
+          "usubjid": "042-S12-020",
+          "seq": null,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "4"
+        }
+      ],
+      "flags": [],
+      "confidence": 0.9,
+      "protocol_version": 1,
+      "cut": 3,
+      "fingerprint": "VISIT_WINDOW_DEVIATION|042-S12-020|S12|EX|2",
+      "first_detected_cut": 3,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "EX",
+          "042-S12-020",
+          2
+        ],
+        [
+          "LB",
+          "042-S12-020",
+          13
+        ],
+        [
+          "LB",
+          "042-S12-020",
+          14
+        ],
+        [
+          "DM",
+          "042-S12-020",
+          null
+        ],
+        [
+          "DOC",
+          null,
+          null
+        ]
+      ]
+    },
+    "SERIOUS_AE|042-S01-007|S01|AE|1": {
+      "code": "SERIOUS_AE",
+      "usubjid": "042-S01-007",
+      "site": "S01",
+      "summary": "Myocardial infarction (SEVERE) \u2014 sae coded",
+      "severity": "HIGH",
+      "rationale": "Myocardial infarction (SEVERE) \u2014 sae coded",
+      "details": {
+        "subcode": "SAE_CODED",
+        "AETERM": "Myocardial infarction",
+        "AESEV": "SEVERE",
+        "AESER": "Y",
+        "AESHOSP": "Y",
+        "AESTDTC": "2026-03-20",
+        "record": [
+          "AE",
+          "042-S01-007",
+          1
+        ]
+      },
+      "evidence": [
+        {
+          "domain": "AE",
+          "usubjid": "042-S01-007",
+          "seq": 1,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "6"
+        }
+      ],
+      "flags": [],
+      "confidence": 0.95,
+      "protocol_version": 1,
+      "cut": 4,
+      "fingerprint": "SERIOUS_AE|042-S01-007|S01|AE|1",
+      "first_detected_cut": 4,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "AE",
+          "042-S01-007",
+          1
+        ],
+        [
+          "DOC",
+          null,
+          null
+        ]
+      ]
+    },
+    "VISIT_WINDOW_DEVIATION|042-S01-015|S01|EX|4": {
+      "code": "VISIT_WINDOW_DEVIATION",
+      "usubjid": "042-S01-015",
+      "site": "S01",
+      "summary": "WEEK8 on 2026-03-14 is -10 day(s) from scheduled day 56 (window \u00b17)",
+      "severity": "MEDIUM",
+      "rationale": "WEEK8 on 2026-03-14 is -10 day(s) from scheduled day 56 (window \u00b17)",
+      "details": {
+        "visit": "WEEK8",
+        "scheduled_day": 56,
+        "actual_day": 46,
+        "actual_date": "2026-03-14",
+        "reference_date": "2026-01-27",
+        "offset_days": -10,
+        "window": 7,
+        "unparseable_dates_at_visit": 0,
+        "protocol_version": 1
+      },
+      "evidence": [
+        {
+          "domain": "EX",
+          "usubjid": "042-S01-015",
+          "seq": 4,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S01-015",
+          "seq": 25,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S01-015",
+          "seq": 26,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DM",
+          "usubjid": "042-S01-015",
+          "seq": null,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "4"
+        }
+      ],
+      "flags": [],
+      "confidence": 0.9,
+      "protocol_version": 1,
+      "cut": 4,
+      "fingerprint": "VISIT_WINDOW_DEVIATION|042-S01-015|S01|EX|4",
+      "first_detected_cut": 4,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "EX",
+          "042-S01-015",
+          4
+        ],
+        [
+          "LB",
+          "042-S01-015",
+          25
+        ],
+        [
+          "LB",
+          "042-S01-015",
+          26
+        ],
+        [
+          "DM",
+          "042-S01-015",
+          null
+        ],
+        [
+          "DOC",
+          null,
+          null
+        ]
+      ]
+    },
+    "VISIT_WINDOW_DEVIATION|042-S04-010|S04|EX|3": {
+      "code": "VISIT_WINDOW_DEVIATION",
+      "usubjid": "042-S04-010",
+      "site": "S04",
+      "summary": "WEEK4 on 2026-03-07 is +9 day(s) from scheduled day 28 (window \u00b17)",
+      "severity": "MEDIUM",
+      "rationale": "WEEK4 on 2026-03-07 is +9 day(s) from scheduled day 28 (window \u00b17)",
+      "details": {
+        "visit": "WEEK4",
+        "scheduled_day": 28,
+        "actual_day": 37,
+        "actual_date": "2026-03-07",
+        "reference_date": "2026-01-29",
+        "offset_days": 9,
+        "window": 7,
+        "unparseable_dates_at_visit": 0,
+        "protocol_version": 1
+      },
+      "evidence": [
+        {
+          "domain": "EX",
+          "usubjid": "042-S04-010",
+          "seq": 3,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S04-010",
+          "seq": 19,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S04-010",
+          "seq": 20,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DM",
+          "usubjid": "042-S04-010",
+          "seq": null,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "4"
+        }
+      ],
+      "flags": [],
+      "confidence": 0.9,
+      "protocol_version": 1,
+      "cut": 4,
+      "fingerprint": "VISIT_WINDOW_DEVIATION|042-S04-010|S04|EX|3",
+      "first_detected_cut": 4,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "EX",
+          "042-S04-010",
+          3
+        ],
+        [
+          "LB",
+          "042-S04-010",
+          19
+        ],
+        [
+          "LB",
+          "042-S04-010",
+          20
+        ],
+        [
+          "DM",
+          "042-S04-010",
+          null
+        ],
+        [
+          "DOC",
+          null,
+          null
+        ]
+      ]
+    },
+    "VISIT_WINDOW_DEVIATION|042-S04-013|S04|EX|4": {
+      "code": "VISIT_WINDOW_DEVIATION",
+      "usubjid": "042-S04-013",
+      "site": "S04",
+      "summary": "WEEK8 on 2026-03-18 is +9 day(s) from scheduled day 56 (window \u00b17)",
+      "severity": "MEDIUM",
+      "rationale": "WEEK8 on 2026-03-18 is +9 day(s) from scheduled day 56 (window \u00b17)",
+      "details": {
+        "visit": "WEEK8",
+        "scheduled_day": 56,
+        "actual_day": 65,
+        "actual_date": "2026-03-18",
+        "reference_date": "2026-01-12",
+        "offset_days": 9,
+        "window": 7,
+        "unparseable_dates_at_visit": 0,
+        "protocol_version": 1
+      },
+      "evidence": [
+        {
+          "domain": "EX",
+          "usubjid": "042-S04-013",
+          "seq": 4,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S04-013",
+          "seq": 25,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S04-013",
+          "seq": 26,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DM",
+          "usubjid": "042-S04-013",
+          "seq": null,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "4"
+        }
+      ],
+      "flags": [],
+      "confidence": 0.9,
+      "protocol_version": 1,
+      "cut": 4,
+      "fingerprint": "VISIT_WINDOW_DEVIATION|042-S04-013|S04|EX|4",
+      "first_detected_cut": 4,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "EX",
+          "042-S04-013",
+          4
+        ],
+        [
+          "LB",
+          "042-S04-013",
+          25
+        ],
+        [
+          "LB",
+          "042-S04-013",
+          26
+        ],
+        [
+          "DM",
+          "042-S04-013",
+          null
+        ],
+        [
+          "DOC",
+          null,
+          null
+        ]
+      ]
+    },
+    "VISIT_WINDOW_DEVIATION|042-S06-008|S06|EX|4": {
+      "code": "VISIT_WINDOW_DEVIATION",
+      "usubjid": "042-S06-008",
+      "site": "S06",
+      "summary": "WEEK8 on 2026-03-18 is -9 day(s) from scheduled day 56 (window \u00b17)",
+      "severity": "MEDIUM",
+      "rationale": "WEEK8 on 2026-03-18 is -9 day(s) from scheduled day 56 (window \u00b17)",
+      "details": {
+        "visit": "WEEK8",
+        "scheduled_day": 56,
+        "actual_day": 47,
+        "actual_date": "2026-03-18",
+        "reference_date": "2026-01-30",
+        "offset_days": -9,
+        "window": 7,
+        "unparseable_dates_at_visit": 0,
+        "protocol_version": 1
+      },
+      "evidence": [
+        {
+          "domain": "EX",
+          "usubjid": "042-S06-008",
+          "seq": 4,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S06-008",
+          "seq": 25,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S06-008",
+          "seq": 26,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DM",
+          "usubjid": "042-S06-008",
+          "seq": null,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "4"
+        }
+      ],
+      "flags": [],
+      "confidence": 0.9,
+      "protocol_version": 1,
+      "cut": 4,
+      "fingerprint": "VISIT_WINDOW_DEVIATION|042-S06-008|S06|EX|4",
+      "first_detected_cut": 4,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "EX",
+          "042-S06-008",
+          4
+        ],
+        [
+          "LB",
+          "042-S06-008",
+          25
+        ],
+        [
+          "LB",
+          "042-S06-008",
+          26
+        ],
+        [
+          "DM",
+          "042-S06-008",
+          null
+        ],
+        [
+          "DOC",
+          null,
+          null
+        ]
+      ]
+    },
+    "VISIT_WINDOW_DEVIATION|042-S07-003|S07|EX|4": {
+      "code": "VISIT_WINDOW_DEVIATION",
+      "usubjid": "042-S07-003",
+      "site": "S07",
+      "summary": "WEEK8 on 2026-03-18 is -9 day(s) from scheduled day 56 (window \u00b17)",
+      "severity": "MEDIUM",
+      "rationale": "WEEK8 on 2026-03-18 is -9 day(s) from scheduled day 56 (window \u00b17)",
+      "details": {
+        "visit": "WEEK8",
+        "scheduled_day": 56,
+        "actual_day": 47,
+        "actual_date": "2026-03-18",
+        "reference_date": "2026-01-30",
+        "offset_days": -9,
+        "window": 7,
+        "unparseable_dates_at_visit": 0,
+        "protocol_version": 1
+      },
+      "evidence": [
+        {
+          "domain": "EX",
+          "usubjid": "042-S07-003",
+          "seq": 4,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S07-003",
+          "seq": 25,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S07-003",
+          "seq": 26,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DM",
+          "usubjid": "042-S07-003",
+          "seq": null,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "4"
+        }
+      ],
+      "flags": [],
+      "confidence": 0.9,
+      "protocol_version": 1,
+      "cut": 4,
+      "fingerprint": "VISIT_WINDOW_DEVIATION|042-S07-003|S07|EX|4",
+      "first_detected_cut": 4,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "EX",
+          "042-S07-003",
+          4
+        ],
+        [
+          "LB",
+          "042-S07-003",
+          25
+        ],
+        [
+          "LB",
+          "042-S07-003",
+          26
+        ],
+        [
+          "DM",
+          "042-S07-003",
+          null
+        ],
+        [
+          "DOC",
+          null,
+          null
+        ]
+      ]
+    },
+    "VISIT_WINDOW_DEVIATION|042-S07-007|S07|EX|4": {
+      "code": "VISIT_WINDOW_DEVIATION",
+      "usubjid": "042-S07-007",
+      "site": "S07",
+      "summary": "WEEK8 on 2026-03-12 is -9 day(s) from scheduled day 56 (window \u00b17)",
+      "severity": "MEDIUM",
+      "rationale": "WEEK8 on 2026-03-12 is -9 day(s) from scheduled day 56 (window \u00b17)",
+      "details": {
+        "visit": "WEEK8",
+        "scheduled_day": 56,
+        "actual_day": 47,
+        "actual_date": "2026-03-12",
+        "reference_date": "2026-01-24",
+        "offset_days": -9,
+        "window": 7,
+        "unparseable_dates_at_visit": 0,
+        "protocol_version": 1
+      },
+      "evidence": [
+        {
+          "domain": "EX",
+          "usubjid": "042-S07-007",
+          "seq": 4,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S07-007",
+          "seq": 25,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S07-007",
+          "seq": 26,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DM",
+          "usubjid": "042-S07-007",
+          "seq": null,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "4"
+        }
+      ],
+      "flags": [],
+      "confidence": 0.9,
+      "protocol_version": 1,
+      "cut": 4,
+      "fingerprint": "VISIT_WINDOW_DEVIATION|042-S07-007|S07|EX|4",
+      "first_detected_cut": 4,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "EX",
+          "042-S07-007",
+          4
+        ],
+        [
+          "LB",
+          "042-S07-007",
+          25
+        ],
+        [
+          "LB",
+          "042-S07-007",
+          26
+        ],
+        [
+          "DM",
+          "042-S07-007",
+          null
+        ],
+        [
+          "DOC",
+          null,
+          null
+        ]
+      ]
+    },
+    "VISIT_WINDOW_DEVIATION|042-S07-008|S07|EX|4": {
+      "code": "VISIT_WINDOW_DEVIATION",
+      "usubjid": "042-S07-008",
+      "site": "S07",
+      "summary": "WEEK8 on 2026-03-22 is +11 day(s) from scheduled day 56 (window \u00b17)",
+      "severity": "MEDIUM",
+      "rationale": "WEEK8 on 2026-03-22 is +11 day(s) from scheduled day 56 (window \u00b17)",
+      "details": {
+        "visit": "WEEK8",
+        "scheduled_day": 56,
+        "actual_day": 67,
+        "actual_date": "2026-03-22",
+        "reference_date": "2026-01-14",
+        "offset_days": 11,
+        "window": 7,
+        "unparseable_dates_at_visit": 0,
+        "protocol_version": 1
+      },
+      "evidence": [
+        {
+          "domain": "EX",
+          "usubjid": "042-S07-008",
+          "seq": 4,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S07-008",
+          "seq": 25,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S07-008",
+          "seq": 26,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DM",
+          "usubjid": "042-S07-008",
+          "seq": null,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "4"
+        }
+      ],
+      "flags": [],
+      "confidence": 0.9,
+      "protocol_version": 1,
+      "cut": 4,
+      "fingerprint": "VISIT_WINDOW_DEVIATION|042-S07-008|S07|EX|4",
+      "first_detected_cut": 4,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "EX",
+          "042-S07-008",
+          4
+        ],
+        [
+          "LB",
+          "042-S07-008",
+          25
+        ],
+        [
+          "LB",
+          "042-S07-008",
+          26
+        ],
+        [
+          "DM",
+          "042-S07-008",
+          null
+        ],
+        [
+          "DOC",
+          null,
+          null
+        ]
+      ]
+    },
+    "VISIT_WINDOW_DEVIATION|042-S07-012|S07|EX|4": {
+      "code": "VISIT_WINDOW_DEVIATION",
+      "usubjid": "042-S07-012",
+      "site": "S07",
+      "summary": "WEEK8 on 2026-03-18 is +9 day(s) from scheduled day 56 (window \u00b17)",
+      "severity": "MEDIUM",
+      "rationale": "WEEK8 on 2026-03-18 is +9 day(s) from scheduled day 56 (window \u00b17)",
+      "details": {
+        "visit": "WEEK8",
+        "scheduled_day": 56,
+        "actual_day": 65,
+        "actual_date": "2026-03-18",
+        "reference_date": "2026-01-12",
+        "offset_days": 9,
+        "window": 7,
+        "unparseable_dates_at_visit": 0,
+        "protocol_version": 1
+      },
+      "evidence": [
+        {
+          "domain": "EX",
+          "usubjid": "042-S07-012",
+          "seq": 4,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S07-012",
+          "seq": 25,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S07-012",
+          "seq": 26,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DM",
+          "usubjid": "042-S07-012",
+          "seq": null,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "4"
+        }
+      ],
+      "flags": [],
+      "confidence": 0.9,
+      "protocol_version": 1,
+      "cut": 4,
+      "fingerprint": "VISIT_WINDOW_DEVIATION|042-S07-012|S07|EX|4",
+      "first_detected_cut": 4,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "EX",
+          "042-S07-012",
+          4
+        ],
+        [
+          "LB",
+          "042-S07-012",
+          25
+        ],
+        [
+          "LB",
+          "042-S07-012",
+          26
+        ],
+        [
+          "DM",
+          "042-S07-012",
+          null
+        ],
+        [
+          "DOC",
+          null,
+          null
+        ]
+      ]
+    },
+    "VISIT_WINDOW_DEVIATION|042-S07-015|S07|EX|4": {
+      "code": "VISIT_WINDOW_DEVIATION",
+      "usubjid": "042-S07-015",
+      "site": "S07",
+      "summary": "WEEK8 on 2026-03-12 is -10 day(s) from scheduled day 56 (window \u00b17)",
+      "severity": "MEDIUM",
+      "rationale": "WEEK8 on 2026-03-12 is -10 day(s) from scheduled day 56 (window \u00b17)",
+      "details": {
+        "visit": "WEEK8",
+        "scheduled_day": 56,
+        "actual_day": 46,
+        "actual_date": "2026-03-12",
+        "reference_date": "2026-01-25",
+        "offset_days": -10,
+        "window": 7,
+        "unparseable_dates_at_visit": 0,
+        "protocol_version": 1
+      },
+      "evidence": [
+        {
+          "domain": "EX",
+          "usubjid": "042-S07-015",
+          "seq": 4,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S07-015",
+          "seq": 25,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S07-015",
+          "seq": 26,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DM",
+          "usubjid": "042-S07-015",
+          "seq": null,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "4"
+        }
+      ],
+      "flags": [],
+      "confidence": 0.9,
+      "protocol_version": 1,
+      "cut": 4,
+      "fingerprint": "VISIT_WINDOW_DEVIATION|042-S07-015|S07|EX|4",
+      "first_detected_cut": 4,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "EX",
+          "042-S07-015",
+          4
+        ],
+        [
+          "LB",
+          "042-S07-015",
+          25
+        ],
+        [
+          "LB",
+          "042-S07-015",
+          26
+        ],
+        [
+          "DM",
+          "042-S07-015",
+          null
+        ],
+        [
+          "DOC",
+          null,
+          null
+        ]
+      ]
+    },
+    "VISIT_WINDOW_DEVIATION|042-S08-008|S08|EX|2": {
+      "code": "VISIT_WINDOW_DEVIATION",
+      "usubjid": "042-S08-008",
+      "site": "S08",
+      "summary": "WEEK2 on 2026-01-22 is -10 day(s) from scheduled day 14 (window \u00b17)",
+      "severity": "MEDIUM",
+      "rationale": "WEEK2 on 2026-01-22 is -10 day(s) from scheduled day 14 (window \u00b17)",
+      "details": {
+        "visit": "WEEK2",
+        "scheduled_day": 14,
+        "actual_day": 4,
+        "actual_date": "2026-01-22",
+        "reference_date": "2026-01-18",
+        "offset_days": -10,
+        "window": 7,
+        "unparseable_dates_at_visit": 0,
+        "protocol_version": 1
+      },
+      "evidence": [
+        {
+          "domain": "EX",
+          "usubjid": "042-S08-008",
+          "seq": 2,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S08-008",
+          "seq": 13,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S08-008",
+          "seq": 14,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DM",
+          "usubjid": "042-S08-008",
+          "seq": null,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "4"
+        }
+      ],
+      "flags": [],
+      "confidence": 0.9,
+      "protocol_version": 1,
+      "cut": 4,
+      "fingerprint": "VISIT_WINDOW_DEVIATION|042-S08-008|S08|EX|2",
+      "first_detected_cut": 4,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "EX",
+          "042-S08-008",
+          2
+        ],
+        [
+          "LB",
+          "042-S08-008",
+          13
+        ],
+        [
+          "LB",
+          "042-S08-008",
+          14
+        ],
+        [
+          "DM",
+          "042-S08-008",
+          null
+        ],
+        [
+          "DOC",
+          null,
+          null
+        ]
+      ]
+    },
+    "VISIT_WINDOW_DEVIATION|042-S08-017|S08|EX|2": {
+      "code": "VISIT_WINDOW_DEVIATION",
+      "usubjid": "042-S08-017",
+      "site": "S08",
+      "summary": "WEEK2 on 2026-01-22 is -10 day(s) from scheduled day 14 (window \u00b17)",
+      "severity": "MEDIUM",
+      "rationale": "WEEK2 on 2026-01-22 is -10 day(s) from scheduled day 14 (window \u00b17)",
+      "details": {
+        "visit": "WEEK2",
+        "scheduled_day": 14,
+        "actual_day": 4,
+        "actual_date": "2026-01-22",
+        "reference_date": "2026-01-18",
+        "offset_days": -10,
+        "window": 7,
+        "unparseable_dates_at_visit": 0,
+        "protocol_version": 1
+      },
+      "evidence": [
+        {
+          "domain": "EX",
+          "usubjid": "042-S08-017",
+          "seq": 2,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S08-017",
+          "seq": 13,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S08-017",
+          "seq": 14,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DM",
+          "usubjid": "042-S08-017",
+          "seq": null,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "4"
+        }
+      ],
+      "flags": [],
+      "confidence": 0.9,
+      "protocol_version": 1,
+      "cut": 4,
+      "fingerprint": "VISIT_WINDOW_DEVIATION|042-S08-017|S08|EX|2",
+      "first_detected_cut": 4,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "EX",
+          "042-S08-017",
+          2
+        ],
+        [
+          "LB",
+          "042-S08-017",
+          13
+        ],
+        [
+          "LB",
+          "042-S08-017",
+          14
+        ],
+        [
+          "DM",
+          "042-S08-017",
+          null
+        ],
+        [
+          "DOC",
+          null,
+          null
+        ]
+      ]
+    },
+    "VISIT_WINDOW_DEVIATION|042-S09-002|S09|EX|4": {
+      "code": "VISIT_WINDOW_DEVIATION",
+      "usubjid": "042-S09-002",
+      "site": "S09",
+      "summary": "WEEK8 on 2026-03-23 is +9 day(s) from scheduled day 56 (window \u00b17)",
+      "severity": "MEDIUM",
+      "rationale": "WEEK8 on 2026-03-23 is +9 day(s) from scheduled day 56 (window \u00b17)",
+      "details": {
+        "visit": "WEEK8",
+        "scheduled_day": 56,
+        "actual_day": 65,
+        "actual_date": "2026-03-23",
+        "reference_date": "2026-01-17",
+        "offset_days": 9,
+        "window": 7,
+        "unparseable_dates_at_visit": 0,
+        "protocol_version": 1
+      },
+      "evidence": [
+        {
+          "domain": "EX",
+          "usubjid": "042-S09-002",
+          "seq": 4,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S09-002",
+          "seq": 25,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S09-002",
+          "seq": 26,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DM",
+          "usubjid": "042-S09-002",
+          "seq": null,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "4"
+        }
+      ],
+      "flags": [],
+      "confidence": 0.9,
+      "protocol_version": 1,
+      "cut": 4,
+      "fingerprint": "VISIT_WINDOW_DEVIATION|042-S09-002|S09|EX|4",
+      "first_detected_cut": 4,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "EX",
+          "042-S09-002",
+          4
+        ],
+        [
+          "LB",
+          "042-S09-002",
+          25
+        ],
+        [
+          "LB",
+          "042-S09-002",
+          26
+        ],
+        [
+          "DM",
+          "042-S09-002",
+          null
+        ],
+        [
+          "DOC",
+          null,
+          null
+        ]
+      ]
+    },
+    "VISIT_WINDOW_DEVIATION|042-S10-012|S10|EX|4": {
+      "code": "VISIT_WINDOW_DEVIATION",
+      "usubjid": "042-S10-012",
+      "site": "S10",
+      "summary": "WEEK8 on 2026-03-17 is -10 day(s) from scheduled day 56 (window \u00b17)",
+      "severity": "MEDIUM",
+      "rationale": "WEEK8 on 2026-03-17 is -10 day(s) from scheduled day 56 (window \u00b17)",
+      "details": {
+        "visit": "WEEK8",
+        "scheduled_day": 56,
+        "actual_day": 46,
+        "actual_date": "2026-03-17",
+        "reference_date": "2026-01-30",
+        "offset_days": -10,
+        "window": 7,
+        "unparseable_dates_at_visit": 0,
+        "protocol_version": 1
+      },
+      "evidence": [
+        {
+          "domain": "EX",
+          "usubjid": "042-S10-012",
+          "seq": 4,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S10-012",
+          "seq": 25,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "LB",
+          "usubjid": "042-S10-012",
+          "seq": 26,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DM",
+          "usubjid": "042-S10-012",
+          "seq": null,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "4"
+        }
+      ],
+      "flags": [],
+      "confidence": 0.9,
+      "protocol_version": 1,
+      "cut": 4,
+      "fingerprint": "VISIT_WINDOW_DEVIATION|042-S10-012|S10|EX|4",
+      "first_detected_cut": 4,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "EX",
+          "042-S10-012",
+          4
+        ],
+        [
+          "LB",
+          "042-S10-012",
+          25
+        ],
+        [
+          "LB",
+          "042-S10-012",
+          26
+        ],
+        [
+          "DM",
+          "042-S10-012",
+          null
+        ],
+        [
+          "DOC",
+          null,
+          null
+        ]
+      ]
+    },
+    "PROHIBITED_MEDICATION|042-S02-010|S02|CM|1": {
+      "code": "PROHIBITED_MEDICATION",
+      "usubjid": "042-S02-010",
+      "site": "S02",
+      "summary": "Prednisolone (SYSTEMIC_GLUCOCORTICOID) is a prohibited SYSTEMIC_GLUCOCORTICOID",
+      "severity": "MEDIUM",
+      "rationale": "Prednisolone (SYSTEMIC_GLUCOCORTICOID) is a prohibited SYSTEMIC_GLUCOCORTICOID",
+      "details": {
+        "matched_class": "SYSTEMIC_GLUCOCORTICOID",
+        "CMTRT": "Prednisolone",
+        "CMCLAS": "SYSTEMIC_GLUCOCORTICOID",
+        "CMSTDTC": "2026-03-22",
+        "record": [
+          "CM",
+          "042-S02-010",
+          1
+        ],
+        "protocol_version": 1
+      },
+      "evidence": [
+        {
+          "domain": "CM",
+          "usubjid": "042-S02-010",
+          "seq": 1,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "5"
+        }
+      ],
+      "flags": [],
+      "confidence": 0.95,
+      "protocol_version": 1,
+      "cut": 4,
+      "fingerprint": "PROHIBITED_MEDICATION|042-S02-010|S02|CM|1",
+      "first_detected_cut": 4,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "CM",
+          "042-S02-010",
+          1
+        ],
+        [
+          "DOC",
+          null,
+          null
+        ]
+      ]
+    },
+    "PROHIBITED_MEDICATION|042-S08-001|S08|CM|1": {
+      "code": "PROHIBITED_MEDICATION",
+      "usubjid": "042-S08-001",
+      "site": "S08",
+      "summary": "Prednisolone (SYSTEMIC_GLUCOCORTICOID) is a prohibited SYSTEMIC_GLUCOCORTICOID",
+      "severity": "MEDIUM",
+      "rationale": "Prednisolone (SYSTEMIC_GLUCOCORTICOID) is a prohibited SYSTEMIC_GLUCOCORTICOID",
+      "details": {
+        "matched_class": "SYSTEMIC_GLUCOCORTICOID",
+        "CMTRT": "Prednisolone",
+        "CMCLAS": "SYSTEMIC_GLUCOCORTICOID",
+        "CMSTDTC": "2026-01-20",
+        "record": [
+          "CM",
+          "042-S08-001",
+          1
+        ],
+        "protocol_version": 1
+      },
+      "evidence": [
+        {
+          "domain": "CM",
+          "usubjid": "042-S08-001",
+          "seq": 1,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "5"
+        }
+      ],
+      "flags": [],
+      "confidence": 0.95,
+      "protocol_version": 1,
+      "cut": 4,
+      "fingerprint": "PROHIBITED_MEDICATION|042-S08-001|S08|CM|1",
+      "first_detected_cut": 4,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "CM",
+          "042-S08-001",
+          1
+        ],
+        [
+          "DOC",
+          null,
+          null
+        ]
+      ]
+    },
+    "PROHIBITED_MEDICATION|042-S09-005|S09|CM|1": {
+      "code": "PROHIBITED_MEDICATION",
+      "usubjid": "042-S09-005",
+      "site": "S09",
+      "summary": "Prednisolone (SYSTEMIC_GLUCOCORTICOID) is a prohibited SYSTEMIC_GLUCOCORTICOID",
+      "severity": "MEDIUM",
+      "rationale": "Prednisolone (SYSTEMIC_GLUCOCORTICOID) is a prohibited SYSTEMIC_GLUCOCORTICOID",
+      "details": {
+        "matched_class": "SYSTEMIC_GLUCOCORTICOID",
+        "CMTRT": "Prednisolone",
+        "CMCLAS": "SYSTEMIC_GLUCOCORTICOID",
+        "CMSTDTC": "2026-03-08",
+        "record": [
+          "CM",
+          "042-S09-005",
+          1
+        ],
+        "protocol_version": 1
+      },
+      "evidence": [
+        {
+          "domain": "CM",
+          "usubjid": "042-S09-005",
+          "seq": 1,
+          "document": null,
+          "section": null
+        },
+        {
+          "domain": "DOC",
+          "usubjid": null,
+          "seq": null,
+          "document": "protocol_v1",
+          "section": "5"
+        }
+      ],
+      "flags": [],
+      "confidence": 0.95,
+      "protocol_version": 1,
+      "cut": 4,
+      "fingerprint": "PROHIBITED_MEDICATION|042-S09-005|S09|CM|1",
+      "first_detected_cut": 4,
+      "last_seen_cut": 4,
+      "status": "CONFIRMED",
+      "evidence_keys": [
+        [
+          "CM",
+          "042-S09-005",
+          1
+        ],
+        [
+          "DOC",
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "quarantined_sites": [],
+  "untrusted_lab_keys": [
+    [
+      "LB",
+      "042-S07-017",
+      1
+    ],
+    [
+      "LB",
+      "042-S07-017",
+      7
+    ],
+    [
+      "LB",
+      "042-S07-014",
+      1
+    ],
+    [
+      "LB",
+      "042-S07-014",
+      7
+    ],
+    [
+      "LB",
+      "042-S07-018",
+      2
+    ],
+    [
+      "LB",
+      "042-S07-007",
+      1
+    ],
+    [
+      "LB",
+      "042-S07-012",
+      8
+    ],
+    [
+      "LB",
+      "042-S07-018",
+      8
+    ],
+    [
+      "LB",
+      "042-S07-007",
+      7
+    ],
+    [
+      "LB",
+      "042-S07-020",
+      1
+    ],
+    [
+      "LB",
+      "042-S07-020",
+      7
+    ],
+    [
+      "LB",
+      "042-S07-001",
+      2
+    ],
+    [
+      "LB",
+      "042-S07-016",
+      2
+    ],
+    [
+      "LB",
+      "042-S07-013",
+      1
+    ],
+    [
+      "LB",
+      "042-S07-013",
+      7
+    ],
+    [
+      "LB",
+      "042-S07-011",
+      1
+    ],
+    [
+      "LB",
+      "042-S07-012",
+      1
+    ],
+    [
+      "LB",
+      "042-S07-012",
+      7
+    ],
+    [
+      "LB",
+      "042-S07-009",
+      2
+    ],
+    [
+      "LB",
+      "042-S07-009",
+      8
+    ],
+    [
+      "LB",
+      "042-S07-004",
+      7
+    ],
+    [
+      "LB",
+      "042-S07-011",
+      7
+    ],
+    [
+      "LB",
+      "042-S07-012",
+      13
+    ],
+    [
+      "LB",
+      "042-S07-005",
+      2
+    ],
+    [
+      "LB",
+      "042-S07-005",
+      8
+    ],
+    [
+      "LB",
+      "042-S07-008",
+      2
+    ],
+    [
+      "LB",
+      "042-S07-008",
+      8
+    ],
+    [
+      "LB",
+      "042-S07-002",
+      2
+    ],
+    [
+      "LB",
+      "042-S07-008",
+      14
+    ],
+    [
+      "LB",
+      "042-S07-015",
+      2
+    ],
+    [
+      "LB",
+      "042-S07-006",
+      2
+    ],
+    [
+      "LB",
+      "042-S07-015",
+      8
+    ],
+    [
+      "LB",
+      "042-S07-002",
+      8
+    ],
+    [
+      "LB",
+      "042-S07-018",
+      1
+    ],
+    [
+      "LB",
+      "042-S07-018",
+      7
+    ],
+    [
+      "LB",
+      "042-S07-019",
+      2
+    ],
+    [
+      "LB",
+      "042-S07-001",
+      1
+    ],
+    [
+      "LB",
+      "042-S07-016",
+      1
+    ],
+    [
+      "LB",
+      "042-S07-019",
+      8
+    ],
+    [
+      "LB",
+      "042-S07-009",
+      1
+    ],
+    [
+      "LB",
+      "042-S07-019",
+      14
+    ],
+    [
+      "LB",
+      "042-S07-010",
+      8
+    ],
+    [
+      "LB",
+      "042-S07-005",
+      1
+    ],
+    [
+      "LB",
+      "042-S07-009",
+      7
+    ],
+    [
+      "LB",
+      "042-S07-008",
+      1
+    ],
+    [
+      "LB",
+      "042-S07-008",
+      7
+    ],
+    [
+      "LB",
+      "042-S07-005",
+      7
+    ],
+    [
+      "LB",
+      "042-S07-015",
+      1
+    ],
+    [
+      "LB",
+      "042-S07-003",
+      2
+    ],
+    [
+      "LB",
+      "042-S07-017",
+      2
+    ],
+    [
+      "LB",
+      "042-S07-008",
+      13
+    ],
+    [
+      "LB",
+      "042-S07-002",
+      7
+    ],
+    [
+      "LB",
+      "042-S07-002",
+      1
+    ],
+    [
+      "LB",
+      "042-S07-006",
+      1
+    ],
+    [
+      "LB",
+      "042-S07-015",
+      7
+    ],
+    [
+      "LB",
+      "042-S07-014",
+      2
+    ],
+    [
+      "LB",
+      "042-S07-014",
+      8
+    ],
+    [
+      "LB",
+      "042-S07-017",
+      8
+    ],
+    [
+      "LB",
+      "042-S07-007",
+      2
+    ],
+    [
+      "LB",
+      "042-S07-007",
+      8
+    ],
+    [
+      "LB",
+      "042-S07-020",
+      2
+    ],
+    [
+      "LB",
+      "042-S07-019",
+      1
+    ],
+    [
+      "LB",
+      "042-S07-019",
+      7
+    ],
+    [
+      "LB",
+      "042-S07-013",
+      2
+    ],
+    [
+      "LB",
+      "042-S07-010",
+      1
+    ],
+    [
+      "LB",
+      "042-S07-010",
+      7
+    ],
+    [
+      "LB",
+      "042-S07-012",
+      2
+    ],
+    [
+      "LB",
+      "042-S07-020",
+      8
+    ],
+    [
+      "LB",
+      "042-S07-019",
+      13
+    ],
+    [
+      "LB",
+      "042-S07-004",
+      2
+    ],
+    [
+      "LB",
+      "042-S07-004",
+      8
+    ],
+    [
+      "LB",
+      "042-S07-011",
+      2
+    ],
+    [
+      "LB",
+      "042-S07-011",
+      8
+    ],
+    [
+      "LB",
+      "042-S07-012",
+      14
+    ],
+    [
+      "LB",
+      "042-S07-013",
+      8
+    ],
+    [
+      "LB",
+      "042-S07-003",
+      1
+    ]
+  ],
+  "doc_hash_registry": {
+    "lab-manual.md": "5b14e2af1b3f7196cd4378b95b4e1c7893a39afe3964a125ac210c66382f8ad4",
+    "lab-manual_v3.md": "72794eb6ef3738d86b32c2d7e0e8d78c6eed70bff08bf34f6ccfbfc777044ea4",
+    "protocol_v1.md": "af595b0a0fdfeac8673bf84e3ae655770a382c93ba3a9ed05d2594e369010db4",
+    "protocol_v2.md": "f9e405f4f71ab77b11038cfd6cc2d9b49a1ab4688d8a1b3d5ccdff1d96c1e8dc",
+    "protocol_v3.md": "3ebffa4ba6bb59ecd30270795719c5aefb0c815bd4fb403ffed130e429f92aa0",
+    "sap.md": "565ff3e61c6895eb5706f885aa9568e3d1dcfa20492277f51aa556d21053351b"
+  },
+  "active_protocol_version": 1,
+  "active_lab_manual": null,
+  "known_domains": [
+    "AE",
+    "CM",
+    "DM",
+    "DS",
+    "EX",
+    "LB",
+    "MH",
+    "VS"
+  ],
+  "known_sites": [
+    "S01",
+    "S02",
+    "S03",
+    "S04",
+    "S05",
+    "S06",
+    "S07",
+    "S08",
+    "S09",
+    "S10",
+    "S12"
+  ],
+  "cut_history": [
+    {
+      "cut": 1,
+      "protocol_version": 1,
+      "new_records": 0,
+      "corrections": 0,
+      "findings_count": 38,
+      "serious_findings_count": 0,
+      "escalations_count": 1,
+      "queries_count": 31,
+      "budget_ms_used": 1191.3440999924205,
+      "degradation_tier": "FULL",
+      "quarantined_sites": [],
+      "untrusted_labs": 76
+    },
+    {
+      "cut": 2,
+      "protocol_version": 1,
+      "new_records": 2773,
+      "corrections": 0,
+      "findings_count": 50,
+      "serious_findings_count": 2,
+      "escalations_count": 6,
+      "queries_count": 3,
+      "budget_ms_used": 933.686200005468,
+      "degradation_tier": "FULL",
+      "quarantined_sites": [],
+      "untrusted_labs": 76
+    },
+    {
+      "cut": 3,
+      "protocol_version": 1,
+      "new_records": 1477,
+      "corrections": 0,
+      "findings_count": 55,
+      "serious_findings_count": 2,
+      "escalations_count": 4,
+      "queries_count": 0,
+      "budget_ms_used": 1089.0788000251632,
+      "degradation_tier": "FULL",
+      "quarantined_sites": [],
+      "untrusted_labs": 76
+    },
+    {
+      "cut": 4,
+      "protocol_version": 1,
+      "new_records": 2027,
+      "corrections": 0,
+      "findings_count": 53,
+      "serious_findings_count": 3,
+      "escalations_count": 1,
+      "queries_count": 0,
+      "budget_ms_used": 1377.188499987824,
+      "degradation_tier": "FULL",
+      "quarantined_sites": [],
+      "untrusted_labs": 76
+    }
+  ]
+}

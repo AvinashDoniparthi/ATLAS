@@ -5,7 +5,7 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-PROD_DIRS = [ROOT / "backend", ROOT / "stage1"]
+PROD_DIRS = [ROOT / "backend", ROOT / "stage1", ROOT / "stage2", ROOT / "stage3"]
 
 SUBJECT_ID = re.compile(r"042-S\d{2}-\d{3}")
 SITE_TOKEN = re.compile(r"""(['"])S(0[1-9]|1[0-2])\1""")          # a bare 'S07' string literal

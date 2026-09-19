@@ -99,6 +99,49 @@ class Indexes:
                     self.unparseable_dates += 1
                     r.issues.append(f"unparseable_date:{dcol}")
 
+    def append_records(self, domain: str, records: list[Record], headers: list[str]) -> None:
+        if domain not in self.domains:
+            self.domains.append(domain)
+        if domain not in self.date_cols:
+            self.date_cols[domain] = date_column(headers, domain)
+        if domain not in self.test_cols:
+            self.test_cols[domain] = testcd_column(headers, domain)
+        dcol = self.date_cols[domain]
+        tcol = self.test_cols[domain]
+        has_visit = "VISIT" in headers
+        for r in records:
+            key = r.key.as_tuple()
+            if key in self.by_ref and r.seq is not None:
+                self.by_ref[key].issues.append("duplicate_key")
+                r.issues.append("duplicate_key_dropped_from_by_ref")
+            else:
+                self.by_ref[key] = r
+            self.by_subject[r.usubjid][domain].append(r)
+            self.by_domain[domain].append(r)
+            site = r.site
+            if site:
+                self.by_site[site].add(r.usubjid)
+                if domain == "DM" or r.usubjid not in self.subject_site:
+                    self.subject_site[r.usubjid] = site
+            if has_visit:
+                v = (r.get("VISIT") or "").upper().replace(" ", "")
+                if v:
+                    self.by_subject_visit[(r.usubjid, v)][domain].append(r)
+                    self.visits_seen.add(v)
+            if tcol:
+                t = (r.get(tcol) or "").upper()
+                if t:
+                    self.by_subject_test[(r.usubjid, domain, t)].append(r)
+                    self.by_test[(domain, t)].append(r)
+            if dcol:
+                pdate = parse_date(r.get(dcol))
+                self.dates[key] = pdate
+                if pdate.ok and pdate.date is not None:
+                    self.by_subject_date[(r.usubjid, domain)].append((pdate.date, r))
+                elif r.get(dcol):
+                    self.unparseable_dates += 1
+                    r.issues.append(f"unparseable_date:{dcol}")
+
     def finalize(self) -> None:
         for lst in self.by_subject_date.values():
             lst.sort(key=lambda t: (t[0], t[1].seq if t[1].seq is not None else 0))
