@@ -221,6 +221,221 @@ async def graph_related(
         raise HTTPException(status_code=500, detail=str(e))
 
 
+@app.get("/api/graph/visual")
+async def graph_visual() -> dict:
+    _ensure_built()
+    try:
+        core = _graph.core
+
+        # 1. Site nodes and distribution
+        site_nodes = []
+        site_distribution = []
+        for site_id in sorted(core.idx.by_site.keys()):
+            subjs = core.idx.by_site[site_id]
+            ae_count = 0
+            serious_ae_count = 0
+            for u in subjs:
+                for r in core.idx.records(u, "AE"):
+                    ae_count += 1
+                    if str(r.get("AESER", "")).upper() in ("Y", "YES"):
+                        serious_ae_count += 1
+            site_distribution.append({
+                "site": site_id,
+                "subjects": len(subjs),
+                "ae_count": ae_count,
+                "serious_ae_count": serious_ae_count,
+            })
+            site_nodes.append({
+                "id": f"SITE:{site_id}",
+                "label": f"Site {site_id}",
+                "kind": "SITE",
+                "site_id": site_id,
+                "subject_count": len(subjs),
+                "ae_count": ae_count,
+                "serious_ae_count": serious_ae_count,
+            })
+
+        # 2. Domain breakdown and stats
+        domain_distribution = []
+        domain_nodes = []
+        for dom, recs in sorted(core.view.domains.items(), key=lambda x: -len(x[1])):
+            cnt = len(recs)
+            subj_count = len(set(r.usubjid for r in recs if r.usubjid))
+            domain_distribution.append({
+                "domain": dom,
+                "records": cnt,
+                "subjects": subj_count,
+            })
+            domain_nodes.append({
+                "id": f"DOMAIN:{dom}",
+                "label": f"{dom} ({cnt})",
+                "kind": "DOMAIN",
+                "domain": dom,
+                "record_count": cnt,
+                "subject_count": subj_count,
+            })
+
+        # 3. AE severity distribution
+        ae_severity_counts = {"MILD": 0, "MODERATE": 0, "SEVERE": 0, "SERIOUS": 0, "OTHER": 0}
+        for r in core.idx.by_domain.get("AE", []):
+            sev = (r.get("AESEV") or "OTHER").upper()
+            ser = (r.get("AESER") or "N").upper()
+            if ser in ("Y", "YES"):
+                ae_severity_counts["SERIOUS"] += 1
+            if sev in ae_severity_counts:
+                ae_severity_counts[sev] += 1
+            else:
+                ae_severity_counts["OTHER"] += 1
+
+        # 4. Visit distribution
+        visit_counts: dict[str, int] = {}
+        for (u, v), doms in core.idx.by_subject_visit.items():
+            clean_v = v.strip().upper() or "UNSCHEDULED"
+            rec_cnt = sum(len(lst) for lst in doms.values())
+            visit_counts[clean_v] = visit_counts.get(clean_v, 0) + rec_cnt
+        sorted_visits = sorted(visit_counts.items(), key=lambda x: -x[1])[:10]
+        visit_distribution = [{"visit": v, "records": c} for v, c in sorted_visits]
+
+        # 5. Core topology nodes and edges for illustrative rendering
+        nodes = []
+        edges = []
+
+        study_id = f"STUDY:{core.data_dir.name}"
+        nodes.append({
+            "id": study_id,
+            "label": f"Study {core.data_dir.name}",
+            "kind": "STUDY",
+            "details": {
+                "cut": core.cut(),
+                "protocol_version": core.protocol_version(),
+                "total_subjects": len(core.idx.subjects),
+                "total_sites": len(core.idx.by_site),
+                "total_records": core.view.record_count,
+            }
+        })
+
+        # Protocol node
+        pv = core.protocol_version()
+        if pv is not None:
+            proto_id = f"PROTOCOL:{pv}"
+            nodes.append({
+                "id": proto_id,
+                "label": f"Protocol v{pv}",
+                "kind": "PROTOCOL",
+                "version": pv,
+            })
+            edges.append({
+                "source": study_id,
+                "target": proto_id,
+                "type": "GOVERNED_BY",
+                "label": "Governed by",
+            })
+
+        # Add Site nodes and link to Study
+        for sn in site_nodes:
+            nodes.append(sn)
+            edges.append({
+                "source": study_id,
+                "target": sn["id"],
+                "type": "HAS_SITE",
+                "label": "Has Site",
+            })
+
+        # Add Domain nodes and link to Study
+        for dn in domain_nodes:
+            nodes.append(dn)
+            edges.append({
+                "source": study_id,
+                "target": dn["id"],
+                "type": "CONTAINS_DOMAIN",
+                "label": "Contains Domain",
+            })
+
+        # Representative key subjects across all sites
+        all_subjects = sorted(core.idx.subjects)
+        selected_subjects = set()
+
+        # Include duplicate enrolled subjects
+        for u1, u2 in core.duplicate_pairs:
+            selected_subjects.add(u1)
+            selected_subjects.add(u2)
+
+        # Include subjects with serious AEs
+        for r in core.idx.by_domain.get("AE", []):
+            if str(r.get("AESER", "")).upper() in ("Y", "YES") and r.usubjid:
+                selected_subjects.add(r.usubjid)
+                if len(selected_subjects) >= 25:
+                    break
+
+        # Ensure all 12 sites have subjects represented
+        for site_id, subjs in sorted(core.idx.by_site.items()):
+            site_reps = [u for u in subjs if u in selected_subjects]
+            if len(site_reps) < 2:
+                for u in subjs:
+                    selected_subjects.add(u)
+                    if len([x for x in subjs if x in selected_subjects]) >= 2:
+                        break
+
+        for u in sorted(selected_subjects):
+            site_id = core.site_of(u) or ""
+            subj_records = core.idx.by_subject.get(u, {})
+            dom_counts = {d: len(lst) for d, lst in subj_records.items()}
+            ae_list = [r.get("AETERM") for r in subj_records.get("AE", []) if r.get("AETERM")]
+            has_sae = any(str(r.get("AESER", "")).upper() in ("Y", "YES") for r in subj_records.get("AE", []))
+            is_dup = core.is_duplicate_enrolment(u)
+
+            s_node_id = f"SUBJECT:{u}"
+            nodes.append({
+                "id": s_node_id,
+                "label": u,
+                "kind": "SUBJECT",
+                "usubjid": u,
+                "site": site_id,
+                "has_sae": has_sae,
+                "is_duplicate": is_dup,
+                "record_count": sum(dom_counts.values()),
+                "domain_counts": dom_counts,
+                "ae_terms": ae_list[:3],
+            })
+
+            if site_id:
+                edges.append({
+                    "source": f"SITE:{site_id}",
+                    "target": s_node_id,
+                    "type": "ENROLLED",
+                    "label": "Enrolled",
+                })
+
+        # Link duplicate subjects
+        for u1, u2 in core.duplicate_pairs:
+            if u1 in selected_subjects and u2 in selected_subjects:
+                edges.append({
+                    "source": f"SUBJECT:{u1}",
+                    "target": f"SUBJECT:{u2}",
+                    "type": "POSSIBLE_DUPLICATE_OF",
+                    "label": "Possible Duplicate",
+                })
+
+        return {
+            "nodes": nodes,
+            "edges": edges,
+            "total_nodes_in_graph": len(core.graph.nodes),
+            "total_edges_in_graph": core.graph.edge_count,
+            "total_subjects": len(core.idx.subjects),
+            "total_sites": len(core.idx.by_site),
+            "total_records": core.view.record_count,
+            "data_insights": {
+                "site_distribution": site_distribution,
+                "domain_distribution": domain_distribution,
+                "ae_severity": ae_severity_counts,
+                "visit_distribution": visit_distribution,
+            }
+        }
+    except Exception as e:  # noqa: BLE001
+        log.exception("graph_visual() failed")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 @app.get("/api/rebuild")
 async def rebuild() -> dict:
     global _build_stats

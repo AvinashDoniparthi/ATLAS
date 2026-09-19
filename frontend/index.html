@@ -809,6 +809,368 @@
       font-weight: 700;
     }
 
+    /* ── Graph Interactive Canvas & Visuals ───────────────────────────────────── */
+    .sg-visual-card {
+      background: #FFFFFF;
+      border: 1.5px solid var(--border-cream);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+      margin-bottom: 32px;
+      position: relative;
+    }
+
+    .sg-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 18px;
+      background: var(--cream);
+      border-bottom: 1.5px solid var(--border-cream);
+    }
+
+    .sg-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .sg-filter-btn {
+      padding: 5px 12px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      border-radius: 100px;
+      border: 1px solid var(--border-cream);
+      background: #FFFFFF;
+      color: var(--black);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .sg-filter-btn:hover {
+      background: var(--soft-pink);
+      border-color: var(--coral);
+    }
+
+    .sg-filter-btn.active {
+      background: var(--coral);
+      color: #FFFBF1;
+      border-color: var(--coral);
+    }
+
+    .sg-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sg-btn-tool {
+      padding: 5px 10px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      border-radius: var(--radius-sm);
+      border: 1.5px solid var(--border-cream);
+      background: #FFFFFF;
+      color: var(--black);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .sg-btn-tool:hover {
+      background: var(--cream);
+      border-color: var(--coral);
+    }
+
+    .sg-search-input {
+      padding: 5px 10px;
+      font-size: 0.78rem;
+      border-radius: var(--radius-sm);
+      border: 1.5px solid var(--border-cream);
+      background: #FFFFFF;
+      color: var(--black);
+      outline: none;
+      width: 170px;
+      transition: all 0.15s ease;
+    }
+
+    .sg-search-input:focus {
+      border-color: var(--coral);
+      box-shadow: 0 0 0 2px rgba(227, 106, 106, 0.2);
+    }
+
+    .sg-canvas-container {
+      position: relative;
+      width: 100%;
+      height: 520px;
+      background: #FFFDF9;
+      overflow: hidden;
+      cursor: grab;
+      user-select: none;
+    }
+
+    .sg-canvas-container:active {
+      cursor: grabbing;
+    }
+
+    .sg-svg-graph {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .sg-legend-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      padding: 10px 18px;
+      background: #FFFFFF;
+      border-top: 1.5px solid var(--border);
+      font-size: 0.72rem;
+      color: var(--gray-2);
+      align-items: center;
+    }
+
+    .sg-legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 600;
+    }
+
+    .sg-legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .sg-node-inspector {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 320px;
+      max-height: calc(100% - 28px);
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(8px);
+      border: 1.5px solid var(--border-cream);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      padding: 16px 18px;
+      z-index: 20;
+      overflow-y: auto;
+      display: none;
+    }
+
+    .sg-node-inspector.open {
+      display: block;
+    }
+
+    .sg-inspector-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1.5px solid var(--border);
+    }
+
+    .sg-inspector-badge {
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: var(--cream);
+      color: var(--coral);
+      border: 1px solid var(--border-cream);
+    }
+
+    .sg-inspector-close {
+      background: none;
+      border: none;
+      font-size: 1.1rem;
+      line-height: 1;
+      color: var(--gray-3);
+      cursor: pointer;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .sg-inspector-close:hover {
+      color: var(--black);
+      background: var(--cream);
+    }
+
+    .sg-inspector-title {
+      font-size: 1.02rem;
+      font-weight: 800;
+      color: var(--black);
+      margin-bottom: 8px;
+      word-break: break-all;
+    }
+
+    .sg-inspector-prop {
+      margin-bottom: 10px;
+      font-size: 0.8rem;
+      line-height: 1.45;
+    }
+
+    .sg-inspector-key {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--gray-2);
+      margin-bottom: 2px;
+    }
+
+    .sg-inspector-val {
+      color: var(--black);
+      font-weight: 600;
+    }
+
+    .sg-inspector-val.mono {
+      font-family: var(--mono);
+      font-size: 0.76rem;
+    }
+
+    .sg-inspector-actions {
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    /* ── Clinical Trial Data Insights Visualizations ──────────────────────────── */
+    .sg-insights-card {
+      background: #FFFFFF;
+      border: 1.5px solid var(--border-cream);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px 26px;
+      margin-bottom: 32px;
+    }
+
+    .sg-tabs-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+      border-bottom: 1.5px solid var(--border);
+      padding-bottom: 12px;
+    }
+
+    .sg-tab-btn {
+      padding: 7px 14px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      border-radius: 6px;
+      border: 1.5px solid transparent;
+      background: var(--bg);
+      color: var(--gray-2);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .sg-tab-btn:hover {
+      color: var(--black);
+      background: var(--cream);
+      border-color: var(--border-cream);
+    }
+
+    .sg-tab-btn.active {
+      color: var(--black);
+      background: var(--cream);
+      border-color: var(--coral);
+      font-weight: 800;
+      box-shadow: var(--shadow);
+    }
+
+    .sg-chart-container {
+      min-height: 220px;
+    }
+
+    .sg-chart-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .sg-bar-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.82rem;
+      padding: 4px 6px;
+      cursor: pointer;
+      transition: background 0.12s;
+      border-radius: 4px;
+    }
+
+    .sg-bar-row:hover {
+      background: var(--cream);
+    }
+
+    .sg-bar-label {
+      width: 130px;
+      font-weight: 700;
+      color: var(--black);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .sg-bar-track {
+      flex: 1;
+      height: 22px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .sg-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #E36A6A, #FFB2B2);
+      border-radius: 3px;
+      transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 8px;
+    }
+
+    .sg-bar-value {
+      width: 65px;
+      text-align: right;
+      font-family: var(--mono);
+      font-weight: 700;
+      color: var(--black);
+      font-size: 0.78rem;
+    }
+
+    .sg-chart-meta {
+      margin-top: 16px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--border);
+      font-size: 0.76rem;
+      color: var(--gray-2);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
     /* ── Evidence section ─────────────────────────────────────────────────────── */
     .evidence-chain {
       border: 1.5px solid var(--border-cream);
@@ -2317,7 +2679,7 @@
           Back
         </button>
         <div class="page-title">Study Graph</div>
-        <div class="page-subtitle">Graph topology and build statistics from the last build.</div>
+        <div class="page-subtitle">Interactive clinical study knowledge graph, topology, and multi-domain data insights.</div>
 
         <!-- Stats grid -->
         <div class="stats-grid" id="stats-grid">
@@ -2355,16 +2717,104 @@
           </div>
         </div>
 
-        <!-- Domain breakdown -->
-        <div class="section-label">Domain Record Counts</div>
-        <div id="domain-table-wrap"></div>
+        <!-- 1. ILLUSTRATIVE STUDY GRAPH SECTION -->
+        <div style="margin-top:28px;margin-bottom:12px;">
+          <div class="section-label" style="margin-bottom:4px;">Study Knowledge Graph & Relationships</div>
+          <div style="font-size:0.84rem;color:var(--gray-2);margin-bottom:14px;">
+            Interactive visual map of clinical trial entities and real graph relationships. Click any node to inspect attributes or traverse to Patient 360.
+          </div>
+        </div>
+
+        <div class="sg-visual-card" id="sg-visual-card">
+          <!-- Toolbar -->
+          <div class="sg-toolbar">
+            <div class="sg-filters">
+              <span style="font-size:0.7rem;font-weight:800;color:var(--gray-2);text-transform:uppercase;letter-spacing:0.06em;margin-right:4px;">Filter:</span>
+              <button class="sg-filter-btn active" onclick="filterGraphVisual('all', this)">All Entities</button>
+              <button class="sg-filter-btn" onclick="filterGraphVisual('SITE', this)">Sites</button>
+              <button class="sg-filter-btn" onclick="filterGraphVisual('SUBJECT', this)">Subjects</button>
+              <button class="sg-filter-btn" onclick="filterGraphVisual('DOMAIN', this)">Domains</button>
+              <button class="sg-filter-btn" onclick="filterGraphVisual('SAFETY', this)">Safety / SAE</button>
+            </div>
+            <div class="sg-actions">
+              <input type="text" id="sg-search-input" class="sg-search-input" placeholder="Search subject or site…" oninput="searchGraphVisual(this.value)">
+              <button class="sg-btn-tool" onclick="zoomGraphVisual(1.2)" title="Zoom In">+</button>
+              <button class="sg-btn-tool" onclick="zoomGraphVisual(0.8)" title="Zoom Out">−</button>
+              <button class="sg-btn-tool" onclick="resetGraphVisual()" title="Reset View">⟲ Reset</button>
+            </div>
+          </div>
+
+          <!-- Canvas container -->
+          <div class="sg-canvas-container" id="sg-canvas-container">
+            <svg id="sg-svg-canvas" class="sg-svg-graph"></svg>
+
+            <!-- Node Inspector Popover -->
+            <div id="sg-node-inspector" class="sg-node-inspector">
+              <div class="sg-inspector-header">
+                <span class="sg-inspector-badge" id="sg-insp-badge">ENTITY</span>
+                <button class="sg-inspector-close" onclick="closeNodeInspector()" aria-label="Close inspector">×</button>
+              </div>
+              <div class="sg-inspector-title" id="sg-insp-title">—</div>
+              <div id="sg-insp-body"></div>
+              <div class="sg-inspector-actions" id="sg-insp-actions"></div>
+            </div>
+          </div>
+
+          <!-- Legend -->
+          <div class="sg-legend-bar">
+            <div class="sg-legend-item"><span class="sg-legend-dot" style="background:#E36A6A;"></span> Study / Protocol</div>
+            <div class="sg-legend-item"><span class="sg-legend-dot" style="background:#5A554C;"></span> Site (S01–S12)</div>
+            <div class="sg-legend-item"><span class="sg-legend-dot" style="background:#FFB2B2;border:1px solid #E36A6A;"></span> Subject / Patient</div>
+            <div class="sg-legend-item"><span class="sg-legend-dot" style="background:#D45959;"></span> Subject with SAE / Duplicate</div>
+            <div class="sg-legend-item"><span class="sg-legend-dot" style="background:#E2CF9F;border:1px solid #5A554C;"></span> Clinical Domain</div>
+          </div>
+        </div>
+
+        <!-- 2. CLINICAL TRIAL DATA INSIGHTS SECTION -->
+        <div style="margin-top:36px;margin-bottom:12px;">
+          <div class="section-label" style="margin-bottom:4px;">Clinical Trial Data Insights</div>
+          <div style="font-size:0.84rem;color:var(--gray-2);margin-bottom:14px;">
+            Quantitative trial metrics and distributions derived directly from the backend dataset.
+          </div>
+        </div>
+
+        <div class="sg-insights-card">
+          <div class="sg-tabs-bar">
+            <button class="sg-tab-btn active" id="sg-tab-site" onclick="showGraphInsightTab('site')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M3 7v14M21 7v14M6 7V3h12v4M9 11h2M13 11h2M9 15h2M13 15h2"/></svg>
+              Site Enrollment (S01–S12)
+            </button>
+            <button class="sg-tab-btn" id="sg-tab-domain" onclick="showGraphInsightTab('domain')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15zM8 6h8M8 10h8"/></svg>
+              Domain Record Volume
+            </button>
+            <button class="sg-tab-btn" id="sg-tab-ae" onclick="showGraphInsightTab('ae')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+              Adverse Event Severity & Safety
+            </button>
+            <button class="sg-tab-btn" id="sg-tab-visit" onclick="showGraphInsightTab('visit')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Visit Schedule Attendance
+            </button>
+          </div>
+
+          <div class="sg-chart-container" id="sg-chart-container">
+            <div id="sg-chart-view">Loading clinical insights…</div>
+            <div class="sg-chart-meta" id="sg-chart-meta"></div>
+          </div>
+        </div>
 
         <hr class="divider" style="margin:40px 0 32px">
 
-        <!-- Graph diagram -->
-        <div class="section-label" style="margin-bottom:16px">Graph Topology</div>
-        <div class="graph-diagram" id="graph-diagram">
-          Loading…
+        <!-- 3. PRESERVED DOMAIN & TOPOLOGY TABLES -->
+        <div class="section-label">Domain Record Counts</div>
+        <div id="domain-table-wrap"></div>
+
+        <div class="mt-40">
+          <div class="section-label" style="margin-bottom:16px">Graph Topology (Text Structure)</div>
+          <div class="graph-diagram" id="graph-diagram">
+            Loading…
+          </div>
         </div>
 
         <!-- Node & edge types -->
@@ -3753,7 +4203,17 @@
       document.getElementById('a-meta').textContent = ms + steps;
     }
 
-    /* ── Graph stats ──────────────────────────────────────────────────────────── */
+    /* ── Graph stats & Visual Enhancement ─────────────────────────────────────── */
+    let _graphVisualData = null;
+    let _graphZoom = 1;
+    let _graphPan = { x: 0, y: 0 };
+    let _graphIsDragging = false;
+    let _graphDragStart = { x: 0, y: 0 };
+    let _selectedGraphNode = null;
+    let _currentGraphFilter = 'all';
+    let _currentInsightTab = 'site';
+    let _graphSearchTerm = '';
+
     async function loadGraphStats() {
       try {
         const stats = _stats || await apiFetch('/api/stats');
@@ -3777,7 +4237,7 @@
             `<table class="data-table"><thead><tr><th>Domain</th><th>Records</th></tr></thead><tbody>${rows}</tbody></table>`;
         }
 
-        // Graph diagram
+        // Graph diagram text
         const nt = stats.node_types || {};
         const et = stats.edge_types || {};
         let diag = '';
@@ -3805,9 +4265,548 @@
             `<table class="data-table"><thead><tr><th>Type</th><th>Count</th></tr></thead><tbody>${rows}</tbody></table>`;
         }
 
+        // Load visual interactive graph and clinical insights
+        loadGraphVisualData();
+
       } catch (e) {
         document.getElementById('graph-diagram').textContent = 'Could not load graph stats: ' + e.message;
       }
+    }
+
+    async function loadGraphVisualData() {
+      try {
+        const data = await apiFetch('/api/graph/visual');
+        _graphVisualData = data;
+        initGraphCanvasEvents();
+        renderGraphVisual();
+        showGraphInsightTab(_currentInsightTab);
+      } catch (err) {
+        console.error('Failed to load visual graph data:', err);
+        const view = document.getElementById('sg-chart-view');
+        if (view) view.innerHTML = `<div class="error-msg">Could not load visual graph: ${esc(err.message)}</div>`;
+      }
+    }
+
+    /* ── SVG Node-Link Graph Renderer ─────────────────────────────────────────── */
+    function initGraphCanvasEvents() {
+      const container = document.getElementById('sg-canvas-container');
+      if (!container || container._hasGraphEvents) return;
+      container._hasGraphEvents = true;
+
+      container.addEventListener('mousedown', (e) => {
+        if (e.target.closest('.sg-node-inspector') || e.target.closest('button')) return;
+        _graphIsDragging = true;
+        _graphDragStart = { x: e.clientX - _graphPan.x, y: e.clientY - _graphPan.y };
+      });
+
+      window.addEventListener('mousemove', (e) => {
+        if (!_graphIsDragging) return;
+        _graphPan.x = e.clientX - _graphDragStart.x;
+        _graphPan.y = e.clientY - _graphDragStart.y;
+        updateGraphTransform();
+      });
+
+      window.addEventListener('mouseup', () => {
+        _graphIsDragging = false;
+      });
+
+      container.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        const zoomFactor = e.deltaY < 0 ? 1.1 : 0.9;
+        zoomGraphVisual(zoomFactor);
+      }, { passive: false });
+    }
+
+    function zoomGraphVisual(factor) {
+      _graphZoom = Math.max(0.35, Math.min(3.0, _graphZoom * factor));
+      updateGraphTransform();
+    }
+
+    function resetGraphVisual() {
+      _graphZoom = 1;
+      _graphPan = { x: 0, y: 0 };
+      _selectedGraphNode = null;
+      _graphSearchTerm = '';
+      const input = document.getElementById('sg-search-input');
+      if (input) input.value = '';
+      closeNodeInspector();
+      updateGraphTransform();
+      renderGraphVisual();
+    }
+
+    function updateGraphTransform() {
+      const g = document.getElementById('sg-main-group');
+      if (g) {
+        g.setAttribute('transform', `translate(${_graphPan.x}, ${_graphPan.y}) scale(${_graphZoom})`);
+      }
+    }
+
+    function filterGraphVisual(kind, btn) {
+      _currentGraphFilter = kind;
+      document.querySelectorAll('.sg-filter-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      renderGraphVisual();
+    }
+
+    function searchGraphVisual(query) {
+      _graphSearchTerm = (query || '').trim().toLowerCase();
+      renderGraphVisual();
+    }
+
+    function renderGraphVisual() {
+      if (!_graphVisualData || !_graphVisualData.nodes) return;
+      const svg = document.getElementById('sg-svg-canvas');
+      if (!svg) return;
+
+      const width = svg.clientWidth || 950;
+      const height = svg.clientHeight || 520;
+      const cx = width / 2;
+      const cy = height / 2;
+
+      // Filter nodes based on active filter and search term
+      const allNodes = _graphVisualData.nodes;
+      const allEdges = _graphVisualData.edges;
+
+      const filteredNodes = allNodes.filter(n => {
+        if (_graphSearchTerm) {
+          const matchLabel = (n.label || '').toLowerCase().includes(_graphSearchTerm);
+          const matchId = (n.id || '').toLowerCase().includes(_graphSearchTerm);
+          const matchSite = (n.site || '').toLowerCase().includes(_graphSearchTerm);
+          if (!matchLabel && !matchId && !matchSite) return false;
+        }
+
+        if (_currentGraphFilter === 'all') return true;
+        if (_currentGraphFilter === 'SITE') return n.kind === 'SITE' || n.kind === 'STUDY';
+        if (_currentGraphFilter === 'SUBJECT') return n.kind === 'SUBJECT' || n.kind === 'SITE';
+        if (_currentGraphFilter === 'DOMAIN') return n.kind === 'DOMAIN' || n.kind === 'STUDY';
+        if (_currentGraphFilter === 'SAFETY') return n.has_sae || n.is_duplicate || n.kind === 'STUDY' || n.kind === 'SITE';
+        return true;
+      });
+
+      const nodeMap = new Map();
+      filteredNodes.forEach(n => nodeMap.set(n.id, n));
+
+      const filteredEdges = allEdges.filter(e => nodeMap.has(e.source) && nodeMap.has(e.target));
+
+      // Compute deterministic, beautiful radial/cluster layout
+      // 1. Study at center
+      const studyNode = filteredNodes.find(n => n.kind === 'STUDY');
+      if (studyNode) {
+        studyNode.x = cx;
+        studyNode.y = cy;
+      }
+
+      // 2. Protocol at top center
+      const protoNode = filteredNodes.find(n => n.kind === 'PROTOCOL');
+      if (protoNode) {
+        protoNode.x = cx;
+        protoNode.y = cy - 130;
+      }
+
+      // 3. Domains in inner ring
+      const domNodes = filteredNodes.filter(n => n.kind === 'DOMAIN');
+      const domRadius = 145;
+      domNodes.forEach((dn, i) => {
+        const angle = (i / Math.max(1, domNodes.length)) * Math.PI * 2 + Math.PI / 6;
+        dn.x = cx + Math.cos(angle) * (domRadius + 15);
+        dn.y = cy + Math.sin(angle) * (domRadius - 20);
+      });
+
+      // 4. Sites in middle ring
+      const siteNodes = filteredNodes.filter(n => n.kind === 'SITE');
+      const siteRadiusX = 290;
+      const siteRadiusY = 190;
+      const sitePosMap = new Map();
+      siteNodes.forEach((sn, i) => {
+        const angle = (i / Math.max(1, siteNodes.length)) * Math.PI * 2 - Math.PI / 2;
+        sn.x = cx + Math.cos(angle) * siteRadiusX;
+        sn.y = cy + Math.sin(angle) * siteRadiusY;
+        sitePosMap.set(sn.site_id || sn.id.replace('SITE:', ''), { x: sn.x, y: sn.y, angle });
+      });
+
+      // 5. Subjects clustered outward around their enrolled site
+      const subjNodes = filteredNodes.filter(n => n.kind === 'SUBJECT');
+      const siteSubjGroups = {};
+      subjNodes.forEach(sn => {
+        const sId = sn.site || 'S01';
+        if (!siteSubjGroups[sId]) siteSubjGroups[sId] = [];
+        siteSubjGroups[sId].push(sn);
+      });
+
+      Object.entries(siteSubjGroups).forEach(([siteId, subjs]) => {
+        const spos = sitePosMap.get(siteId) || { x: cx, y: cy, angle: 0 };
+        const baseAngle = spos.angle;
+        const count = subjs.length;
+        const spread = Math.min(Math.PI * 0.7, 0.35 * count);
+        subjs.forEach((sn, idx) => {
+          const offsetAngle = baseAngle + (count > 1 ? (idx / (count - 1) - 0.5) * spread : 0);
+          const dist = 65 + (idx % 2 === 0 ? 0 : 25);
+          sn.x = spos.x + Math.cos(offsetAngle) * dist;
+          sn.y = spos.y + Math.sin(offsetAngle) * dist;
+        });
+      });
+
+      // Render SVG content
+      let html = `<g id="sg-main-group" transform="translate(${_graphPan.x}, ${_graphPan.y}) scale(${_graphZoom})">`;
+
+      // Draw Edges
+      html += '<g class="sg-edges-group">';
+      filteredEdges.forEach(e => {
+        const s = nodeMap.get(e.source);
+        const t = nodeMap.get(e.target);
+        if (!s || !t) return;
+
+        const isConnectedToSelected = _selectedGraphNode && (_selectedGraphNode.id === e.source || _selectedGraphNode.id === e.target);
+        const isDuplicateEdge = e.type === 'POSSIBLE_DUPLICATE_OF';
+        
+        let strokeColor = 'rgba(140, 132, 116, 0.35)';
+        let strokeWidth = 1.2;
+        let strokeDash = isDuplicateEdge ? '4,4' : 'none';
+
+        if (isDuplicateEdge) {
+          strokeColor = '#E36A6A';
+          strokeWidth = 2.2;
+        } else if (isConnectedToSelected) {
+          strokeColor = '#E36A6A';
+          strokeWidth = 2.5;
+        }
+
+        // Curved line for aesthetic flow
+        const midX = (s.x + t.x) / 2 + (s.y - t.y) * 0.08;
+        const midY = (s.y + t.y) / 2 + (t.x - s.x) * 0.08;
+
+        html += `
+          <path d="M ${s.x} ${s.y} Q ${midX} ${midY} ${t.x} ${t.y}"
+                stroke="${strokeColor}"
+                stroke-width="${strokeWidth}"
+                stroke-dasharray="${strokeDash}"
+                fill="none"
+                opacity="${_selectedGraphNode && !isConnectedToSelected ? '0.2' : '0.85'}"
+          />
+        `;
+      });
+      html += '</g>';
+
+      // Draw Nodes
+      html += '<g class="sg-nodes-group">';
+      filteredNodes.forEach(n => {
+        const isSelected = _selectedGraphNode && _selectedGraphNode.id === n.id;
+        const isDimmed = _selectedGraphNode && !isSelected && !filteredEdges.some(e => 
+          (_selectedGraphNode.id === e.source && e.target === n.id) || 
+          (_selectedGraphNode.id === e.target && e.source === n.id)
+        );
+
+        const opacity = isDimmed ? 0.3 : 1.0;
+
+        if (n.kind === 'STUDY') {
+          html += `
+            <g transform="translate(${n.x}, ${n.y})" onclick="selectGraphNode('${esc(n.id)}')" style="cursor:pointer;opacity:${opacity}">
+              <circle r="34" fill="#E36A6A" stroke="#FFFFFF" stroke-width="3" filter="drop-shadow(0 2px 6px rgba(227,106,106,0.35))"/>
+              <text text-anchor="middle" y="-6" fill="#FFFBF1" font-size="11" font-weight="800">STUDY</text>
+              <text text-anchor="middle" y="10" fill="#FFFBF1" font-size="9" font-weight="700">042</text>
+            </g>
+          `;
+        } else if (n.kind === 'PROTOCOL') {
+          html += `
+            <g transform="translate(${n.x}, ${n.y})" onclick="selectGraphNode('${esc(n.id)}')" style="cursor:pointer;opacity:${opacity}">
+              <rect x="-42" y="-14" width="84" height="28" rx="14" fill="#5A554C" stroke="#FFFBF1" stroke-width="2"/>
+              <text text-anchor="middle" y="4" fill="#FFFBF1" font-size="10" font-weight="700">Protocol v${esc(n.version)}</text>
+            </g>
+          `;
+        } else if (n.kind === 'SITE') {
+          const isSiteSel = isSelected;
+          html += `
+            <g transform="translate(${n.x}, ${n.y})" onclick="selectGraphNode('${esc(n.id)}')" style="cursor:pointer;opacity:${opacity}">
+              <rect x="-36" y="-15" width="72" height="30" rx="6"
+                    fill="${isSiteSel ? '#E36A6A' : '#FFFFFF'}"
+                    stroke="${isSiteSel ? '#E36A6A' : '#5A554C'}"
+                    stroke-width="${isSiteSel ? '2.5' : '1.5'}"
+                    filter="drop-shadow(0 1px 3px rgba(0,0,0,0.08))"
+              />
+              <text text-anchor="middle" y="4" fill="${isSiteSel ? '#FFFBF1' : '#111111'}" font-size="11" font-weight="800">
+                Site ${esc(n.site_id || '')}
+              </text>
+            </g>
+          `;
+        } else if (n.kind === 'DOMAIN') {
+          html += `
+            <g transform="translate(${n.x}, ${n.y})" onclick="selectGraphNode('${esc(n.id)}')" style="cursor:pointer;opacity:${opacity}">
+              <circle r="16" fill="#FFF2D0" stroke="#8C8474" stroke-width="1.2"/>
+              <text text-anchor="middle" y="4" fill="#111111" font-size="9" font-weight="800">${esc(n.domain)}</text>
+            </g>
+          `;
+        } else if (n.kind === 'SUBJECT') {
+          const isSAE = n.has_sae;
+          const isDup = n.is_duplicate;
+          const bg = isSAE ? '#D45959' : (isDup ? '#FFB2B2' : (isSelected ? '#E36A6A' : '#FFFBF1'));
+          const textColor = isSAE ? '#FFFBF1' : (isSelected ? '#FFFBF1' : '#111111');
+          const stroke = isSAE ? '#FFFFFF' : (isDup ? '#E36A6A' : '#D8CEBE');
+
+          html += `
+            <g transform="translate(${n.x}, ${n.y})" onclick="selectGraphNode('${esc(n.id)}')" style="cursor:pointer;opacity:${opacity}">
+              <rect x="-38" y="-11" width="76" height="22" rx="4"
+                    fill="${bg}"
+                    stroke="${stroke}"
+                    stroke-width="${isSelected || isSAE || isDup ? '1.8' : '1'}"
+                    filter="drop-shadow(0 1px 2px rgba(0,0,0,0.06))"
+              />
+              <text text-anchor="middle" y="3.5" fill="${textColor}" font-size="8.5" font-weight="700" font-family="var(--mono)">
+                ${esc(n.label)}
+              </text>
+            </g>
+          `;
+        }
+      });
+      html += '</g>';
+      html += '</g>';
+
+      svg.innerHTML = html;
+    }
+
+    /* ── Node Selection & Inspector Popover ───────────────────────────────────── */
+    function selectGraphNode(nodeId) {
+      if (!_graphVisualData || !_graphVisualData.nodes) return;
+      const node = _graphVisualData.nodes.find(n => n.id === nodeId);
+      if (!node) return;
+
+      _selectedGraphNode = node;
+      renderGraphVisual();
+
+      const inspector = document.getElementById('sg-node-inspector');
+      const badge = document.getElementById('sg-insp-badge');
+      const title = document.getElementById('sg-insp-title');
+      const body = document.getElementById('sg-insp-body');
+      const actions = document.getElementById('sg-insp-actions');
+
+      if (!inspector) return;
+
+      badge.textContent = node.kind;
+      title.textContent = node.label || node.id;
+
+      let bodyHtml = '';
+      let actionsHtml = '';
+
+      if (node.kind === 'SUBJECT') {
+        const domList = Object.entries(node.domain_counts || {})
+          .map(([d, c]) => `<span style="display:inline-block;padding:2px 6px;margin:2px;background:var(--cream);border:1px solid var(--border-cream);border-radius:4px;font-size:0.72rem;"><strong>${d}</strong>: ${c}</span>`)
+          .join('');
+
+        bodyHtml = `
+          <div class="sg-inspector-prop">
+            <div class="sg-inspector-key">Enrolled Site</div>
+            <div class="sg-inspector-val">Site ${esc(node.site || '—')}</div>
+          </div>
+          <div class="sg-inspector-prop">
+            <div class="sg-inspector-key">Total Joined Records</div>
+            <div class="sg-inspector-val mono">${esc(fmt(node.record_count))} records</div>
+          </div>
+          <div class="sg-inspector-prop">
+            <div class="sg-inspector-key">Safety & Findings</div>
+            <div class="sg-inspector-val">
+              ${node.has_sae ? '<span style="color:var(--coral);font-weight:700;">⚠️ Serious Adverse Event Reported</span>' : 'No serious adverse events'}
+              ${node.is_duplicate ? '<br><span style="color:var(--coral);font-weight:700;">🔗 Multi-site Enrolment Match</span>' : ''}
+            </div>
+          </div>
+          <div class="sg-inspector-prop">
+            <div class="sg-inspector-key">Domain Distribution</div>
+            <div style="margin-top:4px;">${domList || '—'}</div>
+          </div>
+        `;
+
+        actionsHtml = `
+          <button class="btn-primary" style="width:100%;padding:8px 12px;font-size:0.8rem;" onclick="openP360('${esc(node.usubjid)}')">
+            Open Patient 360 →
+          </button>
+          <button class="btn-secondary" style="width:100%;padding:7px 12px;font-size:0.78rem;" onclick="openRelModal('subject', '${esc(node.usubjid)}')">
+            Traverse Relationships ↗
+          </button>
+        `;
+      } else if (node.kind === 'SITE') {
+        bodyHtml = `
+          <div class="sg-inspector-prop">
+            <div class="sg-inspector-key">Enrolled Patients</div>
+            <div class="sg-inspector-val mono">${esc(node.subject_count)} active subjects</div>
+          </div>
+          <div class="sg-inspector-prop">
+            <div class="sg-inspector-key">Adverse Events Logged</div>
+            <div class="sg-inspector-val mono">${esc(node.ae_count)} AEs (${esc(node.serious_ae_count || 0)} Serious)</div>
+          </div>
+          <div class="sg-inspector-prop">
+            <div class="sg-inspector-key">Status</div>
+            <div class="sg-inspector-val">Active Clinical Trial Site</div>
+          </div>
+        `;
+        actionsHtml = `
+          <button class="btn-secondary" style="width:100%;padding:7px 12px;font-size:0.78rem;" onclick="filterGraphVisual('SUBJECT'); searchGraphVisual('${esc(node.site_id)}')">
+            Filter Graph to Site ${esc(node.site_id)} Subjects
+          </button>
+        `;
+      } else if (node.kind === 'DOMAIN') {
+        bodyHtml = `
+          <div class="sg-inspector-prop">
+            <div class="sg-inspector-key">Domain Code</div>
+            <div class="sg-inspector-val mono">${esc(node.domain)}</div>
+          </div>
+          <div class="sg-inspector-prop">
+            <div class="sg-inspector-key">Total Records Available</div>
+            <div class="sg-inspector-val mono">${esc(fmt(node.record_count))}</div>
+          </div>
+          <div class="sg-inspector-prop">
+            <div class="sg-inspector-key">Subjects with Records</div>
+            <div class="sg-inspector-val mono">${esc(node.subject_count)} subjects</div>
+          </div>
+        `;
+      } else if (node.kind === 'STUDY') {
+        bodyHtml = `
+          <div class="sg-inspector-prop">
+            <div class="sg-inspector-key">Active Study Cut</div>
+            <div class="sg-inspector-val">Cut ${esc(node.details?.cut ?? 'Full')}</div>
+          </div>
+          <div class="sg-inspector-prop">
+            <div class="sg-inspector-key">Study Scope</div>
+            <div class="sg-inspector-val">${esc(node.details?.total_sites)} Sites · ${esc(node.details?.total_subjects)} Subjects · ${esc(fmt(node.details?.total_records))} Records</div>
+          </div>
+        `;
+      }
+
+      body.innerHTML = bodyHtml;
+      actions.innerHTML = actionsHtml;
+      inspector.classList.add('open');
+    }
+
+    function closeNodeInspector() {
+      const inspector = document.getElementById('sg-node-inspector');
+      if (inspector) inspector.classList.remove('open');
+      _selectedGraphNode = null;
+      renderGraphVisual();
+    }
+
+    /* ── Clinical Trial Data Insights Visualization ───────────────────────────── */
+    function showGraphInsightTab(tabId) {
+      _currentInsightTab = tabId;
+      ['site', 'domain', 'ae', 'visit'].forEach(t => {
+        const btn = document.getElementById(`sg-tab-${t}`);
+        if (btn) btn.classList.toggle('active', t === tabId);
+      });
+
+      if (!_graphVisualData || !_graphVisualData.data_insights) return;
+      const insights = _graphVisualData.data_insights;
+      const view = document.getElementById('sg-chart-view');
+      const meta = document.getElementById('sg-chart-meta');
+      if (!view) return;
+
+      if (tabId === 'site') {
+        const siteData = insights.site_distribution || [];
+        const maxSubj = Math.max(...siteData.map(s => s.subjects), 1);
+        const totalSubj = siteData.reduce((acc, s) => acc + s.subjects, 0);
+
+        const rows = siteData.map(s => {
+          const pct = ((s.subjects / maxSubj) * 100).toFixed(0);
+          return `
+            <div class="sg-bar-row" onclick="selectSiteFromChart('${esc(s.site)}')">
+              <div class="sg-bar-label">Site ${esc(s.site)}</div>
+              <div class="sg-bar-track" title="${esc(s.subjects)} subjects enrolled, ${esc(s.ae_count)} AEs">
+                <div class="sg-bar-fill" style="width:${pct}%;">
+                  ${s.serious_ae_count > 0 ? `<span style="font-size:0.68rem;font-weight:700;color:#111;background:#FFB2B2;padding:1px 4px;border-radius:2px;">${s.serious_ae_count} SAE</span>` : ''}
+                </div>
+              </div>
+              <div class="sg-bar-value">${esc(s.subjects)} pts</div>
+            </div>
+          `;
+        }).join('');
+
+        view.innerHTML = `<div class="sg-chart-grid">${rows}</div>`;
+        meta.innerHTML = `
+          <div><strong>Metric:</strong> Enrolled subject distribution across all 12 study sites.</div>
+          <div><strong>Total:</strong> ${fmt(totalSubj)} subjects</div>
+        `;
+
+      } else if (tabId === 'domain') {
+        const domData = insights.domain_distribution || [];
+        const maxRecs = Math.max(...domData.map(d => d.records), 1);
+        const totalRecs = domData.reduce((acc, d) => acc + d.records, 0);
+
+        const rows = domData.map(d => {
+          const pct = Math.max(3, ((d.records / maxRecs) * 100)).toFixed(0);
+          return `
+            <div class="sg-bar-row">
+              <div class="sg-bar-label">${esc(d.domain)} Domain</div>
+              <div class="sg-bar-track" title="${esc(fmt(d.records))} records across ${esc(d.subjects)} subjects">
+                <div class="sg-bar-fill secondary" style="width:${pct}%;"></div>
+              </div>
+              <div class="sg-bar-value">${esc(fmt(d.records))}</div>
+            </div>
+          `;
+        }).join('');
+
+        view.innerHTML = `<div class="sg-chart-grid">${rows}</div>`;
+        meta.innerHTML = `
+          <div><strong>Metric:</strong> Observation record density joined across clinical trial domains.</div>
+          <div><strong>Total:</strong> ${fmt(totalRecs)} records</div>
+        `;
+
+      } else if (tabId === 'ae') {
+        const aeData = insights.ae_severity || {};
+        const maxCnt = Math.max(aeData.MILD || 0, aeData.MODERATE || 0, aeData.SEVERE || 0, aeData.SERIOUS || 0, 1);
+
+        const items = [
+          { label: 'Mild Adverse Events', count: aeData.MILD || 0, color: 'linear-gradient(90deg, #E2CF9F, #FFF2D0)' },
+          { label: 'Moderate Adverse Events', count: aeData.MODERATE || 0, color: 'linear-gradient(90deg, #FFB2B2, #FFF2D0)' },
+          { label: 'Severe Adverse Events', count: aeData.SEVERE || 0, color: 'linear-gradient(90deg, #E36A6A, #FFB2B2)' },
+          { label: 'Serious (SAE Criteria)', count: aeData.SERIOUS || 0, color: 'linear-gradient(90deg, #D45959, #E36A6A)' },
+        ];
+
+        const rows = items.map(item => {
+          const pct = Math.max(4, ((item.count / maxCnt) * 100)).toFixed(0);
+          return `
+            <div class="sg-bar-row">
+              <div class="sg-bar-label">${esc(item.label)}</div>
+              <div class="sg-bar-track" title="${esc(item.count)} events">
+                <div class="sg-bar-fill" style="width:${pct}%;background:${item.color};"></div>
+              </div>
+              <div class="sg-bar-value">${esc(item.count)}</div>
+            </div>
+          `;
+        }).join('');
+
+        view.innerHTML = `<div class="sg-chart-grid">${rows}</div>`;
+        meta.innerHTML = `
+          <div><strong>Metric:</strong> Safety profile & protocol-defined severity distribution.</div>
+          <div><strong>Criteria:</strong> ICH E2A Serious Adverse Event Guidelines</div>
+        `;
+
+      } else if (tabId === 'visit') {
+        const visitData = insights.visit_distribution || [];
+        const maxVRecs = Math.max(...visitData.map(v => v.records), 1);
+
+        const rows = visitData.map(v => {
+          const pct = Math.max(3, ((v.records / maxVRecs) * 100)).toFixed(0);
+          return `
+            <div class="sg-bar-row">
+              <div class="sg-bar-label">${esc(v.visit)}</div>
+              <div class="sg-bar-track" title="${esc(fmt(v.records))} observations">
+                <div class="sg-bar-fill secondary" style="width:${pct}%;"></div>
+              </div>
+              <div class="sg-bar-value">${esc(fmt(v.records))}</div>
+            </div>
+          `;
+        }).join('');
+
+        view.innerHTML = `<div class="sg-chart-grid">${rows}</div>`;
+        meta.innerHTML = `
+          <div><strong>Metric:</strong> Clinical schedule observation activity across trial milestones.</div>
+          <div><strong>Visits Logged:</strong> ${visitData.length} protocol milestones</div>
+        `;
+      }
+    }
+
+    function selectSiteFromChart(siteId) {
+      if (!siteId) return;
+      const siteNodeId = `SITE:${siteId}`;
+      selectGraphNode(siteNodeId);
+      // scroll smoothly up to graph card
+      const card = document.getElementById('sg-visual-card');
+      if (card) card.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 
     /* ── Patient 360 ──────────────────────────────────────────────────────────── */
