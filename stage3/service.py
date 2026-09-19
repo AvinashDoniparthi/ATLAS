@@ -218,3 +218,83 @@ def get_stats() -> Dict[str, Any]:
         "untrusted_lab_records": len(watch.state.untrusted_lab_keys),
         "budget": get_budget(),
     }
+
+
+def get_cut_detail(cut: int) -> Optional[Dict[str, Any]]:
+    watch = get_watch()
+    # Find CutResult
+    cr = None
+    if watch.cut_summaries:
+        for c in watch.cut_summaries:
+            if c.cut == cut:
+                cr = c
+                break
+    if cr is None and watch.state.cut_history:
+        for c in watch.state.cut_history:
+            c_cut = c.get("cut") if isinstance(c, dict) else getattr(c, "cut", None)
+            if c_cut == cut:
+                cr = CutResult(**c) if isinstance(c, dict) else c
+                break
+
+    if cr is None:
+        return None
+
+    # Cut specific findings, decisions, trace, and human gate items
+    cut_findings = get_findings(cut=cut)
+    cut_decs = get_decisions(cut=cut)
+    cut_trace = get_trace(cut=cut)
+    hg_items = [
+        item.model_dump() for item in watch.human_state.items.values()
+        if item.detected_at_cut == cut or item.escalated_at_cut == cut or item.reply_cut == cut or cut in item.submitted_cuts
+    ]
+
+    return {
+        "cut": cut,
+        "cut_summary": cr.model_dump(),
+        "findings": cut_findings,
+        "decisions": cut_decs,
+        "trace": cut_trace,
+        "human_gate_items": hg_items,
+    }
+
+
+def submit_human_gate_decision(
+    escalation_id: str,
+    decision: str,
+    reason: Optional[str] = None,
+) -> Dict[str, Any]:
+    watch = get_watch()
+    active_cut = len(watch.cut_summaries) or len(watch.state.cut_history) or 1
+    core = watch.graph.core
+    memory = watch.crew.memory
+    hub_client = watch.hub_client
+
+    item, dec, tr = watch.human_state.submit_human_decision(
+        escalation_id=escalation_id,
+        decision=decision,
+        reason=reason,
+        core=core,
+        memory=memory,
+        hub_client=hub_client,
+        cut=active_cut,
+    )
+
+    if item is None:
+        return {"success": False, "error": f"Escalation {escalation_id} not found in Human Gate"}
+
+    if dec:
+        watch.decision_store.add(dec)
+        watch.decision_store.save(watch.output_dir / "decision_log.json")
+    if tr:
+        watch.trace_store.append(tr)
+        watch.trace_store.save(watch.output_dir / "trace.jsonl")
+
+    watch.state.save()
+    memory.save()
+
+    return {
+        "success": True,
+        "item": item.model_dump(),
+        "decision": dec.model_dump() if dec else None,
+        "trace": tr.model_dump() if tr else None,
+    }

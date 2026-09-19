@@ -738,6 +738,14 @@ async def watch_get_cuts() -> dict:
     return {"cuts": watch_service.get_cuts()}
 
 
+@app.get("/api/watch/cuts/{cut}")
+async def watch_get_cut_detail(cut: int) -> dict:
+    detail = watch_service.get_cut_detail(cut)
+    if detail is None:
+        raise HTTPException(status_code=404, detail=f"Surveillance cut {cut} not evaluated or not found")
+    return detail
+
+
 @app.get("/api/watch/findings")
 async def watch_get_findings(cut: Optional[int] = None, serious_only: bool = False) -> dict:
     findings = watch_service.get_findings(cut=cut, serious_only=serious_only)
@@ -779,9 +787,29 @@ async def watch_get_escalations(cut: Optional[int] = None, status: Optional[str]
     return {"escalations": watch_service.get_escalations(cut=cut, status=status)}
 
 
+class WatchHumanDecisionRequest(BaseModel):
+    escalation_id: str
+    decision: str  # APPROVED | REJECTED | CLARIFY
+    reason: Optional[str] = None
+
+WatchHumanDecisionRequest.model_rebuild()
+
+
 @app.get("/api/watch/human-gate")
 async def watch_get_human_gate() -> dict:
     return {"items": watch_service.get_human_gate_items()}
+
+
+@app.post("/api/watch/human-gate/decision")
+async def watch_submit_human_decision(req: WatchHumanDecisionRequest) -> dict:
+    res = watch_service.submit_human_gate_decision(
+        escalation_id=req.escalation_id,
+        decision=req.decision,
+        reason=req.reason,
+    )
+    if not res.get("success"):
+        raise HTTPException(status_code=400, detail=res.get("error", "Human gate decision failed"))
+    return res
 
 
 @app.get("/api/watch/sites")

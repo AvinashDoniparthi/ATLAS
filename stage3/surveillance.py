@@ -41,6 +41,11 @@ def run_surveillance_cut(
     log.info("Starting Stage 3 surveillance for cut %d", cut)
     core = graph.core
 
+    # Record pre-cut state for delta detection
+    prev_quarantined = set(state.quarantined_sites)
+    prev_untrusted_count = len(state.untrusted_lab_keys)
+    prev_pv = state.active_protocol_version
+
     # 1. Budget manager start
     deg_dec, deg_trace = budget_manager.start_cut(cut)
     if deg_dec and deg_trace:
@@ -61,7 +66,7 @@ def run_surveillance_cut(
     trace_store.extend(doc_traces)
 
     # 4. Amendment check
-    amend_rules, amend_traces = check_amendment(cut, state.active_protocol_version, pv, core)
+    amend_rules, amend_traces = check_amendment(cut, prev_pv, pv, core)
     state.active_protocol_version = pv
     trace_store.extend(amend_traces)
 
@@ -234,6 +239,23 @@ def run_surveillance_cut(
     ms_used = budget_manager.end_cut(cut)
     bstate = budget_manager.state()
 
+    # Calculate cumulative totals up to and including this cut
+    prev_cuts = [c if isinstance(c, dict) else c.model_dump() for c in state.cut_history]
+    cum_findings = sum(c.get("findings_count", 0) for c in prev_cuts) + len(crew_report.findings)
+    cum_serious = sum(c.get("serious_findings_count", 0) for c in prev_cuts) + len(crew_report.serious_findings)
+    cum_budget = sum(c.get("budget_ms_used", 0.0) for c in prev_cuts) + ms_used
+
+    new_quarantined = sorted(set(state.quarantined_sites) - prev_quarantined)
+    new_untrusted = max(0, len(state.untrusted_lab_keys) - prev_untrusted_count)
+    amendment_str = f"Protocol v{prev_pv} → v{pv}" if (prev_pv is not None and prev_pv != pv) else None
+
+    hg_summary = {"PENDING": 0, "APPROVED": 0, "REJECTED": 0, "CLARIFY": 0, "STANDING_LIMITS": 0}
+    for it in human_state.items.values():
+        if it.decision in hg_summary:
+            hg_summary[it.decision] += 1
+
+    cut_decs_count = len(decision_store.filter(cut=cut))
+
     cut_res = CutResult(
         cut=cut,
         protocol_version=pv,
@@ -247,6 +269,14 @@ def run_surveillance_cut(
         degradation_tier=bstate.tier,
         quarantined_sites=sorted(state.quarantined_sites),
         untrusted_labs=len(state.untrusted_lab_keys),
+        cumulative_findings_count=cum_findings,
+        cumulative_serious_findings_count=cum_serious,
+        cumulative_budget_ms=cum_budget,
+        new_quarantined_sites=new_quarantined,
+        new_untrusted_labs=new_untrusted,
+        amendment_event=amendment_str,
+        human_gate_summary=hg_summary,
+        decisions_count=cut_decs_count,
     )
 
     state.cut_history.append(cut_res.model_dump())

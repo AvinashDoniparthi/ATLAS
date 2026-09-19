@@ -267,3 +267,49 @@ class HumanState:
             status=status,
         )
         return dec, trace_entry
+
+    def submit_human_decision(
+        self,
+        escalation_id: str,
+        decision: str,
+        reason: Optional[str] = None,
+        core: Any = None,
+        memory: Any = None,
+        hub_client: Any = None,
+        cut: int = 1,
+    ) -> Tuple[Optional[HumanGateItem], Optional[Decision], Optional[WatchTraceEntry]]:
+        """Applies a human medical monitor decision (APPROVED, REJECTED, CLARIFY)."""
+        item = None
+        for it in self.items.values():
+            if it.escalation_id == escalation_id or it.fingerprint == escalation_id or it.target == escalation_id:
+                item = it
+                break
+
+        if item is None:
+            return None, None, None
+
+        decision = decision.upper()
+        item.decision = decision
+        item.reply_cut = cut
+        if reason:
+            item.reason = reason
+
+        if decision == "APPROVED":
+            item.action_taken = item.reason or "Action approved by medical monitor."
+            if memory:
+                memory.update_escalation_decision(item.escalation_id, "APPROVED", item.reason or "Approved by human medical monitor.")
+            dec, tr = self._build_decision_and_trace(item, cut, "APPROVED", [], core)
+            return item, dec, tr
+        elif decision == "REJECTED":
+            item.action_taken = item.reason or "Adjudicated as not requiring action; downgraded to routine monitoring."
+            if memory:
+                memory.update_escalation_decision(item.escalation_id, "REJECTED", item.reason or "Rejected by human medical monitor.")
+            dec, tr = self._build_decision_and_trace(item, cut, "REJECTED", [], core)
+            return item, dec, tr
+        elif decision in ("CLARIFY", "CLARIFICATION_REQUIRED"):
+            item.clarification_question = item.reason or "Clarification requested by medical monitor."
+            dec, tr = self._handle_clarification(item, cut, [], core, memory, hub_client)
+            return item, dec, tr
+        else:
+            dec, tr = self._build_decision_and_trace(item, cut, decision, [], core)
+            return item, dec, tr

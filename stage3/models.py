@@ -52,6 +52,14 @@ class CutResult(BaseModel):
     degradation_tier: str
     quarantined_sites: List[str] = Field(default_factory=list)
     untrusted_labs: int = 0
+    cumulative_findings_count: int = 0
+    cumulative_serious_findings_count: int = 0
+    cumulative_budget_ms: float = 0.0
+    new_quarantined_sites: List[str] = Field(default_factory=list)
+    new_untrusted_labs: int = 0
+    amendment_event: Optional[str] = None
+    human_gate_summary: Dict[str, int] = Field(default_factory=dict)
+    decisions_count: int = 0
 
 
 class BudgetState(BaseModel):

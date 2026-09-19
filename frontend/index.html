@@ -3719,27 +3719,103 @@
 
         <!-- WATCH TAB 3: HUMAN GATE & STANDING LIMITS -->
         <div id="wtab-content-human" class="watch-tab-pane" style="display:none;">
-          <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px; flex-wrap:wrap; gap:12px;">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:20px; flex-wrap:wrap; gap:12px;">
             <div>
-              <div style="font-size:1.15rem; font-weight:800; color:var(--black);">Human Monitor Gate</div>
-              <div style="font-size:0.85rem; color:var(--gray-2);">Clinical decisions remain human-controlled. Surveillance state tracks responses and standing limits.</div>
+              <div style="font-size:0.7rem; font-weight:800; letter-spacing:0.12em; text-transform:uppercase; color:var(--coral); margin-bottom:2px;">HUMAN-IN-THE-LOOP SAFETY LAYER</div>
+              <div style="font-size:1.25rem; font-weight:800; color:var(--black);">Human Monitor Gate & Adjudication</div>
+              <div style="font-size:0.85rem; color:var(--gray-2); margin-top:2px;">
+                Adjudicates human-gated actions, audit recommendations, and protocol-impacting clinical decisions.
+              </div>
             </div>
-            <div style="display:flex; gap:8px; flex-wrap:wrap;">
-              <span class="watch-badge standing" id="hg-standing-count-badge">Standing Limits: 7</span>
-              <span class="watch-badge warning" id="hg-pending-count-badge">Pending: 17</span>
-            </div>
-          </div>
-
-          <!-- Standing limits explanatory callout -->
-          <div style="background:var(--cream); border:1.5px solid var(--border-cream); border-left:5px solid #6D28D9; border-radius:var(--radius); padding:16px 20px; margin-bottom:20px;">
-            <div style="font-size:0.88rem; font-weight:800; color:#6D28D9;">STANDING LIMITS ACTIVATION (4-Cut Timeout Policy)</div>
-            <div style="font-size:0.82rem; color:var(--gray-1); margin-top:4px;">
-              Escalations pending human response for ≥4 cuts automatically age into predefined standing limits with documented clinical rationales to prevent unmonitored safety stalls.
+            <div style="font-size:0.75rem; color:var(--gray-2); background:var(--cream); padding:6px 12px; border-radius:6px; border:1px solid var(--border-cream); font-weight:600;">
+              Deterministic safety checks operate continuously without blocking.
             </div>
           </div>
 
-          <div id="watch-humangate-list" style="display:grid; gap:12px;">
-            <!-- Dynamically populated human gate items -->
+          <!-- Section 1: Gate Summary Area (5 KPIs) -->
+          <div class="mon-summary-grid" style="grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); margin-bottom:24px;">
+            <div class="mon-card soft-pink" style="padding:14px; text-align:center;">
+              <div class="mon-card-num" id="hg-sum-pending" style="font-size:1.6rem; color:var(--coral);">—</div>
+              <div class="mon-card-label" style="font-size:0.68rem;">PENDING</div>
+              <div style="font-size:0.7rem; color:var(--gray-2); margin-top:2px;">Awaiting human review</div>
+            </div>
+            <div class="mon-card cream" style="padding:14px; text-align:center;">
+              <div class="mon-card-num" id="hg-sum-approved" style="font-size:1.6rem; color:#2D6A4F;">—</div>
+              <div class="mon-card-label" style="font-size:0.68rem;">APPROVED</div>
+              <div style="font-size:0.7rem; color:var(--gray-2); margin-top:2px;">Human confirmed</div>
+            </div>
+            <div class="mon-card" style="background:#FFFFFF; padding:14px; text-align:center; border:1.5px solid var(--border);">
+              <div class="mon-card-num" id="hg-sum-rejected" style="font-size:1.6rem; color:#991B1B;">—</div>
+              <div class="mon-card-label" style="font-size:0.68rem;">REJECTED</div>
+              <div style="font-size:0.7rem; color:var(--gray-2); margin-top:2px;">Routine monitoring</div>
+            </div>
+            <div class="mon-card cream" style="padding:14px; text-align:center;">
+              <div class="mon-card-num" id="hg-sum-clarify" style="font-size:1.6rem; color:#B45309;">—</div>
+              <div class="mon-card-label" style="font-size:0.68rem;">CLARIFY</div>
+              <div style="font-size:0.7rem; color:var(--gray-2); margin-top:2px;">Data verification</div>
+            </div>
+            <div class="mon-card" style="background:#FAF5FF; padding:14px; text-align:center; border:1.5px solid #E9D5FF;">
+              <div class="mon-card-num" id="hg-sum-standing" style="font-size:1.6rem; color:#6D28D9;">—</div>
+              <div class="mon-card-label" style="font-size:0.68rem;">STANDING LIMITS</div>
+              <div style="font-size:0.7rem; color:#6D28D9; margin-top:2px;">≥4 cuts timeout</div>
+            </div>
+          </div>
+
+          <!-- Section 2: Primary Section — Pending Human Decisions -->
+          <div style="margin-bottom:32px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+              <div>
+                <div style="font-size:1.05rem; font-weight:800; color:var(--black);">Pending Human Adjudications</div>
+                <div style="font-size:0.8rem; color:var(--gray-2);">Decisions and recommendations requiring explicit human medical monitor sign-off.</div>
+              </div>
+              <span class="watch-badge warning" id="hg-pending-badge">0 Pending</span>
+            </div>
+            <div id="watch-humangate-pending-list" style="display:grid; gap:14px;">
+              <!-- Dynamically populated pending cards with APPROVE / REJECT / CLARIFY buttons -->
+            </div>
+          </div>
+
+          <!-- Section 7: 4-Cut Standing Limits Area -->
+          <div id="watch-humangate-standing-section" style="margin-bottom:32px; display:none;">
+            <div style="background:var(--cream); border:1.5px solid var(--border-cream); border-left:5px solid #6D28D9; border-radius:var(--radius); padding:16px 20px; margin-bottom:14px;">
+              <div style="font-size:0.88rem; font-weight:800; color:#6D28D9; display:flex; align-items:center; gap:8px;">
+                <span>⚠️</span> STANDING LIMITS ACTIVE (4-Cut Human Response Timeout)
+              </div>
+              <div style="font-size:0.82rem; color:var(--gray-1); margin-top:4px;">
+                Human response unavailable for ≥4 surveillance cuts. The system continues under predefined protocol standing safety limits. <strong>Approval-gated actions remain blocked</strong> and are never silently treated as approved.
+              </div>
+            </div>
+            <div id="watch-humangate-standing-list" style="display:grid; gap:12px;">
+              <!-- Standing limits items -->
+            </div>
+          </div>
+
+          <!-- Section 8: Clarification Requests Area -->
+          <div id="watch-humangate-clarify-section" style="margin-bottom:32px; display:none;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+              <div>
+                <div style="font-size:1.05rem; font-weight:800; color:var(--black);">Clarification & StudyGraph Verification</div>
+                <div style="font-size:0.8rem; color:var(--gray-2);">Medical monitor queries resolved or verified against trial data records.</div>
+              </div>
+              <span class="watch-badge info" id="hg-clarify-badge">0 Clarifications</span>
+            </div>
+            <div id="watch-humangate-clarify-list" style="display:grid; gap:12px;">
+              <!-- Clarification items -->
+            </div>
+          </div>
+
+          <!-- Section 5: Decision History -->
+          <div style="margin-bottom:24px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+              <div>
+                <div style="font-size:1.05rem; font-weight:800; color:var(--black);">Human Gate Decision History</div>
+                <div style="font-size:0.8rem; color:var(--gray-2);">Traceable record of prior human monitor adjudications and automated standing transitions.</div>
+              </div>
+              <span class="watch-badge success" id="hg-history-badge">0 Adjudicated</span>
+            </div>
+            <div id="watch-humangate-history-list" style="display:grid; gap:10px;">
+              <!-- History items -->
+            </div>
           </div>
         </div>
 
@@ -3912,7 +3988,7 @@
 
   <!-- ── Watch Cut Detail Modal ──────────────────────────────────────────────── -->
   <div id="watch-cut-modal-backdrop" class="watch-modal-backdrop" onclick="if(event.target===this) closeCutModal()" aria-hidden="true" role="dialog" aria-modal="true">
-    <div class="watch-modal" onclick="event.stopPropagation()">
+    <div class="watch-modal" onclick="event.stopPropagation()" style="max-width:820px;">
       <div class="watch-modal-header">
         <div style="display:flex; justify-content:space-between; align-items:flex-start;">
           <div>
@@ -3930,6 +4006,36 @@
 
       <div class="watch-modal-footer">
         <button onclick="closeCutModal()" style="background:var(--cream); border:1.5px solid var(--border-cream); padding:8px 18px; border-radius:6px; font-weight:700; cursor:pointer;">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Watch Clarification Input Modal ────────────────────────────────────── -->
+  <div id="watch-clarify-modal-backdrop" class="watch-modal-backdrop" onclick="if(event.target===this) closeWatchClarifyModal()" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="watch-modal" onclick="event.stopPropagation()" style="max-width:560px;">
+      <div class="watch-modal-header">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <div>
+            <div class="watch-badge warning">HUMAN GATE CLARIFICATION</div>
+            <h2 style="font-size:1.25rem; font-weight:800; color:var(--black); margin-top:6px;" id="wclarify-title">Request Data Clarification</h2>
+            <div style="font-size:0.84rem; color:var(--gray-2); margin-top:2px;" id="wclarify-sub">Submit clinical query to verify against StudyGraph dataset</div>
+          </div>
+          <button class="rel-close-btn" onclick="closeWatchClarifyModal()" aria-label="Close modal">&times;</button>
+        </div>
+      </div>
+      <div class="watch-modal-body">
+        <div style="font-size:0.85rem; color:var(--black); margin-bottom:10px;" id="wclarify-target-info">
+          Target: <strong>—</strong>
+        </div>
+        <div style="margin-bottom:14px;">
+          <label style="display:block; font-size:0.75rem; font-weight:800; text-transform:uppercase; letter-spacing:0.06em; color:var(--gray-2); margin-bottom:6px;">Clarification Question / Medical Inquiry:</label>
+          <textarea id="wclarify-input" rows="4" style="width:100%; border:1.5px solid var(--border); border-radius:6px; padding:10px; font-family:inherit; font-size:0.88rem; box-sizing:border-box;" placeholder="e.g., Was repeat laboratory test performed within 48h to confirm grade 3 elevation?"></textarea>
+        </div>
+        <div id="wclarify-status-msg" style="display:none; font-size:0.85rem; padding:10px; border-radius:6px; margin-bottom:12px;"></div>
+      </div>
+      <div class="watch-modal-footer" style="display:flex; justify-content:flex-end; gap:10px;">
+        <button onclick="closeWatchClarifyModal()" style="background:var(--cream); border:1.5px solid var(--border-cream); padding:8px 16px; border-radius:6px; font-weight:700; cursor:pointer;">Cancel</button>
+        <button id="wclarify-submit-btn" onclick="submitWatchClarifyModal()" style="background:var(--coral); color:#FFFFFF; border:none; padding:8px 18px; border-radius:6px; font-weight:700; cursor:pointer;">Submit Clarification</button>
       </div>
     </div>
   </div>
@@ -6885,67 +6991,367 @@ void main() {
       `).join('');
     }
 
+    let _activeClarifyItem = null;
+
     function renderWatchHumanGate() {
-      const container = document.getElementById('watch-humangate-list');
-      if (!container) return;
-
       const items = _watchData.humanGate || [];
-      const standingItems = items.filter(i => i.decision === 'STANDING_LIMITS');
+
       const pendingItems = items.filter(i => i.decision === 'PENDING');
+      const approvedItems = items.filter(i => i.decision === 'APPROVED');
+      const rejectedItems = items.filter(i => i.decision === 'REJECTED');
+      const clarifyItems = items.filter(i => i.decision === 'CLARIFY' || i.decision === 'CLARIFICATION_REQUIRED' || i.clarification_question != null);
+      const standingItems = items.filter(i => i.decision === 'STANDING_LIMITS');
 
-      const standingBadge = document.getElementById('hg-standing-count-badge');
-      const pendingBadge = document.getElementById('hg-pending-count-badge');
-      if (standingBadge) standingBadge.textContent = `Standing Limits: ${standingItems.length}`;
-      if (pendingBadge) pendingBadge.textContent = `Pending: ${pendingItems.length}`;
+      // Update Section 1 Gate Summary Counts
+      const sumPending = document.getElementById('hg-sum-pending');
+      const sumApproved = document.getElementById('hg-sum-approved');
+      const sumRejected = document.getElementById('hg-sum-rejected');
+      const sumClarify = document.getElementById('hg-sum-clarify');
+      const sumStanding = document.getElementById('hg-sum-standing');
 
-      if (!items.length) {
-        container.innerHTML = '<div style="background:#FFFFFF; border:1px solid var(--border); border-radius:var(--radius); padding:24px; text-align:center; color:var(--gray-2);">No human gate items in tracking queue.</div>';
+      if (sumPending) sumPending.textContent = fmt(pendingItems.length);
+      if (sumApproved) sumApproved.textContent = fmt(approvedItems.length);
+      if (sumRejected) sumRejected.textContent = fmt(rejectedItems.length);
+      if (sumClarify) sumClarify.textContent = fmt(clarifyItems.length);
+      if (sumStanding) sumStanding.textContent = fmt(standingItems.length);
+
+      const pendingBadge = document.getElementById('hg-pending-badge');
+      if (pendingBadge) pendingBadge.textContent = `${pendingItems.length} Pending`;
+
+      const clarifyBadge = document.getElementById('hg-clarify-badge');
+      if (clarifyBadge) clarifyBadge.textContent = `${clarifyItems.length} Clarifications`;
+
+      const historyBadge = document.getElementById('hg-history-badge');
+      const adjudicatedCount = approvedItems.length + rejectedItems.length + standingItems.length;
+      if (historyBadge) historyBadge.textContent = `${adjudicatedCount} Adjudicated`;
+
+      // Section 2: Render Pending Items (Primary Section)
+      const pendingContainer = document.getElementById('watch-humangate-pending-list');
+      if (pendingContainer) {
+        if (!pendingItems.length) {
+          pendingContainer.innerHTML = `
+            <div style="background:#FFFFFF; border:1.5px solid var(--border-cream); border-radius:var(--radius); padding:28px 24px; text-align:center; box-shadow:var(--shadow);">
+              <div style="font-size:1.1rem; font-weight:800; color:#2D6A4F; margin-bottom:6px;">✓ No Pending Human Decisions</div>
+              <div style="font-size:0.85rem; color:var(--gray-2); line-height:1.5;">
+                All current approval-gated actions have been resolved. WATCH continues surveillance under recorded decisions and standing safety limits.
+              </div>
+            </div>
+          `;
+        } else {
+          pendingContainer.innerHTML = pendingItems.map(item => {
+            const isSubject = item.target && item.target.startsWith('042-');
+            const itemId = esc(item.escalation_id || item.fingerprint);
+            const unansweredCuts = item.cuts_pending || 0;
+
+            // Find associated decision if available
+            const relatedDec = (_watchData.decisions || []).find(d => d.target === item.target || d.code === item.code);
+            const decId = relatedDec ? relatedDec.decision_id : null;
+
+            let delayNotice = '';
+            if (unansweredCuts >= 2) {
+              delayNotice = `
+                <div style="background:#FFF9F0; border:1px solid #FCD34D; border-radius:4px; padding:6px 10px; font-size:0.75rem; color:#92400E; margin-bottom:10px; font-weight:600;">
+                  ⏳ Delayed Monitor Response: Unanswered for <strong>${unansweredCuts} cuts</strong> (Pending since Cut ${item.escalated_at_cut || item.detected_at_cut || 1}).
+                  ${unansweredCuts >= 3 ? ' Approaching 4-cut standing limits timeout.' : ''}
+                </div>
+              `;
+            }
+
+            return `
+              <div class="watch-finding-card critical" style="background:#FFFFFF; border:1.5px solid var(--border-coral); border-radius:var(--radius); padding:20px; box-shadow:var(--shadow);">
+                <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
+                  <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+                    <span class="watch-badge critical">PENDING ADJUDICATION</span>
+                    <span style="font-size:1.05rem; font-weight:800; font-family:var(--mono); color:var(--black);">${esc(item.target)}</span>
+                    <span class="watch-badge info">${esc(item.code)}</span>
+                    <span style="font-size:0.75rem; color:var(--gray-2); font-weight:700;">Detected Cut ${esc(item.detected_at_cut || 1)}</span>
+                  </div>
+                  <div style="display:flex; gap:6px; align-items:center;">
+                    <span class="watch-badge warning">${unansweredCuts} Cut${unansweredCuts === 1 ? '' : 's'} Pending</span>
+                  </div>
+                </div>
+
+                ${delayNotice}
+
+                <div style="font-size:0.9rem; color:var(--black); line-height:1.5; margin-bottom:10px;">
+                  <strong>Clinical Rationale / Why Required:</strong> ${esc(item.reason || 'Medical monitor review required for protocol-gated clinical follow-up.')}
+                </div>
+
+                <div style="font-size:0.82rem; color:var(--gray-1); background:var(--cream); padding:10px 14px; border-radius:6px; margin-bottom:14px; border:1px solid var(--border-cream);">
+                  <strong>Recommended Action:</strong> ${esc(item.action_taken || 'Evaluate safety records and adjudicate approval, rejection, or request study data clarification.')}
+                </div>
+
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; border-top:1px solid var(--border-cream); padding-top:12px;">
+                  <div style="display:flex; gap:8px; align-items:center;">
+                    ${isSubject ? `
+                      <button onclick="openP360('${esc(item.target)}', event)"
+                        style="background:none; border:1px solid var(--border); padding:6px 12px; border-radius:4px; font-size:0.78rem; font-weight:700; cursor:pointer;"
+                        title="View Subject in Patient 360">
+                        Patient 360 ↗
+                      </button>
+                    ` : ''}
+                    ${decId ? `
+                      <button onclick="explainDecision('${esc(decId)}')"
+                        style="background:none; border:1px solid var(--border-coral); color:var(--coral); padding:6px 12px; border-radius:4px; font-size:0.78rem; font-weight:700; cursor:pointer;"
+                        title="Explain decision trace">
+                        View Trace ↗
+                      </button>
+                    ` : ''}
+                  </div>
+
+                  <!-- Human Gated Action Buttons: APPROVE / REJECT / CLARIFY -->
+                  <div style="display:flex; gap:8px; align-items:center;" id="hg-actions-${itemId}">
+                    <button onclick="submitWatchHumanDecision('${itemId}', 'APPROVED', 'Approved by Medical Monitor')"
+                      style="background:#2D6A4F; color:#FFFFFF; border:none; padding:7px 16px; border-radius:6px; font-size:0.8rem; font-weight:800; cursor:pointer; box-shadow:0 1px 3px rgba(45,106,79,0.3);"
+                      title="Approve recommended follow-up action">
+                      ✓ APPROVE
+                    </button>
+                    <button onclick="submitWatchHumanDecision('${itemId}', 'REJECTED', 'Downgraded to routine clinical monitoring')"
+                      style="background:var(--soft-pink); color:#991B1B; border:1.5px solid var(--coral); padding:7px 16px; border-radius:6px; font-size:0.8rem; font-weight:800; cursor:pointer;"
+                      title="Reject escalation / maintain routine monitoring">
+                      ✕ REJECT
+                    </button>
+                    <button onclick="openWatchClarifyModal('${itemId}', '${esc(item.target)}', '${esc(item.code)}')"
+                      style="background:var(--cream); color:#92400E; border:1.5px solid #FCD34D; padding:7px 16px; border-radius:6px; font-size:0.8rem; font-weight:800; cursor:pointer;"
+                      title="Request data clarification query">
+                      💬 CLARIFY
+                    </button>
+                  </div>
+                </div>
+              </div>
+            `;
+          }).join('');
+        }
+      }
+
+      // Section 7: Standing Limits Area
+      const standingSection = document.getElementById('watch-humangate-standing-section');
+      const standingContainer = document.getElementById('watch-humangate-standing-list');
+      if (standingSection && standingContainer) {
+        if (standingItems.length > 0) {
+          standingSection.style.display = 'block';
+          standingContainer.innerHTML = standingItems.map(item => {
+            const relatedDec = (_watchData.decisions || []).find(d => d.target === item.target || d.code === item.code);
+            const decId = relatedDec ? relatedDec.decision_id : null;
+
+            return `
+              <div style="background:#FAF5FF; border:1.5px solid #E9D5FF; border-left:6px solid #6D28D9; border-radius:var(--radius); padding:16px 20px; box-shadow:var(--shadow);">
+                <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:8px; margin-bottom:8px;">
+                  <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+                    <span class="watch-badge standing">STANDING LIMITS</span>
+                    <span style="font-size:0.95rem; font-weight:800; font-family:var(--mono); color:var(--black);">${esc(item.target)}</span>
+                    <span style="font-size:0.8rem; color:var(--gray-2); font-weight:700;">${esc(item.code)}</span>
+                  </div>
+                  <div style="font-size:0.75rem; color:#6D28D9; font-weight:700;">
+                    ${item.cuts_pending} Unanswered Cuts · Protocol Safe Limits Active
+                  </div>
+                </div>
+
+                <div style="font-size:0.85rem; color:var(--black); line-height:1.5; margin-bottom:8px;">
+                  ${esc(item.action_taken || item.reason || 'Escalation transitioned to protocol standing safety limits after 4 unanswered surveillance cuts.')}
+                </div>
+
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; padding-top:8px; border-top:1px solid #E9D5FF;">
+                  <div style="font-size:0.78rem; color:var(--gray-2);">
+                    Approval-gated action remains <strong>BLOCKED</strong> until formal human sign-off.
+                  </div>
+                  ${decId ? `
+                    <button onclick="explainDecision('${esc(decId)}')"
+                      style="background:#6D28D9; color:#FFFFFF; border:none; padding:5px 14px; border-radius:4px; font-size:0.78rem; font-weight:700; cursor:pointer;">
+                      Explain Decision ↗
+                    </button>
+                  ` : ''}
+                </div>
+              </div>
+            `;
+          }).join('');
+        } else {
+          standingSection.style.display = 'none';
+        }
+      }
+
+      // Section 8: Clarification Requests Area
+      const clarifySection = document.getElementById('watch-humangate-clarify-section');
+      const clarifyContainer = document.getElementById('watch-humangate-clarify-list');
+      if (clarifySection && clarifyContainer) {
+        if (clarifyItems.length > 0) {
+          clarifySection.style.display = 'block';
+          clarifyContainer.innerHTML = clarifyItems.map(item => `
+            <div style="background:#FFFFFF; border:1.5px solid #FCD34D; border-left:6px solid #B45309; border-radius:var(--radius); padding:16px 20px; box-shadow:var(--shadow);">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:8px; margin-bottom:8px;">
+                <div style="display:flex; gap:8px; align-items:center;">
+                  <span class="watch-badge warning">CLARIFICATION</span>
+                  <span style="font-size:0.95rem; font-weight:800; font-family:var(--mono); color:var(--black);">${esc(item.target)}</span>
+                  <span style="font-size:0.8rem; color:var(--gray-2); font-weight:700;">${esc(item.code)}</span>
+                </div>
+                <span class="watch-badge info">${esc(item.decision)}</span>
+              </div>
+
+              <div style="font-size:0.85rem; color:var(--black); line-height:1.5; margin-bottom:8px;">
+                <strong>Inquiry:</strong> ${esc(item.clarification_question || item.reason || 'Data clarification requested')}
+              </div>
+
+              ${item.clarification_answer ? `
+                <div style="font-size:0.82rem; color:#2D6A4F; background:#ECFDF5; border:1px solid #A7F3D0; border-radius:6px; padding:8px 12px; margin-bottom:8px;">
+                  <strong>StudyGraph Verified Response:</strong> ${esc(item.clarification_answer)}
+                </div>
+              ` : ''}
+
+              ${item.action_taken ? `
+                <div style="font-size:0.8rem; color:var(--gray-1); background:var(--cream); padding:6px 10px; border-radius:4px;">
+                  <strong>Result:</strong> ${esc(item.action_taken)}
+                </div>
+              ` : ''}
+            </div>
+          `).join('');
+        } else {
+          clarifySection.style.display = 'none';
+        }
+      }
+
+      // Section 5: History Area
+      const historyContainer = document.getElementById('watch-humangate-history-list');
+      if (historyContainer) {
+        const historyItems = items.filter(i => i.decision !== 'PENDING');
+        if (!historyItems.length) {
+          historyContainer.innerHTML = '<div style="background:#FFFFFF; border:1px solid var(--border); border-radius:var(--radius); padding:20px; text-align:center; color:var(--gray-2); font-size:0.85rem;">No historical human decisions recorded yet.</div>';
+        } else {
+          historyContainer.innerHTML = historyItems.map(item => {
+            let decBadge = 'info';
+            if (item.decision === 'APPROVED') decBadge = 'success';
+            else if (item.decision === 'REJECTED') decBadge = 'critical';
+            else if (item.decision === 'STANDING_LIMITS') decBadge = 'standing';
+
+            const relatedDec = (_watchData.decisions || []).find(d => d.target === item.target || d.code === item.code);
+            const decId = relatedDec ? relatedDec.decision_id : null;
+
+            return `
+              <div style="background:#FFFFFF; border:1px solid var(--border); border-radius:6px; padding:12px 16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; flex:1;">
+                  <span class="watch-badge ${decBadge}">${esc(item.decision)}</span>
+                  <span style="font-family:var(--mono); font-weight:700; color:var(--black); font-size:0.85rem;">${esc(item.target)}</span>
+                  <span style="font-size:0.75rem; color:var(--gray-2); font-weight:700;">${esc(item.code)}</span>
+                  <span style="font-size:0.75rem; color:var(--gray-2);">Cut ${esc(item.reply_cut || item.escalated_at_cut || 1)}</span>
+                  <span style="font-size:0.82rem; color:var(--gray-1);">${esc(item.reason || item.action_taken || 'Adjudicated')}</span>
+                </div>
+                ${decId ? `
+                  <button onclick="explainDecision('${esc(decId)}')"
+                    style="background:var(--cream); border:1px solid var(--border-cream); color:var(--black); padding:4px 12px; border-radius:4px; font-size:0.75rem; font-weight:700; cursor:pointer;">
+                    Explain ↗
+                  </button>
+                ` : ''}
+              </div>
+            `;
+          }).join('');
+        }
+      }
+    }
+
+    async function submitWatchHumanDecision(escalationId, decision, defaultReason) {
+      const actionsEl = document.getElementById(`hg-actions-${escalationId}`);
+      if (actionsEl) {
+        actionsEl.innerHTML = `<span class="loading-spinner"></span> <span style="font-size:0.8rem; font-weight:700; color:var(--coral);">Submitting ${decision}…</span>`;
+      }
+
+      try {
+        const res = await apiFetch('/api/watch/human-gate/decision', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            escalation_id: escalationId,
+            decision: decision,
+            reason: defaultReason
+          })
+        });
+
+        if (res && res.success) {
+          await loadWatchData();
+        } else {
+          alert('Human decision failed: ' + ((res && res.error) || 'Unknown error'));
+          await loadWatchData();
+        }
+      } catch (err) {
+        console.error("submitWatchHumanDecision error:", err);
+        alert('Error submitting human decision: ' + (err.message || err));
+        await loadWatchData();
+      }
+    }
+
+    function openWatchClarifyModal(escalationId, target, code) {
+      _activeClarifyItem = { escalationId, target, code };
+      const backdrop = document.getElementById('watch-clarify-modal-backdrop');
+      if (!backdrop) return;
+
+      document.getElementById('wclarify-target-info').innerHTML = `Target: <strong>${esc(target)}</strong> · Code: <strong>${esc(code)}</strong>`;
+      document.getElementById('wclarify-input').value = '';
+      const statusMsg = document.getElementById('wclarify-status-msg');
+      if (statusMsg) statusMsg.style.display = 'none';
+
+      const submitBtn = document.getElementById('wclarify-submit-btn');
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit Clarification';
+      }
+
+      backdrop.classList.add('open');
+      backdrop.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeWatchClarifyModal() {
+      const backdrop = document.getElementById('watch-clarify-modal-backdrop');
+      if (backdrop) {
+        backdrop.classList.remove('open');
+        backdrop.setAttribute('aria-hidden', 'true');
+      }
+      _activeClarifyItem = null;
+    }
+
+    async function submitWatchClarifyModal() {
+      if (!_activeClarifyItem) return;
+      const question = (document.getElementById('wclarify-input').value || '').trim();
+      if (!question) {
+        alert('Please enter a clarification question.');
         return;
       }
 
-      container.innerHTML = items.slice(0, 15).map(item => {
-        let decBadge = 'info';
-        if (item.decision === 'APPROVED') decBadge = 'success';
-        else if (item.decision === 'REJECTED') decBadge = 'warning';
-        else if (item.decision === 'STANDING_LIMITS') decBadge = 'standing';
-        else if (item.decision === 'PENDING') decBadge = 'critical';
+      const submitBtn = document.getElementById('wclarify-submit-btn');
+      const statusMsg = document.getElementById('wclarify-status-msg');
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Submitting & Verifying…';
+      }
+      if (statusMsg) {
+        statusMsg.style.display = 'block';
+        statusMsg.style.background = 'var(--cream)';
+        statusMsg.style.color = 'var(--black)';
+        statusMsg.innerHTML = '<span class="loading-spinner"></span> Verifying query against StudyGraph dataset…';
+      }
 
-        const isSubject = item.target && item.target.startsWith('042-');
+      try {
+        const res = await apiFetch('/api/watch/human-gate/decision', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            escalation_id: _activeClarifyItem.escalationId,
+            decision: 'CLARIFY',
+            reason: question
+          })
+        });
 
-        return `
-          <div style="background:#FFFFFF; border:1.5px solid var(--border); border-radius:var(--radius); padding:16px 20px; box-shadow:var(--shadow);">
-            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:8px;">
-              <div style="display:flex; gap:8px; align-items:center;">
-                <span class="watch-badge ${decBadge}">${esc(item.decision)}</span>
-                <span style="font-size:0.85rem; font-weight:800; font-family:var(--mono); color:var(--black);">${esc(item.target)}</span>
-                <span style="font-size:0.75rem; color:var(--gray-2); font-weight:700;">${esc(item.code)}</span>
-              </div>
-              <div style="font-size:0.75rem; color:var(--gray-3); font-weight:600;">
-                Escalated Cut ${esc(item.escalated_at_cut)} · ${item.cuts_pending} cuts pending
-              </div>
-            </div>
-
-            <div style="font-size:0.85rem; color:var(--black); line-height:1.5; margin-bottom:8px;">
-              <strong>Clinical Rationale:</strong> ${esc(item.reason || 'Safety criteria evaluation in progress.')}
-            </div>
-
-            ${item.action_taken ? `
-              <div style="font-size:0.8rem; color:var(--gray-1); background:var(--cream); padding:6px 10px; border-radius:4px; margin-bottom:8px;">
-                <strong>Action:</strong> ${esc(item.action_taken)}
-              </div>
-            ` : ''}
-
-            ${isSubject ? `
-              <div style="text-align:right;">
-                <button onclick="openP360('${esc(item.target)}', event)"
-                  style="background:none; border:none; color:var(--coral); font-size:0.78rem; font-weight:700; cursor:pointer;">
-                  View Subject in Patient 360 →
-                </button>
-              </div>
-            ` : ''}
-          </div>
-        `;
-      }).join('');
+        closeWatchClarifyModal();
+        await loadWatchData();
+      } catch (err) {
+        console.error("submitWatchClarifyModal error:", err);
+        if (statusMsg) {
+          statusMsg.style.background = '#FEE2E2';
+          statusMsg.style.color = '#991B1B';
+          statusMsg.textContent = 'Error: ' + (err.message || err);
+        }
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Submit Clarification';
+        }
+      }
     }
 
     function renderWatchDecisions() {
@@ -7154,67 +7560,165 @@ void main() {
       }
     }
 
-    function openCutDetail(cutNum) {
+    async function openCutDetail(cutNum) {
       const backdrop = document.getElementById('watch-cut-modal-backdrop');
       if (!backdrop) return;
 
-      const cData = (_watchData.cuts || []).find(c => c.cut === cutNum);
+      backdrop.classList.add('open');
+      backdrop.setAttribute('aria-hidden', 'false');
+
       document.getElementById('wcut-modal-title').textContent = `Surveillance Cut ${cutNum} Details`;
-      document.getElementById('wcut-modal-sub').textContent = cData ? `Protocol v${cData.protocol_version} · Degradation Tier: ${cData.degradation_tier}` : 'Cut pending or not yet evaluated';
-
+      document.getElementById('wcut-modal-sub').textContent = `Loading execution records for Cut ${cutNum}…`;
       const body = document.getElementById('wcut-modal-body');
-      if (!cData) {
-        body.innerHTML = `
-          <div style="text-align:center; padding:30px; color:var(--gray-2);">
-            Cut ${cutNum} has not been evaluated in this surveillance session yet.
-            <div style="margin-top:16px;">
-              <button onclick="closeCutModal(); runWatchSurveillance([${cutNum}]);" class="btn-primary"
-                style="background:var(--coral); color:#FFFFFF; border:none; padding:8px 18px; border-radius:6px; font-weight:700;">
-                Run Cut ${cutNum} Now
-              </button>
+      body.innerHTML = '<div style="text-align:center; padding:40px;"><span class="loading-spinner"></span> Loading cut-specific execution state…</div>';
+
+      try {
+        let cutDetail = null;
+        try {
+          cutDetail = await apiFetch(`/api/watch/cuts/${cutNum}`);
+        } catch (apiErr) { }
+
+        const cData = (cutDetail && cutDetail.cut_summary) || (_watchData.cuts || []).find(c => c.cut === cutNum);
+
+        if (!cData) {
+          document.getElementById('wcut-modal-sub').textContent = 'Cut pending or not yet evaluated';
+          body.innerHTML = `
+            <div style="text-align:center; padding:32px; color:var(--gray-2);">
+              <div style="font-size:1.1rem; font-weight:700; color:var(--black); margin-bottom:8px;">Cut ${cutNum} Not Evaluated</div>
+              <div>Cut ${cutNum} has not been evaluated in this surveillance session yet.</div>
+              <div style="margin-top:18px;">
+                <button onclick="closeCutModal(); runWatchSurveillance([${cutNum}]);" class="btn-primary"
+                  style="background:var(--coral); color:#FFFFFF; border:none; padding:8px 20px; border-radius:6px; font-weight:700; cursor:pointer;">
+                  Run Cut ${cutNum} Now
+                </button>
+              </div>
             </div>
+          `;
+          return;
+        }
+
+        document.getElementById('wcut-modal-sub').textContent = `Protocol v${cData.protocol_version} · Degradation Tier: ${cData.degradation_tier}`;
+
+        const cutDecisions = (cutDetail && cutDetail.decisions) || (_watchData.decisions || []).filter(d => d.cut === cutNum);
+        const cumFindings = cData.cumulative_findings_count || cData.findings_count || 0;
+        const cumSAE = cData.cumulative_serious_findings_count || cData.serious_findings_count || 0;
+        const cumBudget = cData.cumulative_budget_ms || cData.budget_ms_used || 0;
+
+        const activeQuarantined = cData.quarantined_sites && cData.quarantined_sites.length ? cData.quarantined_sites.join(', ') : 'None';
+        const newQuarantined = cData.new_quarantined_sites && cData.new_quarantined_sites.length ? cData.new_quarantined_sites.join(', ') : 'None';
+
+        body.innerHTML = `
+          <!-- Header Context Strip for Cut -->
+          <div style="display:flex; justify-content:space-between; align-items:center; background:var(--cream); padding:12px 16px; border-radius:var(--radius); border:1px solid var(--border-cream); margin-bottom:18px; font-size:0.85rem; flex-wrap:wrap; gap:10px;">
+            <div><strong>Active Protocol:</strong> <span style="font-weight:800; color:var(--coral);">Protocol v${cData.protocol_version}</span></div>
+            <div><strong>Execution Tier:</strong> <span class="watch-badge success">${esc(cData.degradation_tier)}</span></div>
+            <div><strong>Cut Budget Consumed:</strong> <strong>${Math.round(cData.budget_ms_used).toLocaleString()} ms</strong></div>
           </div>
-        `;
-      } else {
-        body.innerHTML = `
-          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:12px; margin-bottom:18px;">
-            <div style="background:var(--cream); padding:12px; border-radius:6px; border:1px solid var(--border-cream); text-align:center;">
-              <div style="font-size:1.3rem; font-weight:800; color:var(--black);">${fmt(cData.new_records)}</div>
-              <div style="font-size:0.68rem; font-weight:700; color:var(--gray-2); text-transform:uppercase;">New Records</div>
+
+          <!-- Section 1: NEW THIS CUT (Delta) -->
+          <div style="margin-bottom:20px;">
+            <div style="font-size:0.75rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:var(--coral); margin-bottom:8px;">
+              NEW THIS CUT (DELTA EVENTS)
             </div>
-            <div style="background:var(--cream); padding:12px; border-radius:6px; border:1px solid var(--border-cream); text-align:center;">
-              <div style="font-size:1.3rem; font-weight:800; color:var(--coral);">${fmt(cData.corrections)}</div>
-              <div style="font-size:0.68rem; font-weight:700; color:var(--gray-2); text-transform:uppercase;">Corrections Applied</div>
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(130px, 1fr)); gap:10px;">
+              <div style="background:#FFFFFF; border:1.5px solid var(--border); padding:12px; border-radius:6px; text-align:center;">
+                <div style="font-size:1.3rem; font-weight:800; color:var(--black);">${fmt(cData.new_records)}</div>
+                <div style="font-size:0.65rem; font-weight:700; color:var(--gray-2); text-transform:uppercase;">New Records</div>
+              </div>
+              <div style="background:#FFFFFF; border:1.5px solid var(--border); padding:12px; border-radius:6px; text-align:center;">
+                <div style="font-size:1.3rem; font-weight:800; color:var(--coral);">${fmt(cData.corrections)}</div>
+                <div style="font-size:0.65rem; font-weight:700; color:var(--gray-2); text-transform:uppercase;">Corrections</div>
+              </div>
+              <div style="background:#FFFFFF; border:1.5px solid var(--border); padding:12px; border-radius:6px; text-align:center;">
+                <div style="font-size:1.3rem; font-weight:800; color:var(--black);">${fmt(cData.findings_count)}</div>
+                <div style="font-size:0.65rem; font-weight:700; color:var(--gray-2); text-transform:uppercase;">New Findings</div>
+              </div>
+              <div style="background:#FFFFFF; border:1.5px solid var(--border); padding:12px; border-radius:6px; text-align:center;">
+                <div style="font-size:1.3rem; font-weight:800; color:var(--coral);">${fmt(cData.serious_findings_count)}</div>
+                <div style="font-size:0.65rem; font-weight:700; color:var(--gray-2); text-transform:uppercase;">New Serious Events</div>
+              </div>
+              <div style="background:#FFFFFF; border:1.5px solid var(--border); padding:12px; border-radius:6px; text-align:center;">
+                <div style="font-size:1.3rem; font-weight:800; color:var(--black);">${fmt(cData.escalations_count)}</div>
+                <div style="font-size:0.65rem; font-weight:700; color:var(--gray-2); text-transform:uppercase;">New Escalations</div>
+              </div>
+              <div style="background:#FFFFFF; border:1.5px solid var(--border); padding:12px; border-radius:6px; text-align:center;">
+                <div style="font-size:1.3rem; font-weight:800; color:var(--black);">${fmt(cData.queries_count)}</div>
+                <div style="font-size:0.65rem; font-weight:700; color:var(--gray-2); text-transform:uppercase;">New Queries</div>
+              </div>
             </div>
-            <div style="background:var(--cream); padding:12px; border-radius:6px; border:1px solid var(--border-cream); text-align:center;">
-              <div style="font-size:1.3rem; font-weight:800; color:var(--black);">${fmt(cData.findings_count)}</div>
-              <div style="font-size:0.68rem; font-weight:700; color:var(--gray-2); text-transform:uppercase;">Findings Detected</div>
+            ${cData.amendment_event ? `
+              <div style="margin-top:10px; background:#FFF9F0; border:1px solid #FCD34D; border-radius:6px; padding:8px 12px; font-size:0.8rem; color:#92400E; font-weight:700;">
+                📜 Protocol Transition at this cut: ${esc(cData.amendment_event)}
+              </div>
+            ` : ''}
+            ${cData.new_quarantined_sites && cData.new_quarantined_sites.length ? `
+              <div style="margin-top:8px; background:#FEE2E2; border:1px solid var(--coral); border-radius:6px; padding:8px 12px; font-size:0.8rem; color:#991B1B; font-weight:700;">
+                🛡️ New Site Quarantine Action at this cut: Site ${esc(newQuarantined)}
+              </div>
+            ` : ''}
+          </div>
+
+          <!-- Section 2: CUMULATIVE STATE AS OF CUT -->
+          <div style="margin-bottom:20px;">
+            <div style="font-size:0.75rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:var(--black); margin-bottom:8px;">
+              CUMULATIVE SURVEILLANCE STATE AS OF CUT ${cutNum}
             </div>
-            <div style="background:var(--cream); padding:12px; border-radius:6px; border:1px solid var(--border-cream); text-align:center;">
-              <div style="font-size:1.3rem; font-weight:800; color:var(--coral);">${fmt(cData.serious_findings_count)}</div>
-              <div style="font-size:0.68rem; font-weight:700; color:var(--gray-2); text-transform:uppercase;">Serious Events</div>
+            <div style="background:#FFFFFF; border:1.5px solid var(--border); border-radius:8px; padding:14px 18px; font-size:0.85rem; line-height:1.7;">
+              <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:8px;">
+                <div>• Cumulative Findings: <strong>${fmt(cumFindings)}</strong></div>
+                <div>• Cumulative Serious Events: <strong>${fmt(cumSAE)}</strong></div>
+                <div>• Active Quarantined Sites: <strong>${esc(activeQuarantined)}</strong></div>
+                <div>• Untrusted Lab Records: <strong>${fmt(cData.untrusted_labs)}</strong></div>
+                <div>• Cumulative Budget Consumed: <strong>${Math.round(cumBudget).toLocaleString()} ms</strong></div>
+                <div>• Decisions Created this Cut: <strong>${fmt(cData.decisions_count || cutDecisions.length)}</strong></div>
+              </div>
             </div>
           </div>
 
-          <div style="background:#FFFFFF; border:1.5px solid var(--border); border-radius:8px; padding:16px; font-size:0.85rem; line-height:1.6; margin-bottom:14px;">
-            <div><strong>Protocol Version:</strong> Protocol v${cData.protocol_version}</div>
-            <div><strong>Budget Consumed:</strong> ${Math.round(cData.budget_ms_used).toLocaleString()} ms</div>
-            <div><strong>Degradation Tier:</strong> ${esc(cData.degradation_tier)}</div>
-            <div><strong>Quarantined Sites:</strong> ${cData.quarantined_sites && cData.quarantined_sites.length ? cData.quarantined_sites.join(', ') : 'None'}</div>
-            <div><strong>Untrusted Lab Records:</strong> ${fmt(cData.untrusted_labs)}</div>
+          <!-- Section 3: DECISIONS CREATED AT THIS CUT -->
+          <div style="margin-bottom:16px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <div style="font-size:0.75rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:var(--black);">
+                DECISIONS RECORDED AT CUT ${cutNum} (${cutDecisions.length})
+              </div>
+            </div>
+            ${!cutDecisions.length ? `
+              <div style="font-size:0.82rem; color:var(--gray-2); font-style:italic; padding:10px; background:#FFFFFF; border:1px solid var(--border); border-radius:6px;">
+                No deterministic decisions required recording at Cut ${cutNum}.
+              </div>
+            ` : `
+              <div style="display:grid; gap:8px; max-height:220px; overflow-y:auto; padding-right:4px;">
+                ${cutDecisions.map(d => `
+                  <div style="background:#FFFFFF; border:1px solid var(--border); border-radius:6px; padding:10px 14px; font-size:0.8rem; display:flex; justify-content:space-between; align-items:center; gap:10px;">
+                    <div style="flex:1;">
+                      <div style="display:flex; gap:6px; align-items:center; margin-bottom:2px;">
+                        <span class="watch-badge ${d.status === 'APPROVED' || d.status === 'CONFIRMED' ? 'success' : 'critical'}">${esc(d.status)}</span>
+                        <span style="font-family:var(--mono); font-weight:700; color:var(--black);">${esc(d.decision_id)}</span>
+                        <span style="color:var(--gray-2); font-weight:600;">${esc(d.target)}</span>
+                      </div>
+                      <div style="color:var(--gray-1);">${esc(d.reason)}</div>
+                    </div>
+                    <button onclick="explainDecision('${esc(d.decision_id)}')"
+                      style="background:var(--coral); color:#FFFFFF; border:none; padding:5px 12px; border-radius:4px; font-size:0.75rem; font-weight:700; cursor:pointer;">
+                      Explain ↗
+                    </button>
+                  </div>
+                `).join('')}
+              </div>
+            `}
           </div>
 
-          <div style="display:flex; justify-content:flex-end; gap:10px;">
+          <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:14px; border-top:1px solid var(--border-cream); padding-top:14px;">
             <button onclick="closeCutModal(); document.getElementById('watch-cut-select').value='${cutNum}'; onWatchCutFilterChange();"
-              style="background:var(--coral); color:#FFFFFF; border:none; padding:8px 16px; border-radius:6px; font-weight:700; cursor:pointer;">
+              style="background:var(--coral); color:#FFFFFF; border:none; padding:8px 18px; border-radius:6px; font-weight:700; cursor:pointer;">
               Filter Dashboard by Cut ${cutNum} →
             </button>
           </div>
         `;
+      } catch (err) {
+        console.error("openCutDetail error:", err);
+        body.innerHTML = `<div style="padding:20px; color:#991B1B;">Error loading cut details: ${esc(err.message || err)}</div>`;
       }
-
-      backdrop.classList.add('open');
-      backdrop.setAttribute('aria-hidden', 'false');
     }
 
     function closeCutModal() {
