@@ -1,29 +1,29 @@
 {
   "period": "Cuts 1\u201312",
   "cuts_evaluated_count": 12,
-  "total_findings": 2065,
-  "serious_findings": 56,
+  "total_findings": 4130,
+  "serious_findings": 108,
   "escalations_by_status": {
     "DATA_INTEGRITY": 6,
     "RESOLVED": 1,
-    "CONFIRMED": 262,
+    "CONFIRMED": 264,
     "PENDING": 17,
     "QUARANTINED": 76,
     "REJECTED": 1,
     "APPROVED": 5,
     "STANDING_LIMITS": 7
   },
-  "queries_raised": 40,
+  "queries_raised": 0,
   "quarantined_sites": [
     "S11"
   ],
   "untrusted_records_count": 137,
   "budget_summary": {
     "total_ms": 120000.0,
-    "spent_ms": 21861.93,
-    "remaining_ms": 98138.07,
-    "fraction_used": 0.1822,
-    "tier": "FULL"
+    "spent_ms": 229281.65,
+    "remaining_ms": 0.0,
+    "fraction_used": 1.0,
+    "tier": "ESSENTIAL"
   },
-  "timestamp": "2026-09-19T17:25:18.531599"
+  "timestamp": "2026-09-19T19:07:07.713111"
 }

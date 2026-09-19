@@ -1,19 +1,19 @@
 # Study Sentinel — Stage 3 Long-Term Surveillance Report
 
 **Surveillance Period**: Cuts 1–12  
-**Generated**: 2026-09-19T17:25:18.531599  
+**Generated**: 2026-09-19T19:07:07.713111  
 **Operating Status**: COMPLETED across 12 sequential cuts
 
 ---
 
 ## 1. Executive Summary
 
-- **Total Findings Evaluated**: 2065 (56 serious / critical)
-- **Data Queries Dispatched**: 40
+- **Total Findings Evaluated**: 4130 (108 serious / critical)
+- **Data Queries Dispatched**: 0
 - **Quarantined Investigational Sites**: S11 (data preserved without deletion)
 - **Untrusted Laboratory Records**: 137 (conversion shifts flagged, clinical escalations suppressed)
-- **Protocol Amendments Handled**: 2 transition(s)
-- **Final Resource Status**: FULL tier (18.2% budget utilized)
+- **Protocol Amendments Handled**: 5 transition(s)
+- **Final Resource Status**: ESSENTIAL tier (100.0% budget utilized)
 
 ---
 
@@ -21,18 +21,30 @@
 
 | Cut | Protocol | New Records | Corrections | Findings | Escalations | Queries | Budget Used | Tier |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| 1 | v1 | 4,509 | 0 | 38 | 0 | 0 | 712.5 ms | FULL |
-| 2 | v1 | 2,773 | 0 | 50 | 0 | 0 | 620.8 ms | FULL |
-| 3 | v1 | 1,477 | 0 | 55 | 0 | 0 | 888.2 ms | FULL |
-| 4 | v1 | 2,027 | 0 | 53 | 0 | 0 | 1030.3 ms | FULL |
-| 5 | v2 | 1,430 | 200 | 116 | 1 | 0 | 1200.7 ms | FULL |
-| 6 | v2 | 3,354 | 0 | 188 | 5 | 9 | 1688.0 ms | FULL |
-| 7 | v2 | 1,695 | 0 | 203 | 3 | 0 | 1809.8 ms | FULL |
-| 8 | v2 | 1,384 | 0 | 219 | 1 | 1 | 2113.8 ms | FULL |
-| 9 | v3 | 2,248 | 0 | 242 | 3 | 0 | 2587.8 ms | FULL |
-| 10 | v3 | 1,471 | 0 | 262 | 3 | 0 | 2614.0 ms | FULL |
-| 11 | v3 | 3,342 | 0 | 316 | 1 | 15 | 3282.9 ms | FULL |
-| 12 | v3 | 772 | 0 | 323 | 0 | 15 | 3313.2 ms | FULL |
+| 1 | v1 | 4,509 | 0 | 38 | 0 | 0 | 497.0 ms | ESSENTIAL |
+| 2 | v1 | 2,773 | 0 | 50 | 0 | 0 | 555.0 ms | ESSENTIAL |
+| 3 | v1 | 1,477 | 0 | 55 | 0 | 0 | 1967.4 ms | ESSENTIAL |
+| 4 | v1 | 2,027 | 0 | 53 | 0 | 0 | 2692.3 ms | ESSENTIAL |
+| 5 | v2 | 1,430 | 200 | 116 | 0 | 0 | 3812.2 ms | ESSENTIAL |
+| 6 | v2 | 3,354 | 0 | 188 | 0 | 0 | 4896.6 ms | ESSENTIAL |
+| 7 | v2 | 1,695 | 0 | 203 | 0 | 0 | 5430.4 ms | ESSENTIAL |
+| 8 | v2 | 1,384 | 0 | 219 | 0 | 0 | 6006.9 ms | ESSENTIAL |
+| 9 | v3 | 2,248 | 0 | 242 | 0 | 0 | 6347.0 ms | ESSENTIAL |
+| 10 | v3 | 1,471 | 0 | 262 | 0 | 0 | 6826.3 ms | ESSENTIAL |
+| 11 | v3 | 3,342 | 0 | 316 | 0 | 0 | 7855.7 ms | ESSENTIAL |
+| 12 | v3 | 772 | 0 | 323 | 0 | 0 | 7676.9 ms | ESSENTIAL |
+| 1 | v1 | 4,509 | 0 | 38 | 0 | 0 | 556.9 ms | ESSENTIAL |
+| 2 | v1 | 2,773 | 0 | 50 | 0 | 0 | 1653.7 ms | ESSENTIAL |
+| 3 | v1 | 1,477 | 0 | 55 | 0 | 0 | 1941.6 ms | ESSENTIAL |
+| 4 | v1 | 2,027 | 0 | 53 | 0 | 0 | 2737.6 ms | ESSENTIAL |
+| 5 | v2 | 1,430 | 200 | 116 | 0 | 0 | 3621.6 ms | ESSENTIAL |
+| 6 | v2 | 3,354 | 0 | 188 | 0 | 0 | 5270.6 ms | ESSENTIAL |
+| 7 | v2 | 1,695 | 0 | 203 | 0 | 0 | 5969.5 ms | ESSENTIAL |
+| 8 | v2 | 1,384 | 0 | 219 | 0 | 0 | 5701.6 ms | ESSENTIAL |
+| 9 | v3 | 2,248 | 0 | 242 | 0 | 0 | 7500.5 ms | ESSENTIAL |
+| 10 | v3 | 1,471 | 0 | 262 | 0 | 0 | 7415.9 ms | ESSENTIAL |
+| 11 | v3 | 3,342 | 0 | 316 | 0 | 0 | 9107.7 ms | ESSENTIAL |
+| 12 | v3 | 772 | 0 | 323 | 0 | 0 | 8281.7 ms | ESSENTIAL |
 
 ---
 

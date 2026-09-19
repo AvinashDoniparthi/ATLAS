@@ -17351,5 +17351,53 @@
         "status": "OPEN"
       }
     ]
+  },
+  {
+    "decision_id": "D-3-DEGRADE-REDUCED",
+    "cut": 3,
+    "decision_type": "DEGRADATION",
+    "target": "system_budget",
+    "code": "TIER_REDUCED",
+    "status": "CONFIRMED",
+    "reason": "Surveillance budget utilization reached 60.8%. Degraded operating tier from FULL to REDUCED. Non-essential tasks gated.",
+    "evidence": [],
+    "alternatives": [
+      {
+        "alternative": "Halt surveillance due to budget exhaustion",
+        "rejected_reason": "Safety surveillance cannot be halted mid-study; system must degrade gracefully to essential clinical rules."
+      }
+    ],
+    "timestamp": "1789824457.3364232",
+    "status_history": [
+      {
+        "cut": 3,
+        "tier": "REDUCED",
+        "spent_ms": 72962.3336999046
+      }
+    ]
+  },
+  {
+    "decision_id": "D-10-DEGRADE-ESSENTIAL",
+    "cut": 10,
+    "decision_type": "DEGRADATION",
+    "target": "system_budget",
+    "code": "TIER_ESSENTIAL",
+    "status": "CONFIRMED",
+    "reason": "Surveillance budget utilization reached 81.5%. Degraded operating tier from REDUCED to ESSENTIAL. Non-essential tasks gated.",
+    "evidence": [],
+    "alternatives": [
+      {
+        "alternative": "Halt surveillance due to budget exhaustion",
+        "rejected_reason": "Safety surveillance cannot be halted mid-study; system must degrade gracefully to essential clinical rules."
+      }
+    ],
+    "timestamp": "1789824482.9838479",
+    "status_history": [
+      {
+        "cut": 10,
+        "tier": "ESSENTIAL",
+        "spent_ms": 97821.8519998316
+      }
+    ]
   }
 ]

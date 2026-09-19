@@ -33047,17 +33047,57 @@
   "untrusted_lab_keys": [
     [
       "LB",
-      "042-S04-020",
-      53
+      "042-S04-012",
+      47
     ],
     [
       "LB",
-      "042-S07-014",
+      "042-S07-019",
+      14
+    ],
+    [
+      "LB",
+      "042-S04-009",
+      59
+    ],
+    [
+      "LB",
+      "042-S07-020",
       8
     ],
     [
       "LB",
-      "042-S04-004",
+      "042-S04-011",
+      47
+    ],
+    [
+      "LB",
+      "042-S07-011",
+      8
+    ],
+    [
+      "LB",
+      "042-S04-017",
+      59
+    ],
+    [
+      "LB",
+      "042-S07-012",
+      13
+    ],
+    [
+      "LB",
+      "042-S04-003",
+      47
+    ],
+    [
+      "LB",
+      "042-S07-008",
+      8
+    ],
+    [
+      "LB",
+      "042-S04-010",
       53
     ],
     [
@@ -33067,33 +33107,63 @@
     ],
     [
       "LB",
-      "042-S07-005",
-      2
+      "042-S04-018",
+      53
     ],
     [
       "LB",
-      "042-S04-010",
-      47
+      "042-S04-001",
+      53
+    ],
+    [
+      "LB",
+      "042-S07-020",
+      1
     ],
     [
       "LB",
       "042-S07-017",
+      2
+    ],
+    [
+      "LB",
+      "042-S07-006",
+      1
+    ],
+    [
+      "LB",
+      "042-S07-011",
+      1
+    ],
+    [
+      "LB",
+      "042-S07-018",
       7
     ],
     [
       "LB",
-      "042-S07-010",
-      8
+      "042-S07-013",
+      2
     ],
     [
       "LB",
-      "042-S04-018",
+      "042-S04-005",
       59
     ],
     [
       "LB",
-      "042-S07-002",
-      7
+      "042-S07-008",
+      1
+    ],
+    [
+      "LB",
+      "042-S04-020",
+      47
+    ],
+    [
+      "LB",
+      "042-S04-007",
+      59
     ],
     [
       "LB",
@@ -33102,38 +33172,38 @@
     ],
     [
       "LB",
-      "042-S07-014",
-      1
+      "042-S04-015",
+      47
     ],
     [
       "LB",
-      "042-S07-020",
-      2
-    ],
-    [
-      "LB",
-      "042-S04-009",
-      41
-    ],
-    [
-      "LB",
-      "042-S07-018",
-      8
-    ],
-    [
-      "LB",
-      "042-S07-010",
-      1
-    ],
-    [
-      "LB",
-      "042-S04-002",
+      "042-S04-014",
       53
     ],
     [
       "LB",
-      "042-S07-015",
-      7
+      "042-S04-004",
+      59
+    ],
+    [
+      "LB",
+      "042-S04-019",
+      59
+    ],
+    [
+      "LB",
+      "042-S07-007",
+      8
+    ],
+    [
+      "LB",
+      "042-S07-012",
+      8
+    ],
+    [
+      "LB",
+      "042-S04-013",
+      47
     ],
     [
       "LB",
@@ -33142,33 +33212,43 @@
     ],
     [
       "LB",
+      "042-S04-016",
+      47
+    ],
+    [
+      "LB",
+      "042-S04-009",
+      47
+    ],
+    [
+      "LB",
+      "042-S07-001",
+      1
+    ],
+    [
+      "LB",
       "042-S04-008",
-      47
+      53
     ],
     [
       "LB",
-      "042-S04-015",
-      59
+      "042-S07-007",
+      1
     ],
     [
       "LB",
-      "042-S07-016",
+      "042-S07-014",
       2
     ],
     [
       "LB",
-      "042-S04-001",
-      47
+      "042-S07-015",
+      8
     ],
     [
       "LB",
-      "042-S04-006",
-      59
-    ],
-    [
-      "LB",
-      "042-S07-008",
-      2
+      "042-S04-011",
+      53
     ],
     [
       "LB",
@@ -33178,12 +33258,257 @@
     [
       "LB",
       "042-S07-018",
+      2
+    ],
+    [
+      "LB",
+      "042-S07-012",
+      1
+    ],
+    [
+      "LB",
+      "042-S04-010",
+      41
+    ],
+    [
+      "LB",
+      "042-S07-005",
+      8
+    ],
+    [
+      "LB",
+      "042-S04-001",
+      41
+    ],
+    [
+      "LB",
+      "042-S07-008",
+      14
+    ],
+    [
+      "LB",
+      "042-S07-019",
+      13
+    ],
+    [
+      "LB",
+      "042-S07-010",
+      7
+    ],
+    [
+      "LB",
+      "042-S07-020",
+      7
+    ],
+    [
+      "LB",
+      "042-S07-015",
       1
     ],
     [
       "LB",
       "042-S07-017",
+      8
+    ],
+    [
+      "LB",
+      "042-S04-005",
+      47
+    ],
+    [
+      "LB",
+      "042-S07-005",
+      1
+    ],
+    [
+      "LB",
+      "042-S07-002",
       2
+    ],
+    [
+      "LB",
+      "042-S07-011",
+      7
+    ],
+    [
+      "LB",
+      "042-S04-007",
+      47
+    ],
+    [
+      "LB",
+      "042-S07-003",
+      2
+    ],
+    [
+      "LB",
+      "042-S07-008",
+      7
+    ],
+    [
+      "LB",
+      "042-S04-020",
+      53
+    ],
+    [
+      "LB",
+      "042-S04-002",
+      47
+    ],
+    [
+      "LB",
+      "042-S04-014",
+      41
+    ],
+    [
+      "LB",
+      "042-S04-004",
+      47
+    ],
+    [
+      "LB",
+      "042-S04-019",
+      47
+    ],
+    [
+      "LB",
+      "042-S04-014",
+      59
+    ],
+    [
+      "LB",
+      "042-S07-017",
+      1
+    ],
+    [
+      "LB",
+      "042-S07-009",
+      7
+    ],
+    [
+      "LB",
+      "042-S04-006",
+      53
+    ],
+    [
+      "LB",
+      "042-S07-016",
+      2
+    ],
+    [
+      "LB",
+      "042-S04-016",
+      53
+    ],
+    [
+      "LB",
+      "042-S04-009",
+      53
+    ],
+    [
+      "LB",
+      "042-S07-020",
+      2
+    ],
+    [
+      "LB",
+      "042-S04-012",
+      53
+    ],
+    [
+      "LB",
+      "042-S04-008",
+      59
+    ],
+    [
+      "LB",
+      "042-S07-007",
+      7
+    ],
+    [
+      "LB",
+      "042-S04-011",
+      41
+    ],
+    [
+      "LB",
+      "042-S07-014",
+      8
+    ],
+    [
+      "LB",
+      "042-S04-017",
+      53
+    ],
+    [
+      "LB",
+      "042-S07-018",
+      8
+    ],
+    [
+      "LB",
+      "042-S04-010",
+      47
+    ],
+    [
+      "LB",
+      "042-S07-019",
+      1
+    ],
+    [
+      "LB",
+      "042-S04-003",
+      53
+    ],
+    [
+      "LB",
+      "042-S04-001",
+      59
+    ],
+    [
+      "LB",
+      "042-S04-018",
+      59
+    ],
+    [
+      "LB",
+      "042-S07-015",
+      7
+    ],
+    [
+      "LB",
+      "042-S07-014",
+      1
+    ],
+    [
+      "LB",
+      "042-S07-018",
+      1
+    ],
+    [
+      "LB",
+      "042-S07-009",
+      2
+    ],
+    [
+      "LB",
+      "042-S07-005",
+      7
+    ],
+    [
+      "LB",
+      "042-S07-002",
+      8
+    ],
+    [
+      "LB",
+      "042-S07-013",
+      8
+    ],
+    [
+      "LB",
+      "042-S04-014",
+      47
     ],
     [
       "LB",
@@ -33192,7 +33517,162 @@
     ],
     [
       "LB",
+      "042-S07-007",
+      2
+    ],
+    [
+      "LB",
+      "042-S04-015",
+      53
+    ],
+    [
+      "LB",
+      "042-S07-002",
+      1
+    ],
+    [
+      "LB",
+      "042-S04-006",
+      59
+    ],
+    [
+      "LB",
+      "042-S04-009",
+      41
+    ],
+    [
+      "LB",
+      "042-S07-013",
+      1
+    ],
+    [
+      "LB",
+      "042-S07-012",
+      14
+    ],
+    [
+      "LB",
+      "042-S04-013",
+      53
+    ],
+    [
+      "LB",
+      "042-S07-010",
+      8
+    ],
+    [
+      "LB",
+      "042-S07-019",
+      8
+    ],
+    [
+      "LB",
+      "042-S04-008",
+      47
+    ],
+    [
+      "LB",
+      "042-S07-004",
+      7
+    ],
+    [
+      "LB",
+      "042-S07-015",
+      2
+    ],
+    [
+      "LB",
+      "042-S04-012",
+      59
+    ],
+    [
+      "LB",
+      "042-S07-005",
+      2
+    ],
+    [
+      "LB",
+      "042-S07-016",
+      1
+    ],
+    [
+      "LB",
+      "042-S07-006",
+      2
+    ],
+    [
+      "LB",
+      "042-S07-011",
+      2
+    ],
+    [
+      "LB",
+      "042-S07-012",
+      7
+    ],
+    [
+      "LB",
+      "042-S07-010",
+      1
+    ],
+    [
+      "LB",
+      "042-S07-008",
+      2
+    ],
+    [
+      "LB",
+      "042-S04-018",
+      47
+    ],
+    [
+      "LB",
+      "042-S04-001",
+      47
+    ],
+    [
+      "LB",
+      "042-S04-003",
+      59
+    ],
+    [
+      "LB",
+      "042-S07-014",
+      7
+    ],
+    [
+      "LB",
+      "042-S07-009",
+      8
+    ],
+    [
+      "LB",
+      "042-S04-005",
+      53
+    ],
+    [
+      "LB",
       "042-S04-007",
+      53
+    ],
+    [
+      "LB",
+      "042-S07-004",
+      2
+    ],
+    [
+      "LB",
+      "042-S07-008",
+      13
+    ],
+    [
+      "LB",
+      "042-S04-020",
+      59
+    ],
+    [
+      "LB",
+      "042-S04-002",
       53
     ],
     [
@@ -33202,128 +33682,23 @@
     ],
     [
       "LB",
-      "042-S04-020",
-      59
-    ],
-    [
-      "LB",
-      "042-S07-012",
-      13
-    ],
-    [
-      "LB",
-      "042-S07-009",
-      8
-    ],
-    [
-      "LB",
-      "042-S07-005",
-      8
-    ],
-    [
-      "LB",
-      "042-S04-013",
-      59
-    ],
-    [
-      "LB",
-      "042-S04-011",
-      47
-    ],
-    [
-      "LB",
-      "042-S07-008",
-      13
-    ],
-    [
-      "LB",
-      "042-S04-012",
-      59
-    ],
-    [
-      "LB",
-      "042-S04-010",
-      53
-    ],
-    [
-      "LB",
-      "042-S04-018",
-      47
-    ],
-    [
-      "LB",
-      "042-S07-015",
-      2
-    ],
-    [
-      "LB",
-      "042-S07-014",
-      7
-    ],
-    [
-      "LB",
-      "042-S07-009",
-      1
-    ],
-    [
-      "LB",
-      "042-S07-005",
-      1
-    ],
-    [
-      "LB",
-      "042-S04-003",
-      53
-    ],
-    [
-      "LB",
-      "042-S07-011",
-      7
-    ],
-    [
-      "LB",
-      "042-S04-009",
-      59
-    ],
-    [
-      "LB",
-      "042-S07-013",
-      7
-    ],
-    [
-      "LB",
-      "042-S04-016",
-      47
-    ],
-    [
-      "LB",
       "042-S07-001",
       2
     ],
     [
       "LB",
-      "042-S04-015",
-      47
-    ],
-    [
-      "LB",
-      "042-S07-007",
-      7
-    ],
-    [
-      "LB",
-      "042-S07-012",
-      8
-    ],
-    [
-      "LB",
-      "042-S07-020",
-      1
-    ],
-    [
-      "LB",
-      "042-S04-005",
+      "042-S04-004",
       53
+    ],
+    [
+      "LB",
+      "042-S04-015",
+      59
+    ],
+    [
+      "LB",
+      "042-S07-009",
+      1
     ],
     [
       "LB",
@@ -33332,403 +33707,28 @@
     ],
     [
       "LB",
-      "042-S04-001",
-      53
-    ],
-    [
-      "LB",
-      "042-S07-008",
-      8
-    ],
-    [
-      "LB",
-      "042-S04-017",
-      53
-    ],
-    [
-      "LB",
-      "042-S07-006",
-      2
-    ],
-    [
-      "LB",
-      "042-S04-014",
-      47
-    ],
-    [
-      "LB",
-      "042-S04-020",
-      47
-    ],
-    [
-      "LB",
-      "042-S04-007",
-      59
-    ],
-    [
-      "LB",
-      "042-S07-012",
-      1
+      "042-S07-017",
+      7
     ],
     [
       "LB",
       "042-S07-002",
+      7
+    ],
+    [
+      "LB",
+      "042-S07-012",
       2
+    ],
+    [
+      "LB",
+      "042-S07-013",
+      7
     ],
     [
       "LB",
       "042-S04-013",
-      47
-    ],
-    [
-      "LB",
-      "042-S07-011",
-      2
-    ],
-    [
-      "LB",
-      "042-S04-004",
       59
-    ],
-    [
-      "LB",
-      "042-S07-008",
-      1
-    ],
-    [
-      "LB",
-      "042-S07-019",
-      13
-    ],
-    [
-      "LB",
-      "042-S04-012",
-      47
-    ],
-    [
-      "LB",
-      "042-S04-010",
-      41
-    ],
-    [
-      "LB",
-      "042-S04-011",
-      53
-    ],
-    [
-      "LB",
-      "042-S07-013",
-      2
-    ],
-    [
-      "LB",
-      "042-S07-015",
-      8
-    ],
-    [
-      "LB",
-      "042-S07-007",
-      2
-    ],
-    [
-      "LB",
-      "042-S07-009",
-      7
-    ],
-    [
-      "LB",
-      "042-S04-003",
-      59
-    ],
-    [
-      "LB",
-      "042-S07-020",
-      8
-    ],
-    [
-      "LB",
-      "042-S04-009",
-      47
-    ],
-    [
-      "LB",
-      "042-S04-002",
-      47
-    ],
-    [
-      "LB",
-      "042-S07-015",
-      1
-    ],
-    [
-      "LB",
-      "042-S07-010",
-      7
-    ],
-    [
-      "LB",
-      "042-S04-016",
-      53
-    ],
-    [
-      "LB",
-      "042-S07-003",
-      2
-    ],
-    [
-      "LB",
-      "042-S04-015",
-      53
-    ],
-    [
-      "LB",
-      "042-S07-004",
-      7
-    ],
-    [
-      "LB",
-      "042-S07-012",
-      14
-    ],
-    [
-      "LB",
-      "042-S04-001",
-      41
-    ],
-    [
-      "LB",
-      "042-S04-005",
-      59
-    ],
-    [
-      "LB",
-      "042-S07-019",
-      8
-    ],
-    [
-      "LB",
-      "042-S04-008",
-      53
-    ],
-    [
-      "LB",
-      "042-S07-008",
-      14
-    ],
-    [
-      "LB",
-      "042-S04-007",
-      47
-    ],
-    [
-      "LB",
-      "042-S07-018",
-      7
-    ],
-    [
-      "LB",
-      "042-S07-017",
-      8
-    ],
-    [
-      "LB",
-      "042-S04-014",
-      53
-    ],
-    [
-      "LB",
-      "042-S04-019",
-      59
-    ],
-    [
-      "LB",
-      "042-S07-012",
-      7
-    ],
-    [
-      "LB",
-      "042-S07-002",
-      8
-    ],
-    [
-      "LB",
-      "042-S07-009",
-      2
-    ],
-    [
-      "LB",
-      "042-S07-014",
-      2
-    ],
-    [
-      "LB",
-      "042-S04-004",
-      47
-    ],
-    [
-      "LB",
-      "042-S07-019",
-      1
-    ],
-    [
-      "LB",
-      "042-S04-013",
-      53
-    ],
-    [
-      "LB",
-      "042-S07-011",
-      8
-    ],
-    [
-      "LB",
-      "042-S04-011",
-      41
-    ],
-    [
-      "LB",
-      "042-S07-016",
-      1
-    ],
-    [
-      "LB",
-      "042-S07-008",
-      7
-    ],
-    [
-      "LB",
-      "042-S04-012",
-      53
-    ],
-    [
-      "LB",
-      "042-S07-006",
-      1
-    ],
-    [
-      "LB",
-      "042-S07-013",
-      8
-    ],
-    [
-      "LB",
-      "042-S07-017",
-      1
-    ],
-    [
-      "LB",
-      "042-S04-018",
-      53
-    ],
-    [
-      "LB",
-      "042-S07-002",
-      1
-    ],
-    [
-      "LB",
-      "042-S07-007",
-      8
-    ],
-    [
-      "LB",
-      "042-S07-004",
-      2
-    ],
-    [
-      "LB",
-      "042-S04-003",
-      47
-    ],
-    [
-      "LB",
-      "042-S07-011",
-      1
-    ],
-    [
-      "LB",
-      "042-S07-005",
-      7
-    ],
-    [
-      "LB",
-      "042-S04-009",
-      53
-    ],
-    [
-      "LB",
-      "042-S07-013",
-      1
-    ],
-    [
-      "LB",
-      "042-S07-018",
-      2
-    ],
-    [
-      "LB",
-      "042-S07-007",
-      1
-    ],
-    [
-      "LB",
-      "042-S07-012",
-      2
-    ],
-    [
-      "LB",
-      "042-S04-005",
-      47
-    ],
-    [
-      "LB",
-      "042-S07-019",
-      14
-    ],
-    [
-      "LB",
-      "042-S07-020",
-      7
-    ],
-    [
-      "LB",
-      "042-S04-008",
-      59
-    ],
-    [
-      "LB",
-      "042-S04-006",
-      53
-    ],
-    [
-      "LB",
-      "042-S04-001",
-      59
-    ],
-    [
-      "LB",
-      "042-S04-017",
-      59
-    ],
-    [
-      "LB",
-      "042-S04-014",
-      41
-    ],
-    [
-      "LB",
-      "042-S04-019",
-      47
-    ],
-    [
-      "LB",
-      "042-S04-014",
-      59
-    ],
-    [
-      "LB",
-      "042-S07-001",
-      1
     ]
   ],
   "doc_hash_registry": {
@@ -34032,6 +34032,1122 @@
         "S11"
       ],
       "untrusted_labs": 137
+    },
+    {
+      "cut": 1,
+      "protocol_version": 1,
+      "new_records": 4509,
+      "corrections": 0,
+      "findings_count": 38,
+      "serious_findings_count": 0,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 409.72870006226003,
+      "degradation_tier": "FULL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137,
+      "cumulative_findings_count": 2387,
+      "cumulative_serious_findings_count": 65,
+      "cumulative_budget_ms": 28072.26766707572,
+      "new_quarantined_sites": [],
+      "new_untrusted_labs": 0,
+      "amendment_event": "Protocol v3 \u2192 v1",
+      "human_gate_summary": {
+        "PENDING": 0,
+        "APPROVED": 0,
+        "REJECTED": 0,
+        "CLARIFY": 0,
+        "STANDING_LIMITS": 0
+      },
+      "decisions_count": 2
+    },
+    {
+      "cut": 2,
+      "protocol_version": 1,
+      "new_records": 2773,
+      "corrections": 0,
+      "findings_count": 50,
+      "serious_findings_count": 2,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 698.0232999194413,
+      "degradation_tier": "FULL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137,
+      "cumulative_findings_count": 2437,
+      "cumulative_serious_findings_count": 67,
+      "cumulative_budget_ms": 28770.290966995162,
+      "new_quarantined_sites": [],
+      "new_untrusted_labs": 0,
+      "amendment_event": null,
+      "human_gate_summary": {
+        "PENDING": 0,
+        "APPROVED": 0,
+        "REJECTED": 0,
+        "CLARIFY": 0,
+        "STANDING_LIMITS": 0
+      },
+      "decisions_count": 0
+    },
+    {
+      "cut": 1,
+      "protocol_version": 1,
+      "new_records": 4509,
+      "corrections": 0,
+      "findings_count": 38,
+      "serious_findings_count": 0,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 1228.769899928011,
+      "degradation_tier": "FULL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137
+    },
+    {
+      "cut": 2,
+      "protocol_version": 1,
+      "new_records": 2773,
+      "corrections": 0,
+      "findings_count": 50,
+      "serious_findings_count": 2,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 1555.652399896644,
+      "degradation_tier": "FULL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137
+    },
+    {
+      "cut": 3,
+      "protocol_version": 1,
+      "new_records": 1477,
+      "corrections": 0,
+      "findings_count": 55,
+      "serious_findings_count": 2,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 1610.0614999886602,
+      "degradation_tier": "FULL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137
+    },
+    {
+      "cut": 4,
+      "protocol_version": 1,
+      "new_records": 2027,
+      "corrections": 0,
+      "findings_count": 53,
+      "serious_findings_count": 3,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 1822.263199952431,
+      "degradation_tier": "FULL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137
+    },
+    {
+      "cut": 5,
+      "protocol_version": 2,
+      "new_records": 1430,
+      "corrections": 200,
+      "findings_count": 116,
+      "serious_findings_count": 3,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 2896.496700006537,
+      "degradation_tier": "FULL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137
+    },
+    {
+      "cut": 6,
+      "protocol_version": 2,
+      "new_records": 3354,
+      "corrections": 0,
+      "findings_count": 188,
+      "serious_findings_count": 5,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 4264.500000048429,
+      "degradation_tier": "FULL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137
+    },
+    {
+      "cut": 7,
+      "protocol_version": 2,
+      "new_records": 1695,
+      "corrections": 0,
+      "findings_count": 203,
+      "serious_findings_count": 5,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 4108.9243000606075,
+      "degradation_tier": "FULL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137
+    },
+    {
+      "cut": 8,
+      "protocol_version": 2,
+      "new_records": 1384,
+      "corrections": 0,
+      "findings_count": 219,
+      "serious_findings_count": 6,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 4885.378499981016,
+      "degradation_tier": "FULL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137
+    },
+    {
+      "cut": 9,
+      "protocol_version": 3,
+      "new_records": 2248,
+      "corrections": 0,
+      "findings_count": 242,
+      "serious_findings_count": 7,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 5459.7673000535,
+      "degradation_tier": "FULL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137
+    },
+    {
+      "cut": 10,
+      "protocol_version": 3,
+      "new_records": 1471,
+      "corrections": 0,
+      "findings_count": 262,
+      "serious_findings_count": 7,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 5865.365600096993,
+      "degradation_tier": "FULL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137
+    },
+    {
+      "cut": 11,
+      "protocol_version": 3,
+      "new_records": 3342,
+      "corrections": 0,
+      "findings_count": 316,
+      "serious_findings_count": 7,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 6404.039400047623,
+      "degradation_tier": "FULL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137
+    },
+    {
+      "cut": 12,
+      "protocol_version": 3,
+      "new_records": 772,
+      "corrections": 0,
+      "findings_count": 323,
+      "serious_findings_count": 7,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 7127.609499963,
+      "degradation_tier": "FULL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137
+    },
+    {
+      "cut": 1,
+      "protocol_version": 1,
+      "new_records": 4509,
+      "corrections": 0,
+      "findings_count": 38,
+      "serious_findings_count": 0,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 1504.2551999213174,
+      "degradation_tier": "FULL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137
+    },
+    {
+      "cut": 2,
+      "protocol_version": 1,
+      "new_records": 2773,
+      "corrections": 0,
+      "findings_count": 50,
+      "serious_findings_count": 2,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 1259.5684999832883,
+      "degradation_tier": "FULL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137
+    },
+    {
+      "cut": 3,
+      "protocol_version": 1,
+      "new_records": 1477,
+      "corrections": 0,
+      "findings_count": 55,
+      "serious_findings_count": 2,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 1077.1835999330506,
+      "degradation_tier": "REDUCED",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137
+    },
+    {
+      "cut": 4,
+      "protocol_version": 1,
+      "new_records": 2027,
+      "corrections": 0,
+      "findings_count": 53,
+      "serious_findings_count": 3,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 1811.4360000472516,
+      "degradation_tier": "REDUCED",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137
+    },
+    {
+      "cut": 5,
+      "protocol_version": 2,
+      "new_records": 1430,
+      "corrections": 200,
+      "findings_count": 116,
+      "serious_findings_count": 3,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 2788.28480001539,
+      "degradation_tier": "REDUCED",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137
+    },
+    {
+      "cut": 6,
+      "protocol_version": 2,
+      "new_records": 3354,
+      "corrections": 0,
+      "findings_count": 188,
+      "serious_findings_count": 5,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 4746.84019992128,
+      "degradation_tier": "REDUCED",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137
+    },
+    {
+      "cut": 7,
+      "protocol_version": 2,
+      "new_records": 1695,
+      "corrections": 0,
+      "findings_count": 203,
+      "serious_findings_count": 5,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 4728.384200017899,
+      "degradation_tier": "REDUCED",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137
+    },
+    {
+      "cut": 8,
+      "protocol_version": 2,
+      "new_records": 1384,
+      "corrections": 0,
+      "findings_count": 219,
+      "serious_findings_count": 6,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 4952.711099991575,
+      "degradation_tier": "REDUCED",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137
+    },
+    {
+      "cut": 9,
+      "protocol_version": 3,
+      "new_records": 2248,
+      "corrections": 0,
+      "findings_count": 242,
+      "serious_findings_count": 7,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 4754.678400000557,
+      "degradation_tier": "REDUCED",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137
+    },
+    {
+      "cut": 10,
+      "protocol_version": 3,
+      "new_records": 1471,
+      "corrections": 0,
+      "findings_count": 262,
+      "serious_findings_count": 7,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 5882.040200056508,
+      "degradation_tier": "ESSENTIAL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137
+    },
+    {
+      "cut": 11,
+      "protocol_version": 3,
+      "new_records": 3342,
+      "corrections": 0,
+      "findings_count": 316,
+      "serious_findings_count": 7,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 3931.758899940178,
+      "degradation_tier": "ESSENTIAL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137
+    },
+    {
+      "cut": 12,
+      "protocol_version": 3,
+      "new_records": 772,
+      "corrections": 0,
+      "findings_count": 323,
+      "serious_findings_count": 7,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 2914.672600105405,
+      "degradation_tier": "ESSENTIAL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137
+    },
+    {
+      "cut": 1,
+      "protocol_version": 1,
+      "new_records": 4509,
+      "corrections": 0,
+      "findings_count": 38,
+      "serious_findings_count": 0,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 1718.9278000732884,
+      "degradation_tier": "ESSENTIAL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137
+    },
+    {
+      "cut": 2,
+      "protocol_version": 1,
+      "new_records": 2773,
+      "corrections": 0,
+      "findings_count": 50,
+      "serious_findings_count": 2,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 1512.0155999902636,
+      "degradation_tier": "ESSENTIAL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137
+    },
+    {
+      "cut": 3,
+      "protocol_version": 1,
+      "new_records": 1477,
+      "corrections": 0,
+      "findings_count": 55,
+      "serious_findings_count": 2,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 1967.418499989435,
+      "degradation_tier": "ESSENTIAL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137
+    },
+    {
+      "cut": 4,
+      "protocol_version": 1,
+      "new_records": 2027,
+      "corrections": 0,
+      "findings_count": 53,
+      "serious_findings_count": 3,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 2692.272000014782,
+      "degradation_tier": "ESSENTIAL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137
+    },
+    {
+      "cut": 5,
+      "protocol_version": 2,
+      "new_records": 1430,
+      "corrections": 200,
+      "findings_count": 116,
+      "serious_findings_count": 3,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 3812.174400081858,
+      "degradation_tier": "ESSENTIAL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137
+    },
+    {
+      "cut": 6,
+      "protocol_version": 2,
+      "new_records": 3354,
+      "corrections": 0,
+      "findings_count": 188,
+      "serious_findings_count": 5,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 4896.592400036752,
+      "degradation_tier": "ESSENTIAL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137
+    },
+    {
+      "cut": 7,
+      "protocol_version": 2,
+      "new_records": 1695,
+      "corrections": 0,
+      "findings_count": 203,
+      "serious_findings_count": 5,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 5430.3856999613345,
+      "degradation_tier": "ESSENTIAL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137
+    },
+    {
+      "cut": 8,
+      "protocol_version": 2,
+      "new_records": 1384,
+      "corrections": 0,
+      "findings_count": 219,
+      "serious_findings_count": 6,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 6006.948300055228,
+      "degradation_tier": "ESSENTIAL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137
+    },
+    {
+      "cut": 9,
+      "protocol_version": 3,
+      "new_records": 2248,
+      "corrections": 0,
+      "findings_count": 242,
+      "serious_findings_count": 7,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 6346.988399978727,
+      "degradation_tier": "ESSENTIAL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137
+    },
+    {
+      "cut": 10,
+      "protocol_version": 3,
+      "new_records": 1471,
+      "corrections": 0,
+      "findings_count": 262,
+      "serious_findings_count": 7,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 6826.305499998853,
+      "degradation_tier": "ESSENTIAL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137
+    },
+    {
+      "cut": 11,
+      "protocol_version": 3,
+      "new_records": 3342,
+      "corrections": 0,
+      "findings_count": 316,
+      "serious_findings_count": 7,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 7855.735599994659,
+      "degradation_tier": "ESSENTIAL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137
+    },
+    {
+      "cut": 12,
+      "protocol_version": 3,
+      "new_records": 772,
+      "corrections": 0,
+      "findings_count": 323,
+      "serious_findings_count": 7,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 7676.857199985534,
+      "degradation_tier": "ESSENTIAL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137
+    },
+    {
+      "cut": 1,
+      "protocol_version": 1,
+      "new_records": 4509,
+      "corrections": 0,
+      "findings_count": 38,
+      "serious_findings_count": 0,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 527.5469999760389,
+      "degradation_tier": "ESSENTIAL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137,
+      "cumulative_findings_count": 8670,
+      "cumulative_serious_findings_count": 229,
+      "cumulative_budget_ms": 173621.10136708908,
+      "new_quarantined_sites": [],
+      "new_untrusted_labs": 0,
+      "amendment_event": "Protocol v3 \u2192 v1",
+      "human_gate_summary": {
+        "PENDING": 0,
+        "APPROVED": 0,
+        "REJECTED": 0,
+        "CLARIFY": 0,
+        "STANDING_LIMITS": 0
+      },
+      "decisions_count": 2
+    },
+    {
+      "cut": 2,
+      "protocol_version": 1,
+      "new_records": 2773,
+      "corrections": 0,
+      "findings_count": 50,
+      "serious_findings_count": 2,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 650.2451000269502,
+      "degradation_tier": "ESSENTIAL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137,
+      "cumulative_findings_count": 8720,
+      "cumulative_serious_findings_count": 231,
+      "cumulative_budget_ms": 174271.34646711603,
+      "new_quarantined_sites": [],
+      "new_untrusted_labs": 0,
+      "amendment_event": null,
+      "human_gate_summary": {
+        "PENDING": 0,
+        "APPROVED": 0,
+        "REJECTED": 0,
+        "CLARIFY": 0,
+        "STANDING_LIMITS": 0
+      },
+      "decisions_count": 0
+    },
+    {
+      "cut": 1,
+      "protocol_version": 1,
+      "new_records": 4509,
+      "corrections": 0,
+      "findings_count": 38,
+      "serious_findings_count": 0,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 497.02919996343553,
+      "degradation_tier": "ESSENTIAL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137,
+      "cumulative_findings_count": 8758,
+      "cumulative_serious_findings_count": 231,
+      "cumulative_budget_ms": 174768.37566707947,
+      "new_quarantined_sites": [],
+      "new_untrusted_labs": 0,
+      "amendment_event": null,
+      "human_gate_summary": {
+        "PENDING": 0,
+        "APPROVED": 0,
+        "REJECTED": 0,
+        "CLARIFY": 0,
+        "STANDING_LIMITS": 0
+      },
+      "decisions_count": 2
+    },
+    {
+      "cut": 2,
+      "protocol_version": 1,
+      "new_records": 2773,
+      "corrections": 0,
+      "findings_count": 50,
+      "serious_findings_count": 2,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 554.9960000207648,
+      "degradation_tier": "ESSENTIAL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137,
+      "cumulative_findings_count": 8808,
+      "cumulative_serious_findings_count": 233,
+      "cumulative_budget_ms": 175323.37166710023,
+      "new_quarantined_sites": [],
+      "new_untrusted_labs": 0,
+      "amendment_event": null,
+      "human_gate_summary": {
+        "PENDING": 0,
+        "APPROVED": 0,
+        "REJECTED": 0,
+        "CLARIFY": 0,
+        "STANDING_LIMITS": 0
+      },
+      "decisions_count": 0
+    },
+    {
+      "cut": 1,
+      "protocol_version": 1,
+      "new_records": 4509,
+      "corrections": 0,
+      "findings_count": 38,
+      "serious_findings_count": 0,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 556.8702999735251,
+      "degradation_tier": "ESSENTIAL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137,
+      "cumulative_findings_count": 8846,
+      "cumulative_serious_findings_count": 233,
+      "cumulative_budget_ms": 175880.24196707376,
+      "new_quarantined_sites": [],
+      "new_untrusted_labs": 0,
+      "amendment_event": null,
+      "human_gate_summary": {
+        "PENDING": 0,
+        "APPROVED": 0,
+        "REJECTED": 0,
+        "CLARIFY": 0,
+        "STANDING_LIMITS": 0
+      },
+      "decisions_count": 2
+    },
+    {
+      "cut": 2,
+      "protocol_version": 1,
+      "new_records": 2773,
+      "corrections": 0,
+      "findings_count": 50,
+      "serious_findings_count": 2,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 1653.711499995552,
+      "degradation_tier": "ESSENTIAL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137,
+      "cumulative_findings_count": 8896,
+      "cumulative_serious_findings_count": 235,
+      "cumulative_budget_ms": 177533.9534670693,
+      "new_quarantined_sites": [],
+      "new_untrusted_labs": 0,
+      "amendment_event": null,
+      "human_gate_summary": {
+        "PENDING": 0,
+        "APPROVED": 0,
+        "REJECTED": 0,
+        "CLARIFY": 0,
+        "STANDING_LIMITS": 0
+      },
+      "decisions_count": 0
+    },
+    {
+      "cut": 3,
+      "protocol_version": 1,
+      "new_records": 1477,
+      "corrections": 0,
+      "findings_count": 55,
+      "serious_findings_count": 2,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 1941.573900054209,
+      "degradation_tier": "ESSENTIAL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137,
+      "cumulative_findings_count": 8951,
+      "cumulative_serious_findings_count": 237,
+      "cumulative_budget_ms": 179475.52736712352,
+      "new_quarantined_sites": [],
+      "new_untrusted_labs": 0,
+      "amendment_event": null,
+      "human_gate_summary": {
+        "PENDING": 0,
+        "APPROVED": 0,
+        "REJECTED": 0,
+        "CLARIFY": 0,
+        "STANDING_LIMITS": 0
+      },
+      "decisions_count": 1
+    },
+    {
+      "cut": 4,
+      "protocol_version": 1,
+      "new_records": 2027,
+      "corrections": 0,
+      "findings_count": 53,
+      "serious_findings_count": 3,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 2737.5649999594316,
+      "degradation_tier": "ESSENTIAL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137,
+      "cumulative_findings_count": 9004,
+      "cumulative_serious_findings_count": 240,
+      "cumulative_budget_ms": 182213.09236708295,
+      "new_quarantined_sites": [],
+      "new_untrusted_labs": 0,
+      "amendment_event": null,
+      "human_gate_summary": {
+        "PENDING": 0,
+        "APPROVED": 0,
+        "REJECTED": 0,
+        "CLARIFY": 0,
+        "STANDING_LIMITS": 0
+      },
+      "decisions_count": 0
+    },
+    {
+      "cut": 5,
+      "protocol_version": 2,
+      "new_records": 1430,
+      "corrections": 200,
+      "findings_count": 116,
+      "serious_findings_count": 3,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 3621.6128000523895,
+      "degradation_tier": "ESSENTIAL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137,
+      "cumulative_findings_count": 9120,
+      "cumulative_serious_findings_count": 243,
+      "cumulative_budget_ms": 185834.70516713534,
+      "new_quarantined_sites": [],
+      "new_untrusted_labs": 0,
+      "amendment_event": "Protocol v1 \u2192 v2",
+      "human_gate_summary": {
+        "PENDING": 0,
+        "APPROVED": 0,
+        "REJECTED": 0,
+        "CLARIFY": 0,
+        "STANDING_LIMITS": 0
+      },
+      "decisions_count": 78
+    },
+    {
+      "cut": 6,
+      "protocol_version": 2,
+      "new_records": 3354,
+      "corrections": 0,
+      "findings_count": 188,
+      "serious_findings_count": 5,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 5270.551500027068,
+      "degradation_tier": "ESSENTIAL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137,
+      "cumulative_findings_count": 9308,
+      "cumulative_serious_findings_count": 248,
+      "cumulative_budget_ms": 191105.2566671624,
+      "new_quarantined_sites": [],
+      "new_untrusted_labs": 0,
+      "amendment_event": null,
+      "human_gate_summary": {
+        "PENDING": 0,
+        "APPROVED": 0,
+        "REJECTED": 0,
+        "CLARIFY": 0,
+        "STANDING_LIMITS": 0
+      },
+      "decisions_count": 88
+    },
+    {
+      "cut": 7,
+      "protocol_version": 2,
+      "new_records": 1695,
+      "corrections": 0,
+      "findings_count": 203,
+      "serious_findings_count": 5,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 5969.5351999253035,
+      "degradation_tier": "ESSENTIAL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137,
+      "cumulative_findings_count": 9511,
+      "cumulative_serious_findings_count": 253,
+      "cumulative_budget_ms": 197074.7918670877,
+      "new_quarantined_sites": [],
+      "new_untrusted_labs": 0,
+      "amendment_event": null,
+      "human_gate_summary": {
+        "PENDING": 0,
+        "APPROVED": 0,
+        "REJECTED": 0,
+        "CLARIFY": 0,
+        "STANDING_LIMITS": 0
+      },
+      "decisions_count": 21
+    },
+    {
+      "cut": 8,
+      "protocol_version": 2,
+      "new_records": 1384,
+      "corrections": 0,
+      "findings_count": 219,
+      "serious_findings_count": 6,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 5701.646200031973,
+      "degradation_tier": "ESSENTIAL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137,
+      "cumulative_findings_count": 9730,
+      "cumulative_serious_findings_count": 259,
+      "cumulative_budget_ms": 202776.43806711969,
+      "new_quarantined_sites": [],
+      "new_untrusted_labs": 0,
+      "amendment_event": null,
+      "human_gate_summary": {
+        "PENDING": 0,
+        "APPROVED": 0,
+        "REJECTED": 0,
+        "CLARIFY": 0,
+        "STANDING_LIMITS": 0
+      },
+      "decisions_count": 19
+    },
+    {
+      "cut": 9,
+      "protocol_version": 3,
+      "new_records": 2248,
+      "corrections": 0,
+      "findings_count": 242,
+      "serious_findings_count": 7,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 7500.544000067748,
+      "degradation_tier": "ESSENTIAL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137,
+      "cumulative_findings_count": 9972,
+      "cumulative_serious_findings_count": 266,
+      "cumulative_budget_ms": 210276.98206718743,
+      "new_quarantined_sites": [],
+      "new_untrusted_labs": 0,
+      "amendment_event": "Protocol v2 \u2192 v3",
+      "human_gate_summary": {
+        "PENDING": 0,
+        "APPROVED": 0,
+        "REJECTED": 0,
+        "CLARIFY": 0,
+        "STANDING_LIMITS": 0
+      },
+      "decisions_count": 30
+    },
+    {
+      "cut": 10,
+      "protocol_version": 3,
+      "new_records": 1471,
+      "corrections": 0,
+      "findings_count": 262,
+      "serious_findings_count": 7,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 7415.875499951653,
+      "degradation_tier": "ESSENTIAL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137,
+      "cumulative_findings_count": 10234,
+      "cumulative_serious_findings_count": 273,
+      "cumulative_budget_ms": 217692.8575671391,
+      "new_quarantined_sites": [],
+      "new_untrusted_labs": 0,
+      "amendment_event": null,
+      "human_gate_summary": {
+        "PENDING": 0,
+        "APPROVED": 0,
+        "REJECTED": 0,
+        "CLARIFY": 0,
+        "STANDING_LIMITS": 0
+      },
+      "decisions_count": 29
+    },
+    {
+      "cut": 11,
+      "protocol_version": 3,
+      "new_records": 3342,
+      "corrections": 0,
+      "findings_count": 316,
+      "serious_findings_count": 7,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 9107.665999908932,
+      "degradation_tier": "ESSENTIAL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137,
+      "cumulative_findings_count": 10550,
+      "cumulative_serious_findings_count": 280,
+      "cumulative_budget_ms": 226800.52356704802,
+      "new_quarantined_sites": [],
+      "new_untrusted_labs": 0,
+      "amendment_event": null,
+      "human_gate_summary": {
+        "PENDING": 0,
+        "APPROVED": 0,
+        "REJECTED": 0,
+        "CLARIFY": 0,
+        "STANDING_LIMITS": 0
+      },
+      "decisions_count": 71
+    },
+    {
+      "cut": 12,
+      "protocol_version": 3,
+      "new_records": 772,
+      "corrections": 0,
+      "findings_count": 323,
+      "serious_findings_count": 7,
+      "escalations_count": 0,
+      "queries_count": 0,
+      "budget_ms_used": 8281.73649997916,
+      "degradation_tier": "ESSENTIAL",
+      "quarantined_sites": [
+        "S11"
+      ],
+      "untrusted_labs": 137,
+      "cumulative_findings_count": 10873,
+      "cumulative_serious_findings_count": 287,
+      "cumulative_budget_ms": 235082.26006702718,
+      "new_quarantined_sites": [],
+      "new_untrusted_labs": 0,
+      "amendment_event": null,
+      "human_gate_summary": {
+        "PENDING": 0,
+        "APPROVED": 0,
+        "REJECTED": 0,
+        "CLARIFY": 0,
+        "STANDING_LIMITS": 0
+      },
+      "decisions_count": 38
     }
   ]
 }
