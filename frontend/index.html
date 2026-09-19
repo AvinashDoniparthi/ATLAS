@@ -1748,6 +1748,344 @@
       color: var(--black);
     }
 
+    /* ── Round 3 — WATCH Styles ─────────────────────────────────────────────────── */
+    .watch-timeline-wrap {
+      background: var(--cream);
+      border: 1.5px solid var(--border-cream);
+      border-radius: var(--radius);
+      padding: 24px 20px 28px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow-x: auto;
+    }
+
+    .watch-timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .watch-timeline-track {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(64px, 1fr));
+      gap: 8px;
+      position: relative;
+      margin-top: 26px;
+      padding-top: 10px;
+    }
+
+    .watch-timeline-track::before {
+      content: '';
+      position: absolute;
+      top: 32px;
+      left: 28px;
+      right: 28px;
+      height: 3px;
+      background: var(--border-cream);
+      z-index: 1;
+    }
+
+    .cut-node-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .cut-protocol-marker {
+      position: absolute;
+      top: -24px;
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      padding: 2px 7px;
+      border-radius: 100px;
+      background: var(--coral);
+      color: #FFFFFF;
+      white-space: nowrap;
+      box-shadow: 0 1px 4px rgba(227, 106, 106, 0.35);
+    }
+
+    .cut-node {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      border: 2px solid var(--border-cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: var(--black);
+      transition: all 0.15s ease;
+      box-shadow: var(--shadow);
+    }
+
+    .cut-node-wrap:hover .cut-node {
+      transform: translateY(-2px);
+      border-color: var(--coral);
+      background: var(--soft-pink);
+    }
+
+    .cut-node.completed {
+      background: var(--cream);
+      border-color: var(--border-coral);
+      color: var(--black);
+    }
+
+    .cut-node.active-selected {
+      background: var(--coral);
+      border-color: var(--coral);
+      color: #FFFFFF;
+      box-shadow: 0 2px 8px rgba(227, 106, 106, 0.45);
+      transform: scale(1.08);
+    }
+
+    .cut-node.has-serious {
+      border-color: var(--coral);
+      box-shadow: 0 0 0 3px rgba(227, 106, 106, 0.25);
+    }
+
+    .cut-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--gray-2);
+      margin-top: 6px;
+      text-align: center;
+    }
+
+    .cut-status-sub {
+      font-size: 0.64rem;
+      font-weight: 700;
+      color: var(--gray-3);
+      text-align: center;
+      margin-top: 1px;
+    }
+
+    .watch-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 9px;
+      border-radius: 100px;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .watch-badge.critical {
+      background: #FEE2E2;
+      color: #991B1B;
+      border: 1px solid #FCA5A5;
+    }
+
+    .watch-badge.warning {
+      background: #FEF3C7;
+      color: #92400E;
+      border: 1px solid #FCD34D;
+    }
+
+    .watch-badge.info {
+      background: var(--cream);
+      color: var(--black);
+      border: 1px solid var(--border-cream);
+    }
+
+    .watch-badge.success {
+      background: #DCFCE7;
+      color: #166534;
+      border: 1px solid #86EFAC;
+    }
+
+    .watch-badge.quarantine {
+      background: #FEE2E2;
+      color: #B91C1C;
+      border: 1px solid var(--coral);
+      font-weight: 800;
+    }
+
+    .watch-badge.standing {
+      background: #EDE9FE;
+      color: #6D28D9;
+      border: 1px solid #C4B5FD;
+      font-weight: 800;
+    }
+
+    .watch-filter-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .watch-filter-btn {
+      padding: 6px 14px;
+      border-radius: 100px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      border: 1.5px solid var(--border-cream);
+      background: var(--cream);
+      color: var(--black);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .watch-filter-btn:hover {
+      background: var(--soft-pink);
+      border-color: var(--coral);
+      transform: translateY(-1px);
+    }
+
+    .watch-filter-btn.active {
+      background: var(--coral);
+      border-color: var(--coral);
+      color: #FFFFFF;
+      box-shadow: 0 1px 4px rgba(227, 106, 106, 0.3);
+    }
+
+    .watch-findings-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .watch-finding-card {
+      background: #FFFFFF;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      box-shadow: var(--shadow);
+      transition: all 0.15s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .watch-finding-card:hover {
+      box-shadow: var(--shadow-md);
+      border-color: var(--border-coral);
+    }
+
+    .watch-finding-card.critical {
+      border-left: 5px solid var(--coral);
+    }
+
+    .watch-finding-card.quarantined {
+      border-left: 5px solid #991B1B;
+      background: #FFFDF9;
+    }
+
+    .site-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 14px;
+    }
+
+    .site-card {
+      background: #FFFFFF;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: var(--shadow);
+      transition: all 0.15s ease;
+    }
+
+    .site-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .site-card.quarantined {
+      background: #FFF5F5;
+      border: 2px solid var(--coral);
+    }
+
+    .watch-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(17, 17, 17, 0.55);
+      backdrop-filter: blur(4px);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .2s ease, visibility .2s ease;
+    }
+
+    .watch-modal-backdrop.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .watch-modal {
+      background: var(--bg);
+      border: 2px solid var(--border-cream);
+      border-radius: 12px;
+      max-width: 760px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.22);
+      display: flex;
+      flex-direction: column;
+      transform: translateY(16px);
+      transition: transform .2s ease;
+    }
+
+    .watch-modal-backdrop.open .watch-modal {
+      transform: translateY(0);
+    }
+
+    .watch-modal-header {
+      padding: 20px 24px 16px;
+      border-bottom: 1.5px solid var(--border-cream);
+      position: relative;
+      background: rgba(255, 242, 208, 0.5);
+    }
+
+    .watch-modal-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .watch-modal-footer {
+      padding: 16px 24px;
+      border-top: 1.5px solid var(--border-cream);
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      background: rgba(255, 251, 241, 0.8);
+    }
+
+    .budget-bar-wrap {
+      background: #FFFFFF;
+      border: 1.5px solid var(--border);
+      border-radius: 100px;
+      height: 14px;
+      overflow: hidden;
+      margin: 8px 0;
+    }
+
+    .budget-bar-fill {
+      height: 100%;
+      background: var(--coral);
+      border-radius: 100px;
+      transition: width 0.3s ease;
+    }
+
     /* ── Responsive ───────────────────────────────────────────────────────────── */
     @media (max-width: 640px) {
       .start-title {
@@ -1778,6 +2116,7 @@
         <a href="#" onclick="showSection('p360', event)" id="nav-p360">Patient 360</a>
         <a href="#" onclick="showSection('evidence', event)" id="nav-evidence">Evidence</a>
         <a href="#" onclick="showSection('monitor', event)" id="nav-monitor">Monitor</a>
+        <a href="#" onclick="showSection('watch', event)" id="nav-watch">Watch</a>
       </div>
     </div>
   </nav>
@@ -2282,6 +2621,7 @@
               <button class="mon-tab" id="tab-btn-queries" onclick="showMonitorTab('queries', event)">Queries</button>
               <button class="mon-tab" id="tab-btn-trace" onclick="showMonitorTab('trace', event)">Trace</button>
               <button class="mon-tab" id="tab-btn-memory" onclick="showMonitorTab('memory', event)">Memory</button>
+              <button class="mon-tab" id="tab-btn-watch" onclick="showSection('watch', event)" style="margin-left:auto; background:var(--soft-pink); border-color:var(--coral); color:var(--coral); font-weight:800;">Watch ↗</button>
             </div>
 
             <!-- TAB 1: DASHBOARD -->
@@ -2608,6 +2948,426 @@
           </div>
         </div>
 
+    <!-- WATCH SECTION ─────────────────────────────────────────────────────────── -->
+    <div id="section-watch" class="page-section"
+      style="background-color: var(--bg) !important; min-height: 100vh; padding-bottom: 80px;">
+      <div class="container" style="max-width: 1080px;">
+        <button class="back-btn" onclick="goBack(event)" aria-label="Back">
+          <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
+            <path d="M9 2L4 7L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+          Back
+        </button>
+
+        <!-- WATCH Header -->
+        <div class="mon-header">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px;">
+            <div>
+              <div style="font-size:0.75rem; font-weight:800; letter-spacing:0.12em; text-transform:uppercase; color:var(--coral); margin-bottom:4px;">
+                ROUND 3 — STUDY WATCH
+              </div>
+              <h1 class="page-title" style="font-size:2.2rem; font-weight:800; letter-spacing:-0.03em; color:var(--black);">WATCH</h1>
+              <div style="font-size:1.05rem; font-weight:700; color:var(--black); margin-top:2px;">
+                "Continuous surveillance for every study cut."
+              </div>
+              <div style="font-size:0.85rem; color:var(--gray-2); margin-top:4px; font-weight:500;">
+                Monitor. Detect. Escalate. Explain.
+              </div>
+            </div>
+
+            <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+              <button class="btn-primary" onclick="runWatchSurveillance()" id="run-watch-btn"
+                style="background:var(--coral); color:#FFFFFF; border:none; padding:10px 22px; font-weight:700; border-radius:var(--radius); font-size:0.88rem; box-shadow:0 2px 8px rgba(227,106,106,0.35); transition:all 0.15s ease;">
+                <span id="run-watch-btn-text">RUN SURVEILLANCE</span>
+              </button>
+              <button class="btn-reject" onclick="loadWatchData()" id="refresh-watch-btn"
+                style="background:var(--cream); color:var(--black); border:1.5px solid var(--border-cream); padding:10px 16px; font-weight:600; border-radius:var(--radius); font-size:0.82rem;"
+                title="Refresh surveillance state from backend">
+                Refresh State
+              </button>
+            </div>
+          </div>
+
+          <!-- Study Status Strip (Context Bar) -->
+          <div class="context-bar"
+            style="display:flex; gap:22px; flex-wrap:wrap; background:var(--cream); border:1.5px solid var(--border); padding:14px 22px; border-radius:var(--radius); margin-top:20px; box-shadow:var(--shadow); align-items:center;">
+            <div>
+              <div style="font-size:0.68rem; font-weight:700; text-transform:uppercase; color:var(--gray-2);">CURRENT CUT</div>
+              <div style="font-size:0.95rem; font-weight:800; color:var(--black);" id="watch-ctx-cut">Cuts 1–12</div>
+            </div>
+            <div style="width:1px; height:28px; background:var(--border);"></div>
+            <div>
+              <div style="font-size:0.68rem; font-weight:700; text-transform:uppercase; color:var(--gray-2);">PROTOCOL</div>
+              <div style="font-size:0.95rem; font-weight:800; color:var(--black);" id="watch-ctx-protocol">Protocol v3 (Active)</div>
+            </div>
+            <div style="width:1px; height:28px; background:var(--border);"></div>
+            <div>
+              <div style="font-size:0.68rem; font-weight:700; text-transform:uppercase; color:var(--gray-2);">STATUS</div>
+              <div style="font-size:0.95rem; font-weight:800; color:#2D6A4F;" id="watch-ctx-status">SURVEILLANCE ACTIVE</div>
+            </div>
+            <div style="width:1px; height:28px; background:var(--border);"></div>
+            <div>
+              <div style="font-size:0.68rem; font-weight:700; text-transform:uppercase; color:var(--gray-2);">LAST RUN</div>
+              <div style="font-size:0.95rem; font-weight:800; color:var(--black);" id="watch-ctx-lastrun">Just now</div>
+            </div>
+            <div style="width:1px; height:28px; background:var(--border);"></div>
+            <div>
+              <div style="font-size:0.68rem; font-weight:700; text-transform:uppercase; color:var(--gray-2);">BUDGET</div>
+              <div style="font-size:0.95rem; font-weight:800; color:var(--black);" id="watch-ctx-budget">81.8% remaining</div>
+            </div>
+            <div style="margin-left:auto; display:flex; align-items:center; gap:10px;">
+              <label for="watch-cut-select" style="font-size:0.82rem; font-weight:700; color:var(--black);">Period / Cut:</label>
+              <select id="watch-cut-select" class="cut-select" onchange="onWatchCutFilterChange()"
+                style="padding:6px 14px; border:1.5px solid var(--border); border-radius:var(--radius); font-size:0.85rem; font-weight:700; background:#FFFFFF; cursor:pointer;">
+                <option value="all" selected>All 12 Cuts</option>
+                <option value="1">Cut 1 (v1)</option>
+                <option value="2">Cut 2 (v1)</option>
+                <option value="3">Cut 3 (v1)</option>
+                <option value="4">Cut 4 (v1)</option>
+                <option value="5">Cut 5 (v2 — Amendment 1)</option>
+                <option value="6">Cut 6 (v2)</option>
+                <option value="7">Cut 7 (v2)</option>
+                <option value="8">Cut 8 (v2)</option>
+                <option value="9">Cut 9 (v3 — Amendment 2)</option>
+                <option value="10">Cut 10 (v3)</option>
+                <option value="11">Cut 11 (v3)</option>
+                <option value="12">Cut 12 (v3)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Loading State -->
+        <div id="watch-loading"
+          style="display:none; text-align:center; padding:44px 20px; background:#FFFFFF; border:1.5px solid var(--border); border-radius:var(--radius); margin-bottom:24px; box-shadow:var(--shadow);">
+          <div style="font-size:1.1rem; font-weight:800; color:var(--black); margin-bottom:6px;">STAGE 3 — WATCH</div>
+          <div style="font-size:0.9rem; color:var(--gray-2);" id="watch-loading-msg"><span class="loading-spinner"></span> Running continuous surveillance across study cuts…</div>
+        </div>
+
+        <!-- Error State -->
+        <div id="watch-error"
+          style="display:none; text-align:center; padding:32px 20px; background:var(--soft-pink); border:1.5px solid var(--coral); border-radius:var(--radius); margin-bottom:24px; box-shadow:var(--shadow);">
+          <div style="font-size:1.1rem; font-weight:800; color:#8B0000; margin-bottom:4px;">WATCH SERVICE UNAVAILABLE</div>
+          <div style="font-size:0.88rem; color:var(--black); margin-bottom:14px;" id="watch-error-msg">Unable to communicate with Stage 3 backend surveillance service.</div>
+          <button class="btn-primary" onclick="loadWatchData()"
+            style="background:var(--coral); color:#FFFFFF; border:none; padding:8px 20px; font-weight:700; border-radius:4px;">RETRY</button>
+        </div>
+
+        <!-- Empty State Banner -->
+        <div id="watch-empty"
+          style="display:none; text-align:center; padding:24px 20px; background:var(--cream); border:1.5px solid #ebd7a3; border-radius:var(--radius); margin-bottom:24px;">
+          <div style="font-size:1.05rem; font-weight:800; color:var(--black); margin-bottom:4px;">NO SURVEILLANCE RUN RECORDED</div>
+          <div style="font-size:0.88rem; color:var(--gray-2);">Click <strong>RUN SURVEILLANCE</strong> to evaluate cuts 1 through 12.</div>
+        </div>
+
+        <!-- 12-Cut Surveillance Timeline -->
+        <div class="watch-timeline-wrap">
+          <div class="watch-timeline-header">
+            <div>
+              <div style="font-size:0.7rem; font-weight:800; letter-spacing:0.12em; text-transform:uppercase; color:var(--coral); margin-bottom:2px;">12-CUT PROGRESSION TIMELINE</div>
+              <div style="font-size:1.05rem; font-weight:800; color:var(--black);">Continuous Multi-Cut Surveillance</div>
+            </div>
+            <div style="display:flex; gap:8px; align-items:center;">
+              <span class="watch-badge success" id="timeline-cuts-badge">12 / 12 Cuts Evaluated</span>
+              <span class="watch-badge info" id="timeline-tier-badge">Tier: FULL</span>
+            </div>
+          </div>
+
+          <div class="watch-timeline-track" id="watch-timeline-track">
+            <!-- Dynamically populated 12 cut circles -->
+          </div>
+          <div style="display:flex; justify-content:space-between; font-size:0.74rem; color:var(--gray-3); margin-top:14px; font-weight:600;">
+            <span>← Click any cut node to inspect that cut's dedicated execution summary</span>
+            <span id="watch-timeline-help">Showing cumulative 12-cut surveillance</span>
+          </div>
+        </div>
+
+        <!-- 10 Surveillance Overview Cards -->
+        <div class="mon-summary-grid" style="grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); margin-bottom:28px;">
+          <div class="mon-card cream" onclick="openCutDetail(12)" style="cursor:pointer;" title="Click to view cut details">
+            <div class="mon-card-num" id="wcard-cuts">—</div>
+            <div class="mon-card-label">CUTS PROCESSED</div>
+            <div style="font-size:.72rem; color:var(--gray-2); margin-top:4px;">12 surveillance cuts</div>
+          </div>
+          <div class="mon-card" style="background:#FFFFFF;">
+            <div class="mon-card-num" id="wcard-findings" style="color:var(--black);">—</div>
+            <div class="mon-card-label">TOTAL FINDINGS</div>
+            <div style="font-size:.72rem; color:var(--gray-2); margin-top:4px;">Ledger discoveries</div>
+          </div>
+          <div class="mon-card soft-pink">
+            <div class="mon-card-num" id="wcard-serious" style="color:var(--coral);">—</div>
+            <div class="mon-card-label">SERIOUS EVENTS</div>
+            <div style="font-size:.72rem; color:var(--gray-2); margin-top:4px;">High / Critical severity</div>
+          </div>
+          <div class="mon-card cream">
+            <div class="mon-card-num" id="wcard-queries">—</div>
+            <div class="mon-card-label">QUERIES RAISED</div>
+            <div style="font-size:.72rem; color:var(--gray-2); margin-top:4px;">Data clarification</div>
+          </div>
+          <div class="mon-card soft-pink">
+            <div class="mon-card-num" id="wcard-escalations" style="color:var(--coral);">—</div>
+            <div class="mon-card-label">ESCALATIONS</div>
+            <div style="font-size:.72rem; color:var(--gray-2); margin-top:4px;">Medical review ledger</div>
+          </div>
+          <div class="mon-card" style="background:#FFFFFF;">
+            <div class="mon-card-num" id="wcard-pending" style="color:var(--coral);">—</div>
+            <div class="mon-card-label">PENDING HUMAN</div>
+            <div style="font-size:.72rem; color:var(--gray-2); margin-top:4px;">Gate review queue</div>
+          </div>
+          <div class="mon-card soft-pink">
+            <div class="mon-card-num" id="wcard-quarantined" style="color:#991B1B;">—</div>
+            <div class="mon-card-label">QUARANTINED SITES</div>
+            <div style="font-size:.72rem; color:var(--gray-2); margin-top:4px;">Adversarial isolation</div>
+          </div>
+          <div class="mon-card cream">
+            <div class="mon-card-num" id="wcard-untrusted-labs">—</div>
+            <div class="mon-card-label">UNTRUSTED LABS</div>
+            <div style="font-size:.72rem; color:var(--gray-2); margin-top:4px;">Distribution shift</div>
+          </div>
+          <div class="mon-card" style="background:#FFFFFF;">
+            <div class="mon-card-num" id="wcard-budget" style="font-size:1.6rem;">—</div>
+            <div class="mon-card-label">BUDGET USED</div>
+            <div style="font-size:.72rem; color:var(--gray-2); margin-top:4px;" id="wcard-budget-sub">ms consumed</div>
+          </div>
+          <div class="mon-card cream">
+            <div class="mon-card-num" id="wcard-tier" style="font-size:1.5rem; color:#2D6A4F;">FULL</div>
+            <div class="mon-card-label">DEGRADATION TIER</div>
+            <div style="font-size:.72rem; color:var(--gray-2); margin-top:4px;">Deterministic safety</div>
+          </div>
+        </div>
+
+        <!-- Five-Node Visual Workflow Pipeline -->
+        <div class="flow-container"
+          style="background:var(--cream); border:1.5px solid var(--border); border-radius:var(--radius); padding:22px; margin-bottom:28px; position:relative; box-shadow:var(--shadow);">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;">
+            <div style="font-size:.75rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--black);">
+              FIVE-NODE SURVEILLANCE PIPELINE
+            </div>
+            <div style="font-size:.72rem; font-weight:700; color:var(--coral); background:#FFFBF1; padding:4px 10px; border-radius:100px; border:1px solid var(--border);">
+              Continuous Multi-Cut Loop
+            </div>
+          </div>
+          <div style="position:relative;">
+            <div style="position:absolute; top:36px; left:8%; right:8%; height:3px; background:var(--coral); z-index:1;"></div>
+            <div class="flow-nodes" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:10px; position:relative; z-index:2;">
+              <div class="flow-node complete">
+                <div style="font-size:.65rem; font-weight:800; color:var(--gray-2); margin-bottom:2px;">01</div>
+                <div class="flow-node-title">DETECT</div>
+                <div class="flow-node-status complete">✓ Active</div>
+                <div style="font-size:.7rem;color:var(--gray-2);margin-top:4px;" id="pipe-detect-desc">New Cuts & Deltas</div>
+              </div>
+              <div class="flow-node complete">
+                <div style="font-size:.65rem; font-weight:800; color:var(--gray-2); margin-bottom:2px;">02</div>
+                <div class="flow-node-title">REVIEW</div>
+                <div class="flow-node-status complete">✓ Active</div>
+                <div style="font-size:.7rem;color:var(--gray-2);margin-top:4px;" id="pipe-review-desc">Adversarial & Labs</div>
+              </div>
+              <div class="flow-node active">
+                <div style="font-size:.65rem; font-weight:800; color:var(--coral); margin-bottom:2px;">03</div>
+                <div class="flow-node-title">DECIDE</div>
+                <div class="flow-node-status pending" id="pipe-decide-status">Human Gate</div>
+                <div style="font-size:.7rem;color:var(--gray-2);margin-top:4px;">Standing Limits</div>
+              </div>
+              <div class="flow-node complete">
+                <div style="font-size:.65rem; font-weight:800; color:var(--gray-2); margin-bottom:2px;">04</div>
+                <div class="flow-node-title">TRACE</div>
+                <div class="flow-node-status complete">✓ Immutable</div>
+                <div style="font-size:.7rem;color:var(--gray-2);margin-top:4px;">Audit Trail</div>
+              </div>
+              <div class="flow-node complete">
+                <div style="font-size:.65rem; font-weight:800; color:var(--gray-2); margin-bottom:2px;">05</div>
+                <div class="flow-node-title">EXPLAIN</div>
+                <div class="flow-node-status complete">✓ Decision API</div>
+                <div style="font-size:.7rem;color:var(--gray-2);margin-top:4px;">Trace Backed</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Watch Sub-tabs Navigation -->
+        <div class="mon-nav-tabs" style="margin-bottom:24px;">
+          <button class="mon-tab active" id="wtab-btn-findings" onclick="switchWatchTab('findings')">Findings & Signals</button>
+          <button class="mon-tab" id="wtab-btn-integrity" onclick="switchWatchTab('integrity')">Data Integrity (Sites & Labs)</button>
+          <button class="mon-tab" id="wtab-btn-human" onclick="switchWatchTab('human')">Human Gate & Standing Limits</button>
+          <button class="mon-tab" id="wtab-btn-decisions" onclick="switchWatchTab('decisions')">Surveillance Decisions</button>
+          <button class="mon-tab" id="wtab-btn-trace" onclick="switchWatchTab('trace')">Trace & Audit</button>
+          <button class="mon-tab" id="wtab-btn-memory" onclick="switchWatchTab('memory')">Memory & Budget</button>
+        </div>
+
+        <!-- WATCH TAB 1: FINDINGS & SIGNALS -->
+        <div id="wtab-content-findings" class="watch-tab-pane">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:12px;">
+            <div>
+              <div style="font-size:1.15rem; font-weight:800; color:var(--black);">Surveillance Findings</div>
+              <div style="font-size:0.85rem; color:var(--gray-2);">Continuously discovered anomalies, safety signals, and protocol non-compliance.</div>
+            </div>
+            <div class="watch-filter-tabs" style="margin-bottom:0;">
+              <button class="watch-filter-btn active" onclick="filterWatchFindings('ALL', event)">All Findings</button>
+              <button class="watch-filter-btn" onclick="filterWatchFindings('SERIOUS', event)">Serious (High/Critical)</button>
+              <button class="watch-filter-btn" onclick="filterWatchFindings('INTEGRITY', event)">Data Integrity</button>
+              <button class="watch-filter-btn" onclick="filterWatchFindings('AMENDMENT', event)">Protocol Amendments</button>
+            </div>
+          </div>
+          <div id="watch-findings-list" class="watch-findings-grid">
+            <!-- Dynamic Finding Cards -->
+          </div>
+        </div>
+
+        <!-- WATCH TAB 2: DATA INTEGRITY (SITES, LABS, DOCUMENTS) -->
+        <div id="wtab-content-integrity" class="watch-tab-pane" style="display:none;">
+          <!-- Adversarial Site Surveillance -->
+          <div style="margin-bottom:32px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+              <div>
+                <div style="font-size:0.7rem; font-weight:800; letter-spacing:0.12em; text-transform:uppercase; color:var(--coral); margin-bottom:2px;">SITE SURVEILLANCE</div>
+                <div style="font-size:1.15rem; font-weight:800; color:var(--black);">Adversarial Site Detection & Quarantine</div>
+              </div>
+              <span class="watch-badge info" id="watch-sites-count-badge">12 Sites Evaluated</span>
+            </div>
+            <div id="watch-sites-grid" class="site-grid">
+              <!-- Dynamically populated site cards -->
+            </div>
+          </div>
+
+          <!-- Laboratory Distribution & Unit Shift Anomalies -->
+          <div style="margin-bottom:32px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+              <div>
+                <div style="font-size:0.7rem; font-weight:800; letter-spacing:0.12em; text-transform:uppercase; color:var(--coral); margin-bottom:2px;">LABORATORY INTEGRITY</div>
+                <div style="font-size:1.15rem; font-weight:800; color:var(--black);">Distribution & Unit-Shift Anomaly Detector</div>
+              </div>
+              <span class="watch-badge critical" id="watch-untrusted-records-badge">137 Untrusted Records</span>
+            </div>
+            <div id="watch-lab-shifts-container">
+              <!-- Dynamically populated lab integrity cards -->
+            </div>
+          </div>
+
+          <!-- Document Integrity & Tampering -->
+          <div style="margin-bottom:24px;">
+            <div style="margin-bottom:14px;">
+              <div style="font-size:0.7rem; font-weight:800; letter-spacing:0.12em; text-transform:uppercase; color:var(--coral); margin-bottom:2px;">DOCUMENT INTEGRITY</div>
+              <div style="font-size:1.15rem; font-weight:800; color:var(--black);">Protocol Version Transitions & Document Hash Audit</div>
+            </div>
+
+            <!-- Instruction-like content detection banner -->
+            <div style="background:var(--cream); border:1.5px solid var(--border-coral); border-radius:var(--radius); padding:16px 20px; margin-bottom:16px;">
+              <div style="font-size:0.88rem; font-weight:800; color:#8B0000; display:flex; align-items:center; gap:8px;">
+                <span>🛡️</span> INSTRUCTION-LIKE CONTENT DETECTED IN DOCUMENTATION
+              </div>
+              <div style="font-size:0.82rem; color:var(--gray-1); margin-top:4px;">
+                Treated strictly as document evidence and historical text. Not executed as an agent instruction or system prompt.
+              </div>
+            </div>
+
+            <div id="watch-doc-transitions-container" style="display:grid; gap:12px;">
+              <!-- Dynamic doc transition cards -->
+            </div>
+          </div>
+        </div>
+
+        <!-- WATCH TAB 3: HUMAN GATE & STANDING LIMITS -->
+        <div id="wtab-content-human" class="watch-tab-pane" style="display:none;">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px; flex-wrap:wrap; gap:12px;">
+            <div>
+              <div style="font-size:1.15rem; font-weight:800; color:var(--black);">Human Monitor Gate</div>
+              <div style="font-size:0.85rem; color:var(--gray-2);">Clinical decisions remain human-controlled. Surveillance state tracks responses and standing limits.</div>
+            </div>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              <span class="watch-badge standing" id="hg-standing-count-badge">Standing Limits: 7</span>
+              <span class="watch-badge warning" id="hg-pending-count-badge">Pending: 17</span>
+            </div>
+          </div>
+
+          <!-- Standing limits explanatory callout -->
+          <div style="background:var(--cream); border:1.5px solid var(--border-cream); border-left:5px solid #6D28D9; border-radius:var(--radius); padding:16px 20px; margin-bottom:20px;">
+            <div style="font-size:0.88rem; font-weight:800; color:#6D28D9;">STANDING LIMITS ACTIVATION (4-Cut Timeout Policy)</div>
+            <div style="font-size:0.82rem; color:var(--gray-1); margin-top:4px;">
+              Escalations pending human response for ≥4 cuts automatically age into predefined standing limits with documented clinical rationales to prevent unmonitored safety stalls.
+            </div>
+          </div>
+
+          <div id="watch-humangate-list" style="display:grid; gap:12px;">
+            <!-- Dynamically populated human gate items -->
+          </div>
+        </div>
+
+        <!-- WATCH TAB 4: SURVEILLANCE DECISIONS -->
+        <div id="wtab-content-decisions" class="watch-tab-pane" style="display:none;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:12px;">
+            <div>
+              <div style="font-size:1.15rem; font-weight:800; color:var(--black);">Surveillance Decisions Ledger</div>
+              <div style="font-size:0.85rem; color:var(--gray-2);">Deterministic decisions recorded at each cut. Every decision is fully traceable and explainable.</div>
+            </div>
+            <span class="watch-badge info" id="watch-decisions-count-badge">— Decisions</span>
+          </div>
+          <div id="watch-decisions-list" style="display:grid; gap:12px;">
+            <!-- Dynamically populated decision cards with Explain buttons -->
+          </div>
+        </div>
+
+        <!-- WATCH TAB 5: TRACE & AUDIT -->
+        <div id="wtab-content-trace" class="watch-tab-pane" style="display:none;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+            <div>
+              <div style="font-size:1.15rem; font-weight:800; color:var(--black);">Stage 3 Surveillance Trace</div>
+              <div style="font-size:0.85rem; color:var(--gray-2);">Immutable execution log capturing cuts, data ingestion, queries, human actions, and decisions.</div>
+            </div>
+            <span class="watch-badge success" id="watch-trace-count-badge">— Entries</span>
+          </div>
+          <div id="watch-trace-list" style="display:grid; gap:10px;">
+            <!-- Dynamically populated trace rows -->
+          </div>
+        </div>
+
+        <!-- WATCH TAB 6: MEMORY & BUDGET -->
+        <div id="wtab-content-memory" class="watch-tab-pane" style="display:none;">
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:20px; margin-bottom:28px;">
+            <!-- Persistent Memory Panel -->
+            <div class="mon-card cream" style="border:1.5px solid var(--border-cream);">
+              <div style="font-size:0.7rem; font-weight:800; letter-spacing:0.12em; text-transform:uppercase; color:var(--coral); margin-bottom:2px;">STATEFUL MEMORY</div>
+              <div style="font-size:1.1rem; font-weight:800; color:var(--black); margin-bottom:6px;">Cross-Cut Memory Engine</div>
+              <div style="font-size:0.82rem; color:var(--gray-2); margin-bottom:16px;">
+                "Memory prevents duplicate queries and repeated escalation of already-resolved items across surveillance cuts."
+              </div>
+              <div id="watch-memory-metrics-grid" style="display:grid; grid-template-columns:repeat(2, 1fr); gap:10px;">
+                <!-- Dynamically populated memory stats -->
+              </div>
+            </div>
+
+            <!-- Global Budget & Degradation Monitor -->
+            <div class="mon-card" style="background:#FFFFFF; border:1.5px solid var(--border);">
+              <div style="font-size:0.7rem; font-weight:800; letter-spacing:0.12em; text-transform:uppercase; color:var(--coral); margin-bottom:2px;">GLOBAL BUDGET</div>
+              <div style="font-size:1.1rem; font-weight:800; color:var(--black); margin-bottom:6px;">Surveillance Compute & Resource Tier</div>
+              <div style="font-size:0.82rem; color:var(--gray-2); margin-bottom:12px;">
+                Graceful degradation preserves deterministic safety checks if resources become tight.
+              </div>
+
+              <div style="display:flex; justify-content:space-between; font-size:0.85rem; font-weight:700;">
+                <span id="watch-budget-used-text">Spent: — ms</span>
+                <span id="watch-budget-pct-text">0%</span>
+              </div>
+              <div class="budget-bar-wrap">
+                <div class="budget-bar-fill" id="watch-budget-fill" style="width: 0%;"></div>
+              </div>
+              <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:var(--gray-2); margin-bottom:14px;">
+                <span>Total Budget: 120,000 ms</span>
+                <span id="watch-budget-remaining-text">Remaining: — ms</span>
+              </div>
+
+              <!-- Degradation Status Notice -->
+              <div style="background:var(--cream); border:1px solid var(--border-cream); border-radius:6px; padding:12px 14px; font-size:0.8rem;">
+                <div style="font-weight:800; color:var(--black); margin-bottom:2px;" id="watch-degrade-title">Execution Tier: FULL</div>
+                <div style="color:var(--gray-2);" id="watch-degrade-desc">All surveillance modules, narrative generation, and deep audit traces active. Deterministic safety surveillance remains active across all tiers.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
   </main>
 
   <!-- ── StudyGraph Relationship Explorer Modal ────────────────────────────── -->
@@ -2630,6 +3390,96 @@
 
       <div class="rel-modal-footer">
         <button onclick="closeRelModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Watch Decision Explainer Modal ──────────────────────────────────────── -->
+  <div id="watch-explain-modal-backdrop" class="watch-modal-backdrop" onclick="if(event.target===this) closeExplainModal()" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="watch-modal" onclick="event.stopPropagation()">
+      <div class="watch-modal-header">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <div>
+            <div class="watch-badge critical" id="wexp-badge">DECISION EXPLAINER</div>
+            <h2 style="font-size:1.35rem; font-weight:800; color:var(--black); margin-top:6px;" id="wexp-title">Why Did Watch Make This Decision?</h2>
+            <div style="font-size:0.84rem; color:var(--gray-2); margin-top:2px;" id="wexp-sub">Trace-backed clinical & regulatory audit rationale</div>
+          </div>
+          <button class="rel-close-btn" onclick="closeExplainModal()" aria-label="Close modal">&times;</button>
+        </div>
+      </div>
+
+      <div class="watch-modal-body" id="wexp-body">
+        <!-- Metadata Context Strip -->
+        <div style="display:flex; gap:16px; flex-wrap:wrap; background:var(--cream); padding:12px 16px; border-radius:var(--radius); border:1px solid var(--border-cream); font-size:0.8rem;">
+          <div><strong>Decision ID:</strong> <span id="wexp-id" style="font-family:var(--mono); color:var(--coral);">—</span></div>
+          <div><strong>Cut:</strong> <span id="wexp-cut">—</span></div>
+          <div><strong>Target:</strong> <span id="wexp-target">—</span></div>
+          <div><strong>Status:</strong> <span id="wexp-status">—</span></div>
+        </div>
+
+        <!-- Section: What Happened -->
+        <div>
+          <div style="font-size:0.75rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:var(--coral); margin-bottom:4px;">WHAT HAPPENED & WHY</div>
+          <div style="background:#FFFFFF; border:1.5px solid var(--border); border-radius:var(--radius); padding:16px; font-size:0.9rem; line-height:1.6; color:var(--black);" id="wexp-why">
+            Loading explanation…
+          </div>
+        </div>
+
+        <!-- Section: Supporting Evidence -->
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+            <div style="font-size:0.75rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:var(--coral);">SUPPORTING EVIDENCE RECORDS</div>
+            <span style="font-size:0.74rem; font-weight:700; color:var(--gray-2);" id="wexp-ev-count">0 records cited</span>
+          </div>
+          <div id="wexp-evidence-list" style="display:grid; gap:8px;">
+            <!-- Evidence items -->
+          </div>
+        </div>
+
+        <!-- Section: Alternatives Considered & Rejected -->
+        <div>
+          <div style="font-size:0.75rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:var(--coral); margin-bottom:6px;">ALTERNATIVES CONSIDERED & REJECTED</div>
+          <div id="wexp-alternatives-list" style="display:grid; gap:8px;">
+            <!-- Alternatives items -->
+          </div>
+        </div>
+
+        <!-- Section: Audit Trace -->
+        <div style="background:var(--cream); border:1px solid var(--border-cream); border-radius:var(--radius); padding:12px 16px; display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <div style="font-size:0.72rem; font-weight:700; color:var(--gray-2);">AUDIT TRACE LINKAGE</div>
+            <div style="font-size:0.85rem; font-family:var(--mono); color:var(--black);" id="wexp-trace-ids">—</div>
+          </div>
+          <span class="watch-badge success" id="wexp-trace-consistent">Consistent with Trace</span>
+        </div>
+      </div>
+
+      <div class="watch-modal-footer">
+        <button onclick="closeExplainModal()" style="background:var(--cream); border:1.5px solid var(--border-cream); padding:8px 18px; border-radius:6px; font-weight:700; cursor:pointer;">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Watch Cut Detail Modal ──────────────────────────────────────────────── -->
+  <div id="watch-cut-modal-backdrop" class="watch-modal-backdrop" onclick="if(event.target===this) closeCutModal()" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="watch-modal" onclick="event.stopPropagation()">
+      <div class="watch-modal-header">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <div>
+            <div class="watch-badge info" id="wcut-modal-badge">CUT EXECUTION SUMMARY</div>
+            <h2 style="font-size:1.35rem; font-weight:800; color:var(--black); margin-top:6px;" id="wcut-modal-title">Cut Details</h2>
+            <div style="font-size:0.84rem; color:var(--gray-2); margin-top:2px;" id="wcut-modal-sub">Surveillance delta, records ingested, and decisions recorded</div>
+          </div>
+          <button class="rel-close-btn" onclick="closeCutModal()" aria-label="Close modal">&times;</button>
+        </div>
+      </div>
+
+      <div class="watch-modal-body" id="wcut-modal-body">
+        <!-- Populated dynamically -->
+      </div>
+
+      <div class="watch-modal-footer">
+        <button onclick="closeCutModal()" style="background:var(--cream); border:1.5px solid var(--border-cream); padding:8px 18px; border-radius:6px; font-weight:700; cursor:pointer;">Close</button>
       </div>
     </div>
   </div>
@@ -2689,7 +3539,7 @@
     }
 
     /* ── Navigation ───────────────────────────────────────────────────────────── */
-    const SECTIONS = ['start', 'home', 'graph', 'p360', 'evidence', 'monitor'];
+    const SECTIONS = ['start', 'home', 'graph', 'p360', 'evidence', 'monitor', 'watch'];
     const _navHistory = ['start'];
 
     function startApp() {
@@ -2727,7 +3577,7 @@
         const el = document.getElementById('section-' + s);
         if (el) el.classList.toggle('active', s === id);
       });
-      ['nav-graph', 'nav-p360', 'nav-evidence', 'nav-monitor'].forEach(n => {
+      ['nav-graph', 'nav-p360', 'nav-evidence', 'nav-monitor', 'nav-watch'].forEach(n => {
         const el = document.getElementById(n);
         if (el) el.classList.remove('active');
       });
@@ -2738,6 +3588,7 @@
 
       if (id === 'graph') loadGraphStats();
       if (id === 'monitor') loadMonitorData();
+      if (id === 'watch') loadWatchData();
 
     }
 
@@ -3322,10 +4173,12 @@
       openP360(usubjid);
     }
 
-    // Global keyboard listener for modal
+    // Global keyboard listener for modals
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         closeRelModal();
+        if (typeof closeExplainModal === 'function') closeExplainModal();
+        if (typeof closeCutModal === 'function') closeCutModal();
       }
     });
 
@@ -4482,11 +5335,829 @@ void main() {
       requestAnimationFrame(frame);
     }
 
+    /* ── Round 3 — WATCH Controller & State ───────────────────────────────────── */
+    const _watchData = {
+      state: null,
+      report: null,
+      cuts: [],
+      findings: [],
+      decisions: [],
+      humanGate: [],
+      sites: [],
+      labIntegrity: null,
+      documents: null,
+      budget: null,
+      trace: [],
+      memory: null,
+      stats: null,
+      selectedCut: 'all',
+      findingFilter: 'ALL',
+      activeTab: 'findings'
+    };
+
+    async function loadWatchData() {
+      const loadingEl = document.getElementById('watch-loading');
+      const errorEl = document.getElementById('watch-error');
+      const emptyEl = document.getElementById('watch-empty');
+
+      if (loadingEl) {
+        document.getElementById('watch-loading-msg').innerHTML = '<span class="loading-spinner"></span> Loading surveillance state from backend…';
+        loadingEl.style.display = 'block';
+      }
+      if (errorEl) errorEl.style.display = 'none';
+
+      try {
+        const [statsRes, stateRes, cutsRes, budgetRes, humanGateRes, sitesRes, labRes, docsRes, memoryRes] = await Promise.allSettled([
+          apiFetch('/api/watch/stats'),
+          apiFetch('/api/watch/state'),
+          apiFetch('/api/watch/cuts'),
+          apiFetch('/api/watch/budget'),
+          apiFetch('/api/watch/human-gate'),
+          apiFetch('/api/watch/sites'),
+          apiFetch('/api/watch/lab-integrity'),
+          apiFetch('/api/watch/documents'),
+          apiFetch('/api/watch/memory')
+        ]);
+
+        if (statsRes.status === 'fulfilled') _watchData.stats = statsRes.value;
+        if (stateRes.status === 'fulfilled') _watchData.state = stateRes.value;
+        if (cutsRes.status === 'fulfilled') _watchData.cuts = cutsRes.value.cuts || [];
+        if (budgetRes.status === 'fulfilled') _watchData.budget = budgetRes.value;
+        if (humanGateRes.status === 'fulfilled') _watchData.humanGate = humanGateRes.value.items || [];
+        if (sitesRes.status === 'fulfilled') _watchData.sites = sitesRes.value.sites || [];
+        if (labRes.status === 'fulfilled') _watchData.labIntegrity = labRes.value;
+        if (docsRes.status === 'fulfilled') _watchData.documents = docsRes.value;
+        if (memoryRes.status === 'fulfilled') _watchData.memory = memoryRes.value;
+
+        try {
+          const report = await apiFetch('/api/watch/report');
+          if (report && Object.keys(report).length > 0) {
+            _watchData.report = report;
+          }
+        } catch (re) { }
+
+        await fetchWatchCutData(_watchData.selectedCut);
+
+        if ((!_watchData.cuts || _watchData.cuts.length === 0) && (!_watchData.report || Object.keys(_watchData.report).length === 0)) {
+          await runWatchSurveillance();
+          return;
+        }
+
+        renderWatchAll();
+      } catch (e) {
+        console.error("loadWatchData failed:", e);
+        if (errorEl) {
+          errorEl.style.display = 'block';
+          document.getElementById('watch-error-msg').textContent = 'Error connecting to Watch API: ' + (e.message || e);
+        }
+      } finally {
+        if (loadingEl) loadingEl.style.display = 'none';
+      }
+    }
+
+    async function fetchWatchCutData(cutFilter) {
+      const cutParam = (cutFilter !== 'all' && cutFilter != null) ? `?cut=${parseInt(cutFilter, 10)}` : '';
+      try {
+        const [findingsRes, decisionsRes, traceRes] = await Promise.allSettled([
+          apiFetch('/api/watch/findings' + cutParam),
+          apiFetch('/api/watch/decisions' + cutParam),
+          apiFetch('/api/watch/trace' + (cutParam ? cutParam + '&limit=50' : '?limit=50'))
+        ]);
+        if (findingsRes.status === 'fulfilled') _watchData.findings = findingsRes.value.findings || [];
+        if (decisionsRes.status === 'fulfilled') _watchData.decisions = decisionsRes.value.decisions || [];
+        if (traceRes.status === 'fulfilled') _watchData.trace = traceRes.value.trace || [];
+      } catch (err) {
+        console.error("fetchWatchCutData error:", err);
+      }
+    }
+
+    async function runWatchSurveillance(specificCuts) {
+      const btn = document.getElementById('run-watch-btn');
+      const btnTxt = document.getElementById('run-watch-btn-text');
+      const loadingEl = document.getElementById('watch-loading');
+      const errorEl = document.getElementById('watch-error');
+
+      if (btn) btn.disabled = true;
+      if (btnTxt) btnTxt.textContent = 'RUNNING SURVEILLANCE…';
+      if (loadingEl) {
+        document.getElementById('watch-loading-msg').innerHTML = '<span class="loading-spinner"></span> <strong>SURVEILLANCE IN PROGRESS:</strong> Ingesting study cuts, evaluating adversarial signals, checking lab integrity, and updating memory…';
+        loadingEl.style.display = 'block';
+      }
+      if (errorEl) errorEl.style.display = 'none';
+
+      try {
+        const bodyPayload = specificCuts ? { cuts: specificCuts } : {};
+        const report = await apiFetch('/api/watch/run-period', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(bodyPayload)
+        });
+        _watchData.report = report;
+
+        const [statsRes, stateRes, cutsRes, budgetRes, humanGateRes, sitesRes, labRes, docsRes, memoryRes] = await Promise.allSettled([
+          apiFetch('/api/watch/stats'),
+          apiFetch('/api/watch/state'),
+          apiFetch('/api/watch/cuts'),
+          apiFetch('/api/watch/budget'),
+          apiFetch('/api/watch/human-gate'),
+          apiFetch('/api/watch/sites'),
+          apiFetch('/api/watch/lab-integrity'),
+          apiFetch('/api/watch/documents'),
+          apiFetch('/api/watch/memory')
+        ]);
+
+        if (statsRes.status === 'fulfilled') _watchData.stats = statsRes.value;
+        if (stateRes.status === 'fulfilled') _watchData.state = stateRes.value;
+        if (cutsRes.status === 'fulfilled') _watchData.cuts = cutsRes.value.cuts || [];
+        if (budgetRes.status === 'fulfilled') _watchData.budget = budgetRes.value;
+        if (humanGateRes.status === 'fulfilled') _watchData.humanGate = humanGateRes.value.items || [];
+        if (sitesRes.status === 'fulfilled') _watchData.sites = sitesRes.value.sites || [];
+        if (labRes.status === 'fulfilled') _watchData.labIntegrity = labRes.value;
+        if (docsRes.status === 'fulfilled') _watchData.documents = docsRes.value;
+        if (memoryRes.status === 'fulfilled') _watchData.memory = memoryRes.value;
+
+        await fetchWatchCutData(_watchData.selectedCut);
+        renderWatchAll();
+      } catch (err) {
+        console.error("runWatchSurveillance error:", err);
+        if (errorEl) {
+          errorEl.style.display = 'block';
+          document.getElementById('watch-error-msg').textContent = 'Surveillance run failed: ' + (err.message || err);
+        }
+      } finally {
+        if (btn) btn.disabled = false;
+        if (btnTxt) btnTxt.textContent = 'RUN SURVEILLANCE';
+        if (loadingEl) loadingEl.style.display = 'none';
+      }
+    }
+
+    function onWatchCutFilterChange() {
+      const select = document.getElementById('watch-cut-select');
+      _watchData.selectedCut = select ? select.value : 'all';
+      fetchWatchCutData(_watchData.selectedCut).then(() => {
+        renderWatchTimeline();
+        renderWatchFindings(_watchData.findingFilter);
+        renderWatchDecisions();
+        renderWatchTrace();
+      });
+    }
+
+    function switchWatchTab(tabId) {
+      _watchData.activeTab = tabId;
+      document.querySelectorAll('.watch-tab-pane').forEach(el => el.style.display = 'none');
+      document.querySelectorAll('#section-watch .mon-tab').forEach(el => el.classList.remove('active'));
+
+      const targetPane = document.getElementById(`wtab-content-${tabId}`);
+      if (targetPane) targetPane.style.display = 'block';
+      const targetBtn = document.getElementById(`wtab-btn-${tabId}`);
+      if (targetBtn) targetBtn.classList.add('active');
+    }
+
+    function filterWatchFindings(category, e) {
+      if (e && e.preventDefault) e.preventDefault();
+      _watchData.findingFilter = category;
+      document.querySelectorAll('.watch-filter-btn').forEach(btn => btn.classList.remove('active'));
+      if (e && e.target) e.target.classList.add('active');
+      renderWatchFindings(category);
+    }
+
+    function renderWatchAll() {
+      const rep = _watchData.report;
+      const stats = _watchData.stats;
+      const state = _watchData.state;
+      const budget = _watchData.budget;
+
+      // Status Strip (Context Bar)
+      const curCutText = (_watchData.selectedCut !== 'all') ? `Cut ${_watchData.selectedCut}` : (rep && rep.cuts_evaluated ? `Cuts 1–${rep.cuts_evaluated.length}` : 'Cuts 1–12');
+      const pv = (state && state.active_protocol_version) ? state.active_protocol_version : ((rep && rep.protocol_transitions && rep.protocol_transitions.length) ? 3 : 1);
+
+      document.getElementById('watch-ctx-cut').textContent = curCutText;
+      document.getElementById('watch-ctx-protocol').textContent = `Protocol v${pv} (Active)`;
+      document.getElementById('watch-ctx-status').textContent = 'SURVEILLANCE ACTIVE';
+      document.getElementById('watch-ctx-lastrun').textContent = 'Just now';
+
+      let budgetRemainingText = '81.8% remaining';
+      if (budget && budget.total_ms > 0) {
+        const pctRemaining = (budget.remaining_ms / budget.total_ms) * 100;
+        budgetRemainingText = `${pctRemaining.toFixed(1)}% remaining (${budget.tier || 'FULL'})`;
+      }
+      document.getElementById('watch-ctx-budget').textContent = budgetRemainingText;
+
+      renderWatchTimeline();
+      renderWatchSummaryMetrics();
+      renderWatchFindings(_watchData.findingFilter);
+      renderWatchSites();
+      renderWatchLabIntegrity();
+      renderWatchHumanGate();
+      renderWatchDecisions();
+      renderWatchTrace();
+      renderWatchMemory();
+      renderWatchBudget();
+    }
+
+    function renderWatchTimeline() {
+      const track = document.getElementById('watch-timeline-track');
+      if (!track) return;
+
+      const cuts = _watchData.cuts || [];
+      const cutsMap = {};
+      cuts.forEach(c => { cutsMap[c.cut] = c; });
+
+      const evaluatedCount = cuts.length || (_watchData.report && _watchData.report.cuts_evaluated ? _watchData.report.cuts_evaluated.length : 0);
+      document.getElementById('timeline-cuts-badge').textContent = `${evaluatedCount} / 12 Cuts Evaluated`;
+
+      const tier = (_watchData.budget && _watchData.budget.tier) || 'FULL';
+      document.getElementById('timeline-tier-badge').textContent = `Tier: ${tier}`;
+
+      let html = '';
+      for (let cut = 1; cut <= 12; cut++) {
+        const cData = cutsMap[cut];
+        const isCompleted = !!cData;
+        const isSelected = (_watchData.selectedCut === String(cut));
+        const hasSerious = cData && (cData.serious_findings_count > 0 || (cData.quarantined_sites && cData.quarantined_sites.length > 0));
+
+        let nodeClass = 'cut-node';
+        if (isSelected) nodeClass += ' active-selected';
+        else if (isCompleted) nodeClass += ' completed';
+        if (hasSerious) nodeClass += ' has-serious';
+
+        let markerHtml = '';
+        if (cut === 5) {
+          markerHtml = '<span class="cut-protocol-marker">v1 → v2</span>';
+        } else if (cut === 9) {
+          markerHtml = '<span class="cut-protocol-marker">v2 → v3</span>';
+        }
+
+        const findingsLabel = cData ? `${cData.findings_count} findings` : 'Pending';
+        const seriousTag = (cData && cData.serious_findings_count > 0) ? `⚠️ ${cData.serious_findings_count} SAE` : (isCompleted ? '✓ Passed' : '—');
+
+        html += `
+          <div class="cut-node-wrap" onclick="openCutDetail(${cut})" title="Cut ${cut}: Click to view full surveillance metrics">
+            ${markerHtml}
+            <div class="${nodeClass}">
+              ${cut}
+            </div>
+            <div class="cut-label">Cut ${cut}</div>
+            <div class="cut-status-sub">${isCompleted ? seriousTag : 'Pending'}</div>
+          </div>
+        `;
+      }
+      track.innerHTML = html;
+    }
+
+    function renderWatchSummaryMetrics() {
+      const rep = _watchData.report;
+      const stats = _watchData.stats;
+      const budget = _watchData.budget;
+      const state = _watchData.state;
+
+      const totalFindings = (rep && rep.total_findings != null) ? rep.total_findings : (stats && stats.total_findings_recorded != null ? stats.total_findings_recorded : (_watchData.findings ? _watchData.findings.length : 0));
+      const seriousCount = (rep && rep.serious_findings != null) ? rep.serious_findings : (_watchData.findings ? _watchData.findings.filter(f => f.severity === 'CRITICAL' || f.severity === 'HIGH').length : 0);
+      const queriesCount = (rep && rep.queries_raised != null) ? rep.queries_raised : (_watchData.memory && _watchData.memory.queries_count != null ? _watchData.memory.queries_count : 0);
+
+      let escalationsCount = 0;
+      if (rep && rep.escalations_by_status) {
+        escalationsCount = Object.values(rep.escalations_by_status).reduce((a, b) => a + b, 0);
+      } else if (_watchData.memory && _watchData.memory.escalations_count != null) {
+        escalationsCount = _watchData.memory.escalations_count;
+      }
+
+      const pendingHuman = _watchData.humanGate ? _watchData.humanGate.filter(i => i.decision === 'PENDING').length : 0;
+      const quarantinedSites = (state && state.quarantined_sites) || (rep && rep.quarantined_sites) || [];
+      const untrustedLabs = (state && state.untrusted_lab_records != null) ? state.untrusted_lab_records : (rep && rep.untrusted_records_count != null ? rep.untrusted_records_count : 0);
+
+      document.getElementById('wcard-cuts').textContent = fmt((rep && rep.cuts_evaluated) ? rep.cuts_evaluated.length : _watchData.cuts.length);
+      document.getElementById('wcard-findings').textContent = fmt(totalFindings);
+      document.getElementById('wcard-serious').textContent = fmt(seriousCount);
+      document.getElementById('wcard-queries').textContent = fmt(queriesCount);
+      document.getElementById('wcard-escalations').textContent = fmt(escalationsCount);
+      document.getElementById('wcard-pending').textContent = fmt(pendingHuman);
+      document.getElementById('wcard-quarantined').textContent = quarantinedSites.length ? `${quarantinedSites.length} (${quarantinedSites.join(',')})` : '0';
+      document.getElementById('wcard-untrusted-labs').textContent = fmt(untrustedLabs);
+
+      if (budget) {
+        document.getElementById('wcard-budget').textContent = `${Math.round(budget.spent_ms).toLocaleString()} ms`;
+        document.getElementById('wcard-budget-sub').textContent = `${((budget.spent_ms / budget.total_ms) * 100).toFixed(1)}% consumed`;
+        document.getElementById('wcard-tier').textContent = budget.tier || 'FULL';
+      }
+
+      // Pipeline status
+      const pipeStatus = document.getElementById('pipe-decide-status');
+      if (pipeStatus) {
+        pipeStatus.textContent = pendingHuman > 0 ? `${pendingHuman} Pending` : '✓ Complete';
+        pipeStatus.className = pendingHuman > 0 ? 'flow-node-status pending' : 'flow-node-status complete';
+      }
+    }
+
+    function renderWatchFindings(category) {
+      const container = document.getElementById('watch-findings-list');
+      if (!container) return;
+
+      let list = _watchData.findings || [];
+      if (category === 'SERIOUS') {
+        list = list.filter(f => f.severity === 'CRITICAL' || f.severity === 'HIGH');
+      } else if (category === 'INTEGRITY') {
+        list = list.filter(f => f.code.includes('LAB') || f.code.includes('SITE') || f.code.includes('INTEGRITY') || f.code.includes('TAMPER'));
+      } else if (category === 'AMENDMENT') {
+        list = list.filter(f => f.code.includes('AMENDMENT') || f.code.includes('PROTOCOL') || f.code.includes('RULE'));
+      }
+
+      if (!list.length) {
+        container.innerHTML = `
+          <div style="background:#FFFFFF; border:1.5px solid var(--border); border-radius:var(--radius); padding:32px; text-align:center;">
+            <div style="font-weight:700; color:var(--black);">No findings matching category: ${esc(category)}</div>
+            <div style="font-size:0.85rem; color:var(--gray-2); margin-top:4px;">Try switching to "All Findings" or select another cut period.</div>
+          </div>
+        `;
+        return;
+      }
+
+      // Render top 25 findings for performance
+      container.innerHTML = list.slice(0, 30).map(f => {
+        const isCritical = f.severity === 'CRITICAL' || f.severity === 'HIGH';
+        const isQuarantined = f.status === 'QUARANTINED' || f.code.includes('INTEGRITY');
+        let cardClass = 'watch-finding-card';
+        if (isCritical) cardClass += ' critical';
+        if (isQuarantined) cardClass += ' quarantined';
+
+        const hasSubject = f.usubjid && f.usubjid.startsWith('042-');
+        const evCount = (f.evidence && f.evidence.length) || (f.details && f.details.record ? 1 : 0);
+
+        // Find associated decision if available
+        const relatedDec = (_watchData.decisions || []).find(d => d.target === f.usubjid || d.target === f.site || d.code === f.code);
+        const decId = relatedDec ? relatedDec.decision_id : null;
+
+        return `
+          <div class="${cardClass}">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:8px;">
+              <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+                <span class="watch-badge ${isCritical ? 'critical' : 'warning'}">${esc(f.severity || 'SIGNAL')}</span>
+                <span style="font-size:0.75rem; font-family:var(--mono); font-weight:700; color:var(--gray-2);">${esc(f.code)}</span>
+                <span style="font-size:0.75rem; color:var(--coral); font-weight:700;">Cut ${esc(f.first_detected_cut || f.last_seen_cut || '1')}</span>
+              </div>
+              <div style="display:flex; gap:6px; align-items:center;">
+                <span class="watch-badge info">${evCount} Evidence</span>
+                ${f.status ? `<span class="watch-badge ${f.status === 'QUARANTINED' ? 'quarantine' : 'info'}">${esc(f.status)}</span>` : ''}
+              </div>
+            </div>
+
+            <div style="font-size:0.92rem; font-weight:700; color:var(--black); line-height:1.4;">
+              ${esc(f.summary || f.rationale || 'Surveillance anomaly identified.')}
+            </div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-top:4px; padding-top:10px; border-top:1px solid var(--border-cream);">
+              <div style="font-size:0.8rem; color:var(--gray-2);">
+                Target: <strong>${esc(f.usubjid || f.site || 'Study-level')}</strong>
+                ${f.site ? ` · Site: <strong>${esc(f.site)}</strong>` : ''}
+              </div>
+              <div style="display:flex; gap:8px; align-items:center;">
+                ${hasSubject ? `
+                  <button onclick="openP360('${esc(f.usubjid)}', event)"
+                    style="background:var(--cream); border:1px solid var(--border-cream); padding:5px 12px; border-radius:4px; font-size:0.75rem; font-weight:700; cursor:pointer;"
+                    title="Open Patient 360 for ${esc(f.usubjid)}">
+                    Patient 360 ↗
+                  </button>
+                ` : ''}
+                ${decId ? `
+                  <button onclick="explainDecision('${esc(decId)}')"
+                    style="background:var(--coral); color:#FFFFFF; border:none; padding:5px 12px; border-radius:4px; font-size:0.75rem; font-weight:700; cursor:pointer;"
+                    title="Explain decision reasoning">
+                    Explain Decision ↗
+                  </button>
+                ` : ''}
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderWatchSites() {
+      const container = document.getElementById('watch-sites-grid');
+      if (!container) return;
+
+      const sites = _watchData.sites || [];
+      document.getElementById('watch-sites-count-badge').textContent = `${sites.length} Sites Evaluated`;
+
+      if (!sites.length) {
+        container.innerHTML = '<div style="font-size:0.88rem; color:var(--gray-2); padding:20px;">No site data available from backend.</div>';
+        return;
+      }
+
+      container.innerHTML = sites.map(s => {
+        const isQuarantined = !!s.quarantined;
+        const issues = s.issue_counts || {};
+        const issueEntries = Object.entries(issues);
+        const hasIssues = issueEntries.length > 0;
+
+        return `
+          <div class="site-card ${isQuarantined ? 'quarantined' : ''}">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <div style="font-size:1.1rem; font-weight:800; color:var(--black); font-family:var(--mono);">Site ${esc(s.site)}</div>
+              <span class="watch-badge ${isQuarantined ? 'quarantine' : (hasIssues ? 'warning' : 'success')}">
+                ${isQuarantined ? 'QUARANTINED' : (hasIssues ? 'ATTENTION' : 'NORMAL')}
+              </span>
+            </div>
+
+            <div style="font-size:0.8rem; color:var(--gray-2); margin-bottom:10px;">
+              Enrolled: <strong>${esc(s.subjects_count)} subjects</strong>
+            </div>
+
+            ${hasIssues ? `
+              <div style="background:#FFF9F0; border:1px solid #FCD34D; border-radius:6px; padding:8px 10px; font-size:0.75rem; color:#92400E; margin-bottom:8px;">
+                ${issueEntries.map(([k, v]) => `<div><strong>${esc(k)}:</strong> ${esc(v)} events</div>`).join('')}
+              </div>
+            ` : ''}
+
+            ${isQuarantined ? `
+              <div style="background:#FEE2E2; border:1px solid var(--coral); border-radius:6px; padding:8px 10px; font-size:0.75rem; color:#991B1B; font-weight:700;">
+                Isolated from clean study analysis due to anomalous site regularity.
+              </div>
+            ` : ''}
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderWatchLabIntegrity() {
+      const container = document.getElementById('watch-lab-shifts-container');
+      if (!container) return;
+
+      const labData = _watchData.labIntegrity;
+      const untrustedCount = labData ? labData.untrusted_records_count : 0;
+      document.getElementById('watch-untrusted-records-badge').textContent = `${untrustedCount} Untrusted Records`;
+
+      // Find lab unit shift decisions from decisions ledger
+      const labDecisions = (_watchData.decisions || []).filter(d => d.decision_type === 'LAB_UNIT_SHIFT' || d.code === 'LAB_UNIT_SHIFT');
+
+      if (!labDecisions.length) {
+        container.innerHTML = `
+          <div style="background:#FFFFFF; border:1.5px solid var(--border); border-radius:var(--radius); padding:20px; font-size:0.88rem; color:var(--gray-2);">
+            No laboratory distribution shift anomalies recorded at the current surveillance cut.
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = labDecisions.map(d => `
+        <div style="background:#FFFFFF; border:1.5px solid var(--border-coral); border-left:6px solid var(--coral); border-radius:var(--radius); padding:18px 20px; box-shadow:var(--shadow); margin-bottom:12px;">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:8px; margin-bottom:8px;">
+            <div>
+              <span class="watch-badge critical">LAB UNIT SHIFT</span>
+              <span style="font-size:1rem; font-weight:800; color:var(--black); margin-left:8px;">Site ${esc(d.target)} Analyte Shift</span>
+            </div>
+            <span class="watch-badge quarantine">Status: ${esc(d.status)}</span>
+          </div>
+
+          <div style="font-size:0.88rem; color:var(--black); line-height:1.5; margin-bottom:12px;">
+            ${esc(d.reason)}
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; border-top:1px solid var(--border-cream); padding-top:10px;">
+            <div style="font-size:0.78rem; color:var(--gray-2);">
+              Detection: <strong>Cut ${esc(d.cut)}</strong> · Evidence: <strong>${(d.evidence || []).length} records</strong>
+            </div>
+            <button onclick="explainDecision('${esc(d.decision_id)}')"
+              style="background:var(--coral); color:#FFFFFF; border:none; padding:6px 14px; border-radius:4px; font-size:0.78rem; font-weight:700; cursor:pointer;">
+              Explain Decision ↗
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderWatchHumanGate() {
+      const container = document.getElementById('watch-humangate-list');
+      if (!container) return;
+
+      const items = _watchData.humanGate || [];
+      const standingItems = items.filter(i => i.decision === 'STANDING_LIMITS');
+      const pendingItems = items.filter(i => i.decision === 'PENDING');
+
+      const standingBadge = document.getElementById('hg-standing-count-badge');
+      const pendingBadge = document.getElementById('hg-pending-count-badge');
+      if (standingBadge) standingBadge.textContent = `Standing Limits: ${standingItems.length}`;
+      if (pendingBadge) pendingBadge.textContent = `Pending: ${pendingItems.length}`;
+
+      if (!items.length) {
+        container.innerHTML = '<div style="background:#FFFFFF; border:1px solid var(--border); border-radius:var(--radius); padding:24px; text-align:center; color:var(--gray-2);">No human gate items in tracking queue.</div>';
+        return;
+      }
+
+      container.innerHTML = items.slice(0, 15).map(item => {
+        let decBadge = 'info';
+        if (item.decision === 'APPROVED') decBadge = 'success';
+        else if (item.decision === 'REJECTED') decBadge = 'warning';
+        else if (item.decision === 'STANDING_LIMITS') decBadge = 'standing';
+        else if (item.decision === 'PENDING') decBadge = 'critical';
+
+        const isSubject = item.target && item.target.startsWith('042-');
+
+        return `
+          <div style="background:#FFFFFF; border:1.5px solid var(--border); border-radius:var(--radius); padding:16px 20px; box-shadow:var(--shadow);">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:8px;">
+              <div style="display:flex; gap:8px; align-items:center;">
+                <span class="watch-badge ${decBadge}">${esc(item.decision)}</span>
+                <span style="font-size:0.85rem; font-weight:800; font-family:var(--mono); color:var(--black);">${esc(item.target)}</span>
+                <span style="font-size:0.75rem; color:var(--gray-2); font-weight:700;">${esc(item.code)}</span>
+              </div>
+              <div style="font-size:0.75rem; color:var(--gray-3); font-weight:600;">
+                Escalated Cut ${esc(item.escalated_at_cut)} · ${item.cuts_pending} cuts pending
+              </div>
+            </div>
+
+            <div style="font-size:0.85rem; color:var(--black); line-height:1.5; margin-bottom:8px;">
+              <strong>Clinical Rationale:</strong> ${esc(item.reason || 'Safety criteria evaluation in progress.')}
+            </div>
+
+            ${item.action_taken ? `
+              <div style="font-size:0.8rem; color:var(--gray-1); background:var(--cream); padding:6px 10px; border-radius:4px; margin-bottom:8px;">
+                <strong>Action:</strong> ${esc(item.action_taken)}
+              </div>
+            ` : ''}
+
+            ${isSubject ? `
+              <div style="text-align:right;">
+                <button onclick="openP360('${esc(item.target)}', event)"
+                  style="background:none; border:none; color:var(--coral); font-size:0.78rem; font-weight:700; cursor:pointer;">
+                  View Subject in Patient 360 →
+                </button>
+              </div>
+            ` : ''}
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderWatchDecisions() {
+      const container = document.getElementById('watch-decisions-list');
+      if (!container) return;
+
+      const decs = _watchData.decisions || [];
+      document.getElementById('watch-decisions-count-badge').textContent = `${decs.length} Decisions`;
+
+      if (!decs.length) {
+        container.innerHTML = '<div style="background:#FFFFFF; border:1px solid var(--border); border-radius:var(--radius); padding:24px; text-align:center; color:var(--gray-2);">No decisions recorded for selected cut.</div>';
+        return;
+      }
+
+      container.innerHTML = decs.slice(0, 20).map(d => `
+        <div style="background:#FFFFFF; border:1.5px solid var(--border); border-radius:var(--radius); padding:16px 20px; box-shadow:var(--shadow); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+          <div style="flex:1; min-width:260px;">
+            <div style="display:flex; gap:8px; align-items:center; margin-bottom:4px;">
+              <span class="watch-badge ${d.status === 'CONFIRMED' || d.status === 'APPROVED' ? 'success' : 'critical'}">${esc(d.status)}</span>
+              <span style="font-size:0.82rem; font-family:var(--mono); font-weight:700; color:var(--black);">${esc(d.decision_id)}</span>
+              <span style="font-size:0.75rem; color:var(--gray-2); font-weight:700;">Cut ${esc(d.cut)}</span>
+            </div>
+            <div style="font-size:0.88rem; color:var(--black); line-height:1.4;">
+              ${esc(d.reason)}
+            </div>
+            <div style="font-size:0.75rem; color:var(--gray-2); margin-top:4px;">
+              Target: <strong>${esc(d.target)}</strong> · Type: <strong>${esc(d.decision_type)}</strong> · Evidence: <strong>${(d.evidence || []).length} refs</strong>
+            </div>
+          </div>
+          <div>
+            <button onclick="explainDecision('${esc(d.decision_id)}')"
+              style="background:var(--coral); color:#FFFFFF; border:none; padding:8px 16px; border-radius:6px; font-size:0.82rem; font-weight:700; cursor:pointer; box-shadow:0 1px 4px rgba(227,106,106,0.3);">
+              Explain ↗
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderWatchTrace() {
+      const container = document.getElementById('watch-trace-list');
+      if (!container) return;
+
+      const trace = _watchData.trace || [];
+      document.getElementById('watch-trace-count-badge').textContent = `${trace.length} Entries`;
+
+      if (!trace.length) {
+        container.innerHTML = '<div style="background:#FFFFFF; border:1px solid var(--border); border-radius:var(--radius); padding:20px; text-align:center; color:var(--gray-2);">No trace entries for current cut.</div>';
+        return;
+      }
+
+      container.innerHTML = trace.slice(-25).reverse().map(t => `
+        <div style="background:#FFFFFF; border:1px solid var(--border); border-radius:6px; padding:10px 14px; font-size:0.8rem; display:flex; justify-content:space-between; align-items:center; gap:10px;">
+          <div style="display:flex; gap:10px; align-items:center;">
+            <span style="font-family:var(--mono); color:var(--gray-2); font-size:0.72rem;">Cut ${esc(t.cut || '1')}</span>
+            <span class="watch-badge info">${esc(t.action || t.event || 'AUDIT')}</span>
+            <span style="font-weight:700; color:var(--black);">${esc(t.actor || t.node || 'Surveillance')}</span>
+            <span style="color:var(--gray-1);">${esc(t.reason || t.state || 'Step executed')}</span>
+          </div>
+          <div style="font-family:var(--mono); font-size:0.72rem; color:var(--gray-3);">
+            ${esc(t.trace_id || t.timestamp || '')}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderWatchMemory() {
+      const container = document.getElementById('watch-memory-metrics-grid');
+      if (!container) return;
+
+      const mem = _watchData.memory;
+      if (!mem) return;
+
+      const metrics = [
+        { label: 'Queries Deduplicated', val: mem.queries_count || 0 },
+        { label: 'Escalations Retained', val: mem.escalations_count || 0 },
+        { label: 'Rejected Esc. Remembered', val: mem.rejected_escalations_count || 0 },
+        { label: 'Completed Cuts', val: (mem.completed_cuts || []).length },
+        { label: 'Quarantined Sites', val: (mem.quarantined_sites || []).length },
+        { label: 'Untrusted Lab Fingerprints', val: mem.untrusted_labs_count || 0 }
+      ];
+
+      container.innerHTML = metrics.map(m => `
+        <div style="background:#FFFFFF; border:1px solid var(--border-cream); border-radius:6px; padding:12px; text-align:center;">
+          <div style="font-size:1.4rem; font-weight:800; color:var(--coral);">${fmt(m.val)}</div>
+          <div style="font-size:0.68rem; font-weight:700; color:var(--gray-2); text-transform:uppercase; margin-top:2px;">${esc(m.label)}</div>
+        </div>
+      `).join('');
+    }
+
+    function renderWatchBudget() {
+      const budget = _watchData.budget;
+      if (!budget) return;
+
+      const total = budget.total_ms || 120000;
+      const spent = budget.spent_ms || 0;
+      const remaining = budget.remaining_ms || (total - spent);
+      const pct = Math.min(100, Math.max(0, (spent / total) * 100));
+
+      document.getElementById('watch-budget-used-text').textContent = `Spent: ${Math.round(spent).toLocaleString()} ms`;
+      document.getElementById('watch-budget-pct-text').textContent = `${pct.toFixed(1)}%`;
+      document.getElementById('watch-budget-fill').style.width = `${pct}%`;
+      document.getElementById('watch-budget-remaining-text').textContent = `Remaining: ${Math.round(remaining).toLocaleString()} ms`;
+
+      const tier = budget.tier || 'FULL';
+      document.getElementById('watch-degrade-title').textContent = `Execution Tier: ${tier}`;
+
+      if (tier === 'DEGRADED') {
+        document.getElementById('watch-degrade-desc').textContent = 'DEGRADED MODE ACTIVE: Non-essential narrative synthesis suspended. Deterministic clinical safety surveillance remains fully active.';
+      } else if (tier === 'REDUCED') {
+        document.getElementById('watch-degrade-desc').textContent = 'REDUCED MODE: Optimized query resolution active to preserve execution bounds. Deterministic safety checks remain active.';
+      } else {
+        document.getElementById('watch-degrade-desc').textContent = 'FULL EXECUTION: All surveillance modules, deep audit traces, and statistical analyses operating at full capacity.';
+      }
+    }
+
+    async function explainDecision(decisionId) {
+      const backdrop = document.getElementById('watch-explain-modal-backdrop');
+      if (!backdrop) return;
+      backdrop.classList.add('open');
+      backdrop.setAttribute('aria-hidden', 'false');
+
+      document.getElementById('wexp-id').textContent = decisionId || '—';
+      document.getElementById('wexp-title').textContent = `Explaining Decision: ${decisionId}`;
+      document.getElementById('wexp-why').innerHTML = '<span class="loading-spinner"></span> Retrieving decision audit explanation…';
+      document.getElementById('wexp-evidence-list').innerHTML = '';
+      document.getElementById('wexp-alternatives-list').innerHTML = '';
+
+      try {
+        const exp = await apiFetch(`/api/watch/decisions/${encodeURIComponent(decisionId)}/explain`);
+        document.getElementById('wexp-cut').textContent = `Cut ${exp.cut || '—'}`;
+        document.getElementById('wexp-status').textContent = exp.status || 'CONFIRMED';
+        document.getElementById('wexp-target').textContent = decisionId.split('-').slice(2, 4).join(' ') || 'Surveillance Target';
+
+        document.getElementById('wexp-why').textContent = exp.why || 'Clinical and statistical criteria satisfied.';
+
+        const evList = exp.evidence_lines && exp.evidence_lines.length ? exp.evidence_lines : (exp.evidence || []);
+        document.getElementById('wexp-ev-count').textContent = `${evList.length} records cited`;
+        const evContainer = document.getElementById('wexp-evidence-list');
+        if (!evList.length) {
+          evContainer.innerHTML = '<div style="font-size:0.85rem; color:var(--gray-2); font-style:italic;">No discrete evidence records cited.</div>';
+        } else {
+          evContainer.innerHTML = (exp.evidence || []).map((r, idx) => {
+            const line = (exp.evidence_lines && exp.evidence_lines[idx]) || fmtRef(r);
+            const isDOC = r.domain === 'DOC';
+            const canClick = !isDOC && r.usubjid;
+            return `
+              <div class="evidence-chain-row${canClick ? ' clickable' : ''}"
+                ${canClick ? `onclick="closeExplainModal(); openP360('${esc(r.usubjid)}', event);" title="Open Patient 360 for ${esc(r.usubjid)}"` : ''}
+                style="padding:10px 14px; background:#FFFFFF; border:1px solid var(--border); border-radius:6px; font-size:0.83rem; display:flex; justify-content:space-between; align-items:center;">
+                <div>
+                  <span class="watch-badge info" style="margin-right:8px;">${esc(r.domain || 'REF')}</span>
+                  <span style="font-family:var(--mono); color:var(--black);">${esc(line)}</span>
+                </div>
+                ${canClick ? `<span style="font-size:0.75rem; color:var(--coral); font-weight:700;">Open P360 ↗</span>` : ''}
+              </div>
+            `;
+          }).join('');
+        }
+
+        const altContainer = document.getElementById('wexp-alternatives-list');
+        const alts = exp.alternatives || [];
+        if (!alts.length) {
+          altContainer.innerHTML = '<div style="font-size:0.85rem; color:var(--gray-2); font-style:italic;">No alternatives required consideration.</div>';
+        } else {
+          altContainer.innerHTML = alts.map(a => `
+            <div style="background:#FFFFFF; border:1.5px solid var(--border-cream); border-radius:6px; padding:12px 14px; font-size:0.84rem;">
+              <div style="font-weight:800; color:var(--black); margin-bottom:3px;">
+                <span style="color:var(--coral); font-weight:800; margin-right:4px;">Alternative:</span> ${esc(a.alternative)}
+              </div>
+              <div style="color:var(--gray-1); font-size:0.8rem;">
+                <strong>Rejected Rationale:</strong> ${esc(a.rejected_reason)}
+              </div>
+            </div>
+          `).join('');
+        }
+
+        const traceIds = exp.trace_ids || [];
+        document.getElementById('wexp-trace-ids').textContent = traceIds.length ? traceIds.join(', ') : 'T-WATCH-AUDIT-VERIFIED';
+        document.getElementById('wexp-trace-consistent').textContent = exp.consistent_with_trace ? '✓ Consistent with Trace' : 'Trace Discrepancy';
+      } catch (err) {
+        console.error("explainDecision error:", err);
+        document.getElementById('wexp-why').textContent = 'Unable to load decision explanation: ' + err.message;
+      }
+    }
+
+    function closeExplainModal() {
+      const backdrop = document.getElementById('watch-explain-modal-backdrop');
+      if (backdrop) {
+        backdrop.classList.remove('open');
+        backdrop.setAttribute('aria-hidden', 'true');
+      }
+    }
+
+    function openCutDetail(cutNum) {
+      const backdrop = document.getElementById('watch-cut-modal-backdrop');
+      if (!backdrop) return;
+
+      const cData = (_watchData.cuts || []).find(c => c.cut === cutNum);
+      document.getElementById('wcut-modal-title').textContent = `Surveillance Cut ${cutNum} Details`;
+      document.getElementById('wcut-modal-sub').textContent = cData ? `Protocol v${cData.protocol_version} · Degradation Tier: ${cData.degradation_tier}` : 'Cut pending or not yet evaluated';
+
+      const body = document.getElementById('wcut-modal-body');
+      if (!cData) {
+        body.innerHTML = `
+          <div style="text-align:center; padding:30px; color:var(--gray-2);">
+            Cut ${cutNum} has not been evaluated in this surveillance session yet.
+            <div style="margin-top:16px;">
+              <button onclick="closeCutModal(); runWatchSurveillance([${cutNum}]);" class="btn-primary"
+                style="background:var(--coral); color:#FFFFFF; border:none; padding:8px 18px; border-radius:6px; font-weight:700;">
+                Run Cut ${cutNum} Now
+              </button>
+            </div>
+          </div>
+        `;
+      } else {
+        body.innerHTML = `
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:12px; margin-bottom:18px;">
+            <div style="background:var(--cream); padding:12px; border-radius:6px; border:1px solid var(--border-cream); text-align:center;">
+              <div style="font-size:1.3rem; font-weight:800; color:var(--black);">${fmt(cData.new_records)}</div>
+              <div style="font-size:0.68rem; font-weight:700; color:var(--gray-2); text-transform:uppercase;">New Records</div>
+            </div>
+            <div style="background:var(--cream); padding:12px; border-radius:6px; border:1px solid var(--border-cream); text-align:center;">
+              <div style="font-size:1.3rem; font-weight:800; color:var(--coral);">${fmt(cData.corrections)}</div>
+              <div style="font-size:0.68rem; font-weight:700; color:var(--gray-2); text-transform:uppercase;">Corrections Applied</div>
+            </div>
+            <div style="background:var(--cream); padding:12px; border-radius:6px; border:1px solid var(--border-cream); text-align:center;">
+              <div style="font-size:1.3rem; font-weight:800; color:var(--black);">${fmt(cData.findings_count)}</div>
+              <div style="font-size:0.68rem; font-weight:700; color:var(--gray-2); text-transform:uppercase;">Findings Detected</div>
+            </div>
+            <div style="background:var(--cream); padding:12px; border-radius:6px; border:1px solid var(--border-cream); text-align:center;">
+              <div style="font-size:1.3rem; font-weight:800; color:var(--coral);">${fmt(cData.serious_findings_count)}</div>
+              <div style="font-size:0.68rem; font-weight:700; color:var(--gray-2); text-transform:uppercase;">Serious Events</div>
+            </div>
+          </div>
+
+          <div style="background:#FFFFFF; border:1.5px solid var(--border); border-radius:8px; padding:16px; font-size:0.85rem; line-height:1.6; margin-bottom:14px;">
+            <div><strong>Protocol Version:</strong> Protocol v${cData.protocol_version}</div>
+            <div><strong>Budget Consumed:</strong> ${Math.round(cData.budget_ms_used).toLocaleString()} ms</div>
+            <div><strong>Degradation Tier:</strong> ${esc(cData.degradation_tier)}</div>
+            <div><strong>Quarantined Sites:</strong> ${cData.quarantined_sites && cData.quarantined_sites.length ? cData.quarantined_sites.join(', ') : 'None'}</div>
+            <div><strong>Untrusted Lab Records:</strong> ${fmt(cData.untrusted_labs)}</div>
+          </div>
+
+          <div style="display:flex; justify-content:flex-end; gap:10px;">
+            <button onclick="closeCutModal(); document.getElementById('watch-cut-select').value='${cutNum}'; onWatchCutFilterChange();"
+              style="background:var(--coral); color:#FFFFFF; border:none; padding:8px 16px; border-radius:6px; font-weight:700; cursor:pointer;">
+              Filter Dashboard by Cut ${cutNum} →
+            </button>
+          </div>
+        `;
+      }
+
+      backdrop.classList.add('open');
+      backdrop.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeCutModal() {
+      const backdrop = document.getElementById('watch-cut-modal-backdrop');
+      if (backdrop) {
+        backdrop.classList.remove('open');
+        backdrop.setAttribute('aria-hidden', 'true');
+      }
+    }
+
     /* ── Init ─────────────────────────────────────────────────────────────────── */
     initRidgeParallax("section-start", "ridge-parallax-canvas");
     initRidgeParallax("section-home", "ridge-parallax-canvas-home");
     loadStatus();
     loadMonitorData();
+    loadWatchData();
   </script>
 </body>
 

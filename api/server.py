@@ -27,7 +27,7 @@ import os
 import sys
 import time
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any, Optional, List
 
 ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
@@ -502,6 +502,8 @@ from stage3 import service as watch_service
 class WatchRunPeriodRequest(BaseModel):
     cuts: Optional[List[int]] = None
     budget_ms: Optional[float] = None
+
+WatchRunPeriodRequest.model_rebuild()
 
 
 @app.post("/api/watch/run-period")
