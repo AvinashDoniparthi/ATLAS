@@ -146,14 +146,17 @@ class StudyGraphCore:
         return self.loaded_signature != data_signature(self.data_dir)
 
     # ----------------------------------------------------------------- build
-    def build(self, cut: Optional[int] = None) -> BuildStats:
+    def build(self, cut: Optional[int] = None, protocol_version: Optional[int] = None) -> BuildStats:
         t0 = time.perf_counter()
         if self.loaded_signature is None or self.data_changed():
             self.load()
         self._lab_cache.clear()
         self._derived.clear()
         self.view = build_cut_view(self.raw_domains, self.corrections, cut)
-        pv = protocol_version_for_cut(self.cut_table, self.view.effective_cut if cut is None else cut)
+        if protocol_version is not None:
+            pv = protocol_version
+        else:
+            pv = protocol_version_for_cut(self.cut_table, self.view.effective_cut if cut is None else cut)
         self.rules = None
         if self.resolver is not None:
             if pv is not None and hasattr(self.resolver, "registry"):

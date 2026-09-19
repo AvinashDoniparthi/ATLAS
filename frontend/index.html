@@ -417,6 +417,26 @@ body { padding-bottom: 60px; }
   .p360-grid { grid-template-columns: 1fr; }
   .p360-sidebar { position: static; }
 }
+/* ── Monitor Styles ──────────────────────────────────────────────────────── */
+.mon-controls { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; margin-bottom: 24px; padding: 16px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg-off); }
+.mon-group { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; color: var(--gray-2); font-weight: 500; }
+.mon-input { width: 64px; padding: 5px 8px; border: 1px solid var(--border); border-radius: var(--radius); font-size: 0.84rem; text-align: center; background: #fff; }
+.mon-kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(105px, 1fr)); gap: 10px; margin-bottom: 28px; }
+.mon-kpi-card { border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 14px; background: var(--bg); }
+.mon-kpi-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray-3); margin-bottom: 4px; font-weight: 600; }
+.mon-kpi-val { font-size: 1.25rem; font-weight: 700; color: var(--black); }
+.mon-flow { display: flex; gap: 6px; align-items: center; overflow-x: auto; padding-bottom: 12px; margin-bottom: 24px; border-bottom: 1px solid var(--border); }
+.mon-step { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em; color: var(--gray-2); text-transform: uppercase; padding: 4px 10px; border: 1px solid var(--border); border-radius: 20px; background: #fff; white-space: nowrap; }
+.mon-step-arr { color: var(--gray-3); font-size: 0.7rem; }
+.esc-card { border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; margin-bottom: 12px; background: var(--bg); }
+.esc-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.esc-title { font-weight: 600; font-size: 0.92rem; }
+.badge-critical { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; background: var(--black); color: #fff; padding: 2px 7px; border-radius: 3px; }
+.badge-high { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid var(--black); color: var(--black); padding: 2px 7px; border-radius: 3px; }
+.badge-status { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.04em; padding: 2px 6px; border-radius: 3px; background: var(--bg-off); border: 1px solid var(--border); }
+.trace-box { max-height: 380px; overflow-y: auto; background: var(--bg-off); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 14px; font-family: var(--mono); font-size: 0.75rem; line-height: 1.55; }
+.trace-row { margin-bottom: 6px; border-bottom: 1px dashed rgba(0,0,0,0.06); padding-bottom: 5px; }
+.trace-node { font-weight: 600; color: var(--black); }
 </style>
 </head>
 <body>
@@ -429,6 +449,7 @@ body { padding-bottom: 60px; }
       <a href="#" onclick="showSection('graph', event)" id="nav-graph">Study Graph</a>
       <a href="#" onclick="showSection('p360', event)" id="nav-p360">Patient 360</a>
       <a href="#" onclick="showSection('evidence', event)" id="nav-evidence">Evidence</a>
+      <a href="#" onclick="showSection('monitor', event)" id="nav-monitor">Monitor</a>
     </div>
   </div>
 </nav>
@@ -727,6 +748,151 @@ body { padding-bottom: 60px; }
     </div>
   </div>
 
+  <!-- MONITOR SECTION ───────────────────────────────────────────────────────── -->
+  <div id="section-monitor" class="page-section">
+    <div class="container">
+      <button class="back-btn" onclick="goBack(event)" aria-label="Go back">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 13L5 8L10 3"/></svg>
+        Back
+      </button>
+
+      <div class="section-header" style="margin-bottom:20px;">
+        <div class="eyebrow">Stage 2 Review Crew</div>
+        <h2>Clinical Monitor</h2>
+        <div class="section-sub">Six-node multi-agent review crew with human-in-the-loop medical monitor.</div>
+      </div>
+
+      <!-- Control Bar -->
+      <div class="mon-controls">
+        <div class="mon-group">
+          <label for="mon-cut-input">Data Cut:</label>
+          <input type="number" id="mon-cut-input" class="mon-input" value="15" min="1" max="50">
+        </div>
+        <div class="mon-group">
+          <label for="mon-pv-input">Protocol Version:</label>
+          <input type="number" id="mon-pv-input" class="mon-input" value="3" min="1" max="10">
+        </div>
+        <button id="mon-run-btn" class="btn-primary" onclick="runMonitorCycle()" style="padding:7px 18px;font-size:.82rem;">
+          Run Review Cycle
+        </button>
+        <button onclick="resetMonitorMemory()" style="background:none;border:1px solid var(--border);padding:7px 14px;border-radius:var(--radius);font-size:.8rem;cursor:pointer;color:var(--gray-2);">
+          Reset Memory
+        </button>
+        <div id="mon-loading" style="display:none;font-size:.8rem;color:var(--gray-2);align-items:center;gap:6px;">
+          <div class="loader" style="width:14px;height:14px;border-width:2px;"></div>
+          <span>Executing 6-node review cycle…</span>
+        </div>
+      </div>
+      <div id="mon-error" class="error-msg" style="display:none;margin-bottom:20px;"></div>
+
+      <!-- Six Node Flow Stepper -->
+      <div class="mon-flow">
+        <div class="mon-step">1. Detect</div>
+        <span class="mon-step-arr">→</span>
+        <div class="mon-step">2. Medical Review</div>
+        <span class="mon-step-arr">→</span>
+        <div class="mon-step">3. Data Manager</div>
+        <span class="mon-step-arr">→</span>
+        <div class="mon-step">4. Compliance</div>
+        <span class="mon-step-arr">→</span>
+        <div class="mon-step">5. Human Gate</div>
+        <span class="mon-step-arr">→</span>
+        <div class="mon-step">6. Execute</div>
+      </div>
+
+      <!-- Empty state when no cycle run yet -->
+      <div id="mon-empty" style="text-align:center;padding:48px 0;color:var(--gray-3);font-size:.9rem;">
+        Click "Run Review Cycle" to execute the six-node review crew.
+      </div>
+
+      <!-- Active Content (hidden until first cycle) -->
+      <div id="mon-content" style="display:none;">
+        <!-- KPI Dashboard -->
+        <div class="mon-kpi-grid">
+          <div class="mon-kpi-card">
+            <div class="mon-kpi-label">Current Cut</div>
+            <div class="mon-kpi-val" id="kpi-cut">—</div>
+          </div>
+          <div class="mon-kpi-card">
+            <div class="mon-kpi-label">Protocol Ver</div>
+            <div class="mon-kpi-val" id="kpi-pv">—</div>
+          </div>
+          <div class="mon-kpi-card">
+            <div class="mon-kpi-label">Findings</div>
+            <div class="mon-kpi-val" id="kpi-findings">0</div>
+          </div>
+          <div class="mon-kpi-card">
+            <div class="mon-kpi-label">Escalations</div>
+            <div class="mon-kpi-val" id="kpi-escalations">0</div>
+          </div>
+          <div class="mon-kpi-card">
+            <div class="mon-kpi-label">Queries</div>
+            <div class="mon-kpi-val" id="kpi-queries">0</div>
+          </div>
+          <div class="mon-kpi-card">
+            <div class="mon-kpi-label">Deviations</div>
+            <div class="mon-kpi-val" id="kpi-deviations">0</div>
+          </div>
+          <div class="mon-kpi-card">
+            <div class="mon-kpi-label">Open Queries</div>
+            <div class="mon-kpi-val" id="kpi-open-q">0</div>
+          </div>
+          <div class="mon-kpi-card">
+            <div class="mon-kpi-label">Site Flags</div>
+            <div class="mon-kpi-val" id="kpi-site-flags">0</div>
+          </div>
+        </div>
+
+        <!-- Human Gate & Escalations -->
+        <div style="margin-bottom:36px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:10px;">
+            <div>
+              <h3 style="font-size:1.1rem;font-weight:700;">Human Gate & Escalations</h3>
+              <div style="font-size:.8rem;color:var(--gray-2);">Medical issues submitted to the human medical monitor for decision.</div>
+            </div>
+            <div style="display:flex;gap:6px;">
+              <button class="filter-btn mon-esc-filter active" data-filter="ALL" onclick="filterEscalations('ALL', event)">All</button>
+              <button class="filter-btn mon-esc-filter" data-filter="CRITICAL" onclick="filterEscalations('CRITICAL', event)">Critical</button>
+              <button class="filter-btn mon-esc-filter" data-filter="PENDING" onclick="filterEscalations('PENDING', event)">Pending</button>
+              <button class="filter-btn mon-esc-filter" data-filter="APPROVED" onclick="filterEscalations('APPROVED', event)">Approved</button>
+              <button class="filter-btn mon-esc-filter" data-filter="REJECTED" onclick="filterEscalations('REJECTED', event)">Rejected</button>
+              <button class="filter-btn mon-esc-filter" data-filter="CLARIFIED" onclick="filterEscalations('CLARIFIED', event)">Clarified</button>
+            </div>
+          </div>
+          <div id="mon-escalations-list"></div>
+        </div>
+
+        <!-- Data Quality Queries -->
+        <div style="margin-bottom:36px;">
+          <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:4px;">Site Data Queries</h3>
+          <div style="font-size:.8rem;color:var(--gray-2);margin-bottom:14px;">Actionable, record-cited queries dispatched to investigational sites via POST /queries.</div>
+          <div id="mon-queries-list" style="border:1px solid var(--border);border-radius:var(--radius);background:#fff;padding:4px;overflow-x:auto;"></div>
+        </div>
+
+        <!-- Compliance Deviations -->
+        <div style="margin-bottom:36px;">
+          <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:4px;">Protocol Compliance Deviations</h3>
+          <div style="font-size:.8rem;color:var(--gray-2);margin-bottom:14px;">Subject deviations evaluated under the active protocol version.</div>
+          <div id="mon-deviations-list"></div>
+        </div>
+
+        <!-- Site-Level Flags -->
+        <div style="margin-bottom:36px;">
+          <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:4px;">Site-Level Recurring Flags</h3>
+          <div style="font-size:.8rem;color:var(--gray-2);margin-bottom:14px;">Aggregated site-level quality and safety patterns (e.g. systemic dosing anomalies).</div>
+          <div id="mon-site-flags-list"></div>
+        </div>
+
+        <!-- Real-Time Audit Trace -->
+        <div style="margin-bottom:36px;">
+          <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:4px;">Live Audit Trace</h3>
+          <div style="font-size:.8rem;color:var(--gray-2);margin-bottom:14px;">Chronological audit trail written in real-time by all six review nodes.</div>
+          <div id="mon-trace-list" class="trace-box"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </main>
 
 <!-- ── Status bar ─────────────────────────────────────────────────────────── -->
@@ -784,7 +950,7 @@ async function apiFetch(path, opts) {
 }
 
 /* ── Navigation ───────────────────────────────────────────────────────────── */
-const SECTIONS = ['home','graph','p360','evidence'];
+const SECTIONS = ['home','graph','p360','evidence','monitor'];
 const _navHistory = ['home'];
 
 function goHome(e) {
@@ -813,7 +979,7 @@ function showSection(id, e, skipHistory) {
     const el = document.getElementById('section-'+s);
     if (el) el.classList.toggle('active', s === id);
   });
-  ['nav-graph','nav-p360','nav-evidence'].forEach(n => {
+  ['nav-graph','nav-p360','nav-evidence','nav-monitor'].forEach(n => {
     const el = document.getElementById(n);
     if (el) el.classList.remove('active');
   });
@@ -823,6 +989,7 @@ function showSection(id, e, skipHistory) {
   window.scrollTo({top: 0, behavior: 'instant'});
 
   if (id === 'graph') loadGraphStats();
+  if (id === 'monitor') loadMonitorStatus();
 }
 
 function goBack(e) {
@@ -1303,6 +1470,375 @@ async function submitEvidence() {
     document.getElementById('ev-loading').style.display = 'none';
     document.getElementById('ev-btn').disabled = false;
   }
+}
+
+/* ── Stage 2 Monitor ─────────────────────────────────────────────────────── */
+let _monReport = null;
+let _currentEscFilter = 'ALL';
+
+async function loadMonitorStatus() {
+  try {
+    const data = await apiFetch('/api/monitor/status');
+    const rep = data ? (data.latest_report || data.last_cycle || data.report || data) : null;
+    if (rep && (rep.cycle != null || (rep.findings && rep.findings.length))) {
+      _monReport = rep;
+      renderMonitorReport(_monReport);
+    }
+  } catch (e) {
+    console.error('Failed to load monitor status:', e);
+  }
+}
+
+async function runMonitorCycle() {
+  const cutInput = document.getElementById('mon-cut-input');
+  const pvInput = document.getElementById('mon-pv-input');
+  const runBtn = document.getElementById('mon-run-btn');
+  const loadingEl = document.getElementById('mon-loading');
+  const errEl = document.getElementById('mon-error');
+
+  const cut = parseInt(cutInput.value) || 15;
+  const pv = parseInt(pvInput.value) || 3;
+
+  errEl.style.display = 'none';
+  loadingEl.style.display = 'inline-flex';
+  runBtn.disabled = true;
+
+  try {
+    const res = await apiFetch('/api/monitor/run-cycle', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ cut, protocol_version: pv })
+    });
+    const rep = (res && res.report) ? res.report : res;
+    if (rep && (rep.cycle != null || rep.cut != null || (rep.findings && rep.findings.length))) {
+      _monReport = rep;
+      renderMonitorReport(_monReport);
+    } else {
+      errEl.textContent = 'Server returned unexpected response format.';
+      errEl.style.display = '';
+    }
+  } catch (e) {
+    errEl.textContent = 'Failed to execute review cycle: ' + (e.message || e);
+    errEl.style.display = '';
+  } finally {
+    loadingEl.style.display = 'none';
+    runBtn.disabled = false;
+  }
+}
+
+async function resetMonitorMemory() {
+  if (!confirm('Are you sure you want to reset cross-cycle memory and state?')) return;
+  try {
+    await apiFetch('/api/monitor/reset', { method: 'POST' });
+    _monReport = null;
+    document.getElementById('mon-content').style.display = 'none';
+    document.getElementById('mon-empty').style.display = '';
+    alert('Monitor memory reset successfully.');
+  } catch (e) {
+    alert('Failed to reset memory: ' + e.message);
+  }
+}
+
+function filterEscalations(filter, e) {
+  if (e && e.preventDefault) e.preventDefault();
+  _currentEscFilter = filter;
+  document.querySelectorAll('.mon-esc-filter').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-filter') === filter);
+  });
+  renderEscalationsList();
+}
+
+function renderMonitorReport(report) {
+  if (!report) return;
+  document.getElementById('mon-empty').style.display = 'none';
+  document.getElementById('mon-content').style.display = '';
+
+  // KPI
+  document.getElementById('kpi-cut').textContent = 'Cut ' + (report.cut != null ? report.cut : '—');
+  document.getElementById('kpi-pv').textContent = 'v' + (report.protocol_version != null ? report.protocol_version : '—');
+  document.getElementById('kpi-findings').textContent = fmt(report.statistics ? report.statistics.total_findings : (report.findings ? report.findings.length : 0));
+  document.getElementById('kpi-escalations').textContent = fmt(report.escalations ? report.escalations.length : 0);
+  document.getElementById('kpi-queries').textContent = fmt(report.queries ? report.queries.length : 0);
+  document.getElementById('kpi-deviations').textContent = fmt(report.compliance_deviations ? report.compliance_deviations.length : 0);
+  document.getElementById('kpi-open-q').textContent = fmt((report.unresolved_queries || report.unresolved_issues || []).length);
+  document.getElementById('kpi-site-flags').textContent = fmt((report.site_level_flags || report.site_flags || []).length);
+
+  renderEscalationsList();
+  renderQueriesList();
+  renderDeviationsList();
+  renderSiteFlagsList();
+  renderTraceList();
+}
+
+function renderEscalationsList() {
+  const container = document.getElementById('mon-escalations-list');
+  if (!_monReport || !_monReport.escalations || !_monReport.escalations.length) {
+    container.innerHTML = '<div class="empty-state">No medical escalations in this cycle</div>';
+    return;
+  }
+
+  let list = _monReport.escalations;
+  if (_currentEscFilter === 'CRITICAL') {
+    list = list.filter(e => e.severity === 'CRITICAL');
+  } else if (_currentEscFilter === 'PENDING') {
+    list = list.filter(e => e.status === 'PENDING' || e.status === 'CLARIFICATION_REQUIRED');
+  } else if (_currentEscFilter === 'APPROVED') {
+    list = list.filter(e => e.status === 'APPROVED');
+  } else if (_currentEscFilter === 'REJECTED') {
+    list = list.filter(e => e.status === 'REJECTED' || e.status === 'MONITORING');
+  } else if (_currentEscFilter === 'CLARIFIED') {
+    list = list.filter(e => e.clarification_requested || e.clarification_response);
+  }
+
+  if (!list.length) {
+    container.innerHTML = `<div class="empty-state">No escalations match filter "${esc(_currentEscFilter)}"</div>`;
+    return;
+  }
+
+  let html = '';
+  for (const escItem of list) {
+    const isCrit = escItem.severity === 'CRITICAL';
+    const isPending = escItem.status === 'PENDING' || escItem.status === 'CLARIFICATION_REQUIRED';
+    const isApproved = escItem.status === 'APPROVED';
+    const isRejected = escItem.status === 'REJECTED' || escItem.status === 'MONITORING';
+    const escCode = escItem.finding_code || escItem.code || 'ESCALATION';
+    const escSite = escItem.site_id || escItem.site || '—';
+
+    html += `<div class="esc-card" id="esc-card-${esc(escItem.escalation_id)}">
+      <div class="esc-header">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span class="${isCrit ? 'badge-critical' : 'badge-high'}">${esc(escItem.severity)}</span>
+          <span class="esc-title">${esc(escCode)}</span>
+          <span style="color:var(--gray-3);font-size:.8rem;">• Subject: <strong style="color:var(--black);cursor:pointer;text-decoration:underline;" onclick="openP360('${esc(escItem.usubjid)}', event)">${esc(escItem.usubjid)}</strong> (Site ${esc(escSite)})</span>
+        </div>
+        <div>
+          <span class="badge-status">${esc(escItem.status)}</span>
+        </div>
+      </div>
+
+      <div style="font-size:.84rem;line-height:1.45;color:var(--black);margin-bottom:10px;">
+        ${esc(escItem.summary)}
+      </div>`;
+
+    // Evidence
+    if (escItem.evidence && escItem.evidence.length) {
+      html += `<div style="margin-bottom:8px;font-size:.78rem;color:var(--gray-2);">
+        <strong style="color:var(--black);">Evidence:</strong>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;">
+          ${escItem.evidence.map(ev => `<span style="border:1px solid var(--border);background:var(--bg-off);padding:2px 6px;border-radius:3px;font-family:var(--mono);font-size:.72rem;">${esc(fmtRef(ev))}</span>`).join('')}
+        </div>
+      </div>`;
+    }
+
+    // Alternatives
+    if (escItem.alternatives && escItem.alternatives.length) {
+      html += `<div style="margin-bottom:10px;font-size:.78rem;color:var(--gray-2);border-top:1px dashed var(--border);padding-top:6px;">
+        <strong style="color:var(--black);">Alternatives Considered:</strong>
+        <ul style="margin:4px 0 0 16px;padding:0;">
+          ${escItem.alternatives.map(alt => `<li><em>${esc(alt.alternative)}</em>: ${esc(alt.reason_rejected)}</li>`).join('')}
+        </ul>
+      </div>`;
+    }
+
+    // Clarification thread if any
+    if (escItem.clarification_requested || escItem.clarification_response) {
+      html += `<div style="margin-bottom:10px;padding:8px 12px;background:#fbfbfb;border-left:3px solid var(--black);font-size:.78rem;line-height:1.4;">
+        <div style="font-weight:600;margin-bottom:2px;">Monitor Clarification Request:</div>
+        <div style="color:var(--gray-2);margin-bottom:6px;">${esc(escItem.clarification_requested || '—')}</div>
+        <div style="font-weight:600;margin-bottom:2px;">StudyGraph Evidence-Backed Answer:</div>
+        <div style="color:var(--black);">${esc(escItem.clarification_response || '—')}</div>
+      </div>`;
+    }
+
+    // Decision info if processed
+    if (escItem.monitor_decision) {
+      html += `<div style="margin-top:8px;font-size:.78rem;color:var(--gray-2);">
+        <strong>Monitor Decision:</strong> ${esc(escItem.monitor_decision)}
+        ${escItem.monitor_reason ? ` — <em>"${esc(escItem.monitor_reason)}"</em>` : ''}
+        ${escItem.action_taken ? `<div style="color:var(--black);margin-top:2px;">Action: ${esc(escItem.action_taken)}</div>` : ''}
+      </div>`;
+    }
+
+    // Interactive Human Gate Actions
+    html += `<div style="margin-top:12px;display:flex;gap:8px;align-items:center;">`;
+    if (isPending) {
+      html += `
+        <button class="btn-primary" style="padding:4px 12px;font-size:.75rem;" onclick="handleEscAction('${esc(escItem.escalation_id)}', 'APPROVED')">Approve</button>
+        <button style="border:1px solid var(--border);background:#fff;padding:4px 12px;border-radius:var(--radius);font-size:.75rem;cursor:pointer;" onclick="handleEscAction('${esc(escItem.escalation_id)}', 'REJECTED')">Reject</button>
+        <button style="border:1px solid var(--border);background:#fff;padding:4px 12px;border-radius:var(--radius);font-size:.75rem;cursor:pointer;" onclick="handleEscAction('${esc(escItem.escalation_id)}', 'CLARIFY')">Clarify with StudyGraph</button>
+      `;
+    } else if (isApproved) {
+      html += `<span style="font-size:.75rem;color:#10b981;font-weight:600;">✓ Approved &amp; Executed</span>`;
+    } else if (isRejected) {
+      html += `<span style="font-size:.75rem;color:var(--gray-3);font-weight:500;">Downgraded to Monitoring Only</span>`;
+    }
+    html += `</div></div>`;
+  }
+  container.innerHTML = html;
+}
+
+async function handleEscAction(escId, action) {
+  let reason = null;
+  if (action === 'REJECTED') {
+    reason = prompt('Reason for downgrading to monitoring:');
+    if (reason === null) return;
+  } else if (action === 'CLARIFY') {
+    reason = prompt('Clarification question for StudyGraph (or leave blank to auto-query Screening ALT & Concomitant Meds):');
+    if (reason === null) return;
+  }
+
+  try {
+    const res = await apiFetch('/api/monitor/escalation-action', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        escalation_id: escId,
+        action: action,
+        reason: reason || undefined
+      })
+    });
+    if (res && res.ok) {
+      if (_monReport && _monReport.escalations) {
+        const item = _monReport.escalations.find(e => e.escalation_id === escId);
+        if (item) {
+          item.status = res.status;
+          item.monitor_decision = action;
+          if (res.clarification) {
+            item.clarification_requested = res.clarification.question;
+            item.clarification_response = res.clarification.answer;
+          }
+        }
+      }
+      renderEscalationsList();
+      if (action === 'CLARIFY' && res.clarification) {
+        alert('StudyGraph Answer:\n' + res.clarification.answer);
+      }
+    }
+  } catch (e) {
+    alert('Error updating escalation: ' + e.message);
+  }
+}
+
+function renderQueriesList() {
+  const container = document.getElementById('mon-queries-list');
+  if (!_monReport || !_monReport.queries || !_monReport.queries.length) {
+    container.innerHTML = '<div class="empty-state">No site queries generated in this cycle</div>';
+    return;
+  }
+
+  let html = `<table class="p360-table" style="font-size:.78rem;">
+    <thead>
+      <tr>
+        <th style="width:70px;">Domain</th>
+        <th style="width:110px;">Subject</th>
+        <th style="width:50px;">Seq</th>
+        <th style="width:70px;">Status</th>
+        <th>Query Text</th>
+      </tr>
+    </thead>
+    <tbody>`;
+
+  for (const q of _monReport.queries) {
+    const isOpen = q.status === 'OPEN';
+    html += `<tr>
+      <td style="font-weight:600;">${esc(q.domain)}</td>
+      <td><a href="#" onclick="openP360('${esc(q.usubjid)}', event)" style="color:var(--black);text-decoration:underline;">${esc(q.usubjid)}</a></td>
+      <td style="font-family:var(--mono);">${esc(q.seq != null ? q.seq : '—')}</td>
+      <td><span style="font-size:.68rem;padding:2px 5px;border-radius:2px;background:${isOpen ? '#fef3c7' : '#e0e7ff'};color:${isOpen ? '#92400e' : '#3730a3'};font-weight:600;">${esc(q.status)}</span></td>
+      <td style="line-height:1.4;">${esc(q.query_text)}</td>
+    </tr>`;
+  }
+  html += `</tbody></table>`;
+  container.innerHTML = html;
+}
+
+function renderDeviationsList() {
+  const container = document.getElementById('mon-deviations-list');
+  const devs = _monReport && _monReport.compliance_deviations ? _monReport.compliance_deviations : [];
+  if (!devs.length) {
+    container.innerHTML = '<div class="empty-state">No compliance deviations in this cycle</div>';
+    return;
+  }
+
+  let html = `<div style="max-height:280px;overflow-y:auto;border:1px solid var(--border);border-radius:var(--radius);padding:4px;background:#fff;">
+    <table class="p360-table" style="font-size:.78rem;">
+      <thead>
+        <tr>
+          <th style="width:105px;">Subject</th>
+          <th style="width:160px;">Deviation Rule</th>
+          <th style="width:75px;">Protocol</th>
+          <th>Details</th>
+        </tr>
+      </thead>
+      <tbody>`;
+
+  for (const d of devs.slice(0, 150)) {
+    html += `<tr>
+      <td><a href="#" onclick="openP360('${esc(d.usubjid)}', event)" style="color:var(--black);text-decoration:underline;">${esc(d.usubjid)}</a></td>
+      <td style="font-weight:600;">${esc(d.code || d.deviation_type)}</td>
+      <td style="font-family:var(--mono);">v${esc(d.protocol_version)}</td>
+      <td style="line-height:1.4;">${esc(d.summary || d.description)}</td>
+    </tr>`;
+  }
+  if (devs.length > 150) {
+    html += `<tr><td colspan="4" style="text-align:center;color:var(--gray-3);padding:8px;">…and ${devs.length - 150} more deviations</td></tr>`;
+  }
+  html += `</tbody></table></div>`;
+  container.innerHTML = html;
+}
+
+function renderSiteFlagsList() {
+  const container = document.getElementById('mon-site-flags-list');
+  const siteFlags = _monReport ? (_monReport.site_level_flags || _monReport.site_flags || []) : [];
+  if (!siteFlags.length) {
+    container.innerHTML = '<div class="empty-state">No site-level recurring flags</div>';
+    return;
+  }
+
+  let html = '';
+  for (const sf of siteFlags) {
+    const subjects = sf.subjects || sf.affected_subjects || [];
+    const siteName = sf.site || sf.site_id || '—';
+    const flagName = sf.issue_type || sf.flag_code || 'FLAG';
+    const desc = sf.summary || sf.description || '';
+
+    html += `<div style="border:1px solid var(--border);border-radius:var(--radius);padding:12px 16px;margin-bottom:8px;background:var(--bg);">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+        <div>
+          <span class="badge-critical" style="margin-right:6px;">${esc(sf.severity || 'HIGH')}</span>
+          <strong style="font-size:.9rem;">Site ${esc(siteName)} — ${esc(flagName)}</strong>
+        </div>
+        <span style="font-size:.75rem;color:var(--gray-3);">${subjects.length} Subjects Affected</span>
+      </div>
+      <div style="font-size:.82rem;line-height:1.4;color:var(--black);margin-bottom:6px;">${esc(desc)}</div>
+      <div style="font-size:.75rem;color:var(--gray-2);">
+        <strong>Affected Subjects:</strong> ${subjects.map(s => `<a href="#" onclick="openP360('${esc(s)}', event)" style="color:var(--black);text-decoration:underline;margin-right:4px;">${esc(s)}</a>`).join(', ')}
+      </div>
+    </div>`;
+  }
+  container.innerHTML = html;
+}
+
+function renderTraceList() {
+  const container = document.getElementById('mon-trace-list');
+  if (!_monReport || !_monReport.trace || !_monReport.trace.length) {
+    container.innerHTML = '<div class="empty-state">No trace entries</div>';
+    return;
+  }
+
+  let html = '';
+  for (const t of _monReport.trace) {
+    const nodeUpper = (t.node || '').toUpperCase();
+    html += `<div class="trace-row">
+      <span style="color:var(--gray-3);margin-right:6px;">[${esc(t.timestamp || '—')}]</span>
+      <span class="trace-node">[${esc(nodeUpper)}]</span>
+      <strong style="color:var(--black);margin-left:4px;">${esc(t.action)}</strong>
+      ${t.usubjid ? ` &bull; <span style="font-family:var(--mono);">${esc(t.usubjid)}</span>` : ''}
+      ${t.site_id ? ` &bull; Site ${esc(t.site_id)}` : ''}
+      ${t.reason ? `<div style="color:var(--gray-2);margin-top:2px;padding-left:16px;">&rarr; ${esc(t.reason)}</div>` : ''}
+    </div>`;
+  }
+  container.innerHTML = html;
 }
 
 /* ── Init ─────────────────────────────────────────────────────────────────── */

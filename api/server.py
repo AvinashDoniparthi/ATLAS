@@ -217,6 +217,159 @@ async def rebuild() -> dict:
 
 
 # --------------------------------------------------------------------------- #
+# Stage 2 — MONITOR API endpoints
+# --------------------------------------------------------------------------- #
+_crew = None
+
+
+def _ensure_crew():
+    global _crew
+    _ensure_built()
+    if _crew is None:
+        from stage2.crew import ReviewCrew
+        _crew = ReviewCrew(hub_url="local", gateway_url="local", team_key="team-reve", atlas=_atlas)
+    return _crew
+
+
+class RunCycleRequest(BaseModel):
+    cut: int = 15
+    protocol_version: int = 3
+
+
+@app.post("/api/monitor/run-cycle")
+async def monitor_run_cycle(req: RunCycleRequest) -> dict:
+    crew = _ensure_crew()
+    try:
+        t0 = time.perf_counter()
+        report = crew.run_cycle(cut=req.cut, protocol_version=req.protocol_version)
+        ms = (time.perf_counter() - t0) * 1000
+        d = report.model_dump()
+        d["execution_ms"] = round(ms, 1)
+        d["report"] = dict(d)
+        return d
+    except Exception as e:  # noqa: BLE001
+        log.exception("run_cycle failed")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/api/monitor/status")
+async def monitor_status() -> dict:
+    crew = _ensure_crew()
+    latest = crew.reports[-1].model_dump() if crew.reports else None
+    return {
+        "cycle_count": crew.cycle_count,
+        "completed_cycles": crew.memory.completed_cycles,
+        "queries_in_memory": len(crew.memory.queries),
+        "escalations_in_memory": len(crew.memory.escalations),
+        "rejected_count": len(crew.memory.rejected_escalations),
+        "open_queries_count": len(crew.memory.open_query_ids),
+        "latest_report": latest,
+        "last_cycle": latest,
+    }
+
+
+@app.get("/api/monitor/history")
+async def monitor_history() -> list[dict]:
+    crew = _ensure_crew()
+    return [r.model_dump() for r in crew.reports]
+
+
+class EscalationActionRequest(BaseModel):
+    escalation_id: str
+    action: str  # APPROVED | REJECTED | CLARIFY
+    reason: Optional[str] = None
+
+
+@app.post("/api/monitor/escalation-action")
+async def monitor_escalation_action(req: EscalationActionRequest) -> dict:
+    crew = _ensure_crew()
+    action = req.action.upper()
+    if action not in ("APPROVED", "REJECTED", "CLARIFY"):
+        raise HTTPException(status_code=400, detail="Action must be APPROVED, REJECTED, or CLARIFY")
+
+    # Find the escalation in latest report or memory
+    target_esc = None
+    if crew.reports:
+        for esc in crew.reports[-1].escalations:
+            if esc.escalation_id == req.escalation_id:
+                target_esc = esc
+                break
+
+    clarification_res = None
+    if action == "CLARIFY" and target_esc:
+        from stage2.clarify_solver import resolve_clarification
+        q_text = req.reason or target_esc.clarification_requested or "Screening ALT and concomitant medications"
+        ans_text, cited_refs = resolve_clarification(_graph.core, target_esc.usubjid, q_text)
+        clarification_res = {
+            "question": q_text,
+            "answer": ans_text,
+            "evidence": [r.model_dump() for r in cited_refs],
+        }
+        target_esc.clarification_requested = q_text
+        target_esc.clarification_response = ans_text
+        for cr in cited_refs:
+            if cr not in target_esc.evidence:
+                target_esc.evidence.append(cr)
+        target_esc.status = "CLARIFICATION_REQUIRED"
+    elif action == "APPROVED" and target_esc:
+        target_esc.status = "APPROVED"
+        target_esc.monitor_decision = "APPROVED"
+        target_esc.monitor_reason = req.reason or "Approved by medical monitor via UI"
+        target_esc.action_taken = "Approved by human monitor; safety actions executed."
+    elif action == "REJECTED" and target_esc:
+        target_esc.status = "MONITORING"
+        target_esc.monitor_decision = "REJECTED"
+        target_esc.monitor_reason = req.reason or "Rejected by medical monitor; downgraded to monitoring"
+        target_esc.action_taken = "Downgraded to monitoring; no safety escalation."
+
+    crew.memory.update_escalation_decision(req.escalation_id, action, req.reason)
+    return {
+        "ok": True,
+        "escalation_id": req.escalation_id,
+        "action": action,
+        "status": target_esc.status if target_esc else action,
+        "clarification": clarification_res,
+    }
+
+
+@app.post("/api/monitor/reset")
+async def monitor_reset() -> dict:
+    crew = _ensure_crew()
+    crew.reset_memory()
+    return {"ok": True, "message": "Crew memory reset successfully"}
+
+
+# --------------------------------------------------------------------------- #
+# Gateway & Hub Mock Endpoints (POST /queries, POST /escalations)
+# --------------------------------------------------------------------------- #
+@app.post("/queries")
+async def mock_gateway_query(req: dict) -> dict:
+    _ensure_built()
+    domain = req.get("domain", "")
+    usubjid = req.get("usubjid", "")
+    seq = req.get("seq")
+    if hasattr(_graph.core, "site_replies") and _graph.core.site_replies.loaded:
+        reply_list, exact = _graph.core.site_replies.lookup(domain, usubjid, seq)
+        status = reply_list[0] if reply_list else "ANSWERED"
+        reply_text = reply_list[1] if len(reply_list) > 1 else ""
+        return {"status": status, "reply": reply_text, "exact": exact}
+    return {"status": "ANSWERED", "reply": "Source documents verified; query addressed."}
+
+
+@app.post("/escalations")
+async def mock_hub_escalation(req: dict) -> dict:
+    _ensure_built()
+    code = req.get("code", "")
+    usubjid = req.get("usubjid", "")
+    site = req.get("site", "")
+    if hasattr(_graph.core, "monitor_decisions") and _graph.core.monitor_decisions.loaded:
+        reply = _graph.core.monitor_decisions.lookup(code, usubjid) or _graph.core.monitor_decisions.lookup(code, site)
+        if reply and len(reply) >= 2:
+            return {"decision": reply[0], "reason": reply[1]}
+    return {"decision": "APPROVED", "reason": "Consistent with safety criteria; hold dosing pending review."}
+
+
+# --------------------------------------------------------------------------- #
 # Entry point
 # --------------------------------------------------------------------------- #
 def main() -> None:

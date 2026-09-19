@@ -46,8 +46,8 @@ class StudyGraph:
         self.core = StudyGraphCore(self.data_dir)
         self.last_stats: dict[str, Any] = {}
 
-    def build(self, cut: int | None = None) -> dict:
-        stats = self.core.build(cut)
+    def build(self, cut: int | None = None, protocol_version: int | None = None) -> dict:
+        stats = self.core.build(cut, protocol_version)
         self.last_stats = stats.as_dict()
         return self.last_stats
 
