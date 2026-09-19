@@ -30,6 +30,13 @@ CODE_ALIASES: Dict[str, str] = {
 class IncrementalStudyGraph(StudyGraph):
     """Subclass of Stage 1 StudyGraph that uses advance_to_cut() for sequential cuts."""
 
+    def __init__(self, data_dir: str, core: Optional[Any] = None):
+        super().__init__(data_dir)
+        if core is not None:
+            # Share the crew's existing core so Atlas.router (built on the same
+            # object) stays in sync instead of pointing at a stale graph.
+            self.core = core
+
     def build(self, cut: Optional[int] = None, protocol_version: Optional[int] = None) -> dict:
         if (
             cut is not None

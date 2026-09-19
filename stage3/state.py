@@ -66,7 +66,13 @@ class WatchState:
                 "last_seen_cut": cut,
                 "status": "CONFIRMED",
                 "evidence_keys": [
-                    (getattr(e, "domain", ""), getattr(e, "usubjid", ""), getattr(e, "seq", None))
+                    (
+                        getattr(e, "domain", ""),
+                        getattr(e, "usubjid", None),
+                        getattr(e, "seq", None),
+                        getattr(e, "document", None),
+                        getattr(e, "section", None),
+                    )
                     for e in ev
                 ],
             }

@@ -71,7 +71,7 @@ def run_surveillance_cut(
 
     # 6. Lab integrity detector
     lab_events, lab_decs, lab_traces, lab_queries = check_lab_integrity(
-        cut, core, state, config, gateway_client
+        cut, core, state, config, gateway_client, memory=crew.memory
     )
     decision_store.extend(lab_decs)
     trace_store.extend(lab_traces)
@@ -174,10 +174,16 @@ def run_surveillance_cut(
     for sf in crew_report.serious_findings:
         sf_subj = sf.get("usubjid")
         sf_site = sf.get("site") or core.site_of(sf_subj)
+        # Escalated in this cut, or already escalated / rejected in an earlier
+        # cut (Stage 2 memory dedup) — a serious event must never wait for a
+        # later cut, but must not be re-escalated either.
+        sf_code = sf.get("code", "")
+        esc_codes = {sf_code, "SERIOUS_AE", "SAE_MISCODED", "HYS_LAW_CANDIDATE"}
+        fps = {crew.memory.escalation_fingerprint(c, sf_subj or sf_site or "") for c in esc_codes}
         has_matching_esc = any(
-            (e.usubjid == sf_subj or e.site == sf_site)
+            (e.usubjid == sf_subj or (sf_subj is None and e.site == sf_site))
             for e in crew_report.escalations
-        )
+        ) or any(crew.memory.has_escalation(fp) or crew.memory.is_rejected(fp) for fp in fps)
         trace_store.append(
             WatchTraceEntry(
                 timestamp=core.loaded_signature or "",
@@ -189,7 +195,7 @@ def run_surveillance_cut(
                 target=sf_subj or sf_site,
                 evidence=[],
                 reason=f"Asserted safety escalation filed at cut {cut} (escalated={has_matching_esc})",
-                status="CONFIRMED" if has_matching_esc else "QUARANTINED",
+                status="CONFIRMED" if has_matching_esc else "UNRESOLVED",
             )
         )
 

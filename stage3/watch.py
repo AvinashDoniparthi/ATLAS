@@ -47,7 +47,9 @@ class StudyWatch:
             self.crew = crew
             # Ensure graph is duck-typed for incremental updates if possible
             if not isinstance(self.crew.atlas.graph, IncrementalStudyGraph):
-                inc_graph = IncrementalStudyGraph(str(self.data_dir))
+                existing = self.crew.atlas.graph
+                inc_graph = IncrementalStudyGraph(str(self.data_dir), core=getattr(existing, "core", None))
+                inc_graph.last_stats = dict(getattr(existing, "last_stats", {}) or {})
                 self.crew.atlas.graph = inc_graph
             self.graph = self.crew.atlas.graph
             self.hub_client = getattr(self.crew, "hub_client", None)
@@ -67,6 +69,12 @@ class StudyWatch:
                 persistence_file=self.output_dir / ".stage3_memory.json",
                 human_response_delay_cuts=self.config.human_response_delay_cuts,
             )
+
+        # cut_table / raw_domains / resolver are only populated by load(); the
+        # first cut delta needs them before the graph is built.
+        core = self.graph.core
+        if core.loaded_signature is None:
+            core.load()
 
         self.last_report: Optional[SurveillanceReport] = None
         self.cut_summaries: List[CutResult] = []

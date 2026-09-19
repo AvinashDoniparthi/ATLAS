@@ -1,8 +1,9 @@
 """Correction processing and superseded finding retraction for Stage 3."""
 from __future__ import annotations
 
+import hashlib
 import logging
-from typing import Any, List, Set, Tuple
+from typing import Any, List, Optional, Set, Tuple
 
 from starter.schemas import RecordRef
 from stage2.schemas import AlternativeConsidered
@@ -31,6 +32,25 @@ def process_corrections(
         (c.domain, c.usubjid, c.seq) for c in corrections
     }
 
+    def _ref_from_key(key: tuple) -> Optional[RecordRef]:
+        """Rebuild a RecordRef from a ledger evidence key.
+
+        Keys are (domain, usubjid, seq[, document, section]); DOC keys need a
+        document, data keys need a usubjid — anything else cannot be cited and
+        is skipped rather than fabricated.
+        """
+        key = tuple(key) + (None,) * (5 - len(key))
+        d, u, s, doc, sec = key[:5]
+        try:
+            if d == "DOC":
+                return RecordRef(domain=d, document=doc, section=sec) if doc else None
+            return RecordRef(domain=d, usubjid=u, seq=s) if u else None
+        except Exception:  # noqa: BLE001 - never crash a cut over one bad citation
+            return None
+
+    def _stable_id(prefix: str, fp: str) -> str:
+        return f"{prefix}-{cut}-RETRACT-{hashlib.sha1(fp.encode('utf-8')).hexdigest()[:8]}"
+
     # Set of current finding fingerprints
     current_fps: Set[str] = set()
     for f in current_findings:
@@ -53,7 +73,7 @@ def process_corrections(
             continue
 
         item_ev_keys = [tuple(k) for k in ledger_item.get("evidence_keys", [])]
-        touches_correction = any(k in corrected_keys for k in item_ev_keys)
+        touches_correction = any(tuple(k[:3]) in corrected_keys for k in item_ev_keys)
 
         if touches_correction and fp not in current_fps:
             # Finding is no longer present after correction -> retract/resolve
@@ -61,10 +81,8 @@ def process_corrections(
             ledger_item["resolved_at_cut"] = cut
             ledger_item["resolution_reason"] = "Superseded by laboratory data correction re-issue."
 
-            dec_id = f"D-{cut}-RETRACT-{abs(hash(fp)) % 1000000:06d}"
-            ev_refs = []
-            for d, u, s in item_ev_keys:
-                ev_refs.append(RecordRef(domain=d, usubjid=u, seq=s))
+            dec_id = _stable_id("D", fp)
+            ev_refs = [r for r in (_ref_from_key(k) for k in item_ev_keys) if r is not None]
 
             dec = Decision(
                 decision_id=dec_id,
@@ -91,7 +109,7 @@ def process_corrections(
                     timestamp=core.loaded_signature or "",
                     cycle=cut,
                     cut=cut,
-                    trace_id=f"T-{cut}-RETRACT-{abs(hash(fp)) % 1000000:06d}",
+                    trace_id=_stable_id("T", fp),
                     decision_id=dec_id,
                     node="corrections",
                     action=f"finding_retracted_by_correction: {ledger_item.get('code')} for {ledger_item.get('usubjid')}",

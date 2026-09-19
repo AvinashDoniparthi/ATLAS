@@ -20,6 +20,7 @@ def check_lab_integrity(
     state: WatchState,
     config: WatchConfig,
     gateway_client: Any,
+    memory: Any = None,
 ) -> Tuple[List[LabIntegrityEvent], List[Decision], List[WatchTraceEntry], List[SiteQuery]]:
     """Detects conversion-like unit shifts and data corruption in lab analytes."""
     events: List[LabIntegrityEvent] = []
@@ -194,11 +195,20 @@ def check_lab_integrity(
                     f"without required conversion (ratio {fold_change:.1f}x). Confirm analyser calibration and unit specification."
                 ),
                 status="OPEN",
-                fingerprint=f"LAB_SHIFT|{site}|{testcd}|{cut}".upper(),
+                fingerprint=f"LAB_SHIFT|{site}|{testcd}".upper(),
                 cycle=cut,
             )
+            # One query per (site, analyte) for the whole period: the same
+            # shift persisting into later cuts must not re-query the site.
+            if memory is not None and memory.has_query(query.fingerprint):
+                log.info("lab query for %s/%s already open; not re-dispatched", site, testcd)
+                continue
             if gateway_client is not None:
-                gateway_client.send_query(query, core)
+                status, reply = gateway_client.send_query(query, core)
+                query.status = status or query.status
+                query.reply = reply
+            if memory is not None:
+                memory.record_query(query)
             queries.append(query)
 
     return events, decisions, trace_entries, queries
