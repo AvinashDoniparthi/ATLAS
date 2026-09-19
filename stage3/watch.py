@@ -1,6 +1,7 @@
 """StudyWatch — Main Stage 3 surveillance engine and explainability interface."""
 from __future__ import annotations
 
+import json
 import logging
 from collections import Counter
 from pathlib import Path
@@ -43,6 +44,48 @@ class StudyWatch:
         self.decision_store = DecisionStore()
         self.trace_store = TraceStore()
 
+        # Restore persisted decisions and traces if available
+        self.decision_store.load(self.output_dir / "decision_log.json")
+        self.trace_store.load(self.output_dir / "trace.jsonl")
+
+        self.last_report: Optional[SurveillanceReport] = None
+        self.cut_summaries: List[CutResult] = []
+
+        # Restore cut summaries from state cut history (latest run per cut)
+        if self.state.cut_history:
+            by_cut = {}
+            for c in self.state.cut_history:
+                try:
+                    cr = CutResult(**c) if isinstance(c, dict) else c
+                    by_cut[cr.cut] = cr
+                except Exception:
+                    pass
+            self.cut_summaries = [by_cut[k] for k in sorted(by_cut.keys())]
+
+        # Restore budget manager state from run_stats.json or cut summaries
+        restored_budget = False
+        stats_file = self.output_dir / "run_stats.json"
+        if stats_file.is_file():
+            try:
+                with open(stats_file, "r", encoding="utf-8") as f:
+                    s_data = json.load(f)
+                b_sum = s_data.get("budget_summary", {})
+                if b_sum and float(b_sum.get("spent_ms", 0.0)) > 0:
+                    self.budget_manager.spent_ms = float(b_sum["spent_ms"])
+                    self.budget_manager.total_ms = float(b_sum.get("total_ms", self.budget_manager.total_ms))
+                    self.budget_manager.current_tier = b_sum.get("tier", "FULL")
+                    restored_budget = True
+            except Exception as exc:  # noqa: BLE001
+                log.warning("failed to restore budget from run_stats.json: %s", exc)
+
+        if not restored_budget and self.cut_summaries:
+            total_spent = sum(cr.budget_ms_used for cr in self.cut_summaries)
+            if total_spent > 0:
+                self.budget_manager.spent_ms = total_spent
+                for cr in self.cut_summaries:
+                    self.budget_manager.cut_durations[cr.cut] = cr.budget_ms_used
+                self.budget_manager.current_tier = self.cut_summaries[-1].degradation_tier
+
         if crew is not None:
             self.crew = crew
             # Ensure graph is duck-typed for incremental updates if possible
@@ -75,9 +118,6 @@ class StudyWatch:
         core = self.graph.core
         if core.loaded_signature is None:
             core.load()
-
-        self.last_report: Optional[SurveillanceReport] = None
-        self.cut_summaries: List[CutResult] = []
 
     def run_period(
         self,

@@ -72,3 +72,16 @@ class DecisionStore:
                 json.dump(data, f, indent=2)
         except Exception as exc:  # noqa: BLE001
             log.warning("failed to save decisions: %s", exc)
+
+    def load(self, filepath: Path) -> None:
+        """Loads decisions from JSON array."""
+        if not filepath or not Path(filepath).is_file():
+            return
+        try:
+            with open(filepath, "r", encoding="utf-8") as f:
+                data = json.load(f)
+            for item in data:
+                if isinstance(item, dict):
+                    self.add(Decision(**item))
+        except Exception as exc:  # noqa: BLE001
+            log.warning("failed to load decisions: %s", exc)

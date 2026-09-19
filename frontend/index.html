@@ -3352,7 +3352,7 @@
                 <div class="budget-bar-fill" id="watch-budget-fill" style="width: 0%;"></div>
               </div>
               <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:var(--gray-2); margin-bottom:14px;">
-                <span>Total Budget: 120,000 ms</span>
+                <span id="watch-budget-total-text">Total Budget: 120,000 ms</span>
                 <span id="watch-budget-remaining-text">Remaining: — ms</span>
               </div>
 
@@ -5393,8 +5393,27 @@ void main() {
           const report = await apiFetch('/api/watch/report');
           if (report && Object.keys(report).length > 0) {
             _watchData.report = report;
+            if ((!_watchData.budget || !_watchData.budget.spent_ms) && report.budget_summary) {
+              _watchData.budget = report.budget_summary;
+            }
           }
         } catch (re) { }
+
+        // Fallback calculation for budget if spent_ms is 0 but cuts exist
+        if ((!_watchData.budget || !_watchData.budget.spent_ms) && _watchData.cuts && _watchData.cuts.length > 0) {
+          const totalSpent = _watchData.cuts.reduce((s, c) => s + (c.budget_ms_used || 0), 0);
+          if (totalSpent > 0) {
+            const totalMs = (_watchData.budget && _watchData.budget.total_ms) || 120000;
+            const lastTier = (_watchData.cuts[_watchData.cuts.length - 1] && _watchData.cuts[_watchData.cuts.length - 1].degradation_tier) || 'FULL';
+            _watchData.budget = {
+              total_ms: totalMs,
+              spent_ms: totalSpent,
+              remaining_ms: Math.max(0, totalMs - totalSpent),
+              fraction_used: totalSpent / totalMs,
+              tier: lastTier
+            };
+          }
+        }
 
         await fetchWatchCutData(_watchData.selectedCut);
 
@@ -5476,6 +5495,23 @@ void main() {
         if (docsRes.status === 'fulfilled') _watchData.documents = docsRes.value;
         if (memoryRes.status === 'fulfilled') _watchData.memory = memoryRes.value;
 
+        if (_watchData.report && _watchData.report.budget_summary) {
+          _watchData.budget = _watchData.report.budget_summary;
+        } else if ((!_watchData.budget || !_watchData.budget.spent_ms) && _watchData.cuts && _watchData.cuts.length > 0) {
+          const totalSpent = _watchData.cuts.reduce((s, c) => s + (c.budget_ms_used || 0), 0);
+          if (totalSpent > 0) {
+            const totalMs = (_watchData.budget && _watchData.budget.total_ms) || 120000;
+            const lastTier = (_watchData.cuts[_watchData.cuts.length - 1] && _watchData.cuts[_watchData.cuts.length - 1].degradation_tier) || 'FULL';
+            _watchData.budget = {
+              total_ms: totalMs,
+              spent_ms: totalSpent,
+              remaining_ms: Math.max(0, totalMs - totalSpent),
+              fraction_used: totalSpent / totalMs,
+              tier: lastTier
+            };
+          }
+        }
+
         await fetchWatchCutData(_watchData.selectedCut);
         renderWatchAll();
       } catch (err) {
@@ -5496,6 +5532,8 @@ void main() {
       _watchData.selectedCut = select ? select.value : 'all';
       fetchWatchCutData(_watchData.selectedCut).then(() => {
         renderWatchTimeline();
+        renderWatchSummaryMetrics();
+        renderWatchBudget();
         renderWatchFindings(_watchData.findingFilter);
         renderWatchDecisions();
         renderWatchTrace();
@@ -5537,9 +5575,15 @@ void main() {
       document.getElementById('watch-ctx-lastrun').textContent = 'Just now';
 
       let budgetRemainingText = '81.8% remaining';
-      if (budget && budget.total_ms > 0) {
+      if (budget && budget.total_ms > 0 && budget.spent_ms > 0) {
         const pctRemaining = (budget.remaining_ms / budget.total_ms) * 100;
         budgetRemainingText = `${pctRemaining.toFixed(1)}% remaining (${budget.tier || 'FULL'})`;
+      } else if (_watchData.cuts && _watchData.cuts.length > 0) {
+        const spent = _watchData.cuts.reduce((sum, c) => sum + (c.budget_ms_used || 0), 0);
+        const total = (budget && budget.total_ms) || 120000;
+        const pctRemaining = Math.max(0, ((total - spent) / total) * 100);
+        const tier = (budget && budget.tier) || 'FULL';
+        budgetRemainingText = `${pctRemaining.toFixed(1)}% remaining (${tier})`;
       }
       document.getElementById('watch-ctx-budget').textContent = budgetRemainingText;
 
@@ -5635,11 +5679,27 @@ void main() {
       document.getElementById('wcard-quarantined').textContent = quarantinedSites.length ? `${quarantinedSites.length} (${quarantinedSites.join(',')})` : '0';
       document.getElementById('wcard-untrusted-labs').textContent = fmt(untrustedLabs);
 
-      if (budget) {
-        document.getElementById('wcard-budget').textContent = `${Math.round(budget.spent_ms).toLocaleString()} ms`;
-        document.getElementById('wcard-budget-sub').textContent = `${((budget.spent_ms / budget.total_ms) * 100).toFixed(1)}% consumed`;
-        document.getElementById('wcard-tier').textContent = budget.tier || 'FULL';
+      // Budget & Tier card values: handle "all" cuts and single cut selection
+      let displayedSpent = (budget && budget.spent_ms > 0) ? budget.spent_ms : 0;
+      let displayedTotal = (budget && budget.total_ms) || 120000;
+      let displayedTier = (budget && budget.tier) || 'FULL';
+
+      if (_watchData.selectedCut !== 'all') {
+        const selCut = (_watchData.cuts || []).find(c => String(c.cut) === String(_watchData.selectedCut));
+        if (selCut) {
+          displayedSpent = selCut.budget_ms_used || 0;
+          displayedTier = selCut.degradation_tier || displayedTier;
+        }
+      } else if (!displayedSpent && _watchData.cuts && _watchData.cuts.length > 0) {
+        displayedSpent = _watchData.cuts.reduce((s, c) => s + (c.budget_ms_used || 0), 0);
       }
+
+      const pctConsumed = displayedTotal > 0 ? (displayedSpent / displayedTotal) * 100 : 0;
+      document.getElementById('wcard-budget').textContent = `${Math.round(displayedSpent).toLocaleString()} ms`;
+      document.getElementById('wcard-budget-sub').textContent = _watchData.selectedCut !== 'all'
+        ? `${pctConsumed.toFixed(1)}% of total (${displayedTier})`
+        : `${pctConsumed.toFixed(1)}% consumed`;
+      document.getElementById('wcard-tier').textContent = displayedTier;
 
       // Pipeline status
       const pipeStatus = document.getElementById('pipe-decide-status');
@@ -5979,23 +6039,37 @@ void main() {
 
     function renderWatchBudget() {
       const budget = _watchData.budget;
-      if (!budget) return;
+      let total = (budget && budget.total_ms) || 120000;
+      let spent = (budget && budget.spent_ms > 0) ? budget.spent_ms : 0;
+      let tier = (budget && budget.tier) || 'FULL';
 
-      const total = budget.total_ms || 120000;
-      const spent = budget.spent_ms || 0;
-      const remaining = budget.remaining_ms || (total - spent);
+      if (_watchData.selectedCut !== 'all') {
+        const selCut = (_watchData.cuts || []).find(c => String(c.cut) === String(_watchData.selectedCut));
+        if (selCut) {
+          spent = selCut.budget_ms_used || 0;
+          tier = selCut.degradation_tier || tier;
+        }
+      } else if (!spent && _watchData.cuts && _watchData.cuts.length > 0) {
+        spent = _watchData.cuts.reduce((s, c) => s + (c.budget_ms_used || 0), 0);
+      }
+
+      const remaining = Math.max(0, total - spent);
       const pct = Math.min(100, Math.max(0, (spent / total) * 100));
 
-      document.getElementById('watch-budget-used-text').textContent = `Spent: ${Math.round(spent).toLocaleString()} ms`;
+      const totalEl = document.getElementById('watch-budget-total-text');
+      if (totalEl) totalEl.textContent = `Total Budget: ${Math.round(total).toLocaleString()} ms`;
+
+      document.getElementById('watch-budget-used-text').textContent = _watchData.selectedCut !== 'all'
+        ? `Cut ${_watchData.selectedCut} Spent: ${Math.round(spent).toLocaleString()} ms`
+        : `Spent: ${Math.round(spent).toLocaleString()} ms`;
       document.getElementById('watch-budget-pct-text').textContent = `${pct.toFixed(1)}%`;
       document.getElementById('watch-budget-fill').style.width = `${pct}%`;
       document.getElementById('watch-budget-remaining-text').textContent = `Remaining: ${Math.round(remaining).toLocaleString()} ms`;
 
-      const tier = budget.tier || 'FULL';
       document.getElementById('watch-degrade-title').textContent = `Execution Tier: ${tier}`;
 
-      if (tier === 'DEGRADED') {
-        document.getElementById('watch-degrade-desc').textContent = 'DEGRADED MODE ACTIVE: Non-essential narrative synthesis suspended. Deterministic clinical safety surveillance remains fully active.';
+      if (tier === 'DEGRADED' || tier === 'ESSENTIAL') {
+        document.getElementById('watch-degrade-desc').textContent = 'ESSENTIAL / DEGRADED MODE ACTIVE: Non-essential narrative synthesis suspended. Deterministic clinical safety surveillance remains fully active.';
       } else if (tier === 'REDUCED') {
         document.getElementById('watch-degrade-desc').textContent = 'REDUCED MODE: Optimized query resolution active to preserve execution bounds. Deterministic safety checks remain active.';
       } else {

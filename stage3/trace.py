@@ -72,3 +72,19 @@ class TraceStore:
                     f.write(json.dumps(e.model_dump()) + "\n")
         except Exception as exc:  # noqa: BLE001
             log.warning("failed to save trace: %s", exc)
+
+    def load(self, filepath: Path) -> None:
+        """Loads the trace store from JSONL."""
+        if not filepath or not Path(filepath).is_file():
+            return
+        try:
+            with open(filepath, "r", encoding="utf-8") as f:
+                for line in f:
+                    line = line.strip()
+                    if not line:
+                        continue
+                    item = json.loads(line)
+                    if isinstance(item, dict):
+                        self.append(WatchTraceEntry(**item))
+        except Exception as exc:  # noqa: BLE001
+            log.warning("failed to load trace: %s", exc)

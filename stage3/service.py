@@ -1,12 +1,13 @@
 """Plain-Python service facade for Stage 3 API and CLI integration."""
 from __future__ import annotations
 
+import json
 import logging
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Union
 
 from stage3.config import DEFAULT_PERIOD, WatchConfig
-from stage3.models import Explanation, SurveillanceReport
+from stage3.models import CutResult, Explanation, SurveillanceReport
 from stage3.watch import StudyWatch
 
 log = logging.getLogger("stage3.service")
@@ -46,6 +47,7 @@ def run_period(
 
 def get_state() -> Dict[str, Any]:
     watch = get_watch()
+    cuts_count = len(watch.cut_summaries) or len(watch.state.cut_history)
     return {
         "active_protocol_version": watch.state.active_protocol_version,
         "quarantined_sites": sorted(watch.state.quarantined_sites),
@@ -53,13 +55,15 @@ def get_state() -> Dict[str, Any]:
         "known_sites": sorted(watch.state.known_sites),
         "known_domains": sorted(watch.state.known_domains),
         "total_findings_recorded": len(watch.state.findings_ledger),
-        "cuts_completed": len(watch.cut_summaries),
+        "cuts_completed": cuts_count,
     }
 
 
 def get_cuts() -> List[Dict[str, Any]]:
     watch = get_watch()
-    return [cr.model_dump() for cr in watch.cut_summaries]
+    if watch.cut_summaries:
+        return [cr.model_dump() for cr in watch.cut_summaries]
+    return [c if isinstance(c, dict) else c.model_dump() for c in watch.state.cut_history]
 
 
 def get_findings(cut: Optional[int] = None, serious_only: bool = False) -> List[Dict[str, Any]]:
@@ -152,6 +156,13 @@ def get_documents() -> Dict[str, Any]:
 
 def get_budget() -> Dict[str, Any]:
     watch = get_watch()
+    if watch.budget_manager.spent_ms == 0.0:
+        cuts = watch.cut_summaries or [CutResult(**c) if isinstance(c, dict) else c for c in watch.state.cut_history]
+        if cuts:
+            total_spent = sum(c.budget_ms_used for c in cuts)
+            if total_spent > 0:
+                watch.budget_manager.spent_ms = total_spent
+                watch.budget_manager.current_tier = cuts[-1].degradation_tier
     return watch.budget_manager.state().model_dump()
 
 
@@ -186,16 +197,24 @@ def get_report() -> Dict[str, Any]:
     watch = get_watch()
     if watch.last_report:
         return watch.last_report.model_dump()
+    stats_file = watch.output_dir / "run_stats.json"
+    if stats_file.is_file():
+        try:
+            with open(stats_file, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception:
+            pass
     return {}
 
 
 def get_stats() -> Dict[str, Any]:
     watch = get_watch()
+    cuts_count = len(watch.cut_summaries) or len(watch.state.cut_history)
     return {
-        "cuts_completed": len(watch.cut_summaries),
+        "cuts_completed": cuts_count,
         "decisions_total": len(watch.decision_store.decisions),
         "trace_entries_total": len(watch.trace_store.entries),
         "quarantined_sites": sorted(watch.state.quarantined_sites),
         "untrusted_lab_records": len(watch.state.untrusted_lab_keys),
-        "budget": watch.budget_manager.state().model_dump(),
+        "budget": get_budget(),
     }
