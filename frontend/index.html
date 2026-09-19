@@ -505,6 +505,17 @@
       display: block;
     }
 
+    /* ── Section Home ── */
+    #section-home {
+      position: relative;
+      overflow: hidden;
+    }
+
+    #section-home .container {
+      position: relative;
+      z-index: 2;
+    }
+
     .back-btn {
       display: inline-flex;
       align-items: center;
@@ -1340,8 +1351,411 @@
       cursor: pointer;
     }
 
+    /* ── StudyGraph Relationship Explorer & Entity Links ─────────────────────── */
+    .entity-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      cursor: pointer;
+      border-bottom: 1.5px dotted var(--coral);
+      color: var(--black);
+      font-weight: 600;
+      padding: 1px 5px;
+      border-radius: 3px;
+      background: rgba(227, 106, 106, 0.07);
+      transition: all .15s ease;
+      text-decoration: none;
+    }
+
+    .entity-link:hover {
+      background: var(--cream);
+      color: var(--coral);
+      border-bottom-style: solid;
+      transform: translateY(-1px);
+    }
+
+    .entity-link::after {
+      content: "↗";
+      font-size: 0.72rem;
+      opacity: 0.6;
+      transition: opacity .15s;
+    }
+
+    .entity-link:hover::after {
+      opacity: 1;
+    }
+
+    /* Modal backdrop & dialog */
+    .rel-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(17, 17, 17, 0.45);
+      backdrop-filter: blur(4px);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .2s ease, visibility .2s ease;
+    }
+
+    .rel-modal-backdrop.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .rel-modal {
+      background: var(--bg);
+      border: 1.5px solid var(--border-cream);
+      border-radius: 12px;
+      box-shadow: 0 12px 36px rgba(40, 20, 10, 0.18), 0 4px 12px rgba(40, 20, 10, 0.08);
+      width: 100%;
+      max-width: 580px;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transform: translateY(12px) scale(0.98);
+      transition: transform .2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .rel-modal-backdrop.open .rel-modal {
+      transform: translateY(0) scale(1);
+    }
+
+    .rel-modal-header {
+      padding: 20px 24px 16px;
+      background: var(--cream);
+      border-bottom: 1.5px solid var(--border-cream);
+      position: relative;
+    }
+
+    .rel-badge {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #FFFBF1;
+      background: var(--coral);
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+    }
+
+    .rel-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--black);
+      margin-bottom: 4px;
+      word-break: break-word;
+    }
+
+    .rel-subtitle {
+      font-size: 0.85rem;
+      color: var(--gray-2);
+    }
+
+    .rel-close-btn {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      background: none;
+      border: none;
+      font-size: 1.25rem;
+      color: var(--gray-2);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .15s ease;
+      cursor: pointer;
+    }
+
+    .rel-close-btn:hover {
+      background: rgba(17, 17, 17, 0.08);
+      color: var(--black);
+    }
+
+    .rel-search-bar {
+      padding: 12px 24px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+    }
+
+    .rel-search-bar input {
+      width: 100%;
+      padding: 8px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      background: #FFFFFF;
+      outline: none;
+      transition: border-color .15s;
+    }
+
+    .rel-search-bar input:focus {
+      border-color: var(--coral);
+    }
+
+    .rel-modal-body {
+      padding: 16px 24px;
+      overflow-y: auto;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-height: 50vh;
+    }
+
+    .rel-patient-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      transition: all .15s ease;
+    }
+
+    .rel-patient-card:hover {
+      border-color: var(--coral);
+      box-shadow: var(--shadow);
+      transform: translateX(2px);
+    }
+
+    .rel-patient-info {
+      flex: 1;
+    }
+
+    .rel-patient-top {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .rel-patient-id {
+      font-size: 0.95rem;
+      font-weight: 700;
+      font-family: var(--mono);
+      color: var(--black);
+      cursor: pointer;
+    }
+
+    .rel-patient-id:hover {
+      color: var(--coral);
+      text-decoration: underline;
+    }
+
+    .rel-site-tag {
+      font-size: 0.72rem;
+      font-weight: 600;
+      background: var(--cream);
+      border: 1px solid var(--border-cream);
+      padding: 1px 6px;
+      border-radius: 3px;
+      color: var(--gray-1);
+    }
+
+    .rel-patient-summary {
+      font-size: 0.8rem;
+      color: var(--gray-2);
+      line-height: 1.4;
+    }
+
+    .rel-open-btn {
+      padding: 6px 12px;
+      background: var(--bg);
+      border: 1px solid var(--border-coral);
+      color: var(--coral);
+      font-size: 0.78rem;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      white-space: nowrap;
+      transition: all .15s ease;
+      cursor: pointer;
+    }
+
+    .rel-patient-card:hover .rel-open-btn,
+    .rel-open-btn:hover {
+      background: var(--coral);
+      color: #FFFBF1;
+    }
+
+    .rel-modal-footer {
+      padding: 14px 24px;
+      background: var(--cream);
+      border-top: 1px solid var(--border-cream);
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .rel-modal-footer button {
+      padding: 8px 16px;
+      background: var(--black);
+      color: #FFFBF1;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-size: 0.82rem;
+      font-weight: 600;
+      transition: background .15s ease;
+    }
+
+    .rel-modal-footer button:hover {
+      background: var(--gray-1);
+    }
+
+    /* ── Start Landing Section ─────────────────────────────────────────────── */
+    #section-start {
+      position: relative;
+      min-height: calc(100vh - 120px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 40px 20px;
+    }
+
+    #section-start.active {
+      display: flex;
+    }
+
+    .ridge-canvas-wrap {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    #ridge-parallax-canvas,
+    #ridge-parallax-canvas-home {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .start-content-card {
+      position: relative;
+      z-index: 2;
+      max-width: 640px;
+      width: 100%;
+      background: rgba(255, 251, 241, 0.90);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1.5px solid var(--border-cream);
+      border-radius: 20px;
+      padding: 52px 44px;
+      text-align: center;
+      box-shadow: 0 24px 60px rgba(60, 40, 20, 0.12), 0 4px 18px rgba(227, 106, 106, 0.18);
+      animation: startFadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes startFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(24px) scale(0.96);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .start-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--coral);
+      background: var(--cream);
+      border: 1.5px solid var(--border-cream);
+      padding: 5px 16px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+    }
+
+    .start-title {
+      font-size: 3.8rem;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      color: var(--black);
+      margin-bottom: 18px;
+    }
+
+    .start-sub {
+      font-size: 1.05rem;
+      color: var(--gray-1);
+      line-height: 1.6;
+      margin-bottom: 34px;
+      font-weight: 450;
+    }
+
+    .start-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 16px 40px;
+      background: var(--coral);
+      color: #FFFBF1;
+      border: none;
+      border-radius: 100px;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      box-shadow: 0 8px 24px rgba(227, 106, 106, 0.35);
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .start-btn:hover {
+      background: #D45959;
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 12px 32px rgba(227, 106, 106, 0.45);
+    }
+
+    .start-features {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+      font-size: 0.78rem;
+      color: var(--gray-2);
+    }
+
+    .start-feature-tag {
+      background: rgba(255, 242, 208, 0.7);
+      border: 1px solid var(--border-cream);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-weight: 600;
+      color: var(--black);
+    }
+
     /* ── Responsive ───────────────────────────────────────────────────────────── */
     @media (max-width: 640px) {
+      .start-title {
+        font-size: 2.8rem;
+      }
+      .start-content-card {
+        padding: 36px 24px;
+      }
       .p360-grid {
         grid-template-columns: 1fr;
       }
@@ -1371,13 +1785,48 @@
   <!-- ── Main content ───────────────────────────────────────────────────────── -->
   <main>
 
+    <!-- START LANDING SECTION ────────────────────────────────────────────────── -->
+    <div id="section-start" class="page-section active">
+      <div class="ridge-canvas-wrap">
+        <canvas id="ridge-parallax-canvas"></canvas>
+      </div>
+
+      <div class="start-content-card">
+        <div class="start-badge">Clinical Knowledge Graph & Study Sentinel</div>
+        <h1 class="start-title">ATLAS</h1>
+        <p class="start-sub">
+          Connect clinical study data, navigate multi-domain knowledge graph relationships across patients and laboratory records, and review automated monitor findings with verifiable evidence.
+        </p>
+
+        <div>
+          <button class="start-btn" onclick="startApp()">
+            <span>START EXPLORING</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+        </div>
+
+        <div class="start-features">
+          <span class="start-feature-tag">Study Graph</span>
+          <span class="start-feature-tag">Patient 360</span>
+          <span class="start-feature-tag">Relationship Explorer</span>
+          <span class="start-feature-tag">Evidence Trace</span>
+          <span class="start-feature-tag">Review Crew</span>
+        </div>
+      </div>
+    </div>
+
     <!-- HOME SECTION ─────────────────────────────────────────────────────────── -->
-    <div id="section-home" class="page-section active">
-      <div class="container">
+    <div id="section-home" class="page-section">
+      <div class="ridge-canvas-wrap">
+        <canvas id="ridge-parallax-canvas-home"></canvas>
+      </div>
+      <div class="container" style="position: relative; z-index: 2;">
 
         <!-- Hero -->
-        <section class="hero" id="hero-section" style="position: relative; overflow: visible;">
-          <div id="shape-mosaic-container" style="position: absolute; inset: -40px -20px -20px -20px; z-index: 0; pointer-events: none; overflow: hidden; border-radius: var(--radius);"></div>
+        <section class="hero" id="hero-section" style="position: relative;">
           <div style="position: relative; z-index: 2;">
             <div class="eyebrow">Study Intelligence</div>
             <h1>Ask your study.</h1>
@@ -2161,6 +2610,30 @@
 
   </main>
 
+  <!-- ── StudyGraph Relationship Explorer Modal ────────────────────────────── -->
+  <div id="rel-modal-backdrop" class="rel-modal-backdrop" onclick="if(event.target===this) closeRelModal()" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="rel-modal" onclick="event.stopPropagation()">
+      <div class="rel-modal-header">
+        <div class="rel-badge" id="rel-badge">RELATIONSHIP</div>
+        <div class="rel-title" id="rel-title">—</div>
+        <div class="rel-subtitle" id="rel-subtitle">Traversing StudyGraph…</div>
+        <button class="rel-close-btn" onclick="closeRelModal()" aria-label="Close modal">&times;</button>
+      </div>
+
+      <div class="rel-search-bar">
+        <input type="text" id="rel-search-input" placeholder="Filter connected subjects, sites, or summaries…" oninput="filterRelModal()">
+      </div>
+
+      <div class="rel-modal-body" id="rel-modal-body">
+        <!-- Patient cards populated dynamically -->
+      </div>
+
+      <div class="rel-modal-footer">
+        <button onclick="closeRelModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
   <!-- ── Status bar ─────────────────────────────────────────────────────────── -->
   <div class="status-bar">
     <div class="status-dot" id="status-dot" style="background:#e5e5e5;"></div>
@@ -2216,17 +2689,26 @@
     }
 
     /* ── Navigation ───────────────────────────────────────────────────────────── */
-    const SECTIONS = ['home', 'graph', 'p360', 'evidence', 'monitor'];
-    const _navHistory = ['home'];
+    const SECTIONS = ['start', 'home', 'graph', 'p360', 'evidence', 'monitor'];
+    const _navHistory = ['start'];
+
+    function startApp() {
+      showSection('home');
+      setTimeout(() => {
+        const inp = document.getElementById('main-input');
+        if (inp) inp.focus();
+      }, 100);
+    }
 
     function goHome(e) {
       if (e && e.preventDefault) e.preventDefault();
-      const homeEl = document.getElementById('section-home');
-      const isAlreadyHome = homeEl && homeEl.classList.contains('active');
-      if (isAlreadyHome) {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+      const startEl = document.getElementById('section-start');
+      const isStart = startEl && startEl.classList.contains('active');
+      if (isStart) {
+        showSection('home');
       } else {
         showSection('home');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }
 
@@ -2235,7 +2717,7 @@
       const current = SECTIONS.find(s => {
         const el = document.getElementById('section-' + s);
         return el && el.classList.contains('active');
-      }) || 'home';
+      }) || 'start';
 
       if (!skipHistory && current !== id) {
         _navHistory.push(current);
@@ -2603,7 +3085,8 @@
       const rows = Object.entries(visits).map(([v, info]) => {
         const doms = Object.keys(info.domains || {}).join(', ');
         const recs = Object.values(info.domains || {}).reduce((s, a) => s + a.length, 0);
-        return `<tr><td class="key">${esc(v)}</td><td>${esc(info.date || '—')}</td><td>${esc(doms)}</td><td>${recs}</td></tr>`;
+        const vLink = `<span class="entity-link" onclick="openRelModal('visit', '${esc(v)}')" title="Explore connected subjects for visit ${esc(v)}">${esc(v)}</span>`;
+        return `<tr><td class="key">${vLink}</td><td>${esc(info.date || '—')}</td><td>${esc(doms)}</td><td>${recs}</td></tr>`;
       }).join('');
       return `<table class="data-table"><thead><tr><th>Visit</th><th>Date</th><th>Domains</th><th>Records</th></tr></thead><tbody>${rows}</tbody></table>`;
     }
@@ -2618,7 +3101,11 @@
         const norm = l.normalized_value != null ? l.normalized_value : '';
         const nu = l.normalized_unit || '';
         const flag = l.flag || '';
-        return `<tr><td class="key mono">${esc(testcd)}</td><td>${esc(visit)}</td><td>${esc(orig)} <span style="color:var(--gray-3)">${esc(unit)}</span></td><td>${norm ? esc(norm) + ' ' + esc(nu) : '—'}</td><td style="color:${flag === 'high' ? '#c0392b' : flag === 'low' ? '#2980b9' : 'inherit'}">${esc(flag)}</td></tr>`;
+
+        const testLink = testcd ? `<span class="entity-link" onclick="openRelModal('lab', '${esc(testcd)}')" title="Explore connected subjects for lab test ${esc(testcd)}">${esc(testcd)}</span>` : '—';
+        const visitLink = visit ? `<span class="entity-link" onclick="openRelModal('visit', '${esc(visit)}')" title="Explore connected subjects for visit ${esc(visit)}">${esc(visit)}</span>` : '—';
+
+        return `<tr><td class="key mono">${testLink}</td><td>${visitLink}</td><td>${esc(orig)} <span style="color:var(--gray-3)">${esc(unit)}</span></td><td>${norm ? esc(norm) + ' ' + esc(nu) : '—'}</td><td style="color:${flag === 'high' ? '#c0392b' : flag === 'low' ? '#2980b9' : 'inherit'}">${esc(flag)}</td></tr>`;
       }).join('');
       const more = labs.length > 200 ? `<tr><td colspan="5" style="color:var(--gray-3);padding:8px 12px;">… ${labs.length - 200} more records</td></tr>` : '';
       return `<table class="data-table"><thead><tr><th>Test</th><th>Visit</th><th>Original</th><th>Normalised</th><th>Flag</th></tr></thead><tbody>${rows}${more}</tbody></table>`;
@@ -2626,47 +3113,62 @@
 
     function renderAEs(aes) {
       if (!aes || !aes.length) return '<div class="empty-state">No adverse events</div>';
-      const rows = aes.map(ae =>
-        `<tr>
-      <td class="key">${esc(ae.AETERM || ae.term || '—')}</td>
+      const rows = aes.map(ae => {
+        const term = ae.AETERM || ae.term || '';
+        const termLink = term ? `<span class="entity-link" onclick="openRelModal('adverse_event', '${esc(term)}')" title="Explore connected subjects for ${esc(term)}">${esc(term)}</span>` : '—';
+        return `<tr>
+      <td class="key">${termLink}</td>
       <td>${esc(ae.AESER || ae.serious || '—')}</td>
       <td>${esc(ae.AESEV || ae.severity || '—')}</td>
       <td>${esc(ae._date || ae.AESTDTC || '—')}</td>
-    </tr>`
-      ).join('');
+    </tr>`;
+      }).join('');
       return `<table class="data-table"><thead><tr><th>Term</th><th>Serious</th><th>Severity</th><th>Date</th></tr></thead><tbody>${rows}</tbody></table>`;
     }
 
     function renderExposure(exps) {
       if (!exps || !exps.length) return '<div class="empty-state">No exposure records</div>';
-      const rows = exps.map(e =>
-        `<tr>
-      <td class="key">${esc(e.EXTRT || e.treatment || '—')}</td>
-      <td>${esc(e.EXDOSE || e.dose || '—')} ${esc(e.EXDOSU || e.unit || '')}</td>
-      <td>${esc(e.VISIT || e.visit || '—')}</td>
+      const rows = exps.map(e => {
+        const trt = e.EXTRT || e.treatment || '';
+        const dose = e.EXDOSE || e.dose || '';
+        const dosu = e.EXDOSU || e.unit || '';
+        const visit = e.VISIT || e.visit || '';
+
+        const trtLink = trt ? `<span class="entity-link" onclick="openRelModal('dosing', '${esc(trt)}')" title="Explore connected subjects for ${esc(trt)}">${esc(trt)}</span>` : '—';
+        const doseLink = dose ? `<span class="entity-link" onclick="openRelModal('dosing', '${esc(dose)}')" title="Explore connected subjects with dose ${esc(dose)}">${esc(dose)} ${esc(dosu)}</span>` : '—';
+        const visitLink = visit ? `<span class="entity-link" onclick="openRelModal('visit', '${esc(visit)}')" title="Explore connected subjects for visit ${esc(visit)}">${esc(visit)}</span>` : '—';
+
+        return `<tr>
+      <td class="key">${trtLink}</td>
+      <td>${doseLink}</td>
+      <td>${visitLink}</td>
       <td>${esc(e.EXSTDTC || e.start_date || e.date || '—')}</td>
-    </tr>`
-      ).join('');
+    </tr>`;
+      }).join('');
       return `<table class="data-table"><thead><tr><th>Treatment</th><th>Dose</th><th>Visit</th><th>Date</th></tr></thead><tbody>${rows}</tbody></table>`;
     }
 
     function renderConmeds(cms) {
       if (!cms || !cms.length) return '<div class="empty-state">No concomitant medicines</div>';
-      const rows = cms.map(c =>
-        `<tr>
-      <td class="key">${esc(c.CMTRT || '—')}</td>
+      const rows = cms.map(c => {
+        const med = c.CMTRT || '';
+        const medLink = med ? `<span class="entity-link" onclick="openRelModal('medication', '${esc(med)}')" title="Explore connected subjects taking ${esc(med)}">${esc(med)}</span>` : '—';
+        return `<tr>
+      <td class="key">${medLink}</td>
       <td>${esc(c.CMCLAS || '—')}</td>
       <td>${esc(c._prohibited_match ? '⚠ ' + c._prohibited_match : '')}</td>
-    </tr>`
-      ).join('');
+    </tr>`;
+      }).join('');
       return `<table class="data-table"><thead><tr><th>Medicine</th><th>Class</th><th>Prohibited?</th></tr></thead><tbody>${rows}</tbody></table>`;
     }
 
     function renderMH(mhs) {
       if (!mhs || !mhs.length) return '<div class="empty-state">No medical history</div>';
-      const rows = mhs.map(m =>
-        `<tr><td class="key">${esc(m.MHTERM || '—')}</td><td>${esc(m.MHCAT || '—')}</td></tr>`
-      ).join('');
+      const rows = mhs.map(m => {
+        const term = m.MHTERM || '';
+        const termLink = term ? `<span class="entity-link" onclick="openRelModal('medical_history', '${esc(term)}')" title="Explore connected subjects with ${esc(term)}">${esc(term)}</span>` : '—';
+        return `<tr><td class="key">${termLink}</td><td>${esc(m.MHCAT || '—')}</td></tr>`;
+      }).join('');
       return `<table class="data-table"><thead><tr><th>Term</th><th>Category</th></tr></thead><tbody>${rows}</tbody></table>`;
     }
 
@@ -2674,9 +3176,10 @@
       if (!ds) return '<div class="empty-state">No disposition data</div>';
       if (typeof ds === 'string') return `<div style="font-size:.9rem">${esc(ds)}</div>`;
       const status = ds.status || ds.DSDECOD || ds.DSTERM || JSON.stringify(ds);
+      const statusLink = status ? `<span class="entity-link" onclick="openRelModal('disposition', '${esc(status)}')" title="Explore connected subjects with status ${esc(status)}">${esc(status)}</span>` : '—';
       const date = ds.date || ds.DSSTDTC || '';
       return `<table class="data-table"><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody>
-    <tr><td class="key">Status</td><td>${esc(status)}</td></tr>
+    <tr><td class="key">Status</td><td>${statusLink}</td></tr>
     ${date ? `<tr><td class="key">Date</td><td>${esc(date)}</td></tr>` : ''}
   </tbody></table>`;
     }
@@ -2685,8 +3188,9 @@
       if (!findings || !Object.keys(findings).length) return '<div class="empty-state">No findings</div>';
       let html = '';
       for (const [code, fs] of Object.entries(findings)) {
+        const codeLink = `<span class="entity-link" onclick="openRelModal('finding', '${esc(code)}')" title="Explore connected subjects with finding ${esc(code)}">${esc(code)}</span>`;
         html += `<div style="margin-bottom:24px">
-      <div style="font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-3);margin-bottom:8px;">${esc(code)}</div>`;
+      <div style="font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-3);margin-bottom:8px;">${codeLink}</div>`;
         for (const f of fs) {
           html += `<div style="border:1px solid var(--border);border-radius:4px;padding:12px 16px;margin-bottom:8px;font-size:.83rem;">
         <div style="font-weight:500;margin-bottom:4px;">${esc(f.summary || f.code)}</div>
@@ -2697,6 +3201,133 @@
       }
       return html;
     }
+
+    /* ── StudyGraph Relationship Explorer Modal Logic ───────────────────────── */
+    let _currentRelData = null;
+
+    async function openRelModal(entityType, entityId) {
+      if (!entityId || entityId === '—' || entityId === '-') return;
+
+      const currentSubj = (document.getElementById('p360-subj')?.textContent || '').trim();
+      const backdrop = document.getElementById('rel-modal-backdrop');
+      const badge = document.getElementById('rel-badge');
+      const title = document.getElementById('rel-title');
+      const subtitle = document.getElementById('rel-subtitle');
+      const body = document.getElementById('rel-modal-body');
+      const searchInput = document.getElementById('rel-search-input');
+
+      if (searchInput) searchInput.value = '';
+
+      const typeLabels = {
+        medication: 'MEDICATION',
+        conmed: 'CONCOMITANT MEDICATION',
+        lab: 'LABORATORY TEST',
+        adverse_event: 'ADVERSE EVENT',
+        visit: 'STUDY VISIT',
+        dosing: 'DOSING / EXPOSURE',
+        medical_history: 'MEDICAL HISTORY',
+        disposition: 'DISPOSITION',
+        finding: 'SAFETY FINDING'
+      };
+
+      badge.textContent = typeLabels[entityType] || (entityType || '').toUpperCase();
+      title.textContent = entityId;
+      subtitle.textContent = 'Traversing StudyGraph for connected subjects…';
+      body.innerHTML = '<div style="text-align:center;padding:36px 0;color:var(--gray-3);font-size:.88rem;"><span class="loading-spinner"></span>Traversing StudyGraph relationships…</div>';
+
+      backdrop.classList.add('open');
+      document.body.style.overflow = 'hidden';
+
+      try {
+        const url = `/api/graph/related?entity_type=${encodeURIComponent(entityType)}&entity_id=${encodeURIComponent(entityId)}&source_usubjid=${encodeURIComponent(currentSubj)}`;
+        const data = await apiFetch(url);
+        _currentRelData = data;
+        renderRelModalSubjects(data.subjects, data.entity_label, data.count, currentSubj);
+      } catch (err) {
+        subtitle.textContent = 'Failed to traverse relationships';
+        body.innerHTML = `<div class="error-msg" style="margin:16px 0;">Error loading connected subjects: ${esc(err.message)}</div>`;
+      }
+    }
+
+    function renderRelModalSubjects(subjects, label, count, currentSubj, filterText = '') {
+      const subtitle = document.getElementById('rel-subtitle');
+      const body = document.getElementById('rel-modal-body');
+
+      const filtered = (subjects || []).filter(s => {
+        if (!filterText) return true;
+        const q = filterText.toLowerCase();
+        return (s.usubjid && s.usubjid.toLowerCase().includes(q)) ||
+               (s.site && s.site.toLowerCase().includes(q)) ||
+               (s.summary && s.summary.toLowerCase().includes(q)) ||
+               (s.relationship && s.relationship.toLowerCase().includes(q));
+      });
+
+      if (!subjects || subjects.length === 0) {
+        subtitle.textContent = '0 connected subjects';
+        body.innerHTML = `
+          <div class="empty-state" style="margin:16px 0;">
+            <div style="font-weight:700;margin-bottom:4px;color:var(--black);">No connected patients found.</div>
+            <div style="font-size:0.8rem;color:var(--gray-3);">There are no other subjects associated with this entity in the StudyGraph.</div>
+          </div>
+        `;
+        return;
+      }
+
+      subtitle.textContent = `${count} ${count === 1 ? 'subject' : 'subjects'} associated with this ${label ? label.toLowerCase() : 'entity'}`;
+
+      if (filtered.length === 0) {
+        body.innerHTML = '<div class="empty-state" style="margin:16px 0;">No subjects matching your filter.</div>';
+        return;
+      }
+
+      body.innerHTML = filtered.map(s => {
+        const isCurrent = s.usubjid === currentSubj;
+        return `
+          <div class="rel-patient-card" style="${isCurrent ? 'background:var(--cream);border-color:var(--coral);' : ''}">
+            <div class="rel-patient-info">
+              <div class="rel-patient-top">
+                <span class="rel-patient-id" onclick="navigateFromRel('${esc(s.usubjid)}')">${esc(s.usubjid)}</span>
+                <span class="rel-site-tag">Site ${esc(s.site || '—')}</span>
+                ${isCurrent ? '<span style="font-size:0.68rem;font-weight:700;color:var(--coral);background:rgba(227,106,106,0.12);padding:1px 5px;border-radius:3px;">CURRENT</span>' : ''}
+              </div>
+              <div class="rel-patient-summary">
+                <strong>${esc(s.relationship || 'Connected')}</strong>: ${esc(s.summary || '—')}
+              </div>
+            </div>
+            <button class="rel-open-btn" onclick="navigateFromRel('${esc(s.usubjid)}')">
+              Open Patient 360 →
+            </button>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function filterRelModal() {
+      if (!_currentRelData) return;
+      const filterText = (document.getElementById('rel-search-input')?.value || '').trim();
+      const currentSubj = (document.getElementById('p360-subj')?.textContent || '').trim();
+      renderRelModalSubjects(_currentRelData.subjects, _currentRelData.entity_label, _currentRelData.count, currentSubj, filterText);
+    }
+
+    function closeRelModal() {
+      const backdrop = document.getElementById('rel-modal-backdrop');
+      if (backdrop) {
+        backdrop.classList.remove('open');
+      }
+      document.body.style.overflow = '';
+    }
+
+    function navigateFromRel(usubjid) {
+      closeRelModal();
+      openP360(usubjid);
+    }
+
+    // Global keyboard listener for modal
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeRelModal();
+      }
+    });
 
     /* ── Evidence section ─────────────────────────────────────────────────────── */
     async function submitEvidence() {
@@ -3445,248 +4076,415 @@
   `;
     }
 
-    /* ── Shape Mosaic WebGL Cursor Hover Effect ─────────────────────────────── */
-    function initShapeMosaic() {
-      const container = document.getElementById('shape-mosaic-container');
-      if (!container || typeof THREE === 'undefined') return;
+    /* ── Ridge Parallax WebGL Background (Originkit) ────────────────────────── */
+    function initRidgeParallax(hostId = "section-start", canvasId = "ridge-parallax-canvas") {
+      const host = document.getElementById(hostId);
+      const canvas = document.getElementById(canvasId);
+      if (!host || !canvas) return;
 
-      const SHAPE_KINDS = 6;
-      const CURSOR_FOLLOW = 10.0;
-      const DEFAULTS = {
-        ink: "#FFB2B2",   // Soft pink contour around cursor
-        lit: "#E36A6A",   // Terracotta coral center glow on pointer focus
-        cell: 30,
-        size: 9,
-        kinds: 6,
-        fill: 0,
-        spin: 0,          // No background rolling/spinning
-        turn: 25,         // Responsive turn towards cursor
-        reach: 12,        // Focused proximity around cursor
-      };
+      const MAX_LAYERS = 12;
+      const DPR_CAP = 1.5;
+      const Z_MAX = 5;
+      const BASE_NEAR = -0.95;
+      const BASE_FAR = 0.3;
+      const AMP_NEAR = 0.34;
+      const AMP_FAR = 0.2;
+      const FLOOR = -1.28;
+      const DOT_FULL = 10;
+      const DOT_PERSP = 0.35;
+      const PER_DENSITY = 260;
+      const MAX_POINTS = 260000;
+      const DRIFT_RATE = 45;
+      const POINTER_DISTANCE = 180;
+      const POINTER_SMOOTH = 8;
+      const COVER = 1.15;
+      const GRID_ASPECT = 2.3;
+      const JITTER = 0.4;
+      const V_BIAS = 1.15;
+      const SIZE_REF_H = 800;
+      const SIZE_SCALE_MIN = 0.5;
+      const SIZE_SCALE_MAX = 2.5;
 
-      function clamp(v, lo, hi, fallback) {
-        const n = typeof v === "number" && isFinite(v) ? v : fallback;
-        return Math.max(lo, Math.min(hi, n));
+      const VERT = `
+precision highp float;
+attribute vec2 aP;
+attribute vec2 aQ;
+uniform vec2 uRes;
+uniform float uWrapW;
+uniform float uPan[12];
+uniform float uTravel;
+uniform float uPara;
+uniform float uLayers;
+uniform float uHeight;
+uniform float uFall;
+uniform float uRough;
+uniform float uSeed;
+uniform float uDot;
+uniform vec3 uBase;
+uniform vec3 uAccent;
+uniform vec3 uBg;
+uniform float uHaze;
+uniform float uPointer;
+varying vec3 vCol;
+varying float vA;
+const float PI = 3.14159265;
+const float Z_MAX = 5.0;
+const float BASE_NEAR = -0.95;
+const float BASE_FAR = 0.3;
+const float AMP_NEAR = 0.34;
+const float AMP_FAR = 0.2;
+const float FLOOR = -1.28;
+const float DOT_PERSP = 0.35;
+
+float hash2(float a, float b) {
+    return fract(sin(a * 127.1 + b * 311.7 + uSeed * 74.7) * 43758.5453);
+}
+
+float oct(float q, float li, float k, float f) {
+    return 1.0 - abs(sin(PI * (f * q + hash2(li + 1.0, k + 1.0))));
+}
+
+float ridged(float q, float li) {
+    float w1 = uRough;
+    float w2 = w1 * uRough;
+    float w3 = w2 * uRough;
+    float sum = oct(q, li, 0.0, 3.0)
+        + w1 * oct(q, li, 1.0, 7.0)
+        + w2 * oct(q, li, 2.0, 13.0)
+        + w3 * oct(q, li, 3.0, 23.0);
+    return sum / (1.0 + w1 + w2 + w3);
+}
+
+float panOf(float li) {
+    float p = uPan[0];
+    for (int i = 1; i < 12; i++) {
+        if (float(i) >= uLayers) break;
+        if (float(i) == li) {
+            p = uPan[i];
+        }
+    }
+    return p;
+}
+
+void main() {
+    float li = aQ.y;
+    float t = uLayers > 1.0 ? li / (uLayers - 1.0) : 0.0;
+    float halfH = uRes.y * 0.5;
+    float zr = 1.0 + t * (Z_MAX - 1.0);
+    float baseline = mix(BASE_NEAR, BASE_FAR, t) * halfH;
+    float amp = uHeight * mix(AMP_NEAR, AMP_FAR, t) * halfH;
+    float crest = baseline + amp * ridged(aP.x, li);
+    float y = crest - aP.y * uFall * (crest - FLOOR * halfH);
+    float k = pow(1.0 / zr, uPara);
+    float pointerShift = uPointer * k;
+    float x = mod(aP.x * uWrapW - panOf(li) - uTravel * k + pointerShift + uWrapW * 0.5, uWrapW) - uWrapW * 0.5;
+
+    gl_Position = vec4(x / (uRes.x * 0.5), y / halfH, 0.0, 1.0);
+    gl_PointSize = clamp(uDot * mix(1.0, 1.0 / zr, DOT_PERSP), 0.9, 64.0);
+    vec3 col = mix(uAccent, uBase, t);
+    col = mix(col, uBg, uHaze * t);
+    vCol = col * (0.82 + 0.18 * aQ.x);
+    vA = 1.0 - smoothstep(0.82, 1.0, aP.y);
+}
+`;
+
+      const FRAG = `
+precision highp float;
+varying vec3 vCol;
+varying float vA;
+
+void main() {
+    float d = length(gl_PointCoord - 0.5) * 2.0;
+    float a = (1.0 - smoothstep(0.72, 1.0, d)) * vA;
+    if (a <= 0.002) discard;
+    gl_FragColor = vec4(vCol * a, a);
+}
+`;
+
+      function parseColor(input) {
+        if (!input) return [0, 0, 0];
+        const s = input.trim();
+        const fn = s.match(/rgba?\(([^)]+)\)/i);
+        if (fn) {
+          const p = fn[1].split(",").map((v) => parseFloat(v.trim()));
+          return [(p[0] || 0) / 255, (p[1] || 0) / 255, (p[2] || 0) / 255];
+        }
+        let h = s.replace("#", "");
+        if (h.length === 3 || h.length === 4) {
+          h = h.split("").map((c) => c + c).join("");
+        }
+        h = h.padEnd(6, "0");
+        return [
+          parseInt(h.slice(0, 2), 16) / 255,
+          parseInt(h.slice(2, 4), 16) / 255,
+          parseInt(h.slice(4, 6), 16) / 255,
+        ];
       }
 
-      function settingsFor(cfg) {
-        const cell = clamp(cfg.cell, 14, 140, DEFAULTS.cell);
-        return {
-          cell,
-          radius: cell * (0.1 + clamp(cfg.size, 1, 20, DEFAULTS.size) * 0.016),
-          kinds: clamp(cfg.kinds, 1, SHAPE_KINDS, DEFAULTS.kinds),
-          fill: clamp(cfg.fill, 0, 20, DEFAULTS.fill) / 20,
-          stroke: Math.max(1.2, cell * 0.05),
-          spin: 0,
-          turn: clamp(cfg.turn, 0, 20, DEFAULTS.turn) * 0.05,
-          reach: 50 + Math.pow(clamp(cfg.reach, 1, 20, DEFAULTS.reach), 2) * 2.0,
+      function mulberry32(a) {
+        return function () {
+          a |= 0;
+          a = (a + 0x6d2b79f5) | 0;
+          let t = Math.imul(a ^ (a >>> 15), 1 | a);
+          t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+          return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
         };
       }
 
-      const QUAD_VERTEX = `
-        varying vec2 vUv;
-        void main() {
-          vUv = uv;
-          gl_Position = vec4(position.xy, 0.0, 1.0);
+      function compile(gl, type, src) {
+        const sh = gl.createShader(type);
+        gl.shaderSource(sh, src);
+        gl.compileShader(sh);
+        if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) {
+          console.warn("RidgeParallax shader error:", gl.getShaderInfoLog(sh));
         }
-      `;
-
-      const MOSAIC_FRAGMENT = `
-        precision highp float;
-        #define TAU 6.28318530718
-
-        uniform vec2 uResolution;
-        uniform vec2 uPointer;
-        uniform float uHold;
-        uniform float uTime;
-        uniform vec3 uInk;
-        uniform vec3 uLit;
-        uniform float uCell;
-        uniform float uRadius;
-        uniform float uKinds;
-        uniform float uFill;
-        uniform float uStroke;
-        uniform float uTurn;
-        uniform float uReach;
-
-        varying vec2 vUv;
-
-        float hash2(vec2 v) {
-          return fract(sin(dot(v, vec2(127.1, 311.7))) * 43758.5453123);
-        }
-
-        float shapeDist(int kind, vec2 v, float r) {
-          if (kind == 0) return length(v) - r;
-          if (kind == 1) return max(abs(v.x), abs(v.y)) - r * 0.86;
-          if (kind == 2) return max(abs(v.x) * 0.866 + v.y * 0.5, -v.y) - r * 0.55;
-          if (kind == 3) return abs(v.x) + abs(v.y) - r * 1.16;
-          if (kind == 4) {
-            float arm = r * 0.3;
-            return min(max(abs(v.x) - r, abs(v.y) - arm),
-                       max(abs(v.x) - arm, abs(v.y) - r));
-          }
-          return abs(length(v) - r * 0.72) - r * 0.22;
-        }
-
-        void main() {
-          vec2 p = vUv * uResolution;
-          vec2 cell = floor(p / uCell);
-          vec2 mid = (cell + 0.5) * uCell;
-
-          float near = 1.0 - smoothstep(0.0, uReach, length(mid - uPointer));
-          near = near * near * uHold;
-
-          if (near < 0.01) discard;
-
-          float seed = hash2(cell);
-          int kind = int(min(floor(hash2(cell + 7.3) * uKinds), uKinds - 1.0));
-
-          float ang = (seed * TAU) + near * uTurn * TAU;
-          float ca = cos(ang);
-          float sa = sin(ang);
-          vec2 v = mat2(ca, sa, -sa, ca) * (p - mid);
-
-          float r = uRadius * (0.85 + near * 0.55);
-          float d = shapeDist(kind, v, r);
-
-          float aa = max(fwidth(d), 0.0001);
-          float solid = 1.0 - smoothstep(-aa, aa, d);
-          float outline = 1.0 - smoothstep(uStroke - aa, uStroke + aa, abs(d));
-          float mask = mix(outline, solid, uFill);
-          if (mask < 0.004) discard;
-
-          vec3 col = mix(uInk, uLit, near);
-          float a = mask * smoothstep(0.01, 0.45, near) * 0.85;
-          if (a < 0.005) discard;
-
-          gl_FragColor = vec4(col * a, a);
-        }
-      `;
-
-      try {
-        const cfg = { ...DEFAULTS };
-        const S = settingsFor(cfg);
-
-        const renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true });
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-        renderer.setClearColor(0x000000, 0);
-        const el = renderer.domElement;
-        el.style.position = "absolute";
-        el.style.inset = "0";
-        el.style.width = "100%";
-        el.style.height = "100%";
-        container.appendChild(el);
-
-        const scene = new THREE.Scene();
-        const camera = new THREE.Camera();
-        const geometry = new THREE.PlaneGeometry(2, 2);
-
-        const material = new THREE.ShaderMaterial({
-          vertexShader: QUAD_VERTEX,
-          fragmentShader: MOSAIC_FRAGMENT,
-          uniforms: {
-            uResolution: { value: new THREE.Vector2(1, 1) },
-            uPointer: { value: new THREE.Vector2(-1e4, -1e4) },
-            uHold: { value: 0 },
-            uTime: { value: 0 },
-            uInk: { value: new THREE.Color(cfg.ink) },
-            uLit: { value: new THREE.Color(cfg.lit) },
-            uCell: { value: S.cell },
-            uRadius: { value: S.radius },
-            uKinds: { value: S.kinds },
-            uFill: { value: S.fill },
-            uStroke: { value: S.stroke },
-            uTurn: { value: S.turn },
-            uReach: { value: S.reach },
-          },
-          transparent: true,
-          depthTest: false,
-          depthWrite: false,
-        });
-
-        const mesh = new THREE.Mesh(geometry, material);
-        mesh.frustumCulled = false;
-        scene.add(mesh);
-
-        let target = new THREE.Vector2(-1e4, -1e4);
-        let eased = new THREE.Vector2(-1e4, -1e4);
-        let hold = 0;
-        let wantHold = 0;
-        let time = 0;
-        let width = 1;
-        let height = 1;
-        let lastT = performance.now();
-        let idleTimer = null;
-
-        function setSize(w, h) {
-          if (w <= 0 || h <= 0) return;
-          renderer.setSize(w, h, false);
-          const dpr = renderer.getPixelRatio();
-          width = w * dpr;
-          height = h * dpr;
-          material.uniforms.uResolution.value.set(width, height);
-        }
-
-        const heroEl = document.getElementById('section-home') || container;
-
-        heroEl.addEventListener("pointermove", (e) => {
-          const rect = container.getBoundingClientRect();
-          if (rect.width <= 0 || rect.height <= 0) return;
-          const x = ((e.clientX - rect.left) / rect.width) * width;
-          const y = (1 - (e.clientY - rect.top) / rect.height) * height;
-          target.set(x, y);
-          if (wantHold === 0) eased.copy(target);
-          wantHold = 1;
-
-          if (idleTimer) clearTimeout(idleTimer);
-          idleTimer = setTimeout(() => {
-            wantHold = 0;
-          }, 1800);
-        });
-
-        heroEl.addEventListener("pointerleave", () => {
-          wantHold = 0;
-        });
-
-        setSize(container.clientWidth || window.innerWidth, container.clientHeight || 450);
-
-        window.addEventListener("resize", () => {
-          setSize(container.clientWidth, container.clientHeight);
-        });
-
-        function step() {
-          requestAnimationFrame(step);
-          const now = performance.now();
-          let dt = (now - lastT) / 1000;
-          lastT = now;
-          if (!isFinite(dt) || dt < 0) dt = 0;
-          if (dt > 0.05) dt = 0.05;
-
-          eased.lerp(target, 1 - Math.exp(-dt * CURSOR_FOLLOW));
-          hold += (wantHold - hold) * (1 - Math.exp(-dt * 6));
-
-          const dpr = renderer.getPixelRatio();
-          const u = material.uniforms;
-          u.uPointer.value.copy(eased);
-          u.uHold.value = hold;
-          u.uCell.value = S.cell * dpr;
-          u.uRadius.value = S.radius * dpr;
-          u.uKinds.value = S.kinds;
-          u.uFill.value = S.fill;
-          u.uStroke.value = S.stroke * dpr;
-          u.uTurn.value = S.turn;
-          u.uReach.value = S.reach * dpr;
-
-          renderer.render(scene, camera);
-        }
-        step();
-      } catch (err) {
-        console.warn("Shape Mosaic animation unavailable:", err);
+        return sh;
       }
+
+      const clamp = (v, lo, hi) => (v < lo ? lo : v > hi ? hi : v);
+
+      const config = {
+        background: "#FFFBF1",
+        baseColor: "#FFB2B2",
+        accentColor: "#E36A6A",
+        density: 200,
+        dotSize: 400,
+        speed: 100,
+        pointer: 50,
+        layers: 12,
+        height: 174,
+        roughness: 100,
+        fall: 300,
+        seed: 0,
+        parallax: 200,
+        haze: 100,
+        travelStart: 3000,
+        travelEnd: 3000,
+      };
+
+      const gl = canvas.getContext("webgl", {
+        alpha: true,
+        antialias: false,
+        premultipliedAlpha: true,
+        depth: false,
+      });
+
+      if (!gl) return;
+
+      const prog = gl.createProgram();
+      gl.attachShader(prog, compile(gl, gl.VERTEX_SHADER, VERT));
+      gl.attachShader(prog, compile(gl, gl.FRAGMENT_SHADER, FRAG));
+      gl.linkProgram(prog);
+
+      if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
+        console.warn("RidgeParallax link error:", gl.getProgramInfoLog(prog));
+        return;
+      }
+
+      gl.useProgram(prog);
+
+      const aP = gl.getAttribLocation(prog, "aP");
+      const aQ = gl.getAttribLocation(prog, "aQ");
+
+      const U = (n) => gl.getUniformLocation(prog, n);
+      const u = {
+        res: U("uRes"),
+        wrapW: U("uWrapW"),
+        pan: U("uPan[0]"),
+        travel: U("uTravel"),
+        para: U("uPara"),
+        layers: U("uLayers"),
+        height: U("uHeight"),
+        fall: U("uFall"),
+        rough: U("uRough"),
+        seed: U("uSeed"),
+        dot: U("uDot"),
+        base: U("uBase"),
+        accent: U("uAccent"),
+        bg: U("uBg"),
+        haze: U("uHaze"),
+        pointer: U("uPointer"),
+      };
+
+      const pBuf = gl.createBuffer();
+      const qBuf = gl.createBuffer();
+      const panPx = new Float32Array(MAX_LAYERS);
+
+      let builtDensity = -1;
+      let builtLayers = -1;
+      let count = 0;
+
+      const build = (d, n) => {
+        const layers = clamp(Math.round(n), 1, MAX_LAYERS);
+        const perLayer = Math.max(
+          64,
+          Math.min(
+            Math.round(Math.max(1, d) * PER_DENSITY),
+            Math.floor(MAX_POINTS / layers)
+          )
+        );
+        const rows = Math.max(2, Math.round(Math.sqrt(perLayer / GRID_ASPECT)));
+        const cols = Math.max(2, Math.round(perLayer / rows));
+        count = layers * rows * cols;
+
+        const P = new Float32Array(count * 2);
+        const Q = new Float32Array(count * 2);
+        const rnd = mulberry32(0x9e3779b9);
+
+        let i = 0;
+        for (let L = layers - 1; L >= 0; L--) {
+          for (let r = 0; r < rows; r++) {
+            for (let c = 0; c < cols; c++) {
+              let uCoord = (c + 0.5 + (rnd() - 0.5) * 2 * JITTER) / cols;
+              uCoord -= Math.floor(uCoord);
+              const vCoord = (r + 0.5 + (rnd() - 0.5) * 2 * JITTER) / rows;
+
+              P[i * 2] = uCoord;
+              P[i * 2 + 1] = Math.sign(vCoord) * Math.pow(Math.abs(vCoord), V_BIAS);
+              Q[i * 2] = rnd();
+              Q[i * 2 + 1] = L;
+              i++;
+            }
+          }
+        }
+
+        gl.bindBuffer(gl.ARRAY_BUFFER, pBuf);
+        gl.bufferData(gl.ARRAY_BUFFER, P, gl.STATIC_DRAW);
+
+        gl.bindBuffer(gl.ARRAY_BUFFER, qBuf);
+        gl.bufferData(gl.ARRAY_BUFFER, Q, gl.STATIC_DRAW);
+
+        builtDensity = d;
+        builtLayers = layers;
+      };
+
+      gl.disable(gl.DEPTH_TEST);
+      gl.enable(gl.BLEND);
+      gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+
+      let cssW = 0;
+      let cssH = 0;
+      let dpr = 1;
+      let sizeScale = 1;
+
+      const resize = () => {
+        dpr = Math.min(window.devicePixelRatio || 1, DPR_CAP);
+        cssW = canvas.clientWidth || host.clientWidth || window.innerWidth || 0;
+        cssH = canvas.clientHeight || host.clientHeight || window.innerHeight || 0;
+        sizeScale = cssH > 0 ? clamp(cssH / SIZE_REF_H, SIZE_SCALE_MIN, SIZE_SCALE_MAX) : 1;
+
+        const w = Math.max(1, Math.round(cssW * dpr));
+        const h = Math.max(1, Math.round(cssH * dpr));
+
+        if (canvas.width !== w || canvas.height !== h) {
+          canvas.width = w;
+          canvas.height = h;
+        }
+        gl.viewport(0, 0, w, h);
+      };
+
+      resize();
+      window.addEventListener("resize", resize);
+
+      let pointerTarget = 0;
+      let pointerCurrent = 0;
+
+      const onPointerMove = (e) => {
+        const r = host.getBoundingClientRect();
+        if (r.width <= 0) return;
+        const normalized = clamp((e.clientX - r.left) / r.width, 0, 1);
+        const centered = normalized * 2 - 1;
+        pointerTarget = -centered * POINTER_DISTANCE * dpr;
+      };
+
+      const onPointerLeave = () => {
+        pointerTarget = 0;
+      };
+
+      host.addEventListener("pointermove", onPointerMove);
+      host.addEventListener("pointerleave", onPointerLeave);
+
+      let last = performance.now();
+
+      function frame(now) {
+        requestAnimationFrame(frame);
+        const dt = clamp((now - last) / 1000, 0, 0.05);
+        last = now;
+
+        if (cssW <= 0 || cssH <= 0) {
+          resize();
+          if (cssW <= 0 || cssH <= 0) return;
+        }
+
+        const L = config;
+        const layers = clamp(Math.round(L.layers), 1, MAX_LAYERS);
+
+        if (L.density !== builtDensity || layers !== builtLayers) {
+          build(L.density, layers);
+        }
+
+        if (count === 0) return;
+
+        const wDev = canvas.width;
+        const hDev = canvas.height;
+        const wrapW = wDev * COVER;
+        const para = Math.max(0, L.parallax) / 100;
+        const smoothing = 1 - Math.exp(-POINTER_SMOOTH * dt);
+
+        pointerCurrent += (pointerTarget - pointerCurrent) * smoothing;
+        const rate = (L.speed / 50) * DRIFT_RATE * dpr * dt;
+
+        for (let i = 0; i < layers; i++) {
+          const t = layers > 1 ? i / (layers - 1) : 0;
+          const k = Math.pow(1 / (1 + t * (Z_MAX - 1)), para);
+          panPx[i] = (panPx[i] + rate * k) % wrapW;
+        }
+
+        const r = host.getBoundingClientRect();
+        const vh = window.innerHeight || 1;
+        const prog = clamp((vh - r.top) / (vh + r.height), 0, 1);
+        const travel = (L.travelStart + (L.travelEnd - L.travelStart) * prog) * dpr;
+
+        const [br, bg2, bb] = parseColor(L.baseColor);
+        const [ar, ag, ab] = parseColor(L.accentColor);
+        const [gr, gg, gb] = parseColor(L.background);
+
+        gl.uniform2f(u.res, wDev, hDev);
+        gl.uniform1f(u.wrapW, wrapW);
+        gl.uniform1fv(u.pan, panPx);
+        gl.uniform1f(u.travel, travel);
+        gl.uniform1f(u.para, para);
+        gl.uniform1f(u.layers, layers);
+        gl.uniform1f(u.height, Math.max(0, L.height) / 100);
+        gl.uniform1f(u.fall, Math.max(0, L.fall) / 100);
+        gl.uniform1f(u.rough, (clamp(L.roughness, 0, 100) / 100) * 0.7);
+        gl.uniform1f(u.seed, Math.round(L.seed));
+        gl.uniform1f(u.dot, (L.dotSize / 100) * DOT_FULL * dpr * sizeScale);
+        gl.uniform3f(u.base, br, bg2, bb);
+        gl.uniform3f(u.accent, ar, ag, ab);
+        gl.uniform3f(u.bg, gr, gg, gb);
+        gl.uniform1f(u.haze, clamp(L.haze, 0, 100) / 100);
+        gl.uniform1f(u.pointer, pointerCurrent * (Math.max(0, L.pointer) / 100));
+
+        gl.bindBuffer(gl.ARRAY_BUFFER, pBuf);
+        gl.enableVertexAttribArray(aP);
+        gl.vertexAttribPointer(aP, 2, gl.FLOAT, false, 0, 0);
+
+        gl.bindBuffer(gl.ARRAY_BUFFER, qBuf);
+        gl.enableVertexAttribArray(aQ);
+        gl.vertexAttribPointer(aQ, 2, gl.FLOAT, false, 0, 0);
+
+        gl.clearColor(0, 0, 0, 0);
+        gl.clear(gl.COLOR_BUFFER_BIT);
+        gl.drawArrays(gl.POINTS, 0, count);
+      }
+
+      requestAnimationFrame(frame);
     }
 
     /* ── Init ─────────────────────────────────────────────────────────────────── */
-    initShapeMosaic();
+    initRidgeParallax("section-start", "ridge-parallax-canvas");
+    initRidgeParallax("section-home", "ridge-parallax-canvas-home");
     loadStatus();
     loadMonitorData();
   </script>

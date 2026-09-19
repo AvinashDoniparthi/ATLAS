@@ -65,6 +65,12 @@ class StudyGraph:
 
         return _p360(self.core, usubjid)
 
+    def related_subjects(self, entity_type: str, entity_id: str, source_usubjid: Optional[str] = None) -> dict:
+        self.ensure_built()
+        from backend.queries.relationships import get_related_subjects
+
+        return get_related_subjects(self.core, entity_type, entity_id, source_usubjid)
+
     def stats(self) -> dict:
         return dict(self.last_stats)
 

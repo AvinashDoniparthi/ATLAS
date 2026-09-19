@@ -206,6 +206,21 @@ async def patient360(usubjid: str) -> dict:
         raise HTTPException(status_code=500, detail=str(e))
 
 
+@app.get("/api/graph/related")
+async def graph_related(
+    entity_type: str,
+    entity_id: str,
+    source_usubjid: Optional[str] = None
+) -> dict:
+    _ensure_built()
+    try:
+        res = _graph.related_subjects(entity_type=entity_type, entity_id=entity_id, source_usubjid=source_usubjid)
+        return res
+    except Exception as e:  # noqa: BLE001
+        log.exception("graph_related() failed")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 @app.get("/api/rebuild")
 async def rebuild() -> dict:
     global _build_stats

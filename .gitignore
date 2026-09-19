@@ -17,4 +17,7 @@ venv/
 .DS_Store
 Thumbs.db
 
+# temp scratch
+scratch/
+
 # NOTE: graph_stats.json and stage1_public.json are deliverables and are committed.
