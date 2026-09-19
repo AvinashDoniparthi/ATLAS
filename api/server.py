@@ -216,128 +216,6 @@ async def rebuild() -> dict:
         raise HTTPException(status_code=500, detail=str(e))
 
 
-# --------------------------------------------------------------------------- #
-# Stage 2 — MONITOR API endpoints
-# --------------------------------------------------------------------------- #
-_crew = None
-
-
-def _ensure_crew():
-    global _crew
-    _ensure_built()
-    if _crew is None:
-        from stage2.crew import ReviewCrew
-        _crew = ReviewCrew(hub_url="local", gateway_url="local", team_key="team-reve", atlas=_atlas)
-    return _crew
-
-
-class RunCycleRequest(BaseModel):
-    cut: int = 15
-    protocol_version: int = 3
-
-
-@app.post("/api/monitor/run-cycle")
-async def monitor_run_cycle(req: RunCycleRequest) -> dict:
-    crew = _ensure_crew()
-    try:
-        t0 = time.perf_counter()
-        report = crew.run_cycle(cut=req.cut, protocol_version=req.protocol_version)
-        ms = (time.perf_counter() - t0) * 1000
-        d = report.model_dump()
-        d["execution_ms"] = round(ms, 1)
-        d["report"] = dict(d)
-        return d
-    except Exception as e:  # noqa: BLE001
-        log.exception("run_cycle failed")
-        raise HTTPException(status_code=500, detail=str(e))
-
-
-@app.get("/api/monitor/status")
-async def monitor_status() -> dict:
-    crew = _ensure_crew()
-    latest = crew.reports[-1].model_dump() if crew.reports else None
-    return {
-        "cycle_count": crew.cycle_count,
-        "completed_cycles": crew.memory.completed_cycles,
-        "queries_in_memory": len(crew.memory.queries),
-        "escalations_in_memory": len(crew.memory.escalations),
-        "rejected_count": len(crew.memory.rejected_escalations),
-        "open_queries_count": len(crew.memory.open_query_ids),
-        "latest_report": latest,
-        "last_cycle": latest,
-    }
-
-
-@app.get("/api/monitor/history")
-async def monitor_history() -> list[dict]:
-    crew = _ensure_crew()
-    return [r.model_dump() for r in crew.reports]
-
-
-class EscalationActionRequest(BaseModel):
-    escalation_id: str
-    action: str  # APPROVED | REJECTED | CLARIFY
-    reason: Optional[str] = None
-
-
-@app.post("/api/monitor/escalation-action")
-async def monitor_escalation_action(req: EscalationActionRequest) -> dict:
-    crew = _ensure_crew()
-    action = req.action.upper()
-    if action not in ("APPROVED", "REJECTED", "CLARIFY"):
-        raise HTTPException(status_code=400, detail="Action must be APPROVED, REJECTED, or CLARIFY")
-
-    # Find the escalation in latest report or memory
-    target_esc = None
-    if crew.reports:
-        for esc in crew.reports[-1].escalations:
-            if esc.escalation_id == req.escalation_id:
-                target_esc = esc
-                break
-
-    clarification_res = None
-    if action == "CLARIFY" and target_esc:
-        from stage2.clarify_solver import resolve_clarification
-        q_text = req.reason or target_esc.clarification_requested or "Screening ALT and concomitant medications"
-        ans_text, cited_refs = resolve_clarification(_graph.core, target_esc.usubjid, q_text)
-        clarification_res = {
-            "question": q_text,
-            "answer": ans_text,
-            "evidence": [r.model_dump() for r in cited_refs],
-        }
-        target_esc.clarification_requested = q_text
-        target_esc.clarification_response = ans_text
-        for cr in cited_refs:
-            if cr not in target_esc.evidence:
-                target_esc.evidence.append(cr)
-        target_esc.status = "CLARIFICATION_REQUIRED"
-    elif action == "APPROVED" and target_esc:
-        target_esc.status = "APPROVED"
-        target_esc.monitor_decision = "APPROVED"
-        target_esc.monitor_reason = req.reason or "Approved by medical monitor via UI"
-        target_esc.action_taken = "Approved by human monitor; safety actions executed."
-    elif action == "REJECTED" and target_esc:
-        target_esc.status = "MONITORING"
-        target_esc.monitor_decision = "REJECTED"
-        target_esc.monitor_reason = req.reason or "Rejected by medical monitor; downgraded to monitoring"
-        target_esc.action_taken = "Downgraded to monitoring; no safety escalation."
-
-    crew.memory.update_escalation_decision(req.escalation_id, action, req.reason)
-    return {
-        "ok": True,
-        "escalation_id": req.escalation_id,
-        "action": action,
-        "status": target_esc.status if target_esc else action,
-        "clarification": clarification_res,
-    }
-
-
-@app.post("/api/monitor/reset")
-async def monitor_reset() -> dict:
-    crew = _ensure_crew()
-    crew.reset_memory()
-    return {"ok": True, "message": "Crew memory reset successfully"}
-
 
 # --------------------------------------------------------------------------- #
 # Gateway & Hub Mock Endpoints (POST /queries, POST /escalations)
@@ -367,6 +245,238 @@ async def mock_hub_escalation(req: dict) -> dict:
         if reply and len(reply) >= 2:
             return {"decision": reply[0], "reason": reply[1]}
     return {"decision": "APPROVED", "reason": "Consistent with safety criteria; hold dosing pending review."}
+
+
+# --------------------------------------------------------------------------- #
+# Stage 2 MONITOR Service & API Endpoints
+# --------------------------------------------------------------------------- #
+_crew = None
+
+
+def _ensure_crew():
+    global _crew
+    _ensure_built()
+    if _crew is None:
+        from stage2.crew import ReviewCrew
+        _crew = ReviewCrew(
+            hub_url="local",
+            gateway_url="local",
+            team_key="atlas",
+            atlas=_atlas,
+        )
+        if not _crew.reports:
+            try:
+                _crew.reset_memory()
+                _crew.run_cycle(cut=15, protocol_version=3)
+            except Exception as e:
+                log.warning("Initial run_cycle failed: %s", e)
+    return _crew
+
+
+class RunCycleRequest(BaseModel):
+    cut: int = 15
+    protocol_version: int = 3
+
+
+class DecisionRequest(BaseModel):
+    escalation_id: str
+    decision: str  # APPROVED | REJECTED | CLARIFY
+    reason: Optional[str] = None
+
+
+@app.post("/api/monitor/run-cycle")
+async def run_cycle(req: RunCycleRequest) -> dict:
+    crew = _ensure_crew()
+    try:
+        report = crew.run_cycle(cut=req.cut, protocol_version=req.protocol_version)
+        return report.model_dump()
+    except Exception as e:  # noqa: BLE001
+        log.exception("run_cycle failed")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/api/monitor/summary")
+@app.get("/api/monitor/status")
+async def monitor_summary() -> dict:
+    crew = _ensure_crew()
+    last_report = crew.reports[-1] if crew.reports else None
+    return {
+        "cycle_count": crew.cycle_count,
+        "completed_cycles": list(crew.memory.completed_cycles),
+        "completed_cuts": list(crew.memory.completed_cuts),
+        "total_queries_raised": len(crew.memory.queries),
+        "total_escalations_made": len(crew.memory.escalations),
+        "total_rejected_escalations": len(crew.memory.rejected_escalations),
+        "has_last_report": last_report is not None,
+        "last_report_cut": last_report.cut if last_report else None,
+    }
+
+
+@app.get("/api/monitor/report")
+async def monitor_report(cycle: Optional[int] = None) -> dict:
+    crew = _ensure_crew()
+    if not crew.reports:
+        raise HTTPException(status_code=404, detail="No review cycle report available. Run a cycle first.")
+    if cycle is not None:
+        target = [r for r in crew.reports if r.cycle == cycle]
+        if not target:
+            raise HTTPException(status_code=404, detail=f"Cycle {cycle} report not found")
+        return target[0].model_dump()
+    for rep in reversed(crew.reports):
+        if rep.escalations or rep.queries:
+            return rep.model_dump()
+    return crew.reports[-1].model_dump()
+
+
+@app.get("/api/monitor/escalations")
+async def monitor_escalations(status: Optional[str] = None) -> dict:
+    crew = _ensure_crew()
+    if not crew.reports:
+        return {"escalations": []}
+    escs = []
+    for rep in reversed(crew.reports):
+        if rep.escalations:
+            escs = rep.escalations
+            break
+    if not escs and crew.reports:
+        escs = crew.reports[-1].escalations
+    if status:
+        escs = [e for e in escs if e.status.upper() == status.upper()]
+    return {"escalations": [e.model_dump() for e in escs]}
+
+
+@app.get("/api/monitor/escalations/{esc_id}")
+async def monitor_escalation_detail(esc_id: str) -> dict:
+    crew = _ensure_crew()
+    if not crew.reports:
+        raise HTTPException(status_code=404, detail="No reports available")
+    for rep in reversed(crew.reports):
+        for e in rep.escalations:
+            if e.escalation_id == esc_id or e.usubjid == esc_id or e.code == esc_id:
+                return e.model_dump()
+    raise HTTPException(status_code=404, detail=f"Escalation {esc_id} not found")
+
+
+@app.post("/api/monitor/decision")
+async def monitor_submit_decision(req: DecisionRequest) -> dict:
+    crew = _ensure_crew()
+    if not crew.reports:
+        raise HTTPException(status_code=400, detail="No active review cycle")
+    target = None
+    for rep in reversed(crew.reports):
+        for e in rep.escalations:
+            if e.escalation_id == req.escalation_id or e.usubjid == req.escalation_id or e.code == req.escalation_id:
+                target = e
+                break
+        if target:
+            break
+    if not target:
+        raise HTTPException(status_code=404, detail=f"Escalation {req.escalation_id} not found")
+
+    target.monitor_decision = req.decision
+    if req.reason:
+        target.monitor_reason = req.reason
+    if req.decision == "APPROVED":
+        target.status = "APPROVED"
+        target.action_taken = "Approved by monitor; action dispatched."
+    elif req.decision == "REJECTED":
+        target.status = "MONITORING"
+        target.action_taken = "Downgraded to monitoring by medical monitor."
+        crew.memory.record_rejection(target.code, target.usubjid, target.site, req.reason or "Rejected")
+    elif req.decision == "CLARIFY":
+        target.status = "CLARIFICATION_REQUESTED"
+        target.clarification_requested = req.reason or ""
+        from stage2.clarify_solver import resolve_clarification
+        ans_text, ans_refs = resolve_clarification(_atlas.graph.core, target.usubjid, req.reason or "")
+        target.clarification_response = ans_text
+        target.status = "CLARIFICATION_SUBMITTED"
+        target.action_taken = f"Clarification answered: {ans_text[:100]}... Resubmitted."
+    return target.model_dump()
+
+
+@app.get("/api/monitor/queries")
+async def monitor_queries(usubjid: Optional[str] = None) -> dict:
+    crew = _ensure_crew()
+    if not crew.reports:
+        return {"queries": []}
+    queries = []
+    for rep in reversed(crew.reports):
+        if rep.queries:
+            queries = rep.queries
+            break
+    if not queries and crew.reports:
+        queries = crew.reports[-1].queries
+    if usubjid:
+        queries = [q for q in queries if q.usubjid == usubjid]
+    return {"queries": [q.model_dump() for q in queries]}
+
+
+@app.get("/api/monitor/queries/{query_id}")
+async def monitor_query_detail(query_id: str) -> dict:
+    crew = _ensure_crew()
+    if not crew.reports:
+        raise HTTPException(status_code=404, detail="No reports available")
+    for q in crew.reports[-1].queries:
+        if q.query_id == query_id:
+            return q.model_dump()
+    raise HTTPException(status_code=404, detail=f"Query {query_id} not found")
+
+
+@app.get("/api/monitor/trace")
+async def monitor_trace() -> dict:
+    crew = _ensure_crew()
+    if not crew.reports:
+        return {"trace": []}
+    return {"trace": [t.model_dump() for t in crew.reports[-1].trace]}
+
+
+@app.get("/api/monitor/memory")
+async def monitor_memory() -> dict:
+    crew = _ensure_crew()
+    mem = crew.memory
+    return {
+        "completed_cycles": list(mem.completed_cycles),
+        "completed_cuts": list(mem.completed_cuts),
+        "raised_queries_count": len(mem.queries),
+        "made_escalations_count": len(mem.escalations),
+        "rejected_escalations_count": len(mem.rejected_escalations),
+        "subject_flags_count": len(mem.subject_cycles),
+        "site_escalations_count": len(mem.site_issue_counts),
+    }
+
+
+@app.get("/api/monitor/findings")
+async def monitor_findings(serious_only: bool = False) -> dict:
+    crew = _ensure_crew()
+    if not crew.reports:
+        return {"findings": []}
+    rep = crew.reports[-1]
+    findings = rep.serious_findings if serious_only else rep.findings
+    return {"findings": findings, "count": len(findings)}
+
+
+@app.get("/api/monitor/metadata")
+async def monitor_metadata() -> dict:
+    _ensure_built()
+    cuts_file = _data_dir / "data" / "cuts.csv"
+    cuts_info = []
+    if cuts_file.exists():
+        import csv
+        with open(cuts_file, encoding="utf-8-sig") as f:
+            cuts_info = list(csv.DictReader(f))
+    return {
+        "study": "STUDY-042",
+        "cuts_available": cuts_info,
+        "current_protocol_versions": {c.get("cut"): c.get("protocol_version") for c in cuts_info},
+    }
+
+
+@app.post("/api/monitor/reset")
+async def monitor_reset() -> dict:
+    crew = _ensure_crew()
+    crew.reset_memory()
+    return {"ok": True, "message": "Stage 2 memory and cycle state reset."}
+
 
 
 # --------------------------------------------------------------------------- #
